@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.ibm.db2.jcc.DB2Driver</property>
+        <property name="hibernate.connection.url">jdbc:db2://127.0.0.1:50000/SIAK</property>
+        <property name="hibernate.connection.username">siak</property>
+        <property name="hibernate.connection.password">tiga#333</property>
+        <mapping class="id.ac.edu.model.Mcalakademik"/>
+        <mapping class="id.ac.edu.model.Mhistpnddkmhs"/>
+        <mapping class="id.ac.edu.model.Mpeminatan"/>
+        <mapping class="id.ac.edu.model.IpcIp2country"/>
+        <mapping class="id.ac.edu.model.Mgrade"/>
+        <mapping class="id.ac.edu.model.Mtbmtkl"/>
+        <mapping class="id.ac.edu.model.Auftrag"/>
+        <mapping class="id.ac.edu.model.Mmahasiswa"/>
+        <mapping class="id.ac.edu.model.Mprov"/>
+        <mapping class="id.ac.edu.model.Mstatusmhs"/>
+        <mapping class="id.ac.edu.model.MkodePos"/>
+        <mapping class="id.ac.edu.model.SysCountrycode"/>
+        <mapping class="id.ac.edu.model.SecRole"/>
+        <mapping class="id.ac.edu.model.Mhistkursusmhs"/>
+        <mapping class="id.ac.edu.model.HibernateStatistics"/>
+        <mapping class="id.ac.edu.model.Mkurmhs"/>
+        <mapping class="id.ac.edu.model.HibernateEntityStatistics"/>
+        <mapping class="id.ac.edu.model.Guestbook"/>
+        <mapping class="id.ac.edu.model.Mhari"/>
+        <mapping class="id.ac.edu.model.Mfasilitas"/>
+        <mapping class="id.ac.edu.model.SysIp4country"/>
+        <mapping class="id.ac.edu.model.Mkurikulum"/>
+        <mapping class="id.ac.edu.model.Mprestasimhs"/>
+        <mapping class="id.ac.edu.model.Mjabatan"/>
+        <mapping class="id.ac.edu.model.Mruang"/>
+        <mapping class="id.ac.edu.model.Mppumhskhusus"/>
+        <mapping class="id.ac.edu.model.Mhistpangkatmhs"/>
+        <mapping class="id.ac.edu.model.CalendarEvent"/>
+        <mapping class="id.ac.edu.model.Tpaketkuliah"/>
+        <mapping class="id.ac.edu.model.Mpangkatgolongan"/>
+        <mapping class="id.ac.edu.model.Auftragposition"/>
+        <mapping class="id.ac.edu.model.Mkab"/>
+        <mapping class="id.ac.edu.model.LogIp2country"/>
+        <mapping class="id.ac.edu.model.Mkaryamhs"/>
+        <mapping class="id.ac.edu.model.Mjenjang"/>
+        <mapping class="id.ac.edu.model.SecUser"/>
+        <mapping class="id.ac.edu.model.Kunde"/>
+        <mapping class="id.ac.edu.model.Tabsendosen"/>
+        <mapping class="id.ac.edu.model.Mkgtmhs"/>
+        <mapping class="id.ac.edu.model.Mkegiatan"/>
+        <mapping class="id.ac.edu.model.Mpegawai"/>
+        <mapping class="id.ac.edu.model.SecGroup"/>
+        <mapping class="id.ac.edu.model.Mkec"/>
+        <mapping class="id.ac.edu.model.Mkel"/>
+        <mapping class="id.ac.edu.model.Muniv"/>
+        <mapping class="id.ac.edu.model.Mmhspascakhs"/>
+        <mapping class="id.ac.edu.model.Artikel"/>
+        <mapping class="id.ac.edu.model.SecRight"/>
+        <mapping class="id.ac.edu.model.SecRolegroup"/>
+        <mapping class="id.ac.edu.model.AppNews"/>
+        <mapping class="id.ac.edu.model.Filiale"/>
+        <mapping class="id.ac.edu.model.YoutubeLink"/>
+        <mapping class="id.ac.edu.model.SecGroupright"/>
+        <mapping class="id.ac.edu.model.Msesikuliah"/>
+        <mapping class="id.ac.edu.model.Branche"/>
+        <mapping class="id.ac.edu.model.Mprodi"/>
+        <mapping class="id.ac.edu.model.Mpbahasamhs"/>
+        <mapping class="id.ac.edu.model.Tabsenmhs"/>
+        <mapping class="id.ac.edu.model.Msekolah"/>
+        <mapping class="id.ac.edu.model.SecUserrole"/>
+        <mapping class="id.ac.edu.model.Mdetilkurikulum"/>
+        <mapping class="id.ac.edu.model.SecLoginlog"/>
+        <mapping class="id.ac.edu.model.Mfasilitasruang"/>
+    </session-factory>
+</hibernate-configuration>

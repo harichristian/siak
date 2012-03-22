@@ -1,0 +1,23 @@
+<!-- Tugas Menulis MenuTree -->
+<menuItem id="menu_Item_EntryPendaftaranThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranThesis"/>
+<menuItem id="menu_Item_EntryPengumpulanProposalThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPengumpulanProposalThesis"/>
+<menuItem id="menu_Item_EntryJadwalSidangMakalah" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangMakalah"/>
+<menuItem id="menu_Item_EntryPendSidangProposalThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendSidangProposalThesis"/>
+<menuItem id="menu_Item_EntryJadwalSidangProposalThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangProposalThesis"/>
+<menuItem id="menu_Item_RekapHasilSidangProposalThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_RekapHasilSidangProposalThesis"/>
+<menuItem id="menu_Item_EntryDosenPembimbingThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryDosenPembimbingThesis"/>
+<menuItem id="menu_Item_EntryPendaftaranSidangThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranSidangThesis"/>
+<menuItem id="menu_Item_EntryJadwalSidangThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangThesis"/>
+<menuItem id="menu_Item_EntryHasilSidangThesis" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryHasilSidangThesis"/>
+<menuItem id="menu_Item_EntryPendaftaranWisuda" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranWisuda"/>
