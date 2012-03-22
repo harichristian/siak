@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tlognilai" table="TLOGNILAI" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+        </id>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="select" lazy="false">
+            <column name="MAHASISWA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mtbmtkl" class="id.ac.idu.backend.model.Mtbmtkl" fetch="select" lazy="false">
+            <column name="MATAKULIAH_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mgrade" class="id.ac.idu.backend.model.Mgrade" fetch="select" lazy="false">
+            <column name="GRADE_ID" />
+        </many-to-one>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4" not-null="true" />
+        </property>
+        <property name="ckelompok" type="string">
+            <column name="CKELOMPOK" length="2" not-null="true" />
+        </property>
+        <property name="cthajar" type="string">
+            <column name="CTHAJAR" length="8" not-null="true" />
+        </property>
+        <property name="csmt" type="string">
+            <column name="CSMT" length="1" not-null="true" />
+        </property>
+        <property name="nsks" type="java.lang.Integer">
+            <column name="NSKS" precision="5" scale="0" />
+        </property>
+        <property name="cmun" type="string">
+            <column name="CMUN" length="1" />
+        </property>
+        <property name="cjenis" type="string">
+            <column name="CJENIS" length="1" />
+        </property>
+        <property name="cstatus" type="string">
+            <column name="CSTATUS" length="1" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

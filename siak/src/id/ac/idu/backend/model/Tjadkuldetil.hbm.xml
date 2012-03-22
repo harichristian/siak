@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10 Mar 12 12:50:38 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tjadkuldetil" table="TJADKULDETIL">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="sequence"><param name="sequence">TJADKULDETIL_SEQ</param></generator>
+        </id>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID"/>
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID"/>
+        </many-to-one>
+        <many-to-one name="mtbmtkl" class="id.ac.idu.backend.model.Mtbmtkl" fetch="select" lazy="false">
+            <column name="MATAKULIAH_ID"/>
+        </many-to-one>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4"/>
+        </property>
+        <property name="ckelompok" type="string">
+            <column name="CKELOMPOK" length="2"/>
+        </property>
+        <many-to-one name="mhari" class="id.ac.idu.backend.model.Mhari" fetch="select" lazy="false">
+            <column name="HARI_ID"/>
+        </many-to-one>
+        <many-to-one name="msesikuliah" class="id.ac.idu.backend.model.Msesikuliah" fetch="select" lazy="false">
+            <column name="SESI_ID"/>
+        </many-to-one>
+        <many-to-one name="mruang" class="id.ac.idu.backend.model.Mruang" fetch="select" lazy="false">
+            <column name="RUANG_ID"/>
+        </many-to-one>
+        <many-to-one name="tjadkulmaster" class="id.ac.idu.backend.model.Tjadkulmaster" fetch="select" lazy="false">
+            <column name="JKM_ID"/>
+        </many-to-one>
+        <property name="clintasprodi" type="string">
+            <column name="CLINTASPRODI" length="1"/>
+        </property>
+        <property name="njmlsesi" type="java.lang.Integer">
+            <column name="NJMLSESI" precision="5" scale="0"/>
+        </property>
+        <property name="nmaks" type="java.lang.Integer">
+            <column name="NMAKS" precision="5" scale="0"/>
+        </property>
+        <property name="nisi" type="java.lang.Integer">
+            <column name="NISI" precision="5" scale="0"/>
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10"/>
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10"/>
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10"/>
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

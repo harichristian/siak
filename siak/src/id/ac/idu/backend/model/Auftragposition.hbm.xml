@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Auftragposition" table="AUFTRAGPOSITION">
+        <id name="aupId" type="int">
+            <column name="AUP_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <many-to-one name="auftrag" class="id.ac.idu.backend.model.Auftrag" fetch="select">
+            <column name="AUP_AUF_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="artikel" class="id.ac.idu.backend.model.Artikel" fetch="select">
+            <column name="ART_ID"/>
+        </many-to-one>
+        <property name="aupPosition" type="java.lang.Integer">
+            <column name="AUP_POSITION"/>
+        </property>
+        <property name="aupMenge" type="big_decimal">
+            <column name="AUP_MENGE" precision="12"/>
+        </property>
+        <property name="aupEinzelwert" type="big_decimal">
+            <column name="AUP_EINZELWERT" precision="12"/>
+        </property>
+        <property name="aupGesamtwert" type="big_decimal">
+            <column name="AUP_GESAMTWERT" precision="12"/>
+        </property>
+    </class>
+</hibernate-mapping>

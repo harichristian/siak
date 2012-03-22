@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tfeedbackinstansi" table="TFEEDBACKINSTANSI" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">FEEDBACK_INSTANSI_SEQ</param></generator>
+        </id>
+        <many-to-one name="malumni" class="id.ac.idu.backend.model.Malumni" fetch="select" lazy="false">
+            <column name="ALUMNI_ID" not-null="true" />
+        </many-to-one>
+        <property name="cjnsinstansi" type="string">
+            <column name="CJNSINSTANSI" length="2" not-null="true" />
+        </property>
+        <property name="cnminstansi" type="string">
+            <column name="CNMINSTANSI" length="60" not-null="true" />
+        </property>
+        <property name="calminstansi" type="string">
+            <column name="CALMINSTANSI" length="200" not-null="true" />
+        </property>
+        <property name="ckesanpesan" type="string">
+            <column name="CKESANPESAN" length="500" not-null="true" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="40" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="40" />
+        </property>
+        <property name="dupdatedate" type="date">
+            <column name="DUPDATEDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

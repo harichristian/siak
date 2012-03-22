@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.IpcIp2country" table="IPC_IP2COUNTRY">
+        <id name="ipcId" type="int">
+            <column name="IPC_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <property name="ipcIpFrom" type="java.lang.Integer">
+            <column name="IPC_IP_FROM"/>
+        </property>
+        <property name="ipcIpTo" type="java.lang.Integer">
+            <column name="IPC_IP_TO"/>
+        </property>
+        <property name="ipcCountryCode2" type="string">
+            <column name="IPC_COUNTRY_CODE2" length="2"/>
+        </property>
+        <property name="ipcCountryCode3" type="string">
+            <column name="IPC_COUNTRY_CODE3" length="3"/>
+        </property>
+        <property name="ipcCountryName" type="string">
+            <column name="IPC_COUNTRY_NAME" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

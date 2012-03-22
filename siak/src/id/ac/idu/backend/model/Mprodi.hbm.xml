@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mprodi" table="MPRODI" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MPRODI_SEQ</param></generator>
+        </id>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID" />
+        </many-to-one>
+        <many-to-one name="mjenjang" class="id.ac.idu.backend.model.Mjenjang" fetch="select" lazy="false">
+            <column name="JENJANG_ID" not-null="true" />
+        </many-to-one>
+        <property name="ckdprogst" type="string">
+            <column name="CKDPROGST" length="2" not-null="true" />
+        </property>
+        <property name="cnmprogst" type="string">
+            <column name="CNMPROGST" length="40" not-null="true" />
+        </property>
+        <property name="csingkat" type="string">
+            <column name="CSINGKAT" length="2" />
+        </property>
+        <property name="cstatus" type="string">
+            <column name="CSTATUS" length="20" />
+        </property>
+        <property name="cnmproging" type="string">
+            <column name="CNMPROGING" length="40" />
+        </property>
+        <property name="cnip" type="string">
+            <column name="CNIP" length="6" />
+        </property>
+        <property name="cnipsekprodi" type="string">
+            <column name="CNIPSEKPRODI" length="6" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <set name="mhistpnddkmhses" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mhistpnddkmhs" />
+        </set>
+        <set name="malumnis" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Malumni" />
+        </set>
+        <set name="tjadkulmasters" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkulmaster" />
+        </set>
+        <set name="mcalakademiks" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mcalakademik" />
+        </set>
+        <set name="mdetilkurikulums" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mdetilkurikulum" />
+        </set>
+        <set name="mkurmhses" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mkurmhs" />
+        </set>
+        <set name="tjadujians" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadujian" />
+        </set>
+        <set name="tlognilais" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tlognilai" />
+        </set>
+        <set name="tpaketkuliahs" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tpaketkuliah" />
+        </set>
+        <set name="mkurikulums" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mkurikulum" />
+        </set>
+        <set name="mpeminatans" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mpeminatan" />
+        </set>
+        <set name="mgrades" inverse="true">
+            <key>
+                <column name="PRODI_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mgrade" />
+        </set>
+        <set name="tjadkuldetils" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkuldetil" />
+        </set>
+        <set name="tabsenmhses" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsenmhs" />
+        </set>
+        <set name="thistkerjas" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Thistkerja" />
+        </set>
+        <set name="tabsendosens" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsendosen" />
+        </set>
+        <set name="tirspascas" inverse="true">
+            <key>
+                <column name="PRODI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tirspasca" />
+        </set>
+        <set name="mmahasiswas" inverse="true">
+            <key>
+                <column name="PRODI_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmahasiswa" />
+        </set>
+    </class>
+</hibernate-mapping>

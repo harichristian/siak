@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Kunde" table="KUNDE">
+        <id name="kunId" type="int">
+            <column name="KUN_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <many-to-one name="filiale" class="id.ac.idu.backend.model.Filiale" fetch="select">
+            <column name="KUN_FIL_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="branche" class="id.ac.idu.backend.model.Branche" fetch="select">
+            <column name="KUN_BRA_ID"/>
+        </many-to-one>
+        <property name="kunNr" type="string">
+            <column name="KUN_NR" length="20" not-null="true" unique="true"/>
+        </property>
+        <property name="kunMatchcode" type="string">
+            <column name="KUN_MATCHCODE" length="20"/>
+        </property>
+        <property name="kunName1" type="string">
+            <column name="KUN_NAME1" length="50"/>
+        </property>
+        <property name="kunName2" type="string">
+            <column name="KUN_NAME2" length="50"/>
+        </property>
+        <property name="kunOrt" type="string">
+            <column name="KUN_ORT" length="50"/>
+        </property>
+        <property name="kunMahnsperre" type="java.lang.Short">
+            <column name="KUN_MAHNSPERRE"/>
+        </property>
+        <set name="auftrags" inverse="true">
+            <key>
+                <column name="AUF_KUN_ID" not-null="true"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Auftrag"/>
+        </set>
+    </class>
+</hibernate-mapping>

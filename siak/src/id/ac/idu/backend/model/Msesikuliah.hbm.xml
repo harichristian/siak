@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Msesikuliah" table="MSESIKULIAH" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MSESIKULIAH_SEQ</param></generator>
+        </id>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID" not-null="true" />
+        </many-to-one>
+        <property name="ckdsesi" type="string">
+            <column name="CKDSESI" length="2" not-null="true" />
+        </property>
+        <property name="cjamawal" type="string">
+            <column name="CJAMAWAL" length="5" />
+        </property>
+        <property name="cjamakhir" type="string">
+            <column name="CJAMAKHIR" length="5" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <set name="tjadkuldetils" inverse="true">
+            <key>
+                <column name="SESI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkuldetil" />
+        </set>
+        <set name="tjadujians" inverse="true">
+            <key>
+                <column name="SESI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadujian" />
+        </set>
+        <set name="tabsendosens" inverse="true">
+            <key>
+                <column name="SESI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsendosen" />
+        </set>
+        <set name="tabsenmhses" inverse="true">
+            <key>
+                <column name="SESI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsenmhs" />
+        </set>
+    </class>
+</hibernate-mapping>

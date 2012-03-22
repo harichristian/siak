@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mruang" table="MRUANG" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MRUANG_SEQ</param></generator>
+        </id>
+        <property name="ckdruang" type="string">
+            <column name="CKDRUANG" length="3" not-null="true" unique="true" />
+        </property>
+        <property name="cnmRuang" type="string">
+            <column name="CNM_RUANG" length="40" not-null="true" />
+        </property>
+        <property name="nmaxIsi" type="int">
+            <column name="NMAX_ISI" not-null="true" />
+        </property>
+        <property name="nmaxUji" type="int">
+            <column name="NMAX_UJI" not-null="true" />
+        </property>
+        <property name="cstatus" type="char">
+            <column name="CSTATUS" length="1" not-null="true" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="35" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="35" />
+        </property>
+        <set name="mfasilitasruangs" inverse="true">
+            <key>
+                <column name="RUANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mfasilitasruang" />
+        </set>
+        <set name="tirspascas" inverse="true">
+            <key>
+                <column name="RUANG_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tirspasca" />
+        </set>
+        <set name="tabsendosens" inverse="true">
+            <key>
+                <column name="RUANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsendosen" />
+        </set>
+        <set name="tjadujians" inverse="true">
+            <key>
+                <column name="RUANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadujian" />
+        </set>
+        <set name="tjadkuldetils" inverse="true">
+            <key>
+                <column name="RUANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkuldetil" />
+        </set>
+    </class>
+</hibernate-mapping>

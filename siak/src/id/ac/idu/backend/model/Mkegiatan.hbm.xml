@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mkegiatan" table="MKEGIATAN">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="sequence">
+                <param name="sequence">MKEGIATAN_SEQ</param>
+            </generator>
+        </id>
+        <property name="ckdkgt" type="string">
+            <column name="CKDKGT" length="2" not-null="true"/>
+        </property>
+        <property name="cnmkgt" type="string">
+            <column name="CNMKGT" length="50" not-null="true"/>
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10"/>
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10"/>
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10"/>
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10"/>
+        </property>
+        <set name="mcalakademiks" inverse="true">
+            <key>
+                <column name="CKDKGT"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mcalakademik"/>
+        </set>
+    </class>
+</hibernate-mapping>

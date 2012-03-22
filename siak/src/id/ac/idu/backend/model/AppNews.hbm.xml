@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.AppNews" table="APP_NEWS">
+        <id name="anwId" type="int">
+            <column name="ANW_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <property name="anwText" type="string">
+            <column name="ANW_TEXT" length="1000"/>
+        </property>
+        <property name="anwDate" type="date">
+            <column name="ANW_DATE" length="10" not-null="true"/>
+        </property>
+        <set name="malumnis" inverse="true">
+            <key>
+                <column name="PROP_ID" not-null="true"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Malumni"/>
+        </set>
+    </class>
+</hibernate-mapping>

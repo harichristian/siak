@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.LogIp2country" table="LOG_IP2COUNTRY">
+        <id name="i2cId" type="int">
+            <column name="I2C_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="java.lang.Integer">
+            <column name="VERSION"/>
+        </version>
+        <many-to-one name="sysCountrycode" class="id.ac.idu.backend.model.SysCountrycode" fetch="select">
+            <column name="CCD_ID"/>
+        </many-to-one>
+        <property name="i2cCity" type="string">
+            <column name="I2C_CITY" length="50"/>
+        </property>
+        <property name="i2cLatitude" type="java.lang.Integer">
+            <column name="I2C_LATITUDE" precision="5" scale="0"/>
+        </property>
+        <property name="i2cLongitude" type="java.lang.Integer">
+            <column name="I2C_LONGITUDE" precision="5" scale="0"/>
+        </property>
+        <set name="secLoginlogs" inverse="true">
+            <key>
+                <column name="I2C_ID"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.SecLoginlog"/>
+        </set>
+    </class>
+</hibernate-mapping>
