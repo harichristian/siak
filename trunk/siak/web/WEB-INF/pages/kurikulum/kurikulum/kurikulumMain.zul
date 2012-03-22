@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:w="http://www.zkoss.org/2005/zk/client"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="windowKurikulumMain" apply="${kurikulumMainCtrl}"
+            border="none" width="100%">
+
+        <div sclass="z-toolbar" style="padding:0">
+            <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
+                  width="100%">
+
+                <!-- COMMON BUTTONS -->
+                <toolbar align="start"
+                         style="float:left; border-style: none;">
+                    <button id="btnHelp" height="24px"
+                            image="/images/icons/light_16x16.gif"
+                            tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
+                    <button id="btnRefresh" height="24px"
+                            image="/images/icons/refresh2_yellow_16x16.gif"
+                            tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
+                    <button id="button_KurikulumList_PrintList"
+                            height="24px" image="/images/icons/btn_print2_16x16.gif"
+                            tooltiptext="${c:l('btnPrint.tooltiptext')}"/>
+                </toolbar>
+
+                <!-- SEARCH AREA -->
+                <toolbar align="center"
+                         style="float:left; border-style: none;">
+                    <hbox align="center" style="padding: 2px">
+                        <space/>
+                        <checkbox id="checkbox_KurikulumList_ShowAll"
+                                  checked="true"
+                                  label="${c:l('checkbox_KurikulumList_ShowAll.label')}"/>
+                        <space/>
+
+                        <label value="${c:l('common.Code')}"
+                               style="padding-right: 3px"/>
+                        <textbox id="txtb_Kurikulum_Code" width="60px"/>
+                        <button id="button_KurikulumList_SearchCode"
+                                height="24px" image="/images/icons/search.gif"
+                                tooltiptext="${c:l('button_KurikulumList_SearchCode.tooltiptext')}"/>
+                        <space width="20px"/>
+
+                        <label value="${c:l('common.Cohort')}"
+                               style="padding-right: 3px"/>
+                        <textbox id="txtb_Kurikulum_Cohort" width="100px"/>
+                        <button id="button_KurikulumList_SearchCohort"
+                                height="24px" image="/images/icons/search.gif"
+                                tooltiptext="${c:l('button_KurikulumList_SearchCohort.tooltiptext')}"/>
+                        <space width="20px"/>
+                        <!--
+						<label value="${c:l('common.Prodi')}"
+							style="padding-right: 3px" />
+						<textbox id="txtb_Kurikulum_Prodi" width="100px" />
+						<button id="button_KurikulumList_SearchProdi"
+							height="24px" image="/images/icons/search.gif"
+							tooltiptext="${c:l('button_KurikulumList_SearchProdi.tooltiptext')}" />
+                        -->
+                    </hbox>
+                </toolbar>
+
+                <!-- CRUD BUTTONS -->
+                <toolbar align="end"
+                         style="float:right; border-style: none;">
+                    <button id="btnNew" height="24px"
+                            tooltiptext="${c:l('btnNew.tooltiptext')}"/>
+                    <button id="btnEdit" height="24px"
+                            tooltiptext="${c:l('btnEdit.tooltiptext')}"/>
+                    <button id="btnDelete" height="24px"
+                            tooltiptext="${c:l('btnDelete.tooltiptext')}"/>
+                    <button id="btnSave" height="24px"
+                            tooltiptext="${c:l('btnSave.tooltiptext')}"/>
+                    <button id="btnCancel" height="24px"
+                            tooltiptext="${c:l('btnCancel.tooltiptext')}"/>
+                </toolbar>
+            </hbox>
+        </div>
+
+
+        <tabbox id="tabbox_KurikulumMain">
+            <tabs>
+                <tab id="tabKurikulumList" label="${c:l('common.List')}"
+                     image="/images/icons/properties.gif"/>
+                <tab id="tabKurikulumDetail"
+                     label="${c:l('common.Details')}" image="/images/icons/table.gif"/>
+            </tabs>
+
+            <tabpanels>
+                <!-- TabPanel LIST / LISTE -->
+                <tabpanel id="tabPanelKurikulumList" height="100%"
+                          style="border: none; padding: 0px; "/>
+
+                <!-- TabPanel DETAILS / DETAILS -->
+                <tabpanel id="tabPanelKurikulumDetail" height="100%"
+                          style="border: none; padding: 0px; "/>
+            </tabpanels>
+        </tabbox>
+
+
+    </window>
+</zk>
+

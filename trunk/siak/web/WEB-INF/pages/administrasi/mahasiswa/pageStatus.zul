@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+    <window id="windowStatusDetail" apply="${statusDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderlayout_Status">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="Status" />
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px; ">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="No STTB Terakhir"/>
+                                        <textbox id="txtb_1" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal STTB Terakhir"/>
+                                        <textbox id="txtb_2" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Masuk"/>
+                                        <textbox id="txtb_3" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Wisuda"/>
+                                        <textbox id="txtb_4" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Yudisium"/>
+                                        <textbox id="txtb_5" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Teori"/>
+                                        <textbox id="txtb_6" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Flag SPBM"/>
+                                        <textbox id="txtb_7" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Flag Nilai"/>
+                                        <textbox id="txtb_8" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Status Awal"/>
+                                        <textbox id="txtb_9" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Program Studi"/>
+                                        <textbox id="txtb_10" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Peminatan"/>
+                                        <textbox id="txtb_11" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Jenjang"/>
+                                        <textbox id="txtb_12" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tahun Lapor"/>
+                                        <textbox id="txtb_13" maxlength="12" readonly="true"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+    </window>
+</zk>

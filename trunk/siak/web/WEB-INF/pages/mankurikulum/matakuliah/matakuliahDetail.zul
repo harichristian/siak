@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMatakuliahDetail" ?>
+
+	<window id="windowMatakuliahDetail" apply="${matakuliahDetailCtrl}"
+		border="none" width="100%">
+
+		<borderlayout id="borderlayout_Detail">
+			<center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false">
+                            <caption image="/images/icons/view.gif" label="${c:l('common.Details')}" />
+
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true" style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="200px" />
+                                    <column />
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label value="Kode Matakuliah" />
+                                            <label value="*" style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox id="txtb_ckdmtk"
+                                            value="@{controller.selected.ckdmtk}" readonly="true"
+                                            constraint="no empty" maxlength="4" width="100px" />
+                                    </row>
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Matakuliah" />
+                                        <textbox id="txtb_cnamamk" value="@{controller.selected.cnamamk}" readonly="true" maxlength="50" width="60%" />
+                                    </row>
+                                    <row>
+                                        <label value="Nama Matakuliah (Inggris)" />
+                                        <textbox id="txtb_cingmk" value="@{controller.selected.cingmk}" readonly="true" maxlength="50" width="60%" />
+                                    </row>
+                                    <row>
+                                        <label value="Singkatan" />
+                                        <textbox id="txtb_csingmk" value="@{controller.selected.csingmk}" readonly="true" maxlength="25" width="30%" />
+                                    </row>
+                                    <row>
+                                        <label value="SKS" />
+                                        <intbox id="txtb_nsks" value="@{controller.selected.nsks}" readonly="true" maxlength="4" width="5%"  />
+                                    </row>
+                                    <row>
+                                        <label value="Keterangan" />
+                                        <textbox id="txtb_keterangan" value="@{controller.selected.keterangan}" readonly="true" maxlength="100" width="80%" />
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

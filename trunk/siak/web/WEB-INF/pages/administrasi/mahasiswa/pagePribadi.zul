@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowPribadiDetail" ?>
+
+    <window id="windowPribadiDetail" apply="${pribadiDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderlayout_Pribadi">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="Data Pribadi"/>
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px; ">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label value="Nim"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox id="txtb_cnim" maxlength="12" value="@{controller.selected.cnim}" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <label value="Nama"/>
+                                        <textbox id="txtb_cnama" maxlength="50" value="@{controller.selected.cnama}"
+                                                 readonly="true" width="250px"/>
+                                    </row>
+                                    <row>
+                                        <label value="No KTP"/>
+                                        <textbox id="txtb_noktp" maxlength="30" value="@{controller.selected.noktp}"
+                                                 readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Jenis Mahasiswa"/>
+                                        <hbox>
+                                            <textbox id="txth_cjnsmhs" value="@{controller.selected.cjnsmhs}" visible="false"/>
+                                            <bandbox id="cmb_cjnsmhs" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_cjnsmhs" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_cjnsmhs.value=self.selectedItem.label;
+                                                             txth_cjnsmhs.value=self.selectedItem.value;  cmb_cjnsmhs.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Tempat Lahir"/>
+                                        <textbox id="txtb_ctemplhr" maxlength="50"
+                                                 value="@{controller.selected.ctemplhr}" readonly="true" width="200px"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Lahir"/>
+                                        <datebox id="txtb_dtglhr" value="@{controller.selected.dtglhr}" readonly="true" disabled="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Jenis Kelamin"/>
+                                        <hbox>
+                                            <textbox id="txth_cjenkel" value="@{controller.selected.cjenkel}" visible="false"/>
+                                            <bandbox id="cmb_cjenkel" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_cjenkel" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_cjenkel.value=self.selectedItem.label;
+                                                             txth_cjenkel.value=self.selectedItem.value; cmb_cjenkel.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Gol Darah"/>
+                                        <hbox>
+                                            <textbox id="txth_cgoldar" value="@{controller.selected.cgoldar}" visible="false"/>
+                                            <bandbox id="cmb_cgoldar" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_cgoldar" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_cgoldar.value=self.selectedItem.label;
+                                                             txth_cgoldar.value=self.selectedItem.value; cmb_cgoldar.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Agama"/>
+                                        <hbox>
+                                            <textbox id="txth_ckdagama" value="@{controller.selected.ckdagama}" visible="false"/>
+                                            <bandbox id="cmb_ckdagama" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_ckdagama" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_ckdagama.value=self.selectedItem.label;
+                                                             txth_ckdagama.value=self.selectedItem.value; cmb_ckdagama.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Status Nikah"/>
+                                        <hbox>
+                                            <textbox id="txth_cstatnkh" value="@{controller.selected.cstatnkh}" visible="false"/>
+                                            <bandbox id="cmb_cstatnkh" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_cstatnkh" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_cstatnkh.value=self.selectedItem.label;
+                                                             txth_cstatnkh.value=self.selectedItem.value; cmb_cstatnkh.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Kewarganegaraan"/>
+                                        <hbox>
+                                            <textbox id="txth_cwarga" value="@{controller.selected.cwarga}" visible="false"/>
+                                            <bandbox id="cmb_cwarga" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_cwarga" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_cwarga.value=self.selectedItem.label;
+                                                             txth_cwarga.value=self.selectedItem.value; cmb_cwarga.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Alamat"/>
+                                        <textbox id="txtb_calamat" maxlength="80" value="@{controller.selected.calamat}"
+                                                 readonly="true" rows="2" cols="40"/>
+                                    </row>
+                                    <row>
+                                        <label value="No Rumah"/>
+                                        <hbox>
+                                            <textbox id="txtb_cnormh" maxlength="4"
+                                                     value="@{controller.selected.cnormh}" readonly="true"
+                                                     width="50px"/>
+                                            <hbox>
+                                                <label value="RW."/>
+                                                <textbox id="txtb_crw" maxlength="3" value="@{controller.selected.crw}"
+                                                         readonly="true" width="50px"/>
+                                            </hbox>
+                                            <hbox>
+                                                <label value="RT."/>
+                                                <textbox id="txtb_crt" maxlength="3" value="@{controller.selected.crt}"
+                                                         readonly="true" width="50px"/>
+                                            </hbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Pos"/>
+                                        <hbox>
+                                            <intbox id="txtb_kodeposid" maxlength="5" value="@{controller.selected.kodeposId}" readonly="true"/>
+                                            <textbox id="txtb_kodepos" maxlength="5" value="" readonly="true"/>
+                                            <bandbox id="cmb_kodepos" sclass="mybandbox" width="0px" tooltiptext="LOV - Kodepos"  disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV - Kodepos"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="label_kodepos" value="Kodepos"/>
+                                                                        <textbox id="tb_kodepos" width="98%"/>
+                                                                        <button id="button_search"
+                                                                                image="/images/icons/search.gif"
+                                                                                label="Search"
+                                                                                tooltiptext="Search Kodepos"/>
+                                                                        <button id="button_close"
+                                                                                image="/images/icons/stop.gif"
+                                                                                tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="paging_kodepos" pageSize="20"/>
+                                                                            <listbox id="listKodepos" width="100%"
+                                                                                     height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="kodepos" sort="auto"
+                                                                                                width="100%"
+                                                                                                label="KodePos"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Telepon"/>
+                                        <textbox id="txtb_cnotelp" maxlength="15" value="@{controller.selected.cnotelp}"
+                                                 readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Alamat Surat"/>
+                                        <textbox id="txtb_calamatsrt" maxlength="50"
+                                                 value="@{controller.selected.calamatsrt}" readonly="true" rows="2"
+                                                 cols="40"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Pos Surat"/>
+                                        <hbox>
+                                            <intbox id="txtb_kodepos_srtid" maxlength="5" value="@{controller.selected.kodeposSrtId}" readonly="true"/>
+                                            <textbox id="txtb_kodepos_srt" maxlength="5" readonly="true"/>
+                                            <bandbox id="cmb_kodepos_srt" sclass="mybandbox" width="0px" tooltiptext="LOV - Kodepos Surat" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV - Kodepos Surat"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="label_kodepos_srt" value="Kodepos"/>
+                                                                        <textbox id="tb_kodepos_srt" width="98%"/>
+                                                                        <button id="button_search_srt" image="/images/icons/search.gif" label="Search" tooltiptext="Search Kodepos"/>
+                                                                        <button id="button_close_srt" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="paging_kodepos_srt" pageSize="20"/>
+                                                                            <listbox id="listKodepos_srt" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="kodepos_id" sort="auto" width="100%" label="id"/>
+                                                                                    <listheader id="kodepos_srt" sort="auto" width="100%" label="KodePos"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="No HP"/>
+                                        <textbox id="txtb_cnohp" maxlength="15" value="@{controller.selected.cnohp}"
+                                                 readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="E-Mail"/>
+                                        <textbox id="txtb_cemail" maxlength="50" value="@{controller.selected.cemail}"
+                                                 readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Gelombang"/>
+                                        <textbox id="txtb_cgelombang" maxlength="2"
+                                                 value="@{controller.selected.cgelombang}" readonly="true"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+    </window>
+</zk>

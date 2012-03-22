@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMpeminatanDetail" ?>
+
+    <window id="windowMpeminatanDetail" apply="${mpeminatanDetailCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderlayout_MpeminatanDetail">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                    image="/images/icons/view.gif"
+                                    label="${c:l('common.Details')}"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="Kode Peminatan"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                         <hbox>
+                                        <textbox
+                                                id="txtb_jenis" value="@{controller.mpeminatan.ckdminat}"
+                                                  readonly="true"
+                                                constraint="no empty" maxlength="2" width="30px" />
+
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                          <hbox>
+                                            <label
+                                                    value="Nama Peminatan"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                         </hbox>
+                                        <hbox>
+                                        <textbox
+                                                id="txtb_nmpeminatan"
+                                                value="@{controller.mpeminatan.cnmminat}" readonly="true"
+                                                constraint="no empty" maxlength="50" width="300px"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Nama Program Studi"/>
+                                        <hbox>
+                                        <textbox
+                                                id="txtb_nmprodi" value="@{controller.mpeminatan.mprodi.cnmprogst}"
+                                                readonly="true" maxlength="200" width="99%" constraint="no empty" />
+                                         <button
+                                                                                id="btnSearchProdiExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Prodi"/>
+                                        </hbox>
+                                    </row>
+
+                                    <row>
+                                        <label
+                                                value="Nama Peminatan Inggris"/>
+                                        <hbox>
+                                                    <textbox
+                                                            id="txtb_nmpeminatan_eng" value="@{controller.mpeminatan.cnmminating}"
+                                                            readonly="true" maxlength="50" width="300px"  constraint="no empty" />
+
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Aktif"/>
+                                         <hbox>
+                                        <textbox
+                                                id="txtb_aktif" value="@{controller.mpeminatan.caktif}"
+                                                  visible="false" />
+                                            <bandbox id="cmb_jenis" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="list_jenis" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_jenis.value=self.selectedItem.label;
+                                                             txtb_aktif.value=self.selectedItem.value; cmb_jenis.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

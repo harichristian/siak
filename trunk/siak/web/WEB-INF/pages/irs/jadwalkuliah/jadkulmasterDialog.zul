@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+<window id="tjadkulmasterDialogWindow"
+        title="JADWAL KULIAH" border="none" sizable="true"
+        apply="${jadkulmasterDialogCtrl}" closable="true" width="800px"
+        height="800px">
+
+
+<div sclass="z-toolbar" style="padding:0">
+    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
+          width="100%">
+
+        <!-- COMMON BUTTONS -->
+        <toolbar align="start"
+                 style="float:left; border-style: none;" height="28px">
+            <button id="btnHelp" height="24px"
+                    image="/images/icons/light_16x16.gif"
+                    tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
+            <button id="button_TjadkulmasterDialog_PrintTjadkulmaster"
+                    height="24px" image="/images/icons/btn_print2_16x16.gif"
+                    tooltiptext="${c:l('button_TjadkulmasterDialog_PrintTjadkulmaster.tooltiptext')}"/>
+        </toolbar>
+        <!-- SEARCH AREA -->
+        <toolbar align="center"
+                 style="float:left; border-style: none;" height="28px">
+            <hbox align="center" style="padding: 2px"></hbox>
+        </toolbar>
+
+        <!-- CRUD BUTTONS -->
+        <toolbar align="end"
+                 style="float:right; border-style: none;" height="28px">
+            <button id="btnNew" height="24px"
+                    tooltiptext="${c:l('btnNew.tooltiptext')}"/>
+            <!-- label="${c:l('btnNew.label')}"	 -->
+            <button id="btnEdit" height="24px"
+                    tooltiptext="${c:l('btnEdit.tooltiptext')}"/>
+            <button id="btnDelete" height="24px"
+                    tooltiptext="${c:l('btnDelete.tooltiptext')}"/>
+            <button id="btnSave" height="24px"
+                    tooltiptext="${c:l('btnSave.tooltiptext')}"/>
+            <button id="btnCancel" height="24px"
+                    tooltiptext="${c:l('btnCancel.tooltiptext')}"/>
+            <button id="btnClose" height="24px"
+                    tooltiptext="${c:l('btnClose.tooltiptext')}"/>
+        </toolbar>
+    </hbox>
+</div>
+
+<borderlayout id="borderlayoutTjadkulmasterDialog">
+
+<north border="none">
+<panel id="panel_TjadkulmasterDialog" style="margin-bottom:10px"
+       border="none">
+<panelchildren>
+
+<style>.z-groupbox-cnt {
+    border: 0
+}</style>
+
+<groupbox mold="3d" closable="false">
+<caption image="/images/icons/view.gif"
+         label="Jadwal Kuliah Header"/>
+
+<grid sclass="GridLayoutNoBorder"
+      fixedLayout="true"
+      style="border:0px; padding-left:5px; padding-right:5px;">
+    <columns>
+        <column width="150px"/>
+        <column width="100%"/>
+    </columns>
+    <rows>
+        <row>
+            <hbox>
+                <label
+                        id="label_TjadkulmasterDialog_kunNr"
+                        value="SEKOLAH"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <hbox>
+                <textbox id="txtb_filSekolah" constraint="no empty" readonly="true"/>
+                <button
+                        id="btnSearchSekolahExtended" disabled="true"
+                        width="28px"
+                        image="/images/icons/btn_search2_16x16.gif"
+                        tooltiptext="Cari Sekolah"/>
+            </hbox>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="PRODI"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <hbox pack="stretch" width="100%">
+                <textbox
+                        id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
+                        constraint="no empty"
+                        readonly="true" maxlength="60" width="99%"/>
+                <button
+                        id="btnSearchProdiExtended" disabled="true"
+                        width="28px"
+                        image="/images/icons/btn_search2_16x16.gif"
+                        tooltiptext="Cari Prodi"/>
+            </hbox>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="MATA KULIAH"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <hbox pack="stretch" width="100%">
+                <textbox
+                        id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}"
+                        constraint="no empty"
+                        readonly="true" maxlength="60" width="99%"/>
+                <button
+                        id="btnSearchMatakuliahExtended" disabled="true"
+                        width="28px"
+                        image="/images/icons/btn_search2_16x16.gif"
+                        tooltiptext="Cari Mata Kuliah"/>
+            </hbox>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="DOSEN 1"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <hbox pack="stretch" width="100%">
+                <textbox
+                        id="txtb_filPegawai1" value=""
+                        constraint="no empty"
+                        readonly="true" maxlength="60" width="99%"/>
+                <button
+                        id="btnSearchPegawai1Extended" disabled="true"
+                        width="28px"
+                        image="/images/icons/btn_search2_16x16.gif"
+                        tooltiptext="Cari Dosen 1"/>
+            </hbox>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="DOSEN 2"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <hbox pack="stretch" width="100%">
+                <textbox
+                        id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
+                        constraint="no empty"
+                        readonly="true" maxlength="60" width="99%"/>
+                <button
+                        id="btnSearchPegawai2Extended" disabled="true"
+                        width="28px"
+                        image="/images/icons/btn_search2_16x16.gif"
+                        tooltiptext="Cari Dosen 2"/>
+            </hbox>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="TERM"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
+                    constraint="no empty"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="KELOMPOK"/>
+                <label value="*"
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filKelompok" value="@{controller.tjadkulmaster.ckelompok}"
+                    constraint="no empty"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+
+        <row>
+            <separator bar="true"></separator>
+            <separator bar="true"></separator>
+        </row>
+        <row>
+            <hbox>
+                <label
+                        value="TAHUN AJARAN"/>
+                <label value=""
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="SEMESTER"/>
+                <label value=""
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="SKS"/>
+                <label value=""
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <intbox
+                    id="txtb_filSks" value="@{controller.tjadkulmaster.nsks}"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+        <row>
+            <hbox>
+                <label
+                        value="KETERANGAN"/>
+                <label value=""
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filKeterangan" value="@{controller.tjadkulmaster.cket}"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+
+        <row>
+            <hbox>
+                <label
+                        value="LINTAS PRODI"/>
+                <label value=""
+                       style="color:red;font-size:10px"/>
+            </hbox>
+            <textbox
+                    id="txtb_filLintasprodi" value="@{controller.tjadkulmaster.clintasprodi}"
+                    readonly="true" maxlength="50" width="99%"/>
+        </row>
+    </rows>
+</grid>
+</groupbox>
+</panelchildren>
+</panel>
+</north>
+
+
+<center border="none" flex="true" margins="0,0,0,0">
+    <div id="divCenterOffice">
+
+        <panel id="panel_TjadkulmasterDialog_Tjadkuldetils"
+               width="100%"
+               title="Jadwal Kuliah Detil"
+               border="none"/>
+
+        <div sclass="z-toolbar" style="padding:0">
+            <hbox pack="stretch"
+                  sclass="hboxRemoveWhiteStrips" width="100%">
+
+                <!-- COMMON BUTTONS -->
+                <toolbar align="start"
+                         style="float:left; border-style: none;" height="28px">
+                    <button
+                            id="button_TjadkulmasterDialog_NewTjadkuldetil" height="24px"
+                            image="/images/icons/btn_new2_16x16.gif"
+                            label="${c:l('button_TjadkulmasterDialog_NewTjadkuldetil.label')}"
+                            tooltiptext="${c:l('button_TjadkulmasterDialog_NewTjadkuldetil.tooltiptext')}"/>
+                </toolbar>
+                <!-- SEARCH AREA -->
+                <toolbar align="center"
+                         style="float:left; border-style: none;" height="28px">
+                    <hbox align="center"
+                          style="padding: 2px">
+                    </hbox>
+                </toolbar>
+
+                <!-- CRUD BUTTONS -->
+                <toolbar align="end"
+                         style="float:right; border-style: none;" height="28px">
+                </toolbar>
+            </hbox>
+        </div>
+
+        <borderlayout>
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging
+                        id="paging_ListBoxTjadkulmasterTjadkuldetils" pageSize="20"/>
+            </north>
+
+            <center border="none">
+                <listbox id="listBoxTjadkulmasterTjadkuldetils"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_Tjadkulmasterpos_No"
+                                image="/images/icons/builder.gif" sort="auto" width="10%"
+                                label="HARI"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_Shorttext"
+                                image="/images/icons/create_doc.gif" sort="auto" width="40%"
+                                label="SESI"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_Count"
+                                image="/images/icons/builder.gif" sort="auto" width="10%"
+                                label="RUANG"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_SinglePrice"
+                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                label="LINTAS PRODI"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_WholePrice"
+                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                label="JUMLAH SESI"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_WholePrice2"
+                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                label="MAKS"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList2_WholePrice3"
+                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                label="ISI"/>
+                    </listhead>
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+
+    </div>
+</center>
+
+</borderlayout>
+
+</window>
+</zk>
+
+
+        <!-- set the Button of the bandbox, missing in grayTheme -->
+        <!--
+            <style dynamic="true">
+            .mybandbox .z-bandbox-img { background: transparent
+            url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
+            no-repeat 0 0; border: 1px solid #C0C0C0 ; vertical-align:
+            top: cursor: pointer: width: 19px; height: 19px ;}
+            </style>
+        -->
