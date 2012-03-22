@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tdaftartugasmenulis" table="TDAFTARTUGASMENULIS" >
+        <id name="nrecid" type="int">
+            <column name="NRECID" />
+            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+        </id>
+        <property name="ckdsekolah" type="string">
+            <column name="CKDSEKOLAH" length="2" not-null="true" />
+        </property>
+        <property name="ckdprogst" type="string">
+            <column name="CKDPROGST" length="2" not-null="true" />
+        </property>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4" not-null="true" />
+        </property>
+        <property name="cthajar" type="string">
+            <column name="CTHAJAR" length="8" />
+        </property>
+        <property name="csmt" type="string">
+            <column name="CSMT" length="1" />
+        </property>
+        <property name="cnim" type="string">
+            <column name="CNIM" length="12" not-null="true" />
+        </property>
+        <property name="cnip1" type="string">
+            <column name="CNIP1" length="6" />
+        </property>
+        <property name="cnip2" type="string">
+            <column name="CNIP2" length="6" />
+        </property>
+        <property name="ctopik" type="string">
+            <column name="CTOPIK" length="500" />
+        </property>
+        <property name="cjenismenulis" type="string">
+            <column name="CJENISMENULIS" length="1" not-null="true" />
+        </property>
+        <property name="dtgldaftarmenulis" type="date">
+            <column name="DTGLDAFTARMENULIS" length="10" />
+        </property>
+        <property name="nnilaiakhir" type="big_decimal">
+            <column name="NNILAIAKHIR" precision="6" />
+        </property>
+        <property name="ckdgrade" type="string">
+            <column name="CKDGRADE" length="2" />
+        </property>
+        <property name="cflag" type="string">
+            <column name="CFLAG" length="1" />
+        </property>
+        <property name="cinstansi" type="string">
+            <column name="CINSTANSI" length="200" />
+        </property>
+        <property name="calamat" type="string">
+            <column name="CALAMAT" length="500" />
+        </property>
+        <property name="dtglkumpulbuku" type="date">
+            <column name="DTGLKUMPULBUKU" length="10" />
+        </property>
+        <property name="dtgldaftarsidangproposal" type="date">
+            <column name="DTGLDAFTARSIDANGPROPOSAL" length="10" />
+        </property>
+        <property name="dtgldaftarsidangthesis" type="date">
+            <column name="DTGLDAFTARSIDANGTHESIS" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

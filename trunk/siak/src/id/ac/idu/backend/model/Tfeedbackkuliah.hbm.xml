@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tfeedbackkuliah" table="TFEEDBACKKULIAH" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+        </id>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4" not-null="true" />
+        </property>
+        <property name="sekolahId" type="int">
+            <column name="SEKOLAH_ID" not-null="true" />
+        </property>
+        <property name="prodiId" type="int">
+            <column name="PRODI_ID" not-null="true" />
+        </property>
+        <property name="ckelompok" type="string">
+            <column name="CKELOMPOK" length="2" not-null="true" />
+        </property>
+        <property name="matakuliahId" type="int">
+            <column name="MATAKULIAH_ID" not-null="true" />
+        </property>
+        <property name="irsId" type="int">
+            <column name="IRS_ID" not-null="true" />
+        </property>
+        <property name="mahasiswaId" type="int">
+            <column name="MAHASISWA_ID" not-null="true" />
+        </property>
+        <property name="ckdfeedback" type="string">
+            <column name="CKDFEEDBACK" length="1" not-null="true" />
+        </property>
+        <property name="nnopertanyaan" type="int">
+            <column name="NNOPERTANYAAN" precision="5" scale="0" not-null="true" />
+        </property>
+        <property name="jawaban" type="string">
+            <column name="JAWABAN" length="1" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

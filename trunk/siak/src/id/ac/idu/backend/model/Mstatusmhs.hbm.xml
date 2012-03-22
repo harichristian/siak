@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mstatusmhs" table="MSTATUSMHS" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MSTATUSMHS_SEQ</param></generator>
+        </id>
+        <property name="ckdstatmhs" type="string">
+            <column name="CKDSTATMHS" length="1" not-null="true" />
+        </property>
+        <property name="cnmstatmhs" type="string">
+            <column name="CNMSTATMHS" length="30" />
+        </property>
+        <property name="cketerangan" type="string">
+            <column name="CKETERANGAN" length="100" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

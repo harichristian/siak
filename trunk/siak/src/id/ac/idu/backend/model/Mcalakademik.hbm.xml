@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mcalakademik" table="MCALAKADEMIK">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="sequence">
+                <param name="sequence">MCALAKADEMIK_SEQ</param>
+            </generator>
+        </id>
+        <many-to-one name="mkegiatan" class="id.ac.idu.backend.model.Mkegiatan" fetch="select" lazy="false">
+            <column name="CKDKGT"/>
+        </many-to-one>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID" not-null="true"/>
+        </many-to-one>
+        <property name="cno" type="string">
+            <column name="CNO" length="2" not-null="true"/>
+        </property>
+        <property name="dtglawal" type="date">
+            <column name="DTGLAWAL" length="10"/>
+        </property>
+        <property name="dtglakhir" type="date">
+            <column name="DTGLAKHIR" length="10"/>
+        </property>
+        <property name="cjamawal" type="string">
+            <column name="CJAMAWAL" length="5"/>
+        </property>
+        <property name="cjamakhir" type="string">
+            <column name="CJAMAKHIR" length="5"/>
+        </property>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4"/>
+        </property>
+        <property name="cthajar" type="string">
+            <column name="CTHAJAR" length="8"/>
+        </property>
+        <property name="csmt" type="string">
+            <column name="CSMT" length="1"/>
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10"/>
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10"/>
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10"/>
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.SysCountrycode" table="SYS_COUNTRYCODE">
+        <id name="ccdId" type="int">
+            <column name="CCD_ID"/>
+            <generator class="sequence">
+                <param name="sequence"></param>
+            </generator>
+        </id>
+        <version name="version" type="java.lang.Integer">
+            <column name="VERSION"/>
+        </version>
+        <property name="ccdName" type="string">
+            <column name="CCD_NAME" length="48"/>
+        </property>
+        <property name="ccdCode2" type="string">
+            <column name="CCD_CODE2" length="2" not-null="true" unique="true"/>
+        </property>
+        <set name="logIp2countries" inverse="true">
+            <key>
+                <column name="CCD_ID"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.LogIp2country"/>
+        </set>
+    </class>
+</hibernate-mapping>

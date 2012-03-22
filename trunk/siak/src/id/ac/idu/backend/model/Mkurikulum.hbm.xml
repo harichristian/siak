@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mkurikulum" table="MKURIKULUM" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MKURIKULUM_SEQ</param></generator>
+        </id>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID" not-null="true" />
+        </many-to-one>
+        <property name="ckodekur" type="string">
+            <column name="CKODEKUR" length="8" not-null="true" />
+        </property>
+        <property name="ccohort" type="string">
+            <column name="CCOHORT" length="6" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <set name="mkurmhses" inverse="true">
+            <key>
+                <column name="KURIKULUM_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mkurmhs" />
+        </set>
+    </class>
+</hibernate-mapping>

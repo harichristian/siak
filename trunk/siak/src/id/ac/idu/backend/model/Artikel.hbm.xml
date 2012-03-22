@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Artikel" table="ARTIKEL">
+        <id name="artId" type="int">
+            <column name="ART_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <property name="artKurzbezeichnung" type="string">
+            <column name="ART_KURZBEZEICHNUNG" length="50" not-null="true"/>
+        </property>
+        <property name="artLangbezeichnung" type="string">
+            <column name="ART_LANGBEZEICHNUNG" length="1000"/>
+        </property>
+        <property name="artNr" type="string">
+            <column name="ART_NR" length="20" not-null="true" unique="true"/>
+        </property>
+        <property name="artPreis" type="big_decimal">
+            <column name="ART_PREIS" precision="12" not-null="true"/>
+        </property>
+        <set name="auftragpositions" inverse="true">
+            <key>
+                <column name="ART_ID"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Auftragposition"/>
+        </set>
+    </class>
+</hibernate-mapping>

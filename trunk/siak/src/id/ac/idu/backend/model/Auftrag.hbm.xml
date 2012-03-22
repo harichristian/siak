@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Auftrag" table="AUFTRAG">
+        <id name="aufId" type="int">
+            <column name="AUF_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <many-to-one name="kunde" class="id.ac.idu.backend.model.Kunde" fetch="select">
+            <column name="AUF_KUN_ID" not-null="true"/>
+        </many-to-one>
+        <property name="aufNr" type="string">
+            <column name="AUF_NR" length="20" not-null="true" unique="true"/>
+        </property>
+        <property name="aufBezeichnung" type="string">
+            <column name="AUF_BEZEICHNUNG" length="50"/>
+        </property>
+        <set name="auftragpositions" inverse="true">
+            <key>
+                <column name="AUP_AUF_ID" not-null="true"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Auftragposition"/>
+        </set>
+    </class>
+</hibernate-mapping>

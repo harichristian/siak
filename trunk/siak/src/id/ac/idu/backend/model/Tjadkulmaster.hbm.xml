@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10 Mar 12 12:50:38 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tjadkulmaster" table="TJADKULMASTER">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="sequence"><param name="sequence">TJADKULMASTER_SEQ</param></generator>
+        </id>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4" not-null="true"/>
+        </property>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID"/>
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID"/>
+        </many-to-one>
+        <many-to-one name="mtbmtkl" class="id.ac.idu.backend.model.Mtbmtkl" fetch="select" lazy="false">
+            <column name="MATAKULIAH_ID"/>
+        </many-to-one>
+        <property name="ckelompok" type="string">
+            <column name="CKELOMPOK" length="2" not-null="true"/>
+        </property>
+        <property name="cthajar" type="string">
+            <column name="CTHAJAR" length="8"/>
+        </property>
+        <property name="csmt" type="string">
+            <column name="CSMT" length="1"/>
+        </property>
+        <many-to-one name="mpegawai1" class="id.ac.idu.backend.model.Mpegawai" fetch="select" lazy="false">
+            <column name="PEGAWAI_ID1"/>
+        </many-to-one>
+        <many-to-one name="mpegawai2" class="id.ac.idu.backend.model.Mpegawai" fetch="select" lazy="false">
+            <column name="PEGAWAI_ID2"/>
+        </many-to-one>
+        <property name="nsks" type="java.lang.Integer">
+            <column name="NSKS" precision="5" scale="0"/>
+        </property>
+        <property name="cket" type="string">
+            <column name="CKET" length="50"/>
+        </property>
+        <property name="clintasprodi" type="string">
+            <column name="CLINTASPRODI" length="1"/>
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10"/>
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10"/>
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10"/>
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10"/>
+        </property>
+        <set name="tjadkuldetils" inverse="true">
+            <key>
+                <column name="JKM_ID" not-null="true"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkuldetil"/>
+        </set>
+    </class>
+</hibernate-mapping>

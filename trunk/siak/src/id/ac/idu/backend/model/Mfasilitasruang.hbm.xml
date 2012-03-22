@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mfasilitasruang" table="MFASILITASRUANG" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MFASILITASRUANG_SEQ</param></generator>
+        </id>
+        <many-to-one name="mruang" class="id.ac.idu.backend.model.Mruang" fetch="select" lazy="false">
+            <column name="RUANG_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mfasilitas" class="id.ac.idu.backend.model.Mfasilitas" fetch="select" lazy="false">
+            <column name="FASILITAS_ID" not-null="true" />
+        </many-to-one>
+        <property name="njml" type="int">
+            <column name="NJML" not-null="true" />
+        </property>
+        <property name="cstatus" type="char">
+            <column name="CSTATUS" length="1" not-null="true" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="35" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="35" />
+        </property>
+    </class>
+</hibernate-mapping>

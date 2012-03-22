@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mgrade" table="MGRADE" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MGRADE_SEQ</param></generator>
+        </id>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID" />
+        </many-to-one>
+        <many-to-one name="mjenjang" class="id.ac.idu.backend.model.Mjenjang" fetch="select" lazy="false">
+            <column name="JENJANG_ID" />
+        </many-to-one>
+        <property name="ckdgrade" type="string">
+            <column name="CKDGRADE" length="2" />
+        </property>
+        <property name="cgrade" type="string">
+            <column name="CGRADE" length="2" />
+        </property>
+        <property name="nbobot" type="java.lang.Integer">
+            <column name="NBOBOT" />
+        </property>
+        <property name="nnilawal" type="java.lang.Integer">
+            <column name="NNILAWAL" />
+        </property>
+        <property name="nnilakhir" type="java.lang.Integer">
+            <column name="NNILAKHIR" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdatedate" type="date">
+            <column name="DUPDATEDATE" length="10" />
+        </property>
+        <property name="dupdatedby" type="string">
+            <column name="DUPDATEDBY" length="10" />
+        </property>
+        <set name="tirspascas" inverse="true">
+            <key>
+                <column name="GRADE_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tirspasca" />
+        </set>
+        <set name="tlognilais" inverse="true">
+            <key>
+                <column name="GRADE_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tlognilai" />
+        </set>
+    </class>
+</hibernate-mapping>

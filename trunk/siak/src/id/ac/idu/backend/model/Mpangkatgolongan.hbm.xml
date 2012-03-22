@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mpangkatgolongan" table="MPANGKATGOLONGAN" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MPANGKATGOLONGAN_SEQ</param></generator>
+        </id>
+        <property name="ckdpangkatgolongan" type="string">
+            <column name="CKDPANGKATGOLONGAN" length="6" not-null="true" />
+        </property>
+        <property name="cnmpangkatgolongan" type="string">
+            <column name="CNMPANGKATGOLONGAN" length="50" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <set name="mmhspascakhses" inverse="true">
+            <key>
+                <column name="PANGKATGOLONGAN_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmhspascakhs" />
+        </set>
+        <set name="mhistpangkatmhses" inverse="true">
+            <key>
+                <column name="PANGKATGOLONGAN_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mhistpangkatmhs" />
+        </set>
+    </class>
+</hibernate-mapping>

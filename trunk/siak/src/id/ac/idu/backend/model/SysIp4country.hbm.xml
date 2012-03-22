@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.SysIp4country" table="SYS_IP4COUNTRY">
+        <id name="i4coId" type="int">
+            <column name="I4CO_ID"/>
+            <generator class="sequence">
+                <param name="sequence"></param>
+            </generator>
+        </id>
+        <version name="version" type="java.lang.Integer">
+            <column name="VERSION"/>
+        </version>
+        <property name="i4coIp" type="java.lang.Integer">
+            <column name="I4CO_IP"/>
+        </property>
+        <property name="i4coCcdId" type="java.lang.Integer">
+            <column name="I4CO_CCD_ID"/>
+        </property>
+    </class>
+</hibernate-mapping>

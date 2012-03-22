@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 12 10:03:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.CalendarEvent" table="CALENDAR_EVENT">
+        <id name="cleId" type="int">
+            <column name="CLE_ID"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="int">
+            <column name="VERSION" not-null="true"/>
+        </version>
+        <property name="cleTitle" type="string">
+            <column name="CLE_TITLE" length="20"/>
+        </property>
+        <property name="cleContent" type="string">
+            <column name="CLE_CONTENT" length="300" not-null="true"/>
+        </property>
+        <property name="cleBeginDate" type="timestamp">
+            <column name="CLE_BEGIN_DATE" length="26" not-null="true"/>
+        </property>
+        <property name="cleEndDate" type="timestamp">
+            <column name="CLE_END_DATE" length="26" not-null="true"/>
+        </property>
+        <property name="cleHeaderColor" type="string">
+            <column name="CLE_HEADER_COLOR" length="10"/>
+        </property>
+        <property name="cleContentColor" type="string">
+            <column name="CLE_CONTENT_COLOR" length="10"/>
+        </property>
+        <property name="cleUsrId" type="int">
+            <column name="CLE_USR_ID" not-null="true"/>
+        </property>
+        <property name="cleLocked" type="java.lang.Short">
+            <column name="CLE_LOCKED"/>
+        </property>
+    </class>
+</hibernate-mapping>

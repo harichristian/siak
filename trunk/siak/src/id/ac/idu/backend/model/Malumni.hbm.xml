@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Malumni" table="MALUMNI" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MALUMNI_SEQ</param></generator>
+        </id>
+        <many-to-one name="mprov" class="id.ac.idu.backend.model.Mprov" fetch="select" lazy="false">
+            <column name="PROP_ID"/>
+        </many-to-one>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID"/>
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID"/>
+        </many-to-one>
+        <many-to-one name="mkab" class="id.ac.idu.backend.model.Mkab" fetch="select" lazy="false">
+            <column name="KAB_ID"/>
+        </many-to-one>
+        <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="select" lazy="false">
+            <column name="MAHASISWA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mkel" class="id.ac.idu.backend.model.Mkel" fetch="select" lazy="false">
+            <column name="KEL_ID"/>
+        </many-to-one>
+        <many-to-one name="mkec" class="id.ac.idu.backend.model.Mkec" fetch="select" lazy="false">
+            <column name="KEC_ID"/>
+        </many-to-one>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4"/>
+        </property>
+        <property name="calamat" type="string">
+            <column name="CALAMAT" length="100"/>
+        </property>
+        <property name="ckdpos" type="string">
+            <column name="CKDPOS" length="5"/>
+        </property>
+        <property name="cnotelp" type="string">
+            <column name="CNOTELP" length="15" />
+        </property>
+        <property name="cnohp" type="string">
+            <column name="CNOHP" length="15" />
+        </property>
+        <property name="cstatnkh" type="char">
+            <column name="CSTATNKH" length="1"/>
+        </property>
+        <property name="ckdagama" type="java.lang.Character">
+            <column name="CKDAGAMA" length="1" />
+        </property>
+        <property name="csudahkerja" type="java.lang.Character">
+            <column name="CSUDAHKERJA" length="1" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="35" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="35" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <set name="tfeedbackinstansis" inverse="true">
+            <key>
+                <column name="ALUMNI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tfeedbackinstansi" />
+        </set>
+    </class>
+</hibernate-mapping>

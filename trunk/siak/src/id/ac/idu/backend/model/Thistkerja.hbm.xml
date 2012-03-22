@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Thistkerja" table="THISTKERJA" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+        </id>
+        <many-to-one name="mbidangusaha" class="id.ac.idu.backend.model.Mbidangusaha" fetch="select" lazy="false">
+            <column name="BID_USH_INS_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
+            <column name="SEKOLAH_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+            <column name="PRODI_ID" not-null="true" />
+        </many-to-one>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="4" not-null="true" />
+        </property>
+        <property name="cnim" type="string">
+            <column name="CNIM" length="12" not-null="true" />
+        </property>
+        <property name="nnourut" type="int">
+            <column name="NNOURUT" not-null="true" />
+        </property>
+        <property name="cjnsinstansi" type="char">
+            <column name="CJNSINSTANSI" length="1" not-null="true" />
+        </property>
+        <property name="cnminstansi" type="string">
+            <column name="CNMINSTANSI" length="50" not-null="true" />
+        </property>
+        <property name="calinstansi" type="string">
+            <column name="CALINSTANSI" length="100" not-null="true" />
+        </property>
+        <property name="ckdkerja" type="string">
+            <column name="CKDKERJA" length="2" />
+        </property>
+        <property name="ckdgaji" type="string">
+            <column name="CKDGAJI" length="2" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="35" />
+        </property>
+        <property name="ccreateddate" type="date">
+            <column name="CCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="35" />
+        </property>
+        <property name="cupdateddate" type="date">
+            <column name="CUPDATEDDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

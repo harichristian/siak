@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mjenjang" table="MJENJANG" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MJENJANG_SEQ</param></generator>
+        </id>
+        <property name="ckdjen" type="string">
+            <column name="CKDJEN" length="2" not-null="true" />
+        </property>
+        <property name="cnmjen" type="string">
+            <column name="CNMJEN" length="20" />
+        </property>
+        <property name="csingkat" type="string">
+            <column name="CSINGKAT" length="2" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <set name="mmahasiswas" inverse="true">
+            <key>
+                <column name="JENJANG_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmahasiswa" />
+        </set>
+        <set name="mprodis" inverse="true">
+            <key>
+                <column name="JENJANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mprodi" />
+        </set>
+        <set name="mhistpnddkmhses" inverse="true">
+            <key>
+                <column name="JENJANG_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mhistpnddkmhs" />
+        </set>
+        <set name="mgrades" inverse="true">
+            <key>
+                <column name="JENJANG_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mgrade" />
+        </set>
+    </class>
+</hibernate-mapping>

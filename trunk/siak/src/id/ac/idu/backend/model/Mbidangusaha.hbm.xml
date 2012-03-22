@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mbidangusaha" table="MBIDANGUSAHA" >
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+        </id>
+        <property name="cbidushins" type="string">
+            <column name="CBIDUSHINS" length="2" not-null="true" unique="true" />
+        </property>
+        <property name="cnmbidusaha" type="binary">
+            <column name="CNMBIDUSAHA" not-null="true" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="40" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="40" />
+        </property>
+        <property name="cupdateddate" type="date">
+            <column name="CUPDATEDDATE" length="10" />
+        </property>
+        <set name="thistkerjas" inverse="true">
+            <key>
+                <column name="BID_USH_INS_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Thistkerja" />
+        </set>
+    </class>
+</hibernate-mapping>

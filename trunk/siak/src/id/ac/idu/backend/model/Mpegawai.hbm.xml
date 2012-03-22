@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar 12 23:21:12 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Mpegawai" table="MPEGAWAI" >
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">MPEGAWAI_SEQ</param></generator>
+        </id>
+        <many-to-one name="mjabatan" class="id.ac.idu.backend.model.Mjabatan" fetch="select" lazy="false">
+            <column name="JABATAN_ID" />
+        </many-to-one>
+        <property name="cnip" type="string">
+            <column name="CNIP" length="6" not-null="true" />
+        </property>
+        <property name="cnama" type="string">
+            <column name="CNAMA" length="60" />
+        </property>
+        <property name="ctmlahir" type="string">
+            <column name="CTMLAHIR" length="20" />
+        </property>
+        <property name="dtglahir" type="date">
+            <column name="DTGLAHIR" length="10" />
+        </property>
+        <property name="cjenklmn" type="string">
+            <column name="CJENKLMN" length="1" />
+        </property>
+        <property name="cgldarah" type="string">
+            <column name="CGLDARAH" length="2" />
+        </property>
+        <property name="ckdagama" type="string">
+            <column name="CKDAGAMA" length="2" />
+        </property>
+        <property name="cstatus" type="string">
+            <column name="CSTATUS" length="1" />
+        </property>
+        <property name="cpendakhir" type="string">
+            <column name="CPENDAKHIR" length="2" />
+        </property>
+        <property name="ckdnegara" type="string">
+            <column name="CKDNEGARA" length="2" />
+        </property>
+        <property name="calamatrm" type="string">
+            <column name="CALAMATRM" length="100" />
+        </property>
+        <property name="calamatrm1" type="string">
+            <column name="CALAMATRM1" length="100" />
+        </property>
+        <property name="ckdposrm" type="java.lang.Integer">
+            <column name="CKDPOSRM" />
+        </property>
+        <property name="cproprm" type="string">
+            <column name="CPROPRM" length="2" />
+        </property>
+        <property name="ctelprma" type="string">
+            <column name="CTELPRMA" length="4" />
+        </property>
+        <property name="ctelprm" type="string">
+            <column name="CTELPRM" length="13" />
+        </property>
+        <property name="cnohp" type="string">
+            <column name="CNOHP" length="13" />
+        </property>
+        <property name="calamattg" type="string">
+            <column name="CALAMATTG" length="100" />
+        </property>
+        <property name="calamattg1" type="string">
+            <column name="CALAMATTG1" length="100" />
+        </property>
+        <property name="ckdpostg" type="java.lang.Integer">
+            <column name="CKDPOSTG" />
+        </property>
+        <property name="cproptg" type="string">
+            <column name="CPROPTG" length="2" />
+        </property>
+        <property name="cemail" type="string">
+            <column name="CEMAIL" length="30" />
+        </property>
+        <property name="ctgmkerja" type="date">
+            <column name="CTGMKERJA" length="10" />
+        </property>
+        <property name="cnoskmkerja" type="string">
+            <column name="CNOSKMKERJA" length="30" />
+        </property>
+        <property name="dtgskmkerja" type="date">
+            <column name="DTGSKMKERJA" length="10" />
+        </property>
+        <property name="cflagaktif" type="string">
+            <column name="CFLAGAKTIF" length="1" not-null="true" />
+        </property>
+        <property name="cgol" type="string">
+            <column name="CGOL" length="4" />
+        </property>
+        <property name="cpnsnip" type="string">
+            <column name="CPNSNIP" length="10" />
+        </property>
+        <property name="cnoktp" type="string">
+            <column name="CNOKTP" length="30" />
+        </property>
+        <property name="cuser" type="string">
+            <column name="CUSER" length="25" />
+        </property>
+        <property name="cgelardp" type="string">
+            <column name="CGELARDP" length="10" />
+        </property>
+        <property name="cgelarbk" type="string">
+            <column name="CGELARBK" length="10" />
+        </property>
+        <property name="cnpwp" type="string">
+            <column name="CNPWP" length="20" />
+        </property>
+        <property name="cnomortgmkerja" type="string">
+            <column name="CNOMORTGMKERJA" length="30" />
+        </property>
+        <property name="cfoto" type="string">
+            <column name="CFOTO" length="50" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="CREATEDBY" length="10" />
+        </property>
+        <property name="cupdatedby" type="string">
+            <column name="CUPDATEDBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+        <set name="msekolahs" inverse="true">
+            <key>
+                <column name="PEGAWAI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Msekolah" />
+        </set>
+        <set name="tjadkulmastersForPegawaiId1" inverse="true">
+            <key>
+                <column name="PEGAWAI_ID1" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkulmaster" />
+        </set>
+        <set name="tabsendosens" inverse="true">
+            <key>
+                <column name="PEGAWAI_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tabsendosen" />
+        </set>
+        <set name="tjadkulmastersForPegawaiId2" inverse="true">
+            <key>
+                <column name="PEGAWAI_ID2" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Tjadkulmaster" />
+        </set>
+    </class>
+</hibernate-mapping>
