@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMfasilitasruangDetail" ?>
+
+    <window id="windowMfasilitasruangDetail" apply="${mfasilitasruangDetailCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderlayout_MfasilitasruangDetail">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                    image="/images/icons/view.gif"
+                                    label="${c:l('common.Details')}"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="Kode Ruang"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                                <textbox id="txtb_kdruang"
+                                                         value="@{controller.mfasilitasruang.mruang.ckdruang}" readonly="true"
+                                                          maxlength="3" width="30px"/>
+                                                 <button
+                                                            id="btnSearchRuangExtended" disabled="true"
+                                                            width="28px"
+                                                            image="/images/icons/btn_search2_16x16.gif"
+                                                            tooltiptext="Cari Ruangan"/>
+                                        </hbox>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="Nama Ruangan"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                                <textbox
+                                                        id="txtb_nmruang"
+                                                        value="@{controller.mfasilitasruang.mruang.cnmRuang}" readonly="true"
+                                                         maxlength="40" width="200px" constraint="no empty"/>
+
+                                        </hbox>
+                                    </row>
+                                      <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Kode Fasilitas"/>
+                                        <hbox>
+                                                <textbox
+                                                        id="txtb_kdfasilitas" value="@{controller.mfasilitasruang.mfasilitas.ckdfasilitas}"
+                                                        readonly="true" maxlength="3" width="30px"  />
+                                                   <button
+                                                            id="btnSearchFasilitasExtended" disabled="true"
+                                                            width="28px"
+                                                            image="/images/icons/btn_search2_16x16.gif"
+                                                            tooltiptext="Cari Fasilitas"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Nama Fasilitas"/>
+                                        <textbox
+                                                id="txtb_nmfasilitas" value="@{controller.mfasilitasruang.mfasilitas.cnamaFasilitas}"
+                                                readonly="true" maxlength="35" width="180px" constraint="no empty"/>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Jumlah"/>
+                                        <textbox
+                                                id="txtb_jumlah" value="@{controller.mfasilitasruang.njml}"
+                                                readonly="true" maxlength="4" width="40px"  constraint="no empty" />
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Status"/>
+                                        <hbox>
+                                        <textbox
+                                                id="txtb_status" value="@{controller.mfasilitasruang.cstatus}"
+                                                  visible="false" />
+                                            <bandbox id="cmb_status" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="list_status" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_status.value=self.selectedItem.label;
+                                                             txtb_status.value=self.selectedItem.value; cmb_status.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

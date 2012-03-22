@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMpeminatanList" ?>
+
+    <window id="windowMpeminatanList" apply="${mpeminatanListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_mpeminatanList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_MpeminatanList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxMpeminatan"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.mpeminatans}"
+                         selectedItem="@{controller.selectedMpeminatan}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_MpeminatanList_jenis"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Kode Peminatan" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_MpeminatanList_nmpeminatan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Nama Peminatan" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_MpeminatanList_nmprodi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Program Studi" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_MpeminatanList_nmpeminanatan_eng"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Nama Peminatan Inggris" sort="auto"
+                                    width="20%"/>
+                         <listheader id="listheader_MpeminatanList_aktif"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Aktif" sort="auto"
+                                    width="20%"/>
+                    </listhead>
+
+                    <listitem self="@{each='mpeminatan'}" value="@{mpeminatan}"
+                              forward="onDoubleClick=onDoubleClickedMpeminatanItem">
+
+                        <listcell label="@{mpeminatan.ckdminat}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mpeminatan.cnmminat}"
+                                  style="padding-left: 5px"/>
+                         <listcell label="@{mpeminatan.mprodi.cnmprogst}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mpeminatan.cnmminating}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mpeminatan.caktif}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

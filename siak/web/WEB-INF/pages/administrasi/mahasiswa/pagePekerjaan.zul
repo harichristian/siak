@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+    <window id="windowPekerjaanDetail" apply="${pekerjaanDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderlayout_Pekerjaan">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="Pekerjaan &amp; Prestasi"/>
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px; ">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="Nama Kantor"/>
+                                        <textbox id="txtb_1" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Alamat Kantor"/>
+                                        <textbox id="txtb_2" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Telepon Kantor"/>
+                                        <textbox id="txtb_3" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Fax Kantor"/>
+                                        <textbox id="txtb_4" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Pos Kantor"/>
+                                        <textbox id="txtb_5" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Pekerjaan"/>
+                                        <textbox id="txtb_6" maxlength="12" readonly="true"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+    </window>
+</zk>

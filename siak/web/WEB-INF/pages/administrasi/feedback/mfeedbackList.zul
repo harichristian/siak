@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMfeedbackList" ?>
+
+    <window id="windowMfeedbackList" apply="${mfeedbackListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_mfeedbackList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_MfeedbackList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxMfeedback"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.mfeedbacks}"
+                         selectedItem="@{controller.selectedMfeedback}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_MfeedbackList_jenis"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Jenis Feedback" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_MfeedbackList_nmsekolah"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Nama Sekolah" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_MfeedbackList_nmprodi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Program Studi" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_MfeedbackList_nopertanyaan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="No Pertanyaan" sort="auto"
+                                    width="20%"/>
+                         <listheader id="listheader_MfeedbackList_pertanyaan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Pertanyaan" sort="auto"
+                                    width="20%"/>
+                    </listhead>
+
+                    <listitem self="@{each='mfeedback'}" value="@{mfeedback}"
+                              forward="onDoubleClick=onDoubleClickedMfeedbackItem">
+
+                        <listcell label="@{mfeedback.ckdfeedback}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mfeedback.msekolah.cnamaSekolah}"
+                                  style="padding-left: 5px"/>
+                         <listcell label="@{mfeedback.mprodi.cnmprogst}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mfeedback.nnopertanyaan}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{mfeedback.cpertanyaan}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

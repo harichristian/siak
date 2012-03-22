@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowTfeedbackinstansiList" ?>
+
+    <window id="windowTfeedbackinstansiList" apply="${tfeedbackinstansiListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_tfeedbackinstansiList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_TfeedbackinstansiList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxTfeedbackinstansi"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.tfeedbackinstansis}"
+                         selectedItem="@{controller.selectedTfeedbackinstansi}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_TfeedbackinstansiList_jenis"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Jenis Instansi" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_TfeedbackinstansiList_nminstansi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Nama Instansi" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_TfeedbackinstansiList_alamat"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Alamat" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_TfeedbackinstansiList_nmalumni"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Nama Alumni" sort="auto"
+                                    width="20%"/>
+                         <listheader id="listheader_TfeedbackinstansiList_kesan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Kesan-Kesan" sort="auto"
+                                    width="20%"/>
+                    </listhead>
+
+                    <listitem self="@{each='tfeedbackinstansi'}" value="@{tfeedbackinstansi}"
+                              forward="onDoubleClick=onDoubleClickedTfeedbackinstansiItem">
+
+                        <listcell label="@{tfeedbackinstansi.cjnsinstansi}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{tfeedbackinstansi.cnminstansi}"
+                                  style="padding-left: 5px"/>
+                         <listcell label="@{tfeedbackinstansi.calminstansi}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{tfeedbackinstansi.malumni.mmahasiswa.cnama}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{tfeedbackinstansi.cnama}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

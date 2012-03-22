@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowFeedbackAlumniDetail" ?>
+
+    <window id="windowFeedbackAlumniDetail" apply="${feedbackAlumniDetailCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderlayout_FeedbackAlumniDetail">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                    image="/images/icons/view.gif"
+                                    label="${c:l('common.Details')}"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="NIM"/>
+                                        <hbox>
+                                            <textbox id="txtb_nim" value="@{controller.feedbackAlumni.mmahasiswa.cnim}"
+                                                    readonly="true" maxlength="50" width="80%" />
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Alumni"/>
+                                        <hbox>
+                                            <textbox id="txtb_nmalumni" value="@{controller.feedbackAlumni.mmahasiswa.cnama}"
+                                                    readonly="true" maxlength="50" width="80%"  constraint="no empty" />
+                                            <button id="btnSearchAlumniExtended" disabled="true"
+                                                width="28px"
+                                                image="/images/icons/btn_search2_16x16.gif"
+                                                tooltiptext="Cari Alumni"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Term"/>
+                                        <hbox>
+                                            <textbox id="txtb_term" value="@{controller.feedbackAlumni.cterm}"
+                                                    readonly="true" maxlength="2" width="50px" />
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Kelompok"/>
+                                        <hbox>
+                                            <textbox id="txtb_kelompok" value="@{controller.feedbackAlumni.ckelompok}"
+                                                    readonly="true" maxlength="2" width="50px" />
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Prodi"/>
+                                        <hbox>
+                                            <textbox id="txtb_prodi" value="@{controller.feedbackAlumni.mprodi.cnmprogst}"
+                                                    readonly="true" maxlength="40" width="100px" />
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Sekolah"/>
+                                        <hbox>
+                                            <textbox id="txtb_sekolah" value="@{controller.feedbackAlumni.msekolah.cnamaSekolah}"
+                                                    readonly="true" maxlength="50" width="100px" />
+                                        </hbox>
+                                    </row>
+                                    <!--row>
+                                        <hbox>
+                                            <label
+                                                    value="Jenis Instansi"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                         <hbox>
+                                        <textbox
+                                                id="txtb_jenis" value="@{controller.feedbackAlumni.cjnsinstansi}"
+                                                  visible="false" />
+                                            <bandbox id="cmb_jenis" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="list_jenis" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmb_jenis.value=self.selectedItem.label;
+                                                             txtb_jenis.value=self.selectedItem.value; cmb_jenis.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row-->
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Nomer"/>
+                                        <textbox
+                                                id="txtb_nomer" value="@{controller.feedbackAlumni.nnopertanyaan}"
+                                                readonly="true" maxlength="1" width="50px" constraint="no empty"/>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Pertanyaan"/>
+                                        <textbox
+                                                id="txtb_pertanyaan" value="@{controller.feedbackAlumni.mfeedback.cpertanyaan}"
+                                                readonly="true" maxlength="100" width="99%" constraint="no empty"/>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="Jawaban"/>
+                                        <textbox
+                                                id="txtb_jawaban" value="@{controller.feedbackAlumni.cjawaban}"
+                                                readonly="true" maxlength="1" width="50px" constraint="no empty"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

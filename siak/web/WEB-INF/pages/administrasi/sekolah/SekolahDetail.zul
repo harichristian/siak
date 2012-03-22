@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowSekolahDetail" ?>
+
+    <window id="windowSekolahDetail" apply="${sekolahDetailCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderlayout_SekolahDetail">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                    image="/images/icons/view.gif"
+                                    label="${c:l('common.Details')}"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="KODE"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox id="txtb_filNr"
+                                                 value="@{controller.sekolah.ckdsekolah}" readonly="true"
+                                                 constraint="no empty" maxlength="5" width="100px"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="NAMA"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filName1"
+                                                value="@{controller.sekolah.cnamaSekolah}" constraint="no empty"
+                                                readonly="true" maxlength="50" width="99%"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="SINGKATAN"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filSingkatan"
+                                                value="@{controller.sekolah.csingkatan}" constraint="no empty"
+                                                readonly="true" maxlength="10" width="99%"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="NAMA INGGRIS"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filNamaInggris"
+                                                value="@{controller.sekolah.cnamaIng}" constraint="no empty"
+                                                readonly="true" maxlength="50" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="VISI"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filVisi" value="@{controller.sekolah.visi}"
+                                                constraint="no empty"
+                                                multiline="true" rows="3"
+                                                readonly="true" maxlength="1000" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="MISI"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filMisi" value="@{controller.sekolah.misi}"
+                                                constraint="no empty"
+                                                multiline="true" rows="3"
+                                                readonly="true" maxlength="1000" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="NO SK"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filNoSk" value="@{controller.sekolah.noSk}"
+                                                constraint="no empty"
+                                                readonly="true" maxlength="50" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="NIP PEGAWAI"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="100%">
+                                            <textbox
+                                                    id="txtb_filPegawai" value="@{controller.sekolah.mpegawai.cnip}"
+                                                    constraint="no empty"
+                                                    readonly="true" maxlength="60" width="99%"/>
+                                            <button
+                                                    id="btnSearchPegawaiExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Pegawai"/>
+                                        </hbox>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

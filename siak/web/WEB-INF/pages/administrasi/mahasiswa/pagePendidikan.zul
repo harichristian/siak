@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+    <window id="windowPendidikanDetail" apply="${pendidikanDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderlayout_Pendidikan">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="S1" />
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px; ">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="Kode Perguruan Tinggi"/>
+                                        <textbox id="txtb_a1" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Perguruan Tinggi"/>
+                                        <textbox id="txtb_a2" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Status Perguruan Tinggi"/>
+                                        <textbox id="txtb_a3" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Program Studi"/>
+                                        <textbox id="txtb_a4" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Program Studi"/>
+                                        <textbox id="txtb_a5" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Jenjang"/>
+                                        <textbox id="txtb_a6" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="IPK / Yudisium"/>
+                                        <textbox id="txtb_a7" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Lulus"/>
+                                        <textbox id="txtb_a8" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Beban Studi"/>
+                                        <textbox id="txtb_a9" maxlength="12" readonly="true"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="S2"/>
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px; ">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="Kode Perguruan Tinggi"/>
+                                        <textbox id="txtb_b1" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Perguruan Tinggi"/>
+                                        <textbox id="txtb_b2" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Status Perguruan Tinggi"/>
+                                        <textbox id="txtb_b3" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Program Studi"/>
+                                        <textbox id="txtb_b4" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Program Studi"/>
+                                        <textbox id="txtb_b5" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Kode Jenjang"/>
+                                        <textbox id="txtb_b6" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="IPK / Yudisium"/>
+                                        <textbox id="txtb_b7" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Tanggal Lulus"/>
+                                        <textbox id="txtb_b8" maxlength="12" readonly="true"/>
+                                    </row>
+                                    <row>
+                                        <label value="Beban Studi"/>
+                                        <textbox id="txtb_b9" maxlength="12" readonly="true"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+    </window>
+</zk>

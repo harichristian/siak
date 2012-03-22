@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowCalakademikList" ?>
+
+    <window id="windowCalakademikList" apply="${calakademikListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_calakademikList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_CalakademikList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxCalakademik"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.calakademiks}"
+                         selectedItem="@{controller.selectedCalakademik}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_CalakademikList_No"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="NO" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_CalakademikList_TanggalAwal"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TANGGAL AWAL" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_TanggalAkhir"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TANGGAL AKHIR" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_JamAwal"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="JAM AWAL" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_JamAkhir"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="JAM AKHIR" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_Term"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TERM" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_TahunAjaran"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TAHUN AJARAN" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_Semester"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="SEMESTER" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_Sekolah"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="SEKOLAH" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_Prodi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="PRODI" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_CalakademikList_Kegiatan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="KEGIATAN" sort="auto"
+                                    width="30%"/>
+
+                    </listhead>
+
+                    <listitem self="@{each='calakademik'}" value="@{calakademik}"
+                              forward="onDoubleClick=onDoubleClickedCalakademikItem">
+
+                        <listcell label="@{calakademik.cno}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.dtglawal}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.dtglakhir}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.cjamawal}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.cjamakhir}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.cterm}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.cthajar}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.csmt}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.msekolah.cnamaSekolah}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.mprodi.cnmprogst}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{calakademik.mkegiatan.cnmkgt}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

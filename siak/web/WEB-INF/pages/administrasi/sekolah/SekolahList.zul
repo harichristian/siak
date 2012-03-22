@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowSekolahList" ?>
+
+    <window id="windowSekolahList" apply="${sekolahListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_sekolahList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_SekolahList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxSekolah"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.sekolahs}"
+                         selectedItem="@{controller.selectedSekolah}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_SekolahList_No"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="KODE" sort="auto"
+                                    width="5%"/>
+                        <listheader id="listheader_SekolahList_Name1"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="NAMA" sort="auto"
+                                    width="15%"/>
+                        <listheader id="listheader_SekolahList_Singkatan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="SINGKATAN" sort="auto"
+                                    width="5%"/>
+                        <listheader id="listheader_SekolahList_NamaInggris"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="NAMA INGGRIS" sort="auto"
+                                    width="15%"/>
+                        <listheader id="listheader_SekolahList_Visi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="VISI" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_SekolahList_Misi"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="MISI" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_SekolahList_NoSk"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="NO SK" sort="auto"
+                                    width="10%"/>
+                        <listheader id="listheader_SekolahList_Pegawai"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="NIP PEGAWAI" sort="auto"
+                                    width="10%"/>
+                    </listhead>
+
+                    <listitem self="@{each='sekolah'}" value="@{sekolah}"
+                              forward="onDoubleClick=onDoubleClickedSekolahItem">
+
+                        <listcell label="@{sekolah.ckdsekolah}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.cnamaSekolah}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.csingkatan}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.cnamaIng}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.visi}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.misi}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.noSk}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.mpegawai.cnip}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>
