@@ -1,0 +1,27 @@
+<!-- Administration MenuTree -->
+<menuItem id="menu_Item_Users" iconName="/images/icons/male_16x16.gif"
+          zulNavigation="/WEB-INF/pages/sec_user/userList.zul" rightName="menuItem_Administration_Users"/>
+<menu id="menu_Category_UserRights" rightName="menuCat_UserRights">
+<menuItem id="menu_Item_UserRoles" zulNavigation="/WEB-INF/pages/sec_userrole/secUserrole.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_UserRoles"/>
+<menuItem id="menu_Item_Roles" zulNavigation="/WEB-INF/pages/sec_role/secRoleList.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Roles"/>
+<menuItem id="menu_Item_RoleGroups" zulNavigation="/WEB-INF/pages/sec_rolegroup/secRolegroup.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_RoleGroups"/>
+<menuItem id="menu_Item_Groups" zulNavigation="/WEB-INF/pages/sec_group/secGroupList.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Groups"/>
+<menuItem id="menu_Item_GroupRights"
+          zulNavigation="/WEB-INF/pages/sec_groupright/secGroupright.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_GroupRights"/>
+<menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRightList.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Rights"/>
+</menu>
+<menuItem id="menu_Item_LoginsLog"
+          zulNavigation="/WEB-INF/pages/sec_loginlog/secLoginLogMain.zul"
+          iconName="/images/icons/method_16x16.gif" rightName="menuItem_Administration_LoginsLog"/>
+<menuItem id="menu_Item_HibernateStatistics" zulNavigation="/WEB-INF/pages/debug/HibernateStatistics.zul"
+          iconName="/images/icons/method_16x16.gif" rightName="menuItem_Administration_HibernateStats"/>
+<menu id="menu_Category_Master" rightName="menuCat_Master">
+<menuItem id="menu_Item_MasterRuangan" zulNavigation="/WEB-INF/pages/administrasi/saranaprasarana/ruangList.zul"
+          iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_MasterRuangan"/>
+</menu>

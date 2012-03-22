@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <!-- Index-Page -->
+    <bean id="indexCtrl" class="id.ac.idu.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype">
+        <property name="officeService" ref="officeService"/>
+    </bean>
+
+    <!-- TestController for playing -->
+    <bean id="testCtrl" class="id.ac.idu.example.TestCtrl" scope="prototype">
+        <property name="officeService" ref="officeService"/>
+        <property name="pagedListWrapperBranche" ref="pagedListWrapper"/>
+        <property name="pagedListWrapperCustomer" ref="pagedListWrapper"/>
+    </bean>
+
+    <!-- Dashboard -->
+    <bean id="dashboardMainCtrl" class="id.ac.idu.webui.dashboard.DashboardMainCtrl"
+          parent="basisCtrl" scope="prototype">
+    </bean>
+
+    <!-- Articles / Artikelstammdaten -->
+    <bean id="articleMainCtrl" class="id.ac.idu.webui.article.ArticleMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="articleListCtrl" ref="articleListCtrl"/>
+        <property name="articleDetailCtrl" ref="articleDetailCtrl"/>
+    </bean>
+    <bean id="articleListCtrl" class="id.ac.idu.webui.article.ArticleListCtrl" parent="basisListCtrl"
+          scope="prototype"/>
+    <bean id="articleDetailCtrl" class="id.ac.idu.webui.article.ArticleDetailCtrl" parent="basisCtrl"
+          scope="prototype"/>
+
+    <!-- Branch / Branchenstammdaten -->
+    <bean id="branchMainCtrl" class="id.ac.idu.webui.branch.BranchMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+        <property name="branchListCtrl" ref="branchListCtrl"/>
+        <property name="branchDetailCtrl" ref="branchDetailCtrl"/>
+    </bean>
+
+    <!-- BranchList / BranchenListe -->
+    <bean id="branchListCtrl" class="id.ac.idu.webui.branch.BranchListCtrl" parent="basisListCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+    </bean>
+
+    <!-- BranchDetails / Branchen-Details -->
+    <bean id="branchDetailCtrl" class="id.ac.idu.webui.branch.BranchDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+    </bean>
+
+    <!-- Customers -->
+    <bean id="customerListCtrl" class="id.ac.idu.webui.customer.CustomerListCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+        <property name="customerService" ref="customerService"/>
+    </bean>
+
+    <bean id="customerDialogCtrl" class="id.ac.idu.webui.customer.CustomerDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+        <property name="customerService" ref="customerService"/>
+        <property name="chartService" ref="chartService"/>
+    </bean>
+    <bean id="customerChartCtrl" class="id.ac.idu.webui.customer.CustomerChartCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="chartService" ref="chartService"/>
+    </bean>
+    <bean id="customerSearchCtrl" class="id.ac.idu.webui.customer.CustomerSearchCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="brancheService" ref="brancheService"/>
+        <property name="customerService" ref="customerService"/>
+    </bean>
+
+    <!-- Calendar / Kalender -->
+    <bean id="calendarMainCtrl" class="id.ac.idu.webui.calendar.CalendarMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calendarEventService" ref="calendarEventService"/>
+    </bean>
+    <!-- create event / Termin anlegen -->
+    <bean id="createEventCtrl" class="id.ac.idu.webui.calendar.CalendarCreateEventCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calendarEventService" ref="calendarEventService"/>
+    </bean>
+    <!-- edit event / Termin aendern -->
+    <bean id="editEventCtrl" class="id.ac.idu.webui.calendar.CalendarEditEventCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calendarEventService" ref="calendarEventService"/>
+    </bean>
+
+    <!-- Office / Filialstammdaten -->
+    <bean id="officeMainCtrl" class="id.ac.idu.webui.office.OfficeMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="officeService" ref="officeService"/>
+        <property name="officeListCtrl" ref="officeListCtrl"/>
+        <property name="officeDetailCtrl" ref="officeDetailCtrl"/>
+    </bean>
+    <bean id="officeListCtrl" class="id.ac.idu.webui.office.OfficeListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="officeService" ref="officeService"/>
+    </bean>
+    <bean id="officeDetailCtrl" class="id.ac.idu.webui.office.OfficeDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="officeService" ref="officeService"/>
+    </bean>
+    <!-- +++++ ADMINISTRATION MODULE +++++ -->
+    <!-- Universitas -->
+    <bean id="munivMainCtrl" class="id.ac.idu.webui.administrasi.universitas.MunivMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="munivService" ref="munivService"/>
+        <property name="munivListCtrl" ref="munivListCtrl"/>
+        <property name="munivDetailCtrl" ref="munivDetailCtrl"/>
+    </bean>
+    <bean id="munivListCtrl" class="id.ac.idu.webui.administrasi.universitas.MunivListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="munivService" ref="munivService"/>
+    </bean>
+    <bean id="munivDetailCtrl" class="id.ac.idu.webui.administrasi.universitas.MunivDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="munivService" ref="munivService"/>
+    </bean>
+
+    <!-- CalendarAkademik -->
+    <bean id="calakademikMainCtrl" class="id.ac.idu.webui.administrasi.calakademik.CalakademikMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calakademikService" ref="calakademikService"/>
+        <property name="calakademikListCtrl" ref="calakademikListCtrl"/>
+        <property name="calakademikDetailCtrl" ref="calakademikDetailCtrl"/>
+    </bean>
+    <bean id="calakademikListCtrl" class="id.ac.idu.webui.administrasi.calakademik.CalakademikListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calakademikService" ref="calakademikService"/>
+    </bean>
+    <bean id="calakademikDetailCtrl" class="id.ac.idu.webui.administrasi.calakademik.CalakademikDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="calakademikService" ref="calakademikService"/>
+        <property name="sekolahService" ref="sekolahService"/>
+        <property name="prodiService" ref="prodiService"/>
+        <property name="kegiatanService" ref="kegiatanService"/>
+    </bean>
+
+    <!-- Prodi -->
+    <bean id="prodiMainCtrl" class="id.ac.idu.webui.administrasi.prodi.ProdiMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="prodiService" ref="prodiService"/>
+        <!--property name="jenjangService" ref="jenjangService"/-->
+        <property name="prodiListCtrl" ref="prodiListCtrl"/>
+        <property name="prodiDetailCtrl" ref="prodiDetailCtrl"/>
+    </bean>
+    <bean id="prodiListCtrl" class="id.ac.idu.webui.administrasi.prodi.ProdiListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="prodiService" ref="prodiService"/>
+    </bean>
+    <bean id="prodiDetailCtrl" class="id.ac.idu.webui.administrasi.prodi.ProdiDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="prodiService" ref="prodiService"/>
+    </bean>
+
+    <!-- Jenjang -->
+    <bean id="jenjangMainCtrl" class="id.ac.idu.webui.administrasi.jenjang.JenjangMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jenjangService" ref="jenjangService"/>
+        <property name="jenjangListCtrl" ref="jenjangListCtrl"/>
+        <property name="jenjangDetailCtrl" ref="jenjangDetailCtrl"/>
+    </bean>
+    <bean id="jenjangListCtrl" class="id.ac.idu.webui.administrasi.jenjang.JenjangListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jenjangService" ref="jenjangService"/>
+    </bean>
+    <bean id="jenjangDetailCtrl" class="id.ac.idu.webui.administrasi.jenjang.JenjangDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jenjangService" ref="jenjangService"/>
+    </bean>
+
+    <!-- Hari -->
+    <bean id="hariMainCtrl" class="id.ac.idu.webui.administrasi.hari.HariMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="hariService" ref="hariService"/>
+        <property name="hariListCtrl" ref="hariListCtrl"/>
+        <property name="hariDetailCtrl" ref="hariDetailCtrl"/>
+    </bean>
+    <bean id="hariListCtrl" class="id.ac.idu.webui.administrasi.hari.HariListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="hariService" ref="hariService"/>
+    </bean>
+    <bean id="hariDetailCtrl" class="id.ac.idu.webui.administrasi.hari.HariDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="hariService" ref="hariService"/>
+    </bean>
+
+    <!-- Pangkat -->
+    <bean id="pangkatMainCtrl" class="id.ac.idu.webui.administrasi.pangkat.PangkatMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pangkatService" ref="pangkatService"/>
+        <property name="pangkatListCtrl" ref="pangkatListCtrl"/>
+        <property name="pangkatDetailCtrl" ref="pangkatDetailCtrl"/>
+    </bean>
+    <bean id="pangkatListCtrl" class="id.ac.idu.webui.administrasi.pangkat.PangkatListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pangkatService" ref="pangkatService"/>
+    </bean>
+    <bean id="pangkatDetailCtrl" class="id.ac.idu.webui.administrasi.pangkat.PangkatDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pangkatService" ref="pangkatService"/>
+    </bean>
+
+    <!-- StatusMahasiswa -->
+    <bean id="statusMahasiswaMainCtrl" class="id.ac.idu.webui.administrasi.statusMahasiswa.StatusMahasiswaMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="statusMahasiswaService" ref="statusMahasiswaService"/>
+        <property name="statusMahasiswaListCtrl" ref="statusMahasiswaListCtrl"/>
+        <property name="statusMahasiswaDetailCtrl" ref="statusMahasiswaDetailCtrl"/>
+    </bean>
+    <bean id="statusMahasiswaListCtrl" class="id.ac.idu.webui.administrasi.statusMahasiswa.StatusMahasiswaListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="statusMahasiswaService" ref="statusMahasiswaService"/>
+    </bean>
+    <bean id="statusMahasiswaDetailCtrl" class="id.ac.idu.webui.administrasi.statusMahasiswa.StatusMahasiswaDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="statusMahasiswaService" ref="statusMahasiswaService"/>
+    </bean>
+
+    <!-- Jabatan -->
+    <bean id="jabatanMainCtrl" class="id.ac.idu.webui.administrasi.jabatan.JabatanMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jabatanService" ref="jabatanService"/>
+        <property name="jabatanListCtrl" ref="jabatanListCtrl"/>
+        <property name="jabatanDetailCtrl" ref="jabatanDetailCtrl"/>
+    </bean>
+    <bean id="jabatanListCtrl" class="id.ac.idu.webui.administrasi.jabatan.JabatanListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jabatanService" ref="jabatanService"/>
+    </bean>
+    <bean id="jabatanDetailCtrl" class="id.ac.idu.webui.administrasi.jabatan.JabatanDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jabatanService" ref="jabatanService"/>
+    </bean>
+
+    <!-- Grade -->
+    <bean id="gradeMainCtrl" class="id.ac.idu.webui.grade.GradeMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="gradeService" ref="gradeService"/>
+        <property name="gradeListCtrl" ref="gradeListCtrl"/>
+        <property name="gradeDetailCtrl" ref="gradeDetailCtrl"/>
+    </bean>
+    <bean id="gradeListCtrl" class="id.ac.idu.webui.grade.GradeListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="gradeService" ref="gradeService"/>
+    </bean>
+    <bean id="gradeDetailCtrl" class="id.ac.idu.webui.grade.GradeDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="gradeService" ref="gradeService"/>
+        <property name="jenjangService" ref="jenjangService"/>
+        <property name="prodiService" ref="prodiService"/>
+    </bean>
+
+    <!-- Kegiatan -->
+    <bean id="kegiatanMainCtrl" class="id.ac.idu.webui.administrasi.kegiatan.KegiatanMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kegiatanService" ref="kegiatanService"/>
+        <property name="kegiatanListCtrl" ref="kegiatanListCtrl"/>
+        <property name="kegiatanDetailCtrl" ref="kegiatanDetailCtrl"/>
+    </bean>
+    <bean id="kegiatanListCtrl" class="id.ac.idu.webui.administrasi.kegiatan.KegiatanListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kegiatanService" ref="kegiatanService"/>
+    </bean>
+    <bean id="kegiatanDetailCtrl" class="id.ac.idu.webui.administrasi.kegiatan.KegiatanDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kegiatanService" ref="kegiatanService"/>
+    </bean>
+
+    <!-- Sekolah -->
+    <bean id="sekolahMainCtrl" class="id.ac.idu.webui.administrasi.sekolah.SekolahMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="sekolahService" ref="sekolahService"/>
+        <property name="sekolahListCtrl" ref="sekolahListCtrl"/>
+        <property name="sekolahDetailCtrl" ref="sekolahDetailCtrl"/>
+    </bean>
+    <bean id="sekolahListCtrl" class="id.ac.idu.webui.administrasi.sekolah.SekolahListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="sekolahService" ref="sekolahService"/>
+    </bean>
+    <bean id="sekolahDetailCtrl" class="id.ac.idu.webui.administrasi.sekolah.SekolahDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="sekolahService" ref="sekolahService"/>
+        <property name="pegawaiService" ref="pegawaiService"/>
+    </bean>
+
+    <!--  Manajemen Kuliah -->
+    <bean id="sesiMainCtrl" class="id.ac.idu.webui.mankurikulum.sesi.SesiMainCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="sesiService"/>
+        <property name="listCtrl" ref="sesiListCtrl"/>
+        <property name="detailCtrl" ref="sesiDetailCtrl"/>
+    </bean>
+    <bean id="sesiListCtrl" class="id.ac.idu.webui.mankurikulum.sesi.SesiListCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="sesiService"/>
+    </bean>
+    <bean id="sesiDetailCtrl" class="id.ac.idu.webui.mankurikulum.sesi.SesiDetailCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="service" ref="sesiService"/>
+        <property name="sekolah" ref="sekolahService"/>
+    </bean>
+
+    <bean id="matakuliahMainCtrl" class="id.ac.idu.webui.mankurikulum.matakuliah.MatakuliahMainCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="service" ref="matakuliahService"/>
+        <property name="listCtrl" ref="matakuliahListCtrl"/>
+        <property name="detailCtrl" ref="matakuliahDetailCtrl"/>
+    </bean>
+    <bean id="matakuliahListCtrl" class="id.ac.idu.webui.mankurikulum.matakuliah.MatakuliahListCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="matakuliahService"/>
+    </bean>
+    <bean id="matakuliahDetailCtrl" class="id.ac.idu.webui.mankurikulum.matakuliah.MatakuliahDetailCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="service" ref="matakuliahService"/>
+    </bean>
+
+     <!-- Feedback Alumni -->
+    <bean id="feedbackAlumniMainCtrl" class="id.ac.idu.webui.administrasi.feedbackalumni.FeedbackAlumniMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackAlumniService" ref="feedbackAlumniService"/>
+    </bean>
+    <bean id="feedbackAlumniListCtrl" class="id.ac.idu.webui.administrasi.feedbackalumni.FeedbackAlumniListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackAlumniService" ref="feedbackAlumniService"/>
+    </bean>
+    <bean id="feedbackAlumniDetailCtrl" class="id.ac.idu.webui.administrasi.feedbackalumni.FeedbackAlumniDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackAlumniService" ref="feedbackAlumniService"/>
+    </bean>
+
+    <bean id="mahasiswaMainCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaMainCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+        <property name="listCtrl" ref="mahasiswaListCtrl"/>
+        <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
+    </bean>
+    <bean id="mahasiswaListCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaListCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+    </bean>
+    <bean id="mahasiswaDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+        <property name="pribadiCtrl" ref="pribadiDetailCtrl"/>
+        <property name="khususCtrl" ref="khususDetailCtrl"/>
+        <property name="pendidikanCtrl" ref="pendidikanDetailCtrl"/>
+        <property name="kursusCtrl" ref="kursusDetailCtrl"/>
+        <property name="kegiatanCtrl" ref="kegiatanIlmiahDetailCtrl"/>
+        <property name="pekerjaanCtrl" ref="pekerjaanDetailCtrl"/>
+        <property name="statusCtrl" ref="statusDetailCtrl"/>
+    </bean>
+    <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+        <property name="service2" ref="kodePosService"/>
+        <property name="plwKodepos" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="khususDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKhususCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="pendidikanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPendidikanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="kursusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKursusCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="kegiatanIlmiahDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKegiatanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="pekerjaanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPekerjaanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="statusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaStatusCtrl" parent="basisCtrl" scope="prototype"/>
+
+    <!-- +++++ KURIKULUM MODULE +++++ -->
+    <!-- Kurikulum -->
+    <bean id="kurikulumMainCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.KurikulumMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumService" ref="kurikulumService"/>
+        <property name="kurikulumListCtrl" ref="kurikulumListCtrl"/>
+        <property name="kurikulumDetailCtrl" ref="kurikulumDetailCtrl"/>
+    </bean>
+    <bean id="kurikulumListCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.KurikulumListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumService" ref="kurikulumService"/>
+    </bean>
+    <bean id="kurikulumDetailCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.KurikulumDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumService" ref="kurikulumService"/>
+    </bean>
+    <!-- Kurikulum Mahasiswa -->
+    <bean id="kurikulumMahasiswaMainCtrl"
+          class="id.ac.idu.webui.kurikulum.kurikulumMahasiswa.KurikulumMahasiswaMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+        <property name="kurikulumMahasiswaListCtrl" ref="kurikulumMahasiswaListCtrl"/>
+        <property name="kurikulumMahasiswaDetailCtrl" ref="kurikulumMahasiswaDetailCtrl"/>
+    </bean>
+    <bean id="kurikulumMahasiswaListCtrl"
+          class="id.ac.idu.webui.kurikulum.kurikulumMahasiswa.KurikulumMahasiswaListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+    </bean>
+    <bean id="kurikulumMahasiswaDetailCtrl"
+          class="id.ac.idu.webui.kurikulum.kurikulumMahasiswa.KurikulumMahasiswaDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+        <property name="popupMhsService" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
+
+    <!-- ++++++ Isian Rencana Studi ++++++ -->
+    <!-- Jadwal Kuliah -->
+    <bean id="jadkulmasterListCtrl" class="id.ac.idu.webui.irs.jadwalkuliah.JadkulmasterListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jadkulService" ref="jadkulService"/>
+        <property name="plwTjadkulmasters" ref="pagedListWrapper"/>
+        <property name="plwTjadkuldetils" ref="pagedListWrapper"/>
+        <property name="plwCustomers" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="jadkulmasterDialogCtrl" class="id.ac.idu.webui.irs.jadwalkuliah.JadkulmasterDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jadkulService" ref="jadkulService"/>
+        <property name="pegawaiService" ref="pegawaiService"/>
+        <property name="sekolahService" ref="sekolahService"/>
+        <property name="prodiService" ref="prodiService"/>
+        <property name="matakuliahService" ref="matakuliahService"/>
+        <property name="plwTjadkuldetils" ref="pagedListWrapper"/>
+        <property name="plwCustomers" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="jadkuldetilDialogCtrl" class="id.ac.idu.webui.irs.jadwalkuliah.JadkuldetilDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jadkulService" ref="jadkulService"/>
+        <property name="hariService" ref="hariService"/>
+        <property name="sesiService" ref="sesiService"/>
+        <property name="mruangService" ref="mruangService"/>
+        <property name="plwTjadkuldetils" ref="pagedListWrapper"/>
+
+    </bean>
+
+    <!-- Aktif Kembali -->
+    <bean id="aktifmhsMainCtrl" class="id.ac.idu.webui.irs.aktifmhs.MainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+        <property name="service2" ref="mahasiswaService"/>
+        <property name="listCtrl" ref="aktifmhsListCtrl"/>
+        <property name="detailCtrl" ref="aktifmhsDetailCtrl"/>
+    </bean>
+    <bean id="aktifmhsListCtrl" class="id.ac.idu.webui.irs.aktifmhs.ListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+    </bean>
+    <bean id="aktifmhsDetailCtrl" class="id.ac.idu.webui.irs.aktifmhs.DetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+        <property name="service2" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
+    <!-- Cuti Mahasiswa -->
+    <bean id="cutimhsMainCtrl" class="id.ac.idu.webui.irs.cutimhs.MainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+        <property name="service2" ref="mahasiswaService"/>
+        <property name="listCtrl" ref="cutimhsListCtrl"/>
+        <property name="detailCtrl" ref="cutimhsDetailCtrl"/>
+    </bean>
+    <bean id="cutimhsListCtrl" class="id.ac.idu.webui.irs.cutimhs.ListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+    </bean>
+    <bean id="cutimhsDetailCtrl" class="id.ac.idu.webui.irs.cutimhs.DetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="service" ref="cutimhsService"/>
+        <property name="service2" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
+    <!-- Entry IRS -->
+    <bean id="irsMainCtrl" class="id.ac.idu.webui.irs.irs.IrsMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+        <property name="irsListCtrl" ref="irsListCtrl"/>
+        <property name="irsDetailCtrl" ref="irsDetailCtrl"/>
+    </bean>
+    <bean id="irsListCtrl" class="id.ac.idu.webui.irs.irs.IrsListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+    </bean>
+    <bean id="irsDetailCtrl" class="id.ac.idu.webui.irs.irs.IrsDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+        <property name="popupMhsService" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
+    <!-- Entry Paket kuliah -->
+    <bean id="paketMainCtrl" class="id.ac.idu.webui.irs.paket.PaketMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="paketService" ref="paketService"/>
+        <property name="paketListCtrl" ref="paketListCtrl"/>
+        <property name="paketDetailCtrl" ref="paketDetailCtrl"/>
+    </bean>
+    <bean id="paketListCtrl" class="id.ac.idu.webui.irs.paket.PaketListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="paketService" ref="paketService"/>
+    </bean>
+    <bean id="paketDetailCtrl" class="id.ac.idu.webui.irs.paket.PaketDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="paketService" ref="paketService"/>
+    </bean>
+
+    <!-- Orders -->
+    <bean id="orderListCtrl" class="id.ac.idu.webui.order.OrderListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="orderService" ref="orderService"/>
+        <property name="customerService" ref="customerService"/>
+        <property name="brancheService" ref="brancheService"/>
+        <property name="plwOrders" ref="pagedListWrapper"/>
+        <property name="plwOrderpositions" ref="pagedListWrapper"/>
+        <property name="plwCustomers" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="orderDialogCtrl" class="id.ac.idu.webui.order.OrderDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="orderService" ref="orderService"/>
+        <property name="customerService" ref="customerService"/>
+        <property name="brancheService" ref="brancheService"/>
+        <property name="plwOrderpositions" ref="pagedListWrapper"/>
+        <property name="plwCustomers" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="orderPositionDialogCtrl" class="id.ac.idu.webui.order.OrderPositionDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="orderService" ref="orderService"/>
+        <property name="customerService" ref="customerService"/>
+        <property name="brancheService" ref="brancheService"/>
+        <property name="plwOrderpositions" ref="pagedListWrapper"/>
+        <property name="plwArticles" ref="pagedListWrapper"/>
+    </bean>
+
+    <!-- Users -->
+    <bean id="userListCtrl" class="id.ac.idu.webui.security.user.UserListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="userDialogCtrl" class="id.ac.idu.webui.security.user.UserDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="myUserSettingsCtrl"
+          class="id.ac.idu.webui.security.user.MyUserSettingsCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <!-- Login-Logs -->
+    <bean id="secLoginlogMainCtrl" class="id.ac.idu.webui.logging.loginlog.SecLoginlogMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="loginLoggingService" ref="loginLoggingService"/>
+    </bean>
+    <bean id="secLoginlogListCtrl" class="id.ac.idu.webui.logging.loginlog.SecLoginlogListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="loginLoggingService" ref="loginLoggingService"/>
+        <property name="guiLoginLoggingService" ref="guiLoginLoggingService"/>
+    </bean>
+    <bean id="secLoginlogStatisticCtrl"
+          class="id.ac.idu.webui.logging.loginlog.SecLoginlogStatisticCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="loginLoggingService" ref="loginLoggingService"/>
+    </bean>
+
+    <!-- +++++ SECURITY +++++ -->
+    <!-- Groups -->
+    <bean id="secGroupListCtrl" class="id.ac.idu.webui.security.group.SecGroupListCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <bean id="secGroupDialogCtrl" class="id.ac.idu.webui.security.group.SecGroupDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <!-- Group-Rights -->
+    <bean id="secGrouprightCtrl"
+          class="id.ac.idu.webui.security.groupright.SecGrouprightCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+        <property name="plwSecGroups" ref="pagedListWrapper"/>
+        <property name="plwSecRights" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="addGrouprightDialogCtrl"
+          class="id.ac.idu.webui.security.groupright.AddGrouprightDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+        <property name="plwSecRights" ref="pagedListWrapper"/>
+    </bean>
+    <!-- Rights -->
+    <bean id="secRightListCtrl" class="id.ac.idu.webui.security.right.SecRightListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <bean id="secRightDialogCtrl" class="id.ac.idu.webui.security.right.SecRightDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <!-- Roles -->
+    <bean id="secRoleListCtrl" class="id.ac.idu.webui.security.role.SecRoleListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <bean id="secRoleDialogCtrl" class="id.ac.idu.webui.security.role.SecRoleDialogCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+    </bean>
+    <!-- Role-Groups -->
+    <bean id="secRolegroupCtrl" class="id.ac.idu.webui.security.rolegroup.SecRolegroupCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+        <property name="plwSecRoles" ref="pagedListWrapper"/>
+        <property name="plwSecGroups" ref="pagedListWrapper"/>
+    </bean>
+    <!-- User-Roles -->
+    <bean id="secUserroleCtrl" class="id.ac.idu.webui.security.userrole.SecUserroleCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="securityService" ref="securityService"/>
+        <property name="userService" ref="userService"/>
+        <property name="plwSecUsers" ref="pagedListWrapper"/>
+        <property name="plwSecRoles" ref="pagedListWrapper"/>
+    </bean>
+
+    <bean name="reportService"
+          class="id.ac.idu.services.report.service.impl.ReportServiceImpl"
+          scope="prototype">
+        <property name="orderDAO" ref="orderDAO"/>
+        <property name="orderpositionDAO" ref="orderpositionDAO"/>
+        <property name="customerDAO" ref="customerDAO"/>
+        <property name="officeDAO" ref="officeDAO"/>
+        <property name="brancheDAO" ref="brancheDAO"/>
+        <property name="orderService" ref="orderService"/>
+        <property name="customerService" ref="customerService"/>
+    </bean>
+
+    <bean id="hibernateStatisticsCtrl" class="id.ac.idu.webui.debug.HibernateStatisticsCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="guiHibernateStatisticsService" ref="guiHibernateStatisticsService"/>
+        <property name="gridPagedListWrapper" ref="pagedGridWrapper"/>
+    </bean>
+    <bean id="hibernateStatisticsDetailCtrl" class="id.ac.idu.webui.debug.HibernateStatisticsDetailCtrl"
+          scope="prototype">
+        <property name="guiHibernateStatisticsService" ref="guiHibernateStatisticsService"/>
+    </bean>
+
+    <bean id="userWorkspace" class="id.ac.idu.UserWorkspace" scope="session"/>
+
+    <bean id="basisCtrl" abstract="true" scope="prototype"
+          class="id.ac.idu.webui.util.GFCBaseCtrl">
+        <property name="userWorkspace" ref="userWorkspace"/>
+    </bean>
+
+    <bean id="basisListCtrl" abstract="true" scope="prototype"
+          class="id.ac.idu.webui.util.GFCBaseListCtrl" parent="basisCtrl"
+          p:pagedListWrapper-ref="pagedListWrapper">
+    </bean>
+
+    <bean name="pagedListWrapper" class="id.ac.idu.webui.util.pagging.PagedListWrapper"
+          p:pagedListService-ref="pagedListService" scope="prototype">
+    </bean>
+
+    <bean name="pagedBindingListWrapper"
+          class="id.ac.idu.webui.util.pagging.PagedBindingListWrapper"
+          p:pagedListService-ref="pagedListService" scope="prototype">
+    </bean>
+
+    <bean name="pagedGridWrapper" class="id.ac.idu.webui.util.pagging.PagedGridWrapper"
+          p:pagedListService-ref="pagedListService" scope="prototype">
+    </bean>
+
+    <!-- UserBarController -->
+    <bean id="userBarCtrl" class="id.ac.idu.webui.util.UserBarCtrl"
+          scope="prototype">
+    </bean>
+    <!-- HelpPopupController -->
+    <bean id="helpWindowCtrl" class="id.ac.idu.webui.util.HelpWindowCtrl"
+          scope="prototype">
+    </bean>
+
+
+    <!-- ReportStyles -->
+    <bean id="djReportStyles" class="id.ac.idu.webui.reports.template.DJReportStyles"
+          scope="prototype">
+    </bean>
+
+    <!-- Ruang -->
+    <bean id="mruangMainCtrl" class="id.ac.idu.webui.administrasi.ruangan.MruangMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mruangService" ref="mruangService"/>
+    </bean>
+    <bean id="mruangListCtrl" class="id.ac.idu.webui.administrasi.ruangan.MruangListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mruangService" ref="mruangService"/>
+    </bean>
+    <bean id="mruangDetailCtrl" class="id.ac.idu.webui.administrasi.ruangan.MruangDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mruangService" ref="mruangService"/>
+    </bean>
+
+    <!-- Fasilitas -->
+    <bean id="fasilitasMainCtrl" class="id.ac.idu.webui.administrasi.fasilitas.FasilitasMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="fasilitasService" ref="fasilitasService"/>
+    </bean>
+    <bean id="fasilitasListCtrl" class="id.ac.idu.webui.administrasi.fasilitas.FasilitasListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="fasilitasService" ref="fasilitasService"/>
+    </bean>
+    <bean id="fasilitasDetailCtrl" class="id.ac.idu.webui.administrasi.fasilitas.FasilitasDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="fasilitasService" ref="fasilitasService"/>
+    </bean>
+
+    <!-- Pegawai -->
+    <bean id="mpegawaiMainCtrl" class="id.ac.idu.webui.administrasi.pegawai.MpegawaiMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpegawaiService" ref="mpegawaiService"/>
+    </bean>
+    <bean id="mpegawaiListCtrl" class="id.ac.idu.webui.administrasi.pegawai.MpegawaiListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpegawaiService" ref="mpegawaiService"/>
+    </bean>
+    <bean id="mpegawaiDetailCtrl" class="id.ac.idu.webui.administrasi.pegawai.MpegawaiDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpegawaiService" ref="mpegawaiService"/>
+    </bean>
+
+    <!-- Alumni -->
+    <bean id="malumniMainCtrl" class="id.ac.idu.webui.administrasi.alumni.MalumniMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="malumniService" ref="malumniService"/>
+    </bean>
+    <bean id="malumniListCtrl" class="id.ac.idu.webui.administrasi.alumni.MalumniListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="malumniService" ref="malumniService"/>
+    </bean>
+    <bean id="malumniDetailCtrl" class="id.ac.idu.webui.administrasi.alumni.MalumniDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="malumniService" ref="malumniService"/>
+        <property name="popupMhsService" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+        <property name="kodePosService" ref="kodePosService"/>
+        <property name="plwKodepos" ref="pagedListWrapper"/>
+    </bean>
+
+     <!-- Fasilitas Ruang -->
+    <bean id="mfasilitasruangMainCtrl" class="id.ac.idu.webui.administrasi.fasilitasruang.MfasilitasruangMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfasilitasruangService" ref="mfasilitasruangService"/>
+    </bean>
+    <bean id="mfasilitasruangListCtrl" class="id.ac.idu.webui.administrasi.fasilitasruang.MfasilitasruangListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfasilitasruangService" ref="mfasilitasruangService"/>
+    </bean>
+    <bean id="mfasilitasruangDetailCtrl" class="id.ac.idu.webui.administrasi.fasilitasruang.MfasilitasruangDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfasilitasruangService" ref="mfasilitasruangService"/>
+    </bean>
+
+     <!-- Feedback -->
+    <bean id="mfeedbackMainCtrl" class="id.ac.idu.webui.administrasi.feedback.MfeedbackMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfeedbackService" ref="mfeedbackService"/>
+    </bean>
+    <bean id="mfeedbackListCtrl" class="id.ac.idu.webui.administrasi.feedback.MfeedbackListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfeedbackService" ref="mfeedbackService"/>
+    </bean>
+    <bean id="mfeedbackDetailCtrl" class="id.ac.idu.webui.administrasi.feedback.MfeedbackDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mfeedbackService" ref="mfeedbackService"/>
+    </bean>
+
+     <!-- Feedback Instansi -->
+    <bean id="tfeedbackinstansiMainCtrl" class="id.ac.idu.webui.administrasi.feedbackinstansi.TfeedbackinstansiMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="tfeedbackinstansiService" ref="tfeedbackinstansiService"/>
+    </bean>
+    <bean id="tfeedbackinstansiListCtrl" class="id.ac.idu.webui.administrasi.feedbackinstansi.TfeedbackinstansiListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="tfeedbackinstansiService" ref="tfeedbackinstansiService"/>
+    </bean>
+    <bean id="tfeedbackinstansiDetailCtrl" class="id.ac.idu.webui.administrasi.feedbackinstansi.TfeedbackinstansiDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="tfeedbackinstansiService" ref="tfeedbackinstansiService"/>
+    </bean>
+
+
+     <!-- Peminatan -->
+    <bean id="mpeminatanMainCtrl" class="id.ac.idu.webui.administrasi.peminatan.MpeminatanMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpeminatanService" ref="mpeminatanService"/>
+    </bean>
+    <bean id="mpeminatanListCtrl" class="id.ac.idu.webui.administrasi.peminatan.MpeminatanListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpeminatanService" ref="mpeminatanService"/>
+    </bean>
+    <bean id="mpeminatanDetailCtrl" class="id.ac.idu.webui.administrasi.peminatan.MpeminatanDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="mpeminatanService" ref="mpeminatanService"/>
+    </bean>
+</beans>
+
+
+	

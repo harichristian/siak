@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMLRootMenu xmlns:ns2="http://www.daibutsu.de/zk/menu">
+    <menuItem id="menu_Item_Home" zulNavigation="/WEB-INF/pages/dashboard.zul"
+              iconName="/images/icons/console_view.gif"/>
+    <!-- Calendar -->
+    <menuItem id="menu_Item_Calendar" zulNavigation="/WEB-INF/pages/calendar/calendar.zul"
+              iconName="/images/icons/calendar1_16x16.gif"/>
+    <!-- OfficeData MenuTree -->
+    <!--menu id="menu_Category_OfficeData" rightName="menuCat_OfficeData">
+        <menuItem id="menu_Item_Customers" zulNavigation="/WEB-INF/pages/customer/customerList.zul"
+                  iconName="/images/icons/view.gif" rightName="menuItem_OfficeData_Customers"/>
+        <menuItem id="menu_Item_Orders" zulNavigation="/WEB-INF/pages/order/orderList.zul"
+                  iconName="/images/icons/view.gif" rightName="menuItem_OfficeData_Orders"/>
+    </menu-->
+
+    <!-- BaseData MenuTree -->
+    <!--menu id="menu_Category_MainData" rightName="menuCat_MainData">
+        <menuItem id="menu_Item_Articles" zulNavigation="/WEB-INF/pages/article/articleMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_ArticleItems"/>
+        <menuItem id="menu_Item_Branches" zulNavigation="/WEB-INF/pages/branch/branchMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_Branch"/>
+        <menuItem id="menu_Item_Offices" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_Office"/>
+    </menu-->
+
+    <menu id="menu_Category_Administrasi" rightName="menuCat_Administrasi">
+        <!-- Administrasi MenuTree -->
+        <menuItem id="menu_Item_MasterUniversitas" zulNavigation="/WEB-INF/pages/administrasi/universitas/munivMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterUniversitas"/>
+        <menuItem id="menu_Item_MasterMahasiswa" zulNavigation="/WEB-INF/pages/administrasi/mahasiswa/pageMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterMahasiswa"/>
+        <menuItem id="menu_Item_MasterStatusMahasiswa"
+                  zulNavigation="/WEB-INF/pages/administrasi/statusMahasiswa/statusMahasiswaMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterStatusMahasiswa"/>
+        <menuItem id="menu_Item_MasterRuangan" zulNavigation="/WEB-INF/pages/administrasi/ruangan/ruangMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterRuangan"/>
+        <menuItem id="menu_Item_MasterFasilitas" zulNavigation="/WEB-INF/pages/administrasi/fasilitas/fasilitasMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitas"/>
+        <menuItem id="menu_Item_MasterFasilitasRuangan" zulNavigation="/WEB-INF/pages/administrasi/fasilitasruang/mfasilitasruangMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitasRuangan"/>
+        <!--<menuItem id="menu_Item_MasterKodePos" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKodePos"/>-->
+        <menuItem id="menu_Item_MasterPegawai" zulNavigation="/WEB-INF/pages/administrasi/pegawai/mpegawaiMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterPegawai"/>
+        <menuItem id="menu_Item_MasterJabatan" zulNavigation="/WEB-INF/pages/jabatan/jabatanMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterJabatan"/>
+        <menuItem id="menu_Item_MasterSekolah" zulNavigation="/WEB-INF/pages/administrasi/sekolah/sekolahMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterSekolah"/>
+        <menuItem id="menu_Item_MasterPangkat" zulNavigation="/WEB-INF/pages/administrasi/pangkat/pangkatMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterPangkat"/>
+        <menuItem id="menu_Item_MasterProdi" zulNavigation="/WEB-INF/pages/administrasi/prodi/prodiMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterProdi"/>
+        <menuItem id="menu_Item_MasterGrade" zulNavigation="/WEB-INF/pages/administrasi/grade/gradeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterGrade"/>
+        <menuItem id="menu_Item_MasterHari" zulNavigation="/WEB-INF/pages/administrasi/hari/hariMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterHari"/>
+        <menuItem id="menu_Item_MasterJenjang" zulNavigation="/WEB-INF/pages/administrasi/jenjang/jenjangMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterJenjang"/>
+        <menuItem id="menu_Item_MasterKegiatan" zulNavigation="/WEB-INF/pages/administrasi/kegiatan/kegiatanMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKegiatan"/>
+        <menuItem id="menu_Item_MasterKalenderKegiatanAkademik"
+                  zulNavigation="/WEB-INF/pages/administrasi/calakademik/calakademikMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKalenderKegiatanAkademik"/>
+        <!--menuItem id="menu_Item_UpdateKonsentrasiMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_UpdateKonsentrasiMahasiswa"/>
+        <menuItem id="menu_Item_UpdateStatusMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_UpdateStatusMahasiswa"/-->
+         <menuItem id="menu_Item_Alumni" zulNavigation="/WEB-INF/pages/administrasi/alumni/malumniMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Alumni"/>
+         <menuItem id="menu_Item_Feedback" zulNavigation="/WEB-INF/pages/administrasi/feedback/mfeedbackMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menu_Item_Feedback"/>
+         <menuItem id="menu_Item_FeedbackInstansi" zulNavigation="/WEB-INF/pages/administrasi/feedbackinstansi/tfeedbackinstansiMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackInstansi"/>
+         <menuItem id="menu_Item_FeedbackAlumni" zulNavigation="/WEB-INF/pages/administrasi/feedbackalumni/feedbackAlumniMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackAlumni"/>
+    </menu>
+    <menu id="menu_Category_ManajemenKurikulum" rightName="menuCat_ManajemenKurikulum">
+        <!-- Manajemen Kurikulum MenuTree -->
+        <menuItem id="menu_Item_MasterSesiKuliah" zulNavigation="/WEB-INF/pages/mankurikulum/sesi/sesiMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterSesiKuliah"/>
+        <menuItem id="menu_Item_MasterMatakuliah"
+                  zulNavigation="/WEB-INF/pages/mankurikulum/matakuliah/matakuliahMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterMatakuliah"/>
+        <menuItem id="menu_Item_MasterKurikulum" zulNavigation="/WEB-INF/pages/kurikulum/kurikulum/kurikulumMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterKurikulum"/>
+        <menuItem id="menu_Item_EntriKurikulumMahasiswa" zulNavigation="/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_EntriKurikulumMahasiswa"/>
+        <menuItem id="menu_Item_UpdateKurikulumProdiMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_UpdateKurikulumProdiMahasiswa"/>
+        <menuItem id="menu_Item_MasterPeminatan" zulNavigation="/WEB-INF/pages/administrasi/peminatan/mpeminatanMain.zul"
+                  iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterPeminatan"/>
+    </menu>
+    <menu id="menu_Category_IsianRencanaStudi" rightName="menuCat_IsianRencanaStudi">
+        <!-- Isian Rencana Studi MenuTree -->
+        <menuItem id="menu_Item_EntriJadwalKuliah" zulNavigation="/WEB-INF/pages/irs/jadwalkuliah/jadkulmasterList.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriJadwalKuliah"/>
+        <menuItem id="menu_Item_EntriIRS" zulNavigation="/WEB-INF/pages/irs/irs/irsMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriIRS"/>
+        <menuItem id="menu_Item_EntriPaketKuliah" zulNavigation="/WEB-INF/pages/irs/paket/paketMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriPaketKuliah"/>
+        <menuItem id="menu_Item_TransaksiPembagianMataKuliahPaket" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_TransaksiPembagianMataKuliahPaket"/>
+		<menuItem id="menu_Item_CetakPengajuanCutiKuliah" zulNavigation="/WEB-INF/pages/irs/cutimhs/pageMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakPengajuanCutiKuliah"/>
+        <menuItem id="menu_Item_CetakJadwalKuliah" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakJadwalKuliah"/>
+        <menuItem id="menu_Item_CetakKartuStudiTetapMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakKartuStudiTetapMahasiswa"/>
+        <menuItem id="menu_Item_EntriAktifKembali" zulNavigation="/WEB-INF/pages/irs/aktifmhs/pageMain.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriAktifKembali"/>
+    </menu>
+    <menu id="menu_Category_KegiatanBelajarMengajar" rightName="menuCat_KegiatanBelajarMengajar">
+        <!-- Kegiatan Belajar Mengajar MenuTree -->
+        <menuItem id="menu_Item_EntryNilaiUjian" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryNilaiUjian.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryNilaiUjian"/>
+        <menuItem id="menu_Item_EntryJadwalUjianAkhir" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryJadUjianAkhir.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryJadwalUjianAkhir"/>
+        <menuItem id="menu_Item_EntryBeritaAcaraPengajaran" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryBAP.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryBeritaAcaraPengajaran"/>
+        <menuItem id="menu_Item_CetakBeritaAcaraPengajaran" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/laporanBAP1.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakBeritaAcaraPengajaran"/>
+        <menuItem id="menu_Item_EntryAbsensiDosenMengajar" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryAbsenDosen.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryAbsensiDosenMengajar"/>
+        <menuItem id="menu_Item_CetakAbsensiDosenMengajar" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/cetakAbsenDosen.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakAbsensiDosenMengajar"/>
+        <menuItem id="menu_Item_EntryAbsensiMahasiswa" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryAbsenMhs.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryAbsensiMahasiswa"/>
+        <menuItem id="menu_Item_CetakAbsensiMahasiswaManual" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/cetakAbsenMhs.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakAbsensiMahasiswaManual"/>
+        <menuItem id="menu_Item_CetakAbsensiMahasiswaLaporanabsensi" zulNavigation=""
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakAbsensiMahasiswaLaporanabsensi"/>
+        <menuItem id="menu_Item_EntryRekapAbsensiMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_EntryRekapAbsensiMahasiswa"/>
+        <menuItem id="menu_Item_CetakRekapAbsensiMahasiswa" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/entryRekapAbsenMhs.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakRekapAbsensiMahasiswa"/>
+        <menuItem id="menu_Item_CetakTranskripNilai" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakTranskripNilai"/>
+        <menuItem id="menu_Item_CetakLaporanDaftarMatakuliah" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/cetakDaftarMKLengkap.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakLaporanDaftarMatakuliah"/>
+        <menuItem id="menu_Item_CetakDaftarNilai" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/cetakDaftarNilai.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakDaftarNilai"/>
+        <menuItem id="menu_Item_CetakJadwalUjianAkhir" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/feedbackKuliah.zul"
+                  iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_CetakJadwalUjianAkhir"/>
+        <menuItem id="menu_Item_VerifikasiNilaiUjian" zulNavigation="http://172.16.1.53:9080/TugasMenulis/kbm/cetakTranskripNilai.zul"
+                          iconName="/images/icons/kbm.gif" rightName="menuItem_KBM_VerifikasiNilaiUjian"/>
+    </menu>
+    <menu id="menu_Category_TugasMenulis" rightName="menuCat_TugasMenulis">
+        <!-- Tugas Menulis MenuTree -->
+        <menuItem id="menu_Item_EntryPendaftaranThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/daftarTugasMenulis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranThesis"/>
+        <menuItem id="menu_Item_EntryPengumpulanProposalThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/kumpulTugasMenulis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPengumpulanProposalThesis"/>
+        <menuItem id="menu_Item_EntryJadwalSidangMakalah" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/jadwalSidangMakalah.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangMakalah"/>
+        <menuItem id="menu_Item_EntryPendSidangProposalThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/daftarSidangProposal.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendSidangProposalThesis"/>
+        <menuItem id="menu_Item_EntryJadwalSidangProposalThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/jadwalSidangProposal.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangProposalThesis"/>
+        <menuItem id="menu_Item_RekapHasilSidangProposalThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/hasilSidangProposal.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_RekapHasilSidangProposalThesis"/>
+        <menuItem id="menu_Item_EntryDosenPembimbingThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/dosenPembimbingThesis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryDosenPembimbingThesis"/>
+        <menuItem id="menu_Item_EntryPendaftaranSidangThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/daftarSidangThesis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranSidangThesis"/>
+        <menuItem id="menu_Item_EntryJadwalSidangThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/jadwalSidangThesis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryJadwalSidangThesis"/>
+        <menuItem id="menu_Item_EntryHasilSidangThesis" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/hasilSidangThesis.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryHasilSidangThesis"/>
+        <menuItem id="menu_Item_EntryPendaftaranWisuda" zulNavigation="http://172.16.1.53:9080/TugasMenulis/pages/daftarWisuda.zul"
+                  iconName="/images/icons/thesis.gif" rightName="menuItem_Menulis_EntryPendaftaranWisuda"/>
+    </menu>
+    <menu id="menu_Category_Administration" rightName="menuCat_Administration">
+        <!-- Administration MenuTree -->
+        <menuItem id="menu_Item_Users" iconName="/images/icons/male_16x16.gif"
+                  zulNavigation="/WEB-INF/pages/sec_user/userList.zul" rightName="menuItem_Administration_Users"/>
+        <menu id="menu_Category_UserRights" rightName="menuCat_UserRights">
+            <menuItem id="menu_Item_UserRoles" zulNavigation="/WEB-INF/pages/sec_userrole/secUserrole.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_UserRoles"/>
+            <menuItem id="menu_Item_Roles" zulNavigation="/WEB-INF/pages/sec_role/secRoleList.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Roles"/>
+            <menuItem id="menu_Item_RoleGroups" zulNavigation="/WEB-INF/pages/sec_rolegroup/secRolegroup.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif"
+                      rightName="menuItem_Administration_RoleGroups"/>
+            <menuItem id="menu_Item_Groups" zulNavigation="/WEB-INF/pages/sec_group/secGroupList.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Groups"/>
+            <menuItem id="menu_Item_GroupRights"
+                      zulNavigation="/WEB-INF/pages/sec_groupright/secGroupright.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif"
+                      rightName="menuItem_Administration_GroupRights"/>
+            <menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRightList.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif" rightName="menuItem_Administration_Rights"/>
+        </menu>
+        <menuItem id="menu_Item_LoginsLog"
+                  zulNavigation="/WEB-INF/pages/sec_loginlog/secLoginLogMain.zul"
+                  iconName="/images/icons/method_16x16.gif" rightName="menuItem_Administration_LoginsLog"/>
+        <menuItem id="menu_Item_HibernateStatistics" zulNavigation="/WEB-INF/pages/debug/HibernateStatistics.zul"
+                  iconName="/images/icons/method_16x16.gif" rightName="menuItem_Administration_HibernateStats"/>
+        <menu id="menu_Category_Master" rightName="menuCat_Master">
+            <menuItem id="menu_Item_MasterRuangan"
+                      zulNavigation="/WEB-INF/pages/administrasi/saranaprasarana/ruangList.zul"
+                      iconName="/images/icons/exdDatabaseView_16x16.gif"
+                      rightName="menuItem_Administration_MasterRuangan"/>
+        </menu>
+    </menu>
+</ns2:XMLRootMenu>

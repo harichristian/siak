@@ -1,0 +1,13 @@
+<!-- Manajemen Kurikulum MenuTree -->
+<menuItem id="menu_Item_MasterSesiKuliah" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterSesiKuliah"/>
+<menuItem id="menu_Item_MasterMatakuliah" zulNavigation="/WEB-INF/pages/administrasi/matakuliah/matakuliahMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterMatakuliah"/>
+<menuItem id="menu_Item_MasterKurikulum" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterKurikulum"/>
+<menuItem id="menu_Item_EntriKurikulumMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_EntriKurikulumMahasiswa"/>
+<menuItem id="menu_Item_UpdateKurikulumProdiMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_UpdateKurikulumProdiMahasiswa"/>
+<menuItem id="menu_Item_MasterPeminatan" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+          iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterPeminatan"/>
