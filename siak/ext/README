@@ -1,0 +1,30 @@
+** Deploy On Websphere **
+- Create custom properties (Servers > Application servers > server1 > Web container > Custom Properties)
+	[*] com.ibm.ws.webcontainer.assumefiltersuccessonsecurityerror = true
+	[*] com.ibm.ws.webcontainer.invokefilterscompatibility = true
+- Create security db2 user (Security > Authentication cache settings  > Java Authentication and Authorization Service > J2C authentication data > New > 
+	[*] Alias = serverNode01/siak
+	[*]	User ID = siak
+	[*] Password  = dbpassword
+	[*] Description = db siak user
+- Create db2 JDBC (Resources > JDBC > JDBC providers > New)
+	[*] Database type = DB2
+	[*] Provider type = DB2 Universal JDBC Provider
+	[*] Implementation type = Connection pool data source
+	[*] Name = DB2 JDBC Driver
+- Create db2 Datasource (Resources > JDBC > Datasource > New)
+	[*] Data source name = siakDS
+	[*] JNDI name = jdbc/siak
+	[*] Select an existing JDBC provider = DB2 JDBC Driver
+	[*] Driver type = 4
+	[*] Database name = siak
+	[*] Server name = localhost
+	[*] Port number = 50000
+	[*] Component-managed authentication alias = serverNode01/siak
+	[*] Mapping-configuration alias = DefaultPrincipalMapping
+	[*] Container-managed authentication alias  = serverNode01/siak
+	
+** Deploy On Tomcat **
+- Copy ${ProjectFolder}/ext/tomcat/context.xml to ${tomcat_home}/config/
+- Copy ${ProjectFolder}/ext/tomcat/web.xml to ${tomcat_home}/config/
+	

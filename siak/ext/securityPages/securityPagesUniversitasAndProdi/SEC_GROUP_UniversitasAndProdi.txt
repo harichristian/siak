@@ -1,0 +1,8 @@
+100000,"Munivs_Delete","",0
+100001,"Munivs_Edit","",0
+100002,"Munivs_New","",0
+100003,"Munivs_View","",0
+100020,"Prodis_Delete","",0
+100021,"Prodis_Edit","",0
+100022,"Prodis_New","",0
+100023,"Prodis_View","",0
