@@ -1,0 +1,12 @@
+15033,2,"menuItem_Admin_MasterHari",0
+100040,6,"button_HariList_PrintList",0
+100041,6,"button_HariList_SearchCode",0
+100042,6,"button_HariList_SearchName",0
+100043,6,"button_Hari_btnClose",1
+100044,6,"button_Hari_btnDelete",3
+100045,6,"button_Hari_btnEdit",2
+100046,6,"button_HariMain_btnHelp",0
+100047,6,"button_HariMain_btnNew",0
+100048,6,"button_Hari_btnSave",1
+100049,0,"window_HariDialog",0
+100050,0,"window_HariList",0

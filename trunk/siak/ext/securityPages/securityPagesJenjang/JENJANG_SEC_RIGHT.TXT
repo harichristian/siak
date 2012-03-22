@@ -1,0 +1,12 @@
+15034,2,"menuItem_Admin_MasterJenjang",0
+100051,6,"button_JenjangList_PrintList",0
+100052,6,"button_JenjangList_SearchCode",0
+100053,6,"button_JenjangList_SearchName",0
+100054,6,"button_JenjangMain_btnClose",0
+100055,6,"button_JenjangMain_btnDelete",0
+100056,6,"button_JenjangMain_btnEdit",0
+100057,6,"button_JenjangMain_btnHelp",0
+100058,6,"button_JenjangMain_btnNew",0
+100059,6,"button_JenjangMain_btnSave",0
+100060,0,"window_JenjangDialog",0
+100061,0,"window_JenjangList",0

@@ -1,0 +1,5 @@
+15043,"Grades_Delete","Allow deleting of grades",0
+15042,"Grades_Edit","Allow editing of grades",0
+15041,"Grades_New","Allow create new grades",0
+15040,"Grades_View","Allow to view grades data",0
+15001,"Headgrade Supervisor Group","Grade supervisor",0

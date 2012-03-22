@@ -1,0 +1,5 @@
+14001,"Headjabatan Supervisor Group","Jabatan supervisor",0
+14043,"Jabatans_Delete","Allow deleting of jabatans",0
+14042,"Jabatans_Edit","Allow editing of jabatans",0
+100001,"Jabatans_New","",0
+14040,"Jabatans_View","Allow to view jabatans data",0
