@@ -23,14 +23,17 @@ import id.ac.idu.administrasi.service.MahasiswaService;
 import id.ac.idu.administrasi.service.MalumniService;
 import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
+import id.ac.idu.util.Codec;
 import id.ac.idu.webui.administrasi.mahasiswa.model.OrderSearchKodeposList;
 import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MkabExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MkecExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MkelExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MprovExtendedSearchListBox;
+import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -112,6 +115,9 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     private transient PagedListWrapper<MkodePos> plwKodepos;
     protected Paging paging_kodepos;
     protected Listbox listKodepos;
+    protected Listbox txtb_ckdbekerja;
+    protected Listbox txtb_ckdagama;
+    protected Listbox txtb_cstatnkh;
 
     // Databinding
     protected transient AnnotateDataBinder binder;
@@ -182,6 +188,15 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void onCreate$windowMalumniDetail(Event event) throws Exception {
         setPageSize(20);
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
+
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.YaTidak.class)).getEnumToList(),
+                txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null)?getMalumni().getCsudahkerja():null);
+
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
+                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
+
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
+                txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null)?getMalumni().getCkdagama():null);
 
         binder.loadAll();
 
@@ -296,6 +311,12 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         btnSearchKabExtended.setDisabled(b);
         btnSearchKecExtended.setDisabled(b);
         btnSearchKelExtended.setDisabled(b);
+        txtb_ckdbekerja.setDisabled(b);
+        cmb_ckdbekerja.setDisabled(b);
+        cmb_ckdagama.setDisabled(b);
+        cmb_cstatnkh.setDisabled(b);
+        txtb_ckdagama.setDisabled(b);
+        txtb_cstatnkh.setDisabled(b);
 
     }
 
