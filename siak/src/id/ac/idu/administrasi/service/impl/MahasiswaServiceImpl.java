@@ -2,6 +2,7 @@ package id.ac.idu.administrasi.service.impl;
 
 import id.ac.idu.administrasi.dao.MahasiswaDAO;
 import id.ac.idu.administrasi.service.MahasiswaService;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mmahasiswa;
 
 import java.util.List;
@@ -69,5 +70,10 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     @Override
     public void save(Mmahasiswa entity) {
         getMahasiswaDAO().save(entity);
+    }
+
+      @Override
+    public ResultObject getAllMmahasiswaLikeText(String text, int start, int pageSize) {
+        return getMahasiswaDAO().getAllMmahasiswaLikeText(text, start, pageSize);
     }
 }

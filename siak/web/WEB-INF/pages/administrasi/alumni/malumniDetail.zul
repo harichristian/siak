@@ -45,56 +45,11 @@
                                                  constraint="no empty" maxlength="20" width="100px"/-->
                                         <hbox>
                                             <textbox id="txtb_nim" value="@{controller.malumni.mmahasiswa.cnim}" readonly="true"  maxlength="25" width="120px%"/>
-                                            <bandbox id="bandbox_Dialog_MahasiswaSearch" sclass="mybandbox" disabled="true" width="0px" tooltiptext="LOV - Data Mahasiswa">
-                                                <bandpopup id="bpop_MahasiswaSearch" width="540px" height="490px">
-                                                    <panel id="panel_MahasiswaSearch2" title="LOV - Mahasiswa"/>
-                                                    <vbox>
-                                                        <hbox width="100%">
-                                                            <grid fixedLayout="true" style="border:0px" width="100%">
-                                                                <columns>
-                                                                    <column width="150px"/>
-                                                                    <column width="250px"/>
-                                                                    <column width="100px"/>
-                                                                    <column width="40px"/>
-                                                                </columns>
-                                                                <rows>
-                                                                    <row>
-                                                                        <label id="label_bbox_Nim" value="Nim"/>
-                                                                        <textbox id="tb_Nim" width="99%"/>
-                                                                        <button id="button_bbox_Search" image="/images/icons/search.gif" label="Search"
-                                                                                tooltiptext="Search data mahasiswa"/>
-                                                                        <button id="button_bbox_Close" image="/images/icons/stop.gif"
-                                                                                tooltiptext="Close Window"/>
-                                                                    </row>
-                                                                    <row>
-                                                                        <label id="label_bbox_Nama" value="Nama Mahsiswa"/>
-                                                                        <textbox id="tb_Nama" width="99%"/>
-                                                                    </row>
-                                                                    <row>
-                                                                        <label id="label_bbox_NoKtp" value="No KTP"/>
-                                                                        <textbox id="tb_NoKtp" width="99%"/>
-                                                                    </row>
-                                                                    <row spans="4">
-                                                                        <vbox width="100%">
-                                                                            <paging id="paging_MahasiswaSearchList" pageSize="20"/>
-                                                                            <listbox id="listMahasiswaSearch" width="100%" height="100%" multiple="false">
-                                                                                <listhead sizable="true">
-                                                                                    <listheader id="header_ID" sort="auto" width="15%" label="ID"/>
-                                                                                    <listheader id="header_Nim" sort="auto" width="15%" label="Nim"/>
-                                                                                    <listheader id="header_Nama" sort="auto" width="25%" label="Nama"/>
-                                                                                    <listheader id="header_NoKtp" sort="auto" width="30%" label="No Ktp"/>
-                                                                                    <listheader id="header_Alamat" sort="auto" width="30%" label="Alamat"/>
-                                                                                </listhead>
-                                                                            </listbox>
-                                                                        </vbox>
-                                                                    </row>
-                                                                </rows>
-                                                            </grid>
-                                                        </hbox>
-                                                    </vbox>
-                                                </bandpopup>
-                                            </bandbox>
-                                            <intbox id="txtb_mhsid" value="@{controller.malumni.mmahasiswa.id}" width="0px"/>
+                                             <button
+                                                                                id="btnSearchMahasiswaExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
                                         </hbox>
                                     </row>
 
@@ -119,10 +74,10 @@
                                         <textbox
                                                 id="txtb_tempatlahir"
                                                 value="@{controller.malumni.mmahasiswa.ctemplhr}"
-                                                maxlength="50" width="300px"/>
+                                                maxlength="50" width="300px" readonly="true"/>
                                         <datebox
                                                 id="txtb_tgllahir"
-                                                value="@{controller.malumni.mmahasiswa.dtglhr}" readonly="true"
+                                                value="@{controller.malumni.mmahasiswa.dtglhr}" disabled="true"
                                                  maxlength="50" width="100px"/>
                                          </hbox>
                                     </row>
@@ -135,7 +90,7 @@
                                         <textbox
                                                 id="txtb_alamat"
                                                 value="@{controller.malumni.calamat}"
-                                                maxlength="100" width="600px"/>
+                                                maxlength="100" width="600px" readonly="true"/>
                                     </row>
                                      <row>
                                         <hbox>
@@ -148,51 +103,13 @@
                                                 value="@{controller.malumni.ckdpos}"
                                                 maxlength="5" width="60px"/-->
                                         <hbox>
-                                            <textbox id="txtb_kodeposid" maxlength="5" value="@{controller.malumni.ckdpos}" readonly="true"/>
-                                            <textbox id="txtb_kodepos" maxlength="5" value="" readonly="true"/>
-                                            <bandbox id="cmb_kodepos" sclass="mybandbox" width="0px" tooltiptext="LOV - Kodepos"  disabled="true">
-                                                <bandpopup width="340px" height="300px">
-                                                    <panel title="LOV - Kodepos"/>
-                                                    <vbox>
-                                                        <hbox width="100%">
-                                                            <grid fixedLayout="true" style="border:0px" width="100%">
-                                                                <columns>
-                                                                    <column width="60px"/>
-                                                                    <column width="150px"/>
-                                                                    <column width="90px"/>
-                                                                    <column width="40px"/>
-                                                                </columns>
-                                                                <rows>
-                                                                    <row>
-                                                                        <label id="label_kodepos" value="Kodepos"/>
-                                                                        <textbox id="tb_kodepos" width="98%"/>
-                                                                        <button id="button_search"
-                                                                                image="/images/icons/search.gif"
-                                                                                label="Search"
-                                                                                tooltiptext="Search Kodepos"/>
-                                                                        <button id="button_close"
-                                                                                image="/images/icons/stop.gif"
-                                                                                tooltiptext="Close Window"/>
-                                                                    </row>
-                                                                    <row spans="4">
-                                                                        <vbox width="100%">
-                                                                            <paging id="paging_kodepos" pageSize="20"/>
-                                                                            <listbox id="listKodepos" width="100%"
-                                                                                     height="100%" multiple="false">
-                                                                                <listhead sizable="true">
-                                                                                    <listheader id="kodepos" sort="auto"
-                                                                                                width="100%"
-                                                                                                label="KodePos"/>
-                                                                                </listhead>
-                                                                            </listbox>
-                                                                        </vbox>
-                                                                    </row>
-                                                                </rows>
-                                                            </grid>
-                                                        </hbox>
-                                                    </vbox>
-                                                </bandpopup>
-                                            </bandbox>
+
+                                            <textbox id="txtb_kodepos" maxlength="5"   width="100px" value="@{controller.malumni.ckdpos}" readonly="true"/>
+                                              <button
+                                                                                id="btnSearchKodePosExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
                                         </hbox>
                                     </row>
 

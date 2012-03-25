@@ -29,10 +29,7 @@ import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
-import id.ac.idu.webui.util.searchdialogs.MkabExtendedSearchListBox;
-import id.ac.idu.webui.util.searchdialogs.MkecExtendedSearchListBox;
-import id.ac.idu.webui.util.searchdialogs.MkelExtendedSearchListBox;
-import id.ac.idu.webui.util.searchdialogs.MprovExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.*;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -102,11 +99,12 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSearchKabExtended;
     protected Button btnSearchKecExtended;
     protected Button btnSearchKelExtended;
+    protected Button btnSearchMahasiswaExtended;
+    protected Button btnSearchKodePosExtended;
     protected Bandbox cmb_kodepos;
 
     protected Button button_MalumniDialog_PrintMalumni; // autowired
     protected Intbox txtb_mhsid;
-    protected Bandbox bandbox_Dialog_MahasiswaSearch;
     protected Paging paging_MahasiswaSearchList;
     private transient PagedListWrapper<Mmahasiswa> plwMahasiswa;
     protected Listbox listMahasiswaSearch;
@@ -118,6 +116,7 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox txtb_ckdbekerja;
     protected Listbox txtb_ckdagama;
     protected Listbox txtb_cstatnkh;
+    protected Datebox txtb_tgllahir;
 
     // Databinding
     protected transient AnnotateDataBinder binder;
@@ -190,13 +189,13 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.YaTidak.class)).getEnumToList(),
-                txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null)?getMalumni().getCsudahkerja():null);
+                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
 
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
                 txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
 
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
-                txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null)?getMalumni().getCkdagama():null);
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
 
         binder.loadAll();
 
@@ -213,9 +212,6 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
 		listMahasiswaSearch.setItemRenderer(new OrderSearchMahasiswaList());
     }
 
-    public void onClick$button_bbox_Close(Event event) {
-        bandbox_Dialog_MahasiswaSearch.close();
-	}
 
     public void onMahasiswaItem(Event event) {
         Listitem item = listMahasiswaSearch.getSelectedItem();
@@ -247,10 +243,8 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_statusnikah.setValue(getMalumniMainCtrl().getMahasiswa().getCstatnkh().toString());
             txtb_agama.setValue(getMalumniMainCtrl().getMahasiswa().getCkdagama());
             txtb_bekerja.setValue(getMalumniMainCtrl().getMahasiswa().getCketkerja());
-
-            bandbox_Dialog_MahasiswaSearch.setValue(getMalumniMainCtrl().getMahasiswa().getCnim());
         }
-        bandbox_Dialog_MahasiswaSearch.close();
+
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -285,10 +279,10 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
      * @param b
      */
     public void doReadOnlyMode(boolean b) {
-        txtb_nim.setReadonly(b);
-        txtb_nama.setReadonly(b);
-        txtb_tempatlahir.setReadonly(b);
-        txtb_alamat.setReadonly(b);
+//        txtb_nim.setReadonly(b);
+//        txtb_nama.setReadonly(b);
+//        txtb_tempatlahir.setReadonly(b);
+//        txtb_alamat.setReadonly(b);
         //txtb_kdpos.setReadonly(b);
         //txtb_prop_id.setReadonly(b);
         //txtb_nmprov.setReadonly(b);
@@ -306,18 +300,20 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         cmb_cstatnkh.setReadonly(b);
         cmb_ckdagama.setReadonly(b);
         cmb_ckdbekerja.setReadonly(b);
-        bandbox_Dialog_MahasiswaSearch.setDisabled(b);
+
         btnSearchProvExtended.setDisabled(b);
         btnSearchKabExtended.setDisabled(b);
         btnSearchKecExtended.setDisabled(b);
         btnSearchKelExtended.setDisabled(b);
+        btnSearchKodePosExtended.setDisabled(b);
+        btnSearchMahasiswaExtended.setDisabled(b);
         txtb_ckdbekerja.setDisabled(b);
         cmb_ckdbekerja.setDisabled(b);
         cmb_ckdagama.setDisabled(b);
         cmb_cstatnkh.setDisabled(b);
         txtb_ckdagama.setDisabled(b);
         txtb_cstatnkh.setDisabled(b);
-
+        txtb_alamat.setReadonly(b);
     }
 
       /**
@@ -421,6 +417,70 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_nmkel.setValue(mkel.getCnamaKel());
             Malumni amalumni = getMalumni();
             amalumni.setMkel(mkel);
+            setMalumni(amalumni);
+        }
+    }
+
+       /**
+     * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
+     *
+     * @param event
+     */
+    public void onClick$btnSearchMahasiswaExtended(Event event) {
+        doSearchMahasiswaExtended(event);
+    }
+
+    /**
+     * Opens the Search and Get Dialog for Branches.<br>
+     * It appends/changes the branch object for the current bean.<br>
+     *
+     * @param event
+     */
+    private void doSearchMahasiswaExtended(Event event) {
+        Mmahasiswa mhs =  MahasiswaExtendedSearchListBox.show(windowMalumniDetail);
+
+
+        if (mhs != null) {
+            txtb_nim.setValue(mhs.getCnim());
+            txtb_nama.setValue(mhs.getCnama());
+            txtb_tempatlahir.setValue(mhs.getCtemplhr());
+            txtb_tgllahir.setValue(mhs.getDtglhr());
+            txtb_alamat.setValue(mhs.getCalamat());
+            if (mhs.getKodeposId()!=null) {
+                MkodePos pos = (MkodePos) getKodePosService().getKodePosByStringId(mhs.getKodeposId().toString());
+                txtb_kodepos.setValue(pos.getKodepos());
+            }
+            txtb_hp.setValue(mhs.getCnohp());
+            txtb_telp.setValue(mhs.getCnotelp());
+
+            Malumni amalumni = getMalumni();
+            amalumni.setMmahasiswa(mhs);
+            setMalumni(amalumni);
+        }
+    }
+
+       /**
+     * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
+     *
+     * @param event
+     */
+    public void onClick$btnSearchKodePosExtended(Event event) {
+        doSearchKodePosExtended(event);
+    }
+
+    /**
+     * Opens the Search and Get Dialog for Branches.<br>
+     * It appends/changes the branch object for the current bean.<br>
+     *
+     * @param event
+     */
+    private void doSearchKodePosExtended(Event event) {
+        MkodePos pos =  KodePosExtendedSearchListBox.show(windowMalumniDetail);
+
+        if (pos != null) {
+            txtb_kodepos.setValue(pos.getKodepos());
+            Malumni amalumni = getMalumni();
+            amalumni.setCkdpos(pos.getKodepos());
             setMalumni(amalumni);
         }
     }

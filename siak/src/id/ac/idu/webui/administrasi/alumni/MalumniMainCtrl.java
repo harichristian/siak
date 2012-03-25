@@ -577,7 +577,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     private void doSave(Event event) throws InterruptedException {
-        getMalumniDetailCtrl().getMalumni().setMmahasiswa(getMahasiswa());
+//        getMalumniDetailCtrl().getMalumni().setMmahasiswa(getMahasiswa());
         getMalumniDetailCtrl().getBinder().saveAll();
         try {
             getMalumniService().saveOrUpdate(getMalumniDetailCtrl().getMalumni());

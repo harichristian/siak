@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.service;
 
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mmahasiswa;
 
 import java.util.List;
@@ -30,4 +31,15 @@ public interface MahasiswaService {
 	public void delete(Mmahasiswa entity);
 
 	public void save(Mmahasiswa entity);
+
+     /**
+     * EN: Get a paged list of all Branches.<br>
+     * DE: Gibt eine paged Liste aller Branchen zurueck.<br>
+     *
+     * @param text     Text for search / SuchText
+     * @param start    StartRecord / Start Datensatz
+     * @param pageSize Count of Records / Anzahl Datensaetze
+     * @return List of YoutubeLinks / Liste von YoutubeLinks
+     */
+    public ResultObject getAllMmahasiswaLikeText(String text, int start, int pageSize);
 }
