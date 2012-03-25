@@ -1,10 +1,14 @@
 package id.ac.idu.administrasi.dao.impl;
 
 import id.ac.idu.administrasi.dao.MahasiswaDAO;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
+import id.ac.idu.backend.model.Branche;
 import id.ac.idu.backend.model.Mmahasiswa;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
 
@@ -61,5 +65,23 @@ public class MahasiswaDAOImpl extends BasisDAO<Mmahasiswa> implements MahasiswaD
     public void deleteById(Long _id) {
         Mmahasiswa mhs = getById(_id);
 		if(mhs != null) delete(mhs);
+    }
+
+     @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllMmahasiswaLikeText(String text, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mmahasiswa.class);
+
+        if (!StringUtils.isEmpty(text)) {
+            criteria.add(Restrictions.ilike("cnama", text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc("cnama"));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Branche> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
     }
 }

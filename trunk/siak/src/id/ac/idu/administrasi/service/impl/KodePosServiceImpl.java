@@ -2,6 +2,7 @@ package id.ac.idu.administrasi.service.impl;
 
 import id.ac.idu.administrasi.dao.KodePosDAO;
 import id.ac.idu.administrasi.service.KodePosService;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.MkodePos;
 
 /**
@@ -61,5 +62,10 @@ public class KodePosServiceImpl implements KodePosService {
     @Override
     public void save(MkodePos entity) {
         getKodePosDAO().save(entity);
+    }
+
+    @Override
+    public ResultObject getAllMkodePosLikeText(String text, int start, int pageSize) {
+        return getKodePosDAO().getAllMkodePosLikeText(text, start, pageSize);
     }
 }
