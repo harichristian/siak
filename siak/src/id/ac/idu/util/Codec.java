@@ -402,4 +402,29 @@ public class Codec {
             return this.name();
         }
     }
+
+     public enum PendidikanTerakhir implements CodecInterface {
+        Stat1("1", "Sarjana"),
+        Stat0("0", "Magister");
+
+        private final String value;
+        private final String label;
+
+        private PendidikanTerakhir(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
 }

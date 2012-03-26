@@ -106,6 +106,8 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox txtb_listaktif;
     protected Bandbox cmb_goldarah;
     protected Listbox txtb_listgoldarah;
+     protected Bandbox cmb_pendidikan;
+    protected Listbox txtb_listpendidikan;
 
 
 	protected Button button_MpegawaiDialog_PrintMpegawai; // autowired
@@ -189,6 +191,9 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList(),
                 txtb_listgoldarah, cmb_goldarah, (getMpegawai() != null)?getMpegawai().getCgldarah():null);
 
+          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.PendidikanTerakhir.class)).getEnumToList(),
+                txtb_listpendidikan, cmb_pendidikan, (getMpegawai() != null)?getMpegawai().getCpendakhir():null);
+
         binder.loadAll();
 
 		doFitSize(event);
@@ -245,6 +250,11 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
        txtb_listaktif.setDisabled(b);
        cmb_goldarah.setDisabled(b);
        txtb_listgoldarah.setDisabled(b);
+        cmb_pendidikan.setDisabled(b);
+       txtb_listpendidikan.setDisabled(b);
+        txtb_kdnegara.setReadonly(b);
+        txtb_rumah1.setReadonly(b);
+        txtb_rumah2.setReadonly(b);
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
