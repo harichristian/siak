@@ -133,9 +133,17 @@
                                      <row>
                                         <label
                                             value="Pendidikan Terakhir" />
-                                        <textbox
-                                            id="txtb_pendidikan" value="@{controller.mpegawai.cpendakhir}"
-                                            readonly="true" maxlength="2" width="20px"  />
+                                         <hbox>
+                                            <textbox id="txtb_pendidikan" value="@{controller.mpegawai.cpendakhir}" visible="false"/>
+                                            <bandbox id="cmb_pendidikan" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listpendidikan" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_pendidikan.value=self.selectedItem.label;
+                                                             txtb_statusnikah.value=self.selectedItem.value; cmb_pendidikan.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                      <row>
                                         <label
