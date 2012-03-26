@@ -19,10 +19,12 @@
 package id.ac.idu.webui.administrasi.pegawai;
 
 import id.ac.idu.administrasi.service.MpegawaiService;
+import id.ac.idu.backend.model.MkodePos;
 import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.searchdialogs.KodePosExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -106,8 +108,9 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox txtb_listaktif;
     protected Bandbox cmb_goldarah;
     protected Listbox txtb_listgoldarah;
-     protected Bandbox cmb_pendidikan;
+    protected Bandbox cmb_pendidikan;
     protected Listbox txtb_listpendidikan;
+    protected Button btnSearchKodePosExtended;
 
 
 	protected Button button_MpegawaiDialog_PrintMpegawai; // autowired
@@ -177,7 +180,7 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList(),
-                txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null)?getMpegawai().getCjenklmn():null);
+                txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null) ? getMpegawai().getCjenklmn() : null);
 
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
                 txtb_listagama, cmb_agama, (getMpegawai() != null)?getMpegawai().getCkdagama():null);
@@ -255,8 +258,32 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_kdnegara.setReadonly(b);
         txtb_rumah1.setReadonly(b);
         txtb_rumah2.setReadonly(b);
+
+        btnSearchKodePosExtended.setDisabled(b);
 	}
 
+      /**
+     * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
+     *
+     * @param event
+     */
+    public void onClick$btnSearchKodePosExtended(Event event) {
+        doSearchKodePosExtended(event);
+    }
+
+    /**
+     * Opens the Search and Get Dialog for Branches.<br>
+     * It appends/changes the branch object for the current bean.<br>
+     *
+     * @param event
+     */
+    private void doSearchKodePosExtended(Event event) {
+        MkodePos pos =  KodePosExtendedSearchListBox.show(windowMpegawaiDetail);
+
+        if (pos != null) {
+            txtb_kdpos.setValue(pos.getKodepos());
+        }
+    }
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
 	// ++++++++++++++++ Setter/Getter ++++++++++++++++++ //
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
