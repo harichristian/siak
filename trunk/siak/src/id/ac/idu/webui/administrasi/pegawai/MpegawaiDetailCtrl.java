@@ -19,11 +19,13 @@
 package id.ac.idu.webui.administrasi.pegawai;
 
 import id.ac.idu.administrasi.service.MpegawaiService;
+import id.ac.idu.backend.model.Mjabatan;
 import id.ac.idu.backend.model.MkodePos;
 import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.searchdialogs.JabatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.KodePosExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
@@ -111,6 +113,8 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Bandbox cmb_pendidikan;
     protected Listbox txtb_listpendidikan;
     protected Button btnSearchKodePosExtended;
+    protected Button btnSearchJabatanExtended;
+    protected Textbox txtb_jabatan;
 
 
 	protected Button button_MpegawaiDialog_PrintMpegawai; // autowired
@@ -260,7 +264,34 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_rumah2.setReadonly(b);
 
         btnSearchKodePosExtended.setDisabled(b);
+        btnSearchJabatanExtended.setDisabled(b);
 	}
+
+      /**
+     * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
+     *
+     * @param event
+     */
+    public void onClick$btnSearchJabatanExtended(Event event) {
+        doSearchJabatanExtended(event);
+    }
+
+    /**
+     * Opens the Search and Get Dialog for Branches.<br>
+     * It appends/changes the branch object for the current bean.<br>
+     *
+     * @param event
+     */
+    private void doSearchJabatanExtended(Event event) {
+        Mjabatan jabatan =  JabatanExtendedSearchListBox.show(windowMpegawaiDetail);
+
+        if (jabatan != null) {
+            txtb_jabatan.setValue(jabatan.getCnmjabatan());
+            Mpegawai pegawai = getMpegawai();
+            pegawai.setMjabatan(jabatan);
+            setMpegawai(pegawai);
+        }
+    }
 
       /**
      * If the Button 'Search Branch ExtendedSearch' is clicked.<br>

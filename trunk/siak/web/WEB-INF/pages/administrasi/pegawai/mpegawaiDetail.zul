@@ -187,7 +187,7 @@
 
                                           <hbox>
                                                <textbox
-                                            id="txtb_jabatan" value="@{controller.mpegawai.mjabatan.id}"
+                                            id="txtb_jabatan" value="@{controller.mpegawai.mjabatan.cnmjabatan}"
                                             readonly="true" maxlength="50" width="200px" />
 
                                               <button

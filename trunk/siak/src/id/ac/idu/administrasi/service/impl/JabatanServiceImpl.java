@@ -2,6 +2,7 @@ package id.ac.idu.administrasi.service.impl;
 
 import id.ac.idu.administrasi.dao.JabatanDAO;
 import id.ac.idu.administrasi.service.JabatanService;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mjabatan;
 
 import java.util.List;
@@ -57,5 +58,10 @@ public class JabatanServiceImpl implements JabatanService {
     @Override
     public void delete(Mjabatan jabatan) {
         getJabatanDAO().delete(jabatan);
+    }
+
+     @Override
+    public ResultObject getAllJabatanLikeText(String text, int start, int pageSize) {
+        return getJabatanDAO().getAllJabatanLikeText(text, start, pageSize);
     }
 }

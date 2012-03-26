@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.dao;
 
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mjabatan;
 
 import java.util.List;
@@ -70,5 +71,16 @@ public interface JabatanDAO {
      * Saves an Jabatan.<br>
      */
     public void save(Mjabatan entity);
+
+     /**
+     * EN: Get a paged list of all Branches.<br>
+     * DE: Gibt eine paged Liste aller Branchen zurueck.<br>
+     *
+     * @param text     Text for search / SuchText
+     * @param start    StartRecord / Start Datensatz
+     * @param pageSize Count of Records / Anzahl Datensaetze
+     * @return List of YoutubeLinks / Liste von YoutubeLinks
+     */
+    public ResultObject getAllJabatanLikeText(String text, int start, int pageSize);
 
 }
