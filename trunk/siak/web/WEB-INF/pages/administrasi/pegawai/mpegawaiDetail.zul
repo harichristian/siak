@@ -73,30 +73,62 @@
                                     <row>
                                         <label
                                             value="Jenis Kelamin(L/P)" />
-                                        <textbox
-                                            id="txtb_jeniskelamin" value="@{controller.mpegawai.cjenklmn}"
-                                            readonly="true" maxlength="1" width="10px" constraint="no empty" />
+                                         <hbox>
+                                            <textbox id="txtb_jeniskelamin" value="@{controller.mpegawai.cjenklmn}" visible="false"/>
+                                            <bandbox id="cmb_jeniskelamin" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listjeniskelamin" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_jeniskelamin.value=self.selectedItem.label;
+                                                             txtb_jeniskelamin.value=self.selectedItem.value; cmb_jeniskelamin.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label
                                             value="Golongan Darah" />
-                                        <textbox
-                                            id="txtb_goldarah" value="@{controller.mpegawai.cgldarah}"
-                                            readonly="true" maxlength="2" width="20px"  />
+                                         <hbox>
+                                            <textbox id="txtb_goldarah" value="@{controller.mpegawai.cgldarah}" visible="false"/>
+                                            <bandbox id="cmb_goldarah" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listgoldarah" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_goldarah.value=self.selectedItem.label;
+                                                             txtb_goldarah.value=self.selectedItem.value; cmb_goldarah.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label
                                             value="Agama" />
-                                        <textbox
-                                            id="txtb_agama" value="@{controller.mpegawai.ckdagama}"
-                                            readonly="true" maxlength="1" width="10px"  />
+                                         <hbox>
+                                            <textbox id="txtb_agama" value="@{controller.mpegawai.ckdagama}" visible="false"/>
+                                            <bandbox id="cmb_agama" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listagama" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_agama.value=self.selectedItem.label;
+                                                             txtb_agama.value=self.selectedItem.value; cmb_agama.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                      <row>
                                         <label
                                             value="Status Nikah" />
-                                        <textbox
-                                            id="txtb_statusnikah" value="@{controller.mpegawai.cstatus}"
-                                            readonly="true" maxlength="1" width="10px"  />
+                                         <hbox>
+                                            <textbox id="txtb_statusnikah" value="@{controller.mpegawai.cstatus}" visible="false"/>
+                                            <bandbox id="cmb_statusnikah" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_liststatusnikah" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_statusnikah.value=self.selectedItem.label;
+                                                             txtb_statusnikah.value=self.selectedItem.value; cmb_statusnikah.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                      <row>
                                         <label
@@ -142,10 +174,18 @@
                                     </row>
                                      <row>
                                         <label
-                                            value="Aktif(Y/T)" />
-                                        <textbox
-                                            id="txtb_aktif" value="@{controller.mpegawai.cflagaktif}"
-                                            readonly="true" maxlength="1" width="10px" constraint="no empty" />
+                                            value="Aktif" />
+                                         <hbox>
+                                            <textbox id="txtb_aktif" value="@{controller.mpegawai.cflagaktif}" visible="false"/>
+                                            <bandbox id="cmb_aktif" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listaktif" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_aktif.value=self.selectedItem.label;
+                                                             txtb_aktif.value=self.selectedItem.value; cmb_aktif.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
 
                                 </rows>

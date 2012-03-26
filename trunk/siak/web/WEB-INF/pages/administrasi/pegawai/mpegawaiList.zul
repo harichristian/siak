@@ -59,7 +59,7 @@
 							style="padding-left: 5px" />
 						<listcell label="@{mpegawai.dtglahir}"
 							style="padding-left: 5px" />
-						<listcell label="@{mpegawai.status}"
+						<listcell label="@{mpegawai.cstatus}"
 							style="padding-left: 5px" />
 					</listitem>
 

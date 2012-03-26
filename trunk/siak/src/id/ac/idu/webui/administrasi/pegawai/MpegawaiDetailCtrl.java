@@ -20,7 +20,10 @@ package id.ac.idu.webui.administrasi.pegawai;
 
 import id.ac.idu.administrasi.service.MpegawaiService;
 import id.ac.idu.backend.model.Mpegawai;
+import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -93,6 +96,16 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_sk;
     protected Datebox txtb_tglSK;
     protected Textbox txtb_golongan;
+    protected Bandbox cmb_jeniskelamin;
+    protected Listbox txtb_listjeniskelamin;
+    protected Bandbox cmb_agama;
+    protected Listbox txtb_listagama;
+    protected Bandbox cmb_statusnikah;
+    protected Listbox txtb_liststatusnikah;
+    protected Bandbox cmb_aktif;
+    protected Listbox txtb_listaktif;
+    protected Bandbox cmb_goldarah;
+    protected Listbox txtb_listgoldarah;
 
 
 	protected Button button_MpegawaiDialog_PrintMpegawai; // autowired
@@ -161,7 +174,22 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 	public void onCreate$windowMpegawaiDetail(Event event) throws Exception {
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-		binder.loadAll();
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList(),
+                txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null)?getMpegawai().getCjenklmn():null);
+
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
+                txtb_listagama, cmb_agama, (getMpegawai() != null)?getMpegawai().getCkdagama():null);
+
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
+                 txtb_liststatusnikah, cmb_statusnikah, (getMpegawai() != null) ? getMpegawai().getCstatus() : null);
+
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
+                txtb_listaktif, cmb_aktif, (getMpegawai() != null)?getMpegawai().getCflagaktif():null);
+
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList(),
+                txtb_listgoldarah, cmb_goldarah, (getMpegawai() != null)?getMpegawai().getCgldarah():null);
+
+        binder.loadAll();
 
 		doFitSize(event);
 	}
@@ -206,6 +234,17 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_jeniskelamin.setReadonly(b);
         txtb_kdpos.setReadonly(b);
         txtb_goldarah.setReadonly(b);
+
+       cmb_jeniskelamin.setDisabled(b);
+       txtb_listjeniskelamin.setDisabled(b);
+       cmb_agama.setDisabled(b);
+       txtb_listagama.setDisabled(b);
+       cmb_statusnikah.setDisabled(b);
+       txtb_liststatusnikah.setDisabled(b);
+       cmb_aktif.setDisabled(b);
+       txtb_listaktif.setDisabled(b);
+       cmb_goldarah.setDisabled(b);
+       txtb_listgoldarah.setDisabled(b);
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
