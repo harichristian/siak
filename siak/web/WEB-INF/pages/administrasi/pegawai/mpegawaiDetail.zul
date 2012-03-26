@@ -169,16 +169,33 @@
                                      <row>
                                         <label
                                             value="Kode Pos" />
-                                        <textbox
+
+                                         <hbox>
+                                              <textbox
                                             id="txtb_kdpos" value="@{controller.mpegawai.ckdposrm}"
-                                            readonly="true" maxlength="5" width="40px" constraint="no empty" />
+                                            readonly="true" maxlength="5" width="40px"  />
+                                              <button
+                                                                                id="btnSearchKodePosExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
+                                        </hbox>
                                     </row>
                                      <row>
                                         <label
                                             value="Jabatan" />
-                                        <textbox
+
+                                          <hbox>
+                                               <textbox
                                             id="txtb_jabatan" value="@{controller.mpegawai.mjabatan.id}"
-                                            readonly="true" maxlength="1" width="10px" />
+                                            readonly="true" maxlength="50" width="200px" />
+
+                                              <button
+                                                                                id="btnSearchJabatanExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Jabatan"/>
+                                        </hbox>
                                     </row>
                                      <row>
                                         <label
