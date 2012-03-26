@@ -1,9 +1,14 @@
 package id.ac.idu.administrasi.dao.impl;
 
 import id.ac.idu.administrasi.dao.JabatanDAO;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
+import id.ac.idu.backend.model.Branche;
 import id.ac.idu.backend.model.Mjabatan;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
 
@@ -51,5 +56,23 @@ public class JabatanDAOImpl extends BasisDAO<Mjabatan> implements JabatanDAO {
         if (jabatan != null) {
             delete(jabatan);
         }
+    }
+
+        @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllJabatanLikeText(String text, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mjabatan.class);
+
+        if (!StringUtils.isEmpty(text)) {
+            criteria.add(Restrictions.ilike("cnmjabatan", text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc("cnmjabatan"));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Branche> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
     }
 }
