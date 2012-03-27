@@ -48,7 +48,8 @@
                                                 <bandpopup>
                                                     <listbox id="list_jenis" mold="paging" autopaging="true" width="180px"
                                                              onSelect="cmb_jenis.value=self.selectedItem.label;
-                                                             txtb_jenis.value=self.selectedItem.value; cmb_jenis.close();"/>
+                                                             txtb_jenis.value=self.selectedItem.value; cmb_jenis.close();"
+                                                            value="@{controller.mfeedback.ckdfeedback}" />
                                                 </bandpopup>
                                             </bandbox>
                                         </hbox>

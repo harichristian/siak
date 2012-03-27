@@ -57,7 +57,7 @@
                     <listitem self="@{each='tfeedbackinstansi'}" value="@{tfeedbackinstansi}"
                               forward="onDoubleClick=onDoubleClickedTfeedbackinstansiItem">
 
-                        <listcell label="@{tfeedbackinstansi.cjnsinstansi}"
+                        <listcell label="@{tfeedbackinstansi.nmInstansi}"
                                   style="padding-left: 5px"/>
                         <listcell label="@{tfeedbackinstansi.cnminstansi}"
                                   style="padding-left: 5px"/>
@@ -65,7 +65,7 @@
                                   style="padding-left: 5px"/>
                         <listcell label="@{tfeedbackinstansi.malumni.mmahasiswa.cnama}"
                                   style="padding-left: 5px"/>
-                        <listcell label="@{tfeedbackinstansi.cnama}"
+                        <listcell label="@{tfeedbackinstansi.ckesanpesan}"
                                   style="padding-left: 5px"/>
                     </listitem>
 
