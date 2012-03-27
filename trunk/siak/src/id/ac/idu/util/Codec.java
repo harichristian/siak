@@ -271,8 +271,8 @@ public class Codec {
     }
 
      public enum JenisInstansi implements CodecInterface {
-        JI1("01","Negeri"),
-        JI2("02","Swasta");
+        NE("NE","Negeri"),
+        SW("SW","Swasta");
 
 
         private final String value;

@@ -130,6 +130,11 @@ public class TfeedbackinstansiDetailCtrl extends GFCBaseCtrl implements Serializ
 
     }
 
+     public void onSelect$list_jenis(Event event) throws Exception {
+            Tfeedbackinstansi feed =  getTfeedbackinstansi();
+            feed.setCjnsinstansi(list_jenis.getSelectedItem().getValue().toString());
+            setTfeedbackinstansi(feed);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++ Component Events ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

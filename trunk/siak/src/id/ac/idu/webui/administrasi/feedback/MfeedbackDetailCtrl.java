@@ -153,7 +153,6 @@ public class MfeedbackDetailCtrl extends GFCBaseCtrl implements Serializable {
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.KodeFeedback.class)).getEnumToList(),
                 list_jenis, cmb_jenis, (getMfeedback() != null)?getMfeedback().getCkdfeedback():null);
 
-
         binder.loadAll();
 
         doFitSize(event);
