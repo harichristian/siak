@@ -57,7 +57,7 @@
                     <listitem self="@{each='mfeedback'}" value="@{mfeedback}"
                               forward="onDoubleClick=onDoubleClickedMfeedbackItem">
 
-                        <listcell label="@{mfeedback.ckdfeedback}"
+                        <listcell label="@{mfeedback.nmfeedback}"
                                   style="padding-left: 5px"/>
                         <listcell label="@{mfeedback.msekolah.cnamaSekolah}"
                                   style="padding-left: 5px"/>
