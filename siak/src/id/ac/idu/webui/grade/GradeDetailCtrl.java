@@ -9,7 +9,6 @@ import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.searchdialogs.JenjangExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -170,8 +169,8 @@ public class GradeDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filBobot.setReadonly(b); // autowired
         txtb_filNilaiAwal.setReadonly(b); // autowired
         txtb_filNilaiAkhir.setReadonly(b); // autowired
-        txtb_filProdi.setReadonly(b);
-        txtb_filJenjang.setReadonly(b);
+//        txtb_filProdi.setReadonly(b);
+//        txtb_filJenjang.setReadonly(b);
         btnSearchJenjangExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
 
@@ -203,22 +202,22 @@ public class GradeDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filProdi() {
-        if (txtb_filProdi.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
-                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
-
-                if (prodi != null) {
-                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
-                    getSelectedGrade().setMprodi(prodi);
-                } else {
-                    txtb_filProdi.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filProdi.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filProdi() {
+//        if (txtb_filProdi.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
+//                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
+//
+//                if (prodi != null) {
+//                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
+//                    getSelectedGrade().setMprodi(prodi);
+//                } else {
+//                    txtb_filProdi.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filProdi.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /**
      * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
@@ -247,22 +246,22 @@ public class GradeDetailCtrl extends GFCBaseCtrl implements Serializable {
     }
 
 
-    public void onChange$txtb_filJenjang() {
-        if (txtb_filJenjang.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filJenjang.getValue())) {
-                Mjenjang jenjang = jenjangService.getJenjangByID(Integer.parseInt(txtb_filJenjang.getValue()));
-
-                if (jenjang != null) {
-                    txtb_filJenjang.setValue(txtb_filJenjang.getValue() + " - " + jenjang.getCnmjen());
-                    getSelectedGrade().setMjenjang(jenjang);
-                } else {
-                    txtb_filJenjang.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filJenjang.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filJenjang() {
+//        if (txtb_filJenjang.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filJenjang.getValue())) {
+//                Mjenjang jenjang = jenjangService.getJenjangByID(Integer.parseInt(txtb_filJenjang.getValue()));
+//
+//                if (jenjang != null) {
+//                    txtb_filJenjang.setValue(txtb_filJenjang.getValue() + " - " + jenjang.getCnmjen());
+//                    getSelectedGrade().setMjenjang(jenjang);
+//                } else {
+//                    txtb_filJenjang.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filJenjang.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++ Setter/Getter ++++++++++++++++++ //
