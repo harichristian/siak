@@ -50,7 +50,7 @@
                                                 <row>
                                                     <hbox>
                                                         <label
-                                                                value="ID SEKOLAH"/>
+                                                                value="SEKOLAH"/>
                                                         <label value="*"
                                                                style="color:red;font-size:10px"/>
                                                     </hbox>
@@ -70,7 +70,7 @@
                                                 <row>
                                                     <hbox>
                                                         <label
-                                                                value="ID PRODI"/>
+                                                                value="PRODI"/>
                                                         <label value="*"
                                                                style="color:red;font-size:10px"/>
                                                     </hbox>
@@ -149,7 +149,7 @@
                                                 </row>
                                                 <row>
                                                     <label
-                                                            value="ID KEGIATAN"/>
+                                                            value="KEGIATAN"/>
                                                     <hbox pack="stretch" width="100%">
                                                         <textbox
                                                                 id="txtb_filKegiatan"

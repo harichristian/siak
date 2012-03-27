@@ -86,7 +86,7 @@
                        style="color:red;font-size:10px"/>
             </hbox>
             <hbox>
-                <textbox id="txtb_filSekolah" constraint="no empty" readonly="true"/>
+                <textbox id="txtb_filSekolah" readonly="true" maxlength="60" width="99%"/>
                 <button
                         id="btnSearchSekolahExtended" disabled="true"
                         width="28px"
@@ -105,7 +105,6 @@
             <hbox pack="stretch" width="100%">
                 <textbox
                         id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
-                        constraint="no empty"
                         readonly="true" maxlength="60" width="99%"/>
                 <button
                         id="btnSearchProdiExtended" disabled="true"
@@ -125,7 +124,6 @@
             <hbox pack="stretch" width="100%">
                 <textbox
                         id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}"
-                        constraint="no empty"
                         readonly="true" maxlength="60" width="99%"/>
                 <button
                         id="btnSearchMatakuliahExtended" disabled="true"
@@ -145,7 +143,6 @@
             <hbox pack="stretch" width="100%">
                 <textbox
                         id="txtb_filPegawai1" value=""
-                        constraint="no empty"
                         readonly="true" maxlength="60" width="99%"/>
                 <button
                         id="btnSearchPegawai1Extended" disabled="true"
@@ -165,7 +162,6 @@
             <hbox pack="stretch" width="100%">
                 <textbox
                         id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
-                        constraint="no empty"
                         readonly="true" maxlength="60" width="99%"/>
                 <button
                         id="btnSearchPegawai2Extended" disabled="true"

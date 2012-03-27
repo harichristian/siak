@@ -195,9 +195,9 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filTerm.setReadonly(b);
         txtb_filTahunAjaran.setReadonly(b);
         txtb_filSemester.setReadonly(b);
-        txtb_filSekolah.setReadonly(b);
-        txtb_filKegiatan.setReadonly(b);
-        txtb_filProdi.setReadonly(b);
+//        txtb_filSekolah.setReadonly(b);
+//        txtb_filKegiatan.setReadonly(b);
+//        txtb_filProdi.setReadonly(b);
 
         btnSearchSekolahExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
@@ -220,22 +220,22 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filProdi() {
-        if (txtb_filProdi.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
-                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
-
-                if (prodi != null) {
-                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
-                    getSelectedCalakademik().setMprodi(prodi);
-                } else {
-                    txtb_filProdi.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filProdi.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filProdi() {
+//        if (txtb_filProdi.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
+//                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
+//
+//                if (prodi != null) {
+//                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
+//                    getSelectedCalakademik().setMprodi(prodi);
+//                } else {
+//                    txtb_filProdi.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filProdi.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- SEKOLAH LOV ---------------------------*/
     public void onClick$btnSearchSekolahExtended(Event event) {
@@ -253,22 +253,22 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filSekolah() {
-        if (txtb_filSekolah.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filSekolah.getValue())) {
-                Msekolah sekolah = sekolahService.getSekolahById(Integer.parseInt(txtb_filSekolah.getValue()));
-
-                if (sekolah != null) {
-                    txtb_filSekolah.setValue(txtb_filSekolah.getValue() + " - " + sekolah.getCnamaSekolah());
-                    getSelectedCalakademik().setMsekolah(sekolah);
-                } else {
-                    txtb_filSekolah.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filSekolah.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filSekolah() {
+//        if (txtb_filSekolah.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filSekolah.getValue())) {
+//                Msekolah sekolah = sekolahService.getSekolahById(Integer.parseInt(txtb_filSekolah.getValue()));
+//
+//                if (sekolah != null) {
+//                    txtb_filSekolah.setValue(txtb_filSekolah.getValue() + " - " + sekolah.getCnamaSekolah());
+//                    getSelectedCalakademik().setMsekolah(sekolah);
+//                } else {
+//                    txtb_filSekolah.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filSekolah.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- KEGIATAN LOV ---------------------------*/
     public void onClick$btnSearchKegiatanExtended(Event event) {
@@ -285,22 +285,22 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
             setCalakademik(aCalakademik);
         }
     }
-    public void onChange$txtb_filKegiatan() {
-        if (txtb_filKegiatan.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filKegiatan.getValue())) {
-                Mkegiatan kegiatan = kegiatanService.getKegiatanById(Integer.parseInt(txtb_filKegiatan.getValue()));
-
-                if (kegiatan != null) {
-                    txtb_filKegiatan.setValue(txtb_filKegiatan.getValue() + " - " + kegiatan.getCnmkgt());
-                    getSelectedCalakademik().setMkegiatan(kegiatan);
-                } else {
-                    txtb_filKegiatan.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filKegiatan.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filKegiatan() {
+//        if (txtb_filKegiatan.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filKegiatan.getValue())) {
+//                Mkegiatan kegiatan = kegiatanService.getKegiatanById(Integer.parseInt(txtb_filKegiatan.getValue()));
+//
+//                if (kegiatan != null) {
+//                    txtb_filKegiatan.setValue(txtb_filKegiatan.getValue() + " - " + kegiatan.getCnmkgt());
+//                    getSelectedCalakademik().setMkegiatan(kegiatan);
+//                } else {
+//                    txtb_filKegiatan.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filKegiatan.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++ Setter/Getter ++++++++++++++++++ //

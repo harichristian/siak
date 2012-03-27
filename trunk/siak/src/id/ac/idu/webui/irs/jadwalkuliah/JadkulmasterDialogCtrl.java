@@ -21,7 +21,6 @@ import id.ac.idu.webui.util.searchdialogs.PegawaiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -760,11 +759,11 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * Set the components for edit mode. <br>
      */
     private void doEdit() {
-        txtb_filSekolah.setReadonly(false);
-        txtb_filProdi.setReadonly(false);
-        txtb_filMatakuliah.setReadonly(false);
-        txtb_filPegawai1.setReadonly(false);
-        txtb_filPegawai2.setReadonly(false);
+//        txtb_filSekolah.setReadonly(false);
+//        txtb_filProdi.setReadonly(false);
+//        txtb_filMatakuliah.setReadonly(false);
+//        txtb_filPegawai1.setReadonly(false);
+//        txtb_filPegawai2.setReadonly(false);
         txtb_filTerm.setReadonly(false);
         txtb_filKelompok.setReadonly(false);
         txtb_filTahunajaran.setReadonly(false);
@@ -788,11 +787,11 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * Set the components to ReadOnly. <br>
      */
     public void doReadOnly() {
-        txtb_filSekolah.setReadonly(true);
-        txtb_filProdi.setReadonly(true);
-        txtb_filMatakuliah.setReadonly(true);
-        txtb_filPegawai1.setReadonly(true);
-        txtb_filPegawai2.setReadonly(true);
+//        txtb_filSekolah.setReadonly(true);
+//        txtb_filProdi.setReadonly(true);
+//        txtb_filMatakuliah.setReadonly(true);
+//        txtb_filPegawai1.setReadonly(true);
+//        txtb_filPegawai2.setReadonly(true);
         txtb_filTerm.setReadonly(true);
         txtb_filKelompok.setReadonly(true);
         txtb_filTahunajaran.setReadonly(true);
@@ -1118,22 +1117,22 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$txtb_filSekolah() {
-        if (txtb_filSekolah.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filSekolah.getValue())) {
-                Msekolah sekolah = sekolahService.getSekolahById(Integer.parseInt(txtb_filSekolah.getValue()));
-
-                if (sekolah != null) {
-                    txtb_filSekolah.setValue(txtb_filSekolah.getValue() + " - " + sekolah.getCnamaSekolah());
-                    getTjadkulmaster().setMsekolah(sekolah);
-                } else {
-                    txtb_filSekolah.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filSekolah.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filSekolah() {
+//        if (txtb_filSekolah.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filSekolah.getValue())) {
+//                Msekolah sekolah = sekolahService.getSekolahById(Integer.parseInt(txtb_filSekolah.getValue()));
+//
+//                if (sekolah != null) {
+//                    txtb_filSekolah.setValue(txtb_filSekolah.getValue() + " - " + sekolah.getCnamaSekolah());
+//                    getTjadkulmaster().setMsekolah(sekolah);
+//                } else {
+//                    txtb_filSekolah.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filSekolah.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- PRODI LOV ---------------------------*/
     public void onClick$btnSearchProdiExtended(Event event) {
@@ -1151,22 +1150,22 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$txtb_filProdi() {
-        if (txtb_filProdi.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
-                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
-
-                if (prodi != null) {
-                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
-                    getTjadkulmaster().setMprodi(prodi);
-                } else {
-                    txtb_filProdi.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filProdi.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filProdi() {
+//        if (txtb_filProdi.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
+//                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
+//
+//                if (prodi != null) {
+//                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
+//                    getTjadkulmaster().setMprodi(prodi);
+//                } else {
+//                    txtb_filProdi.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filProdi.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- MATAKULIAH LOV ---------------------------*/
     public void onClick$btnSearchMatakuliahExtended(Event event) {
@@ -1184,22 +1183,22 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$txtb_filMatakuliah() {
-        if (txtb_filMatakuliah.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filMatakuliah.getValue())) {
-                Mtbmtkl matakuliah = matakuliahService.getMatakuliahById(Integer.parseInt(txtb_filMatakuliah.getValue()));
-
-                if (matakuliah != null) {
-                    txtb_filMatakuliah.setValue(txtb_filMatakuliah.getValue() + " - " + matakuliah.getCnamamk());
-                    getTjadkulmaster().setMtbmtkl(matakuliah);
-                } else {
-                    txtb_filMatakuliah.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filMatakuliah.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filMatakuliah() {
+//        if (txtb_filMatakuliah.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filMatakuliah.getValue())) {
+//                Mtbmtkl matakuliah = matakuliahService.getMatakuliahById(Integer.parseInt(txtb_filMatakuliah.getValue()));
+//
+//                if (matakuliah != null) {
+//                    txtb_filMatakuliah.setValue(txtb_filMatakuliah.getValue() + " - " + matakuliah.getCnamamk());
+//                    getTjadkulmaster().setMtbmtkl(matakuliah);
+//                } else {
+//                    txtb_filMatakuliah.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filMatakuliah.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- PEGAWAI1 LOV ---------------------------*/
     public void onClick$btnSearchPegawai1Extended(Event event) {
@@ -1217,18 +1216,18 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$txtb_filPegawai1() {
-        if (txtb_filPegawai1.getValue() != null) {
-            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai1.getValue());
-
-            if (pegawai != null) {
-                txtb_filPegawai1.setValue(txtb_filPegawai1.getValue() + " - " + pegawai.getCnama());
-                getTjadkulmaster().setMpegawai1(pegawai);
-            } else {
-                txtb_filPegawai1.setValue("Data Tidak Ditemukan");
-            }
-        }
-    }
+//    public void onChange$txtb_filPegawai1() {
+//        if (txtb_filPegawai1.getValue() != null) {
+//            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai1.getValue());
+//
+//            if (pegawai != null) {
+//                txtb_filPegawai1.setValue(txtb_filPegawai1.getValue() + " - " + pegawai.getCnama());
+//                getTjadkulmaster().setMpegawai1(pegawai);
+//            } else {
+//                txtb_filPegawai1.setValue("Data Tidak Ditemukan");
+//            }
+//        }
+//    }
 
     /*--------------------------- PEGAWAI2 LOV ---------------------------*/
     public void onClick$btnSearchPegawai2Extended(Event event) {
@@ -1246,18 +1245,18 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$txtb_filPegawai2() {
-        if (txtb_filPegawai2.getValue() != null) {
-            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai2.getValue());
-
-            if (pegawai != null) {
-                txtb_filPegawai2.setValue(txtb_filPegawai2.getValue() + " - " + pegawai.getCnama());
-                getTjadkulmaster().setMpegawai2(pegawai);
-            } else {
-                txtb_filPegawai2.setValue("Data Tidak Ditemukan");
-            }
-        }
-    }
+//    public void onChange$txtb_filPegawai2() {
+//        if (txtb_filPegawai2.getValue() != null) {
+//            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai2.getValue());
+//
+//            if (pegawai != null) {
+//                txtb_filPegawai2.setValue(txtb_filPegawai2.getValue() + " - " + pegawai.getCnama());
+//                getTjadkulmaster().setMpegawai2(pegawai);
+//            } else {
+//                txtb_filPegawai2.setValue("Data Tidak Ditemukan");
+//            }
+//        }
+//    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//

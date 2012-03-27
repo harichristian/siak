@@ -88,8 +88,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filHari" readonly="true" width="99%"
-                                                         value=""/>
+                                                <textbox id="txtb_filHari" readonly="true" width="99%"/>
                                                 <button
                                                         id="btnSearchHariExtended" disabled="true"
                                                         width="28px"
@@ -106,8 +105,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filSesi" readonly="true" width="99%"
-                                                         value=""/>
+                                                <textbox id="txtb_filSesi" readonly="true" width="99%"/>
                                                 <button
                                                         id="btnSearchSesiExtended" disabled="true"
                                                         width="28px"
@@ -124,8 +122,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filRuang" readonly="true" width="99%"
-                                                         value=""/>
+                                                <textbox id="txtb_filRuang" readonly="true" width="99%"/>
                                                 <button
                                                         id="btnSearchRuangExtended" disabled="true"
                                                         width="28px"
