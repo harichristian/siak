@@ -324,10 +324,11 @@ public class Codec {
     }
 
      public enum KodeFeedback implements CodecInterface {
-        F1("1","Feedback Instansi"),
-        F2("2","Feedback Alumni"),
-        F3("3","Feedback Dosen"),
-        F4("3","Feedback Kuliah");
+        I("I","Feedback Instansi"),
+        A("A","Feedback Alumni"),
+        D("D","Feedback Dosen"),
+        K("K","Feedback Kuliah"),
+        W("W","Feedback Wisudawan");
 
 
         private final String value;

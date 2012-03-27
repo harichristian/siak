@@ -1,6 +1,8 @@
 package id.ac.idu.backend.model;// default package
 // Generated Mar 21, 2012 2:09:06 AM by Hibernate Tools 3.1.0.beta4
 
+import id.ac.idu.util.Codec;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +18,7 @@ public class Mfeedback  implements java.io.Serializable {
     // Fields    
 
      private int id;
-     private String ckdfeedback;
+     private char ckdfeedback;
      private Msekolah msekolah;
      private Mprodi mprodi;
      private byte nnopertanyaan;
@@ -27,6 +29,16 @@ public class Mfeedback  implements java.io.Serializable {
      private Date cupdateddate;
      private Set<Tfeedbackalumni> tfeedbackalumnis = new HashSet<Tfeedbackalumni>(0);
 
+    public String getNmfeedback() {
+        return  Codec.KodeFeedback.valueOf(String.valueOf(getCkdfeedback())).getLabel();
+    }
+
+    public void setNmfeedback(String nmfeedback) {
+        this.nmfeedback = nmfeedback;
+    }
+
+    private String nmfeedback;
+
 
     // Constructors
 
@@ -35,7 +47,7 @@ public class Mfeedback  implements java.io.Serializable {
     }
 
 	/** minimal constructor */
-    public Mfeedback(int id, String ckdfeedback, Msekolah msekolah, Mprodi mprodi, byte nnopertanyaan) {
+    public Mfeedback(int id, char ckdfeedback, Msekolah msekolah, Mprodi mprodi, byte nnopertanyaan) {
         this.id = id;
         this.ckdfeedback = ckdfeedback;
         this.msekolah = msekolah;
@@ -44,7 +56,7 @@ public class Mfeedback  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public Mfeedback(int id, String ckdfeedback, Msekolah msekolah, Mprodi mprodi, byte nnopertanyaan, String cpertanyaan
+    public Mfeedback(int id, char ckdfeedback, Msekolah msekolah, Mprodi mprodi, byte nnopertanyaan, String cpertanyaan
             , String ccreatedby, Date ccreateddate, String cupdatedby, Date cupdateddate, Set<Tfeedbackalumni> tfeedbackalumnis) {
         this.id = id;
         this.ckdfeedback = ckdfeedback;
@@ -71,11 +83,11 @@ public class Mfeedback  implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getCkdfeedback() {
+    public char getCkdfeedback() {
         return this.ckdfeedback;
     }
     
-    public void setCkdfeedback(String ckdfeedback) {
+    public void setCkdfeedback(char ckdfeedback) {
         this.ckdfeedback = ckdfeedback;
     }
 

@@ -594,6 +594,14 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
         // logger.debug(event.toString());
 
         // save all components data in the several tabs to the bean
+
+//        Character jenis = getMfeedbackDetailCtrl().list_jenis.getSelectedItem().getValue().toString().charAt(0);
+//        String textJenis = getMfeedbackDetailCtrl().txtb_jenis.getValue();
+
+//        if (jenis!=null) {
+           // getMfeedbackDetailCtrl().getMfeedback().setCkdfeedback(jenis);
+
+//        }
         getMfeedbackDetailCtrl().getBinder().saveAll();
 
         try {

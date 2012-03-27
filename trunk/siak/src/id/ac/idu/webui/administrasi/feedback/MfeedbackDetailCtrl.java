@@ -132,6 +132,11 @@ public class MfeedbackDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+    public void onSelect$list_jenis(Event event) throws Exception {
+            Mfeedback feed =  getMfeedback();
+            feed.setCkdfeedback(list_jenis.getSelectedItem().getValue().toString().charAt(0));
+            setMfeedback(feed);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++ Component Events ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -147,6 +152,7 @@ public class MfeedbackDetailCtrl extends GFCBaseCtrl implements Serializable {
 
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.KodeFeedback.class)).getEnumToList(),
                 list_jenis, cmb_jenis, (getMfeedback() != null)?getMfeedback().getCkdfeedback():null);
+
 
         binder.loadAll();
 
