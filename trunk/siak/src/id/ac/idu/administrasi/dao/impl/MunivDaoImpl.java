@@ -4,10 +4,14 @@
 package id.ac.idu.administrasi.dao.impl;
 
 import id.ac.idu.administrasi.dao.MunivDao;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Muniv;
+import id.ac.idu.backend.model.Muniv;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
@@ -109,5 +113,23 @@ public class MunivDaoImpl extends BasisDAO<Muniv> implements MunivDao {
         if (muniv != null) {
             delete(muniv);
         }
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllUnivLikeText(String text, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Muniv.class);
+
+        if (!StringUtils.isEmpty(text)) {
+            criteria.add(Restrictions.ilike("cnamaUniv", text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc("cnamaUniv"));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Muniv> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
     }
 }

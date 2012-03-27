@@ -64,6 +64,10 @@
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                     label="NIP PEGAWAI" sort="auto"
                                     width="10%"/>
+                        <listheader id="listheader_SekolahList_Universitas"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="UNIVERSITAS" sort="auto"
+                                    width="10%"/>
                     </listhead>
 
                     <listitem self="@{each='sekolah'}" value="@{sekolah}"
@@ -84,6 +88,8 @@
                         <listcell label="@{sekolah.noSk}"
                                   style="padding-left: 5px"/>
                         <listcell label="@{sekolah.mpegawai.cnip}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{sekolah.muniv.cnamaUniv}"
                                   style="padding-left: 5px"/>
                     </listitem>
 

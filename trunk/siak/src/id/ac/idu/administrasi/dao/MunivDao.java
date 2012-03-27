@@ -3,6 +3,7 @@
  */
 package id.ac.idu.administrasi.dao;
 
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Muniv;
 
 import java.util.List;
@@ -94,5 +95,7 @@ public interface MunivDao {
      * EN: Saves an Muniv.<br>
      */
     public void save(Muniv entity);
+
+    public ResultObject getAllUnivLikeText(String text, int start, int pageSize);
 
 }

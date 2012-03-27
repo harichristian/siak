@@ -3,6 +3,7 @@
  */
 package id.ac.idu.administrasi.service;
 
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Muniv;
 
 import java.util.List;
@@ -74,4 +75,6 @@ public interface MunivService {
      * EN: Deletes an Muniv.<br>
      */
     public void delete(Muniv muniv);
+
+    public ResultObject getAllUnivLikeText(String text, int start, int pageSize);
 }
