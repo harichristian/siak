@@ -48,6 +48,7 @@ public class SekolahListCtrl extends GFCBaseListCtrl<Msekolah> implements Serial
     protected Listheader listheader_SekolahList_Visi; // autowired
     protected Listheader listheader_SekolahList_Misi; // autowired
     protected Listheader listheader_SekolahList_Pegawai; // autowired
+    protected Listheader listheader_SekolahList_Universitas; // autowired
     protected Listheader listheader_SekolahList_NoSk; // autowired
 
     // NEEDED for ReUse in the SearchWindow
@@ -149,6 +150,8 @@ public class SekolahListCtrl extends GFCBaseListCtrl<Msekolah> implements Serial
         listheader_SekolahList_Misi.setSortDescending(new FieldComparator("misi", false));
         listheader_SekolahList_Pegawai.setSortAscending(new FieldComparator("mpegawai.cnama", true));
         listheader_SekolahList_Pegawai.setSortDescending(new FieldComparator("mpegawai.cnama", false));
+        listheader_SekolahList_Universitas.setSortAscending(new FieldComparator("muniv.cnamaUniv", true));
+        listheader_SekolahList_Universitas.setSortDescending(new FieldComparator("muniv.cnamaUniv", false));
         listheader_SekolahList_NoSk.setSortAscending(new FieldComparator("noSk", true));
         listheader_SekolahList_NoSk.setSortDescending(new FieldComparator("noSk", false));
 

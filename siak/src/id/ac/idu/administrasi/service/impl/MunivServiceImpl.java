@@ -5,6 +5,7 @@ package id.ac.idu.administrasi.service.impl;
 
 import id.ac.idu.administrasi.dao.MunivDao;
 import id.ac.idu.administrasi.service.MunivService;
+import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Muniv;
 
 import java.util.List;
@@ -95,4 +96,8 @@ public class MunivServiceImpl implements MunivService {
         getMunivDao().delete(muniv);
     }
 
+    @Override
+    public ResultObject getAllUnivLikeText(String text, int start, int pageSize) {
+        return getMunivDao().getAllUnivLikeText(text, start, pageSize);
+    }
 }

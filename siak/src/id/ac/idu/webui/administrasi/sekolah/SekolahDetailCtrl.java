@@ -4,8 +4,10 @@ import id.ac.idu.administrasi.service.PegawaiService;
 import id.ac.idu.administrasi.service.SekolahService;
 import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.backend.model.Msekolah;
+import id.ac.idu.backend.model.Muniv;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.searchdialogs.PegawaiExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.UnivExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -46,9 +48,11 @@ public class SekolahDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_filMisi; // autowired
     protected Textbox txtb_filNoSk; // autowired
     protected Textbox txtb_filPegawai; // autowired
+    protected Textbox txtb_filUniversitas; // autowired
 
     protected Button button_SekolahDialog_PrintSekolah; // autowired
     protected Button btnSearchPegawaiExtended; // autowired
+    protected Button btnSearchUniversitasExtended; // autowired
 
     // Databinding
     protected transient AnnotateDataBinder binder;
@@ -160,7 +164,35 @@ public class SekolahDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filMisi.setReadonly(b);
         txtb_filNoSk.setReadonly(b);
         txtb_filPegawai.setReadonly(b);
+        txtb_filUniversitas.setReadonly(b);
         btnSearchPegawaiExtended.setDisabled(b);
+        btnSearchUniversitasExtended.setDisabled(b);
+    }
+
+    /**
+     * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
+     *
+     * @param event
+     */
+    public void onClick$btnSearchUniversitasExtended(Event event) {
+        doSearchUniversitasExtended(event);
+    }
+
+    /**
+     * Opens the Search and Get Dialog for Branches.<br>
+     * It appends/changes the branch object for the current bean.<br>
+     *
+     * @param event
+     */
+    private void doSearchUniversitasExtended(Event event) {
+        Muniv univ = UnivExtendedSearchListBox.show(windowSekolahDetail);
+
+        if (univ != null) {
+            txtb_filUniversitas.setValue(univ.getCkdUniv() + " - " + univ.getCnamaUniv());
+            Msekolah aSekolah = getSekolah();
+            aSekolah.setMuniv(univ);
+            setSekolah(aSekolah);
+        }
     }
 
     /**
@@ -181,7 +213,6 @@ public class SekolahDetailCtrl extends GFCBaseCtrl implements Serializable {
     private void doSearchPegawaiExtended(Event event) {
         Mpegawai pegawai = PegawaiExtendedSearchListBox.show(windowSekolahDetail);
 
-        System.out.println("pegawai id = " + pegawai.getId());
         if (pegawai != null) {
             txtb_filPegawai.setValue(pegawai.getCnip() + " - " + pegawai.getCnama());
             Msekolah aSekolah = getSekolah();
