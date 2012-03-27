@@ -2,6 +2,8 @@ package id.ac.idu.backend.model;
 // Generated 11 Mar 12 23:21:10 by Hibernate Tools 3.2.1.GA
 
 
+import id.ac.idu.util.Codec;
+
 import java.util.Date;
 
 /**
@@ -20,6 +22,17 @@ public class Tfeedbackinstansi  implements java.io.Serializable {
      private Date dcreateddate;
      private String cupdatedby;
      private Date dupdatedate;
+     private String nmInstansi;
+
+    public String getNmInstansi() {
+        return Codec.JenisInstansi.valueOf(getCjnsinstansi()).getLabel();
+    }
+
+    public void setNmInstansi(String nmInstansi) {
+        this.nmInstansi = nmInstansi;
+    }
+
+
 
     public Tfeedbackinstansi() {
     }
