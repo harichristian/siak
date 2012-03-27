@@ -163,8 +163,8 @@ public class SekolahDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filVisi.setReadonly(b);
         txtb_filMisi.setReadonly(b);
         txtb_filNoSk.setReadonly(b);
-        txtb_filPegawai.setReadonly(b);
-        txtb_filUniversitas.setReadonly(b);
+//        txtb_filPegawai.setReadonly(b);
+//        txtb_filUniversitas.setReadonly(b);
         btnSearchPegawaiExtended.setDisabled(b);
         btnSearchUniversitasExtended.setDisabled(b);
     }
@@ -221,18 +221,18 @@ public class SekolahDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filPegawai() {
-        if (txtb_filPegawai.getValue() != null) {
-            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai.getValue());
-
-            if (pegawai != null) {
-                txtb_filPegawai.setValue(txtb_filPegawai.getValue() + " - " + pegawai.getCnama());
-                getSelectedSekolah().setMpegawai(pegawai);
-            } else {
-                txtb_filPegawai.setValue("Data Tidak Ditemukan");
-            }
-        }
-    }
+//    public void onChange$txtb_filPegawai() {
+//        if (txtb_filPegawai.getValue() != null) {
+//            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai.getValue());
+//
+//            if (pegawai != null) {
+//                txtb_filPegawai.setValue(txtb_filPegawai.getValue() + " - " + pegawai.getCnama());
+//                getSelectedSekolah().setMpegawai(pegawai);
+//            } else {
+//                txtb_filPegawai.setValue("Data Tidak Ditemukan");
+//            }
+//        }
+//    }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++ Setter/Getter ++++++++++++++++++ //

@@ -131,7 +131,6 @@
                                         <hbox pack="stretch" width="100%">
                                             <textbox
                                                     id="txtb_filPegawai" value="@{controller.sekolah.mpegawai.cnip}"
-                                                    constraint="no empty"
                                                     readonly="true" maxlength="60" width="99%"/>
                                             <button
                                                     id="btnSearchPegawaiExtended" disabled="true"

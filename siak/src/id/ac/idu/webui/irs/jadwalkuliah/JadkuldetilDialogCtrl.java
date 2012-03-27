@@ -17,7 +17,6 @@ import id.ac.idu.webui.util.searchdialogs.HariExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MruangExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SesiExtendedSearchListBox;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -329,9 +328,9 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     private void doCancel() {
         doResetInitValues();
 
-        txtb_filHari.setReadonly(true);
-        txtb_filSesi.setReadonly(true);
-        txtb_filRuang.setReadonly(true);
+//        txtb_filHari.setReadonly(true);
+//        txtb_filSesi.setReadonly(true);
+//        txtb_filRuang.setReadonly(true);
         txtb_filLintasprodi.setReadonly(true);
         txtb_filJumlahsesi.setReadonly(true);
         txtb_filMaks.setReadonly(true);
@@ -647,9 +646,9 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * Set the components for edit mode. <br>
      */
     private void doEdit() {
-        txtb_filHari.setReadonly(false);
-        txtb_filSesi.setReadonly(false);
-        txtb_filRuang.setReadonly(false);
+//        txtb_filHari.setReadonly(false);
+//        txtb_filSesi.setReadonly(false);
+//        txtb_filRuang.setReadonly(false);
         txtb_filLintasprodi.setReadonly(false);
         txtb_filJumlahsesi.setReadonly(false);
         txtb_filMaks.setReadonly(false);
@@ -669,9 +668,9 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * Set the components to ReadOnly. <br>
      */
     public void doReadOnly() {
-        txtb_filHari.setReadonly(true);
-        txtb_filSesi.setReadonly(true);
-        txtb_filRuang.setReadonly(true);
+//        txtb_filHari.setReadonly(true);
+//        txtb_filSesi.setReadonly(true);
+//        txtb_filRuang.setReadonly(true);
         txtb_filLintasprodi.setReadonly(true);
         txtb_filJumlahsesi.setReadonly(true);
         txtb_filMaks.setReadonly(true);
@@ -835,22 +834,22 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filHari() {
-        if (txtb_filHari.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filHari.getValue())) {
-                Mhari hari = hariService.getHariByID(Integer.parseInt(txtb_filHari.getValue()));
-
-                if (hari != null) {
-                    txtb_filHari.setValue(txtb_filHari.getValue() + " - " + hari.getCnmhari());
-                    getTjadkuldetil().setMhari(hari);
-                } else {
-                    txtb_filHari.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filHari.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filHari() {
+//        if (txtb_filHari.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filHari.getValue())) {
+//                Mhari hari = hariService.getHariByID(Integer.parseInt(txtb_filHari.getValue()));
+//
+//                if (hari != null) {
+//                    txtb_filHari.setValue(txtb_filHari.getValue() + " - " + hari.getCnmhari());
+//                    getTjadkuldetil().setMhari(hari);
+//                } else {
+//                    txtb_filHari.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filHari.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- SESI LOV ---------------------------*/
     public void onClick$btnSearchSesiExtended(Event event) {
@@ -866,22 +865,22 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filSesi() {
-        if (txtb_filSesi.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filSesi.getValue())) {
-                Msesikuliah sesikuliah = sesiService.getSesiById(Integer.parseInt(txtb_filSesi.getValue()));
-
-                if (sesikuliah != null) {
-                    txtb_filSesi.setValue(txtb_filSesi.getValue() + " - " + sesikuliah.getCkdsesi());
-                    getTjadkuldetil().setMsesikuliah(sesikuliah);
-                } else {
-                    txtb_filSesi.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filSesi.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filSesi() {
+//        if (txtb_filSesi.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filSesi.getValue())) {
+//                Msesikuliah sesikuliah = sesiService.getSesiById(Integer.parseInt(txtb_filSesi.getValue()));
+//
+//                if (sesikuliah != null) {
+//                    txtb_filSesi.setValue(txtb_filSesi.getValue() + " - " + sesikuliah.getCkdsesi());
+//                    getTjadkuldetil().setMsesikuliah(sesikuliah);
+//                } else {
+//                    txtb_filSesi.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filSesi.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     /*--------------------------- RUANG LOV ---------------------------*/
     public void onClick$btnSearchRuangExtended(Event event) {
@@ -897,22 +896,22 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onChange$txtb_filRuang() {
-        if (txtb_filRuang.getValue() != null) {
-            if (NumberUtils.isNumber(txtb_filRuang.getValue())) {
-                Mruang ruang = mruangService.getMruangByID(Integer.parseInt(txtb_filRuang.getValue()));
-
-                if (ruang != null) {
-                    txtb_filRuang.setValue(txtb_filRuang.getValue() + " - " + ruang.getCnmRuang());
-                    getTjadkuldetil().setMruang(ruang);
-                } else {
-                    txtb_filRuang.setValue("Data Tidak Ditemukan");
-                }
-            } else {
-                txtb_filRuang.setValue("Input Data Salah");
-            }
-        }
-    }
+//    public void onChange$txtb_filRuang() {
+//        if (txtb_filRuang.getValue() != null) {
+//            if (NumberUtils.isNumber(txtb_filRuang.getValue())) {
+//                Mruang ruang = mruangService.getMruangByID(Integer.parseInt(txtb_filRuang.getValue()));
+//
+//                if (ruang != null) {
+//                    txtb_filRuang.setValue(txtb_filRuang.getValue() + " - " + ruang.getCnmRuang());
+//                    getTjadkuldetil().setMruang(ruang);
+//                } else {
+//                    txtb_filRuang.setValue("Data Tidak Ditemukan");
+//                }
+//            } else {
+//                txtb_filRuang.setValue("Input Data Salah");
+//            }
+//        }
+//    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//
