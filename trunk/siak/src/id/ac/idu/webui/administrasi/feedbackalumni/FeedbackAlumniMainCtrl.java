@@ -3,6 +3,7 @@ package id.ac.idu.webui.administrasi.feedbackalumni;
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.administrasi.service.FeedbackAlumniService;
+import id.ac.idu.backend.model.Mfeedback;
 import id.ac.idu.backend.model.Tfeedbackalumni;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
@@ -80,6 +81,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
     // Databinding
     private Tfeedbackalumni selectedFeedbackAlumni;
     private BindingListModelList feedbackAlumnis;
+    private Mfeedback selectedFeedback;
+    private BindingListModelList feedbacks;
 
     // ServiceDAOs / Domain Classes
     private FeedbackAlumniService feedbackAlumniService;
@@ -836,5 +839,21 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
     public FeedbackAlumniDetailCtrl getFeedbackAlumniDetailCtrl() {
         return this.feedbackAlumniDetailCtrl;
+    }
+
+    public void setSelectedFeedback(Mfeedback selectedFeedback) {
+        this.selectedFeedback = selectedFeedback;
+    }
+
+    public Mfeedback getSelectedFeedback() {
+        return this.selectedFeedback;
+    }
+
+    public void setFeedbacks(BindingListModelList feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public BindingListModelList getFeedbacks() {
+        return this.feedbacks;
     }
 }
