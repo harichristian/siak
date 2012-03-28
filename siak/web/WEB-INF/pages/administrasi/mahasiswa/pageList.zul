@@ -9,62 +9,63 @@
 	http://www.zkoss.org/2005/zul/zul.xsd">
 
 	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMahasiswaList" ?>
+    
 	<window id="windowMahasiswaList" apply="${mahasiswaListCtrl}" border="none" width="100%">
-		<borderlayout id="borderLayout_List">
+		<borderlayout id="borderLayoutList">
 			<north border="none" height="26px">
-				<paging id="paging_list" />
+				<paging id="paginglist" />
 			</north>
 			<center border="none">
 				<listbox id="listBox"
 					style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
 					model="@{controller.binding}"
-					selectedItem="@{controller.selected}" vflex="true"
+					selectedItem="@{controller.mahasiswa}" vflex="true"
 					tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
 					height="100%" multiple="false">
 					<listhead sizable="true">
-						<listheader id="list_header_cnim"
+						<listheader id="headerCnim"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Nim" sort="auto"
 							width="10%" />
-						<listheader id="list_header_cnama"
+						<listheader id="headerCnama"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Nama Mahasiswa" sort="auto"
 							width="15%" />
-						<listheader id="list_header_noktp"
+						<listheader id="headerNoktp"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="No Ktp" sort="auto"
 							width="10%" />
-						<listheader id="list_header_cjnsmhs"
+						<listheader id="headerCjnsmhs"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Jenis Mahasiswa" sort="auto"
 							width="10%" />
-                        <listheader id="list_header_ctemplhr"
+                        <listheader id="headerCtemplhr"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Tempat Lahir" sort="auto"
 							width="10%" />
-                        <listheader id="list_header_dtglhr"
+                        <listheader id="headerDtglhr"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Tanggal Lahir" sort="auto"
 							width="10%" />
-                        <listheader id="list_header_cjenkel"
+                        <listheader id="headerCjenkel"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Jenis Kelamin" sort="auto"
 							width="10%" />
-                        <listheader id="list_header_cgoldar"
+                        <listheader id="headerCgoldar"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Golongan Darah" sort="auto"
 							width="10%" />
-                        <listheader id="list_header_ckdagama"
+                        <listheader id="headerCkdagama"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Agama" sort="auto"
 							width="7%" />
-                        <listheader id="list_header_cstatnkh"
+                        <listheader id="headerCstatnkh"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Status Nikah" sort="auto"
 							width="8%" />
 					</listhead>
 
-					<listitem self="@{each='data'}" value="@{data}" forward="onDoubleClick=onDoubleClickedOfficeItem">
+					<listitem self="@{each='data'}" value="@{data}" forward="onDoubleClick=onDoubleClicked">
 						<listcell label="@{data.cnim}"
 							style="padding-left: 5px" />
 						<listcell label="@{data.cnama}"

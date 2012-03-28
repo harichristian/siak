@@ -29,5 +29,17 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mkel" />
         </set>
+        <set name="kodeposid" inverse="true">
+            <key>
+                <column name="KODEPOS_ID" length="32" not-null="false"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmahasiswa"/>
+        </set>
+        <set name="kodepossrtid" inverse="true">
+            <key>
+                <column name="KODEPOS_SRT_ID" length="32" not-null="false"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmahasiswa"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -12,7 +12,7 @@ public class Mhistpangkatmhs  implements java.io.Serializable {
 
      private int id;
      private Mpangkatgolongan mpangkatgolongan;
-     private Mmahasiswa mmahasiswa;
+     private int mahasiswaId;
      private String ctmt;
      private String cket;
      private Date dcreateddate;
@@ -24,15 +24,16 @@ public class Mhistpangkatmhs  implements java.io.Serializable {
     }
 
 	
-    public Mhistpangkatmhs(int id, Mpangkatgolongan mpangkatgolongan, Mmahasiswa mmahasiswa) {
+    public Mhistpangkatmhs(int id, Mpangkatgolongan mpangkatgolongan, int mahasiswaId) {
         this.id = id;
         this.mpangkatgolongan = mpangkatgolongan;
-        this.mmahasiswa = mmahasiswa;
+        this.mahasiswaId = mahasiswaId;
     }
-    public Mhistpangkatmhs(int id, Mpangkatgolongan mpangkatgolongan, Mmahasiswa mmahasiswa, String ctmt, String cket, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
+    public Mhistpangkatmhs(int id, Mpangkatgolongan mpangkatgolongan, int mahasiswaId, String ctmt, String cket
+            , Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
        this.id = id;
        this.mpangkatgolongan = mpangkatgolongan;
-       this.mmahasiswa = mmahasiswa;
+       this.mahasiswaId = mahasiswaId;
        this.ctmt = ctmt;
        this.cket = cket;
        this.dcreateddate = dcreateddate;
@@ -55,13 +56,15 @@ public class Mhistpangkatmhs  implements java.io.Serializable {
     public void setMpangkatgolongan(Mpangkatgolongan mpangkatgolongan) {
         this.mpangkatgolongan = mpangkatgolongan;
     }
-    public Mmahasiswa getMmahasiswa() {
-        return this.mmahasiswa;
+
+    public int getMahasiswaId() {
+        return mahasiswaId;
     }
-    
-    public void setMmahasiswa(Mmahasiswa mmahasiswa) {
-        this.mmahasiswa = mmahasiswa;
+
+    public void setMahasiswaId(int mahasiswaId) {
+        this.mahasiswaId = mahasiswaId;
     }
+
     public String getCtmt() {
         return this.ctmt;
     }

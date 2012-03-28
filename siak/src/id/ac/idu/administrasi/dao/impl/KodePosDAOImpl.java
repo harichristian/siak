@@ -29,7 +29,7 @@ public class KodePosDAOImpl extends BasisDAO<MkodePos> implements KodePosDAO {
     }
 
     @Override
-    public MkodePos getKodePosById(int id) {
+    public MkodePos getKodePosById(String id) {
         return get(MkodePos.class, id);
     }
 
@@ -44,7 +44,7 @@ public class KodePosDAOImpl extends BasisDAO<MkodePos> implements KodePosDAO {
     }
 
     @Override
-    public void deleteKodePosById(int id) {
+    public void deleteKodePosById(String id) {
         MkodePos kps = getKodePosById(id);
 		if(kps != null) delete(kps);
     }

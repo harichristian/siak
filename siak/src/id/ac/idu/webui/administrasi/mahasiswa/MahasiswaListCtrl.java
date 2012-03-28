@@ -1,9 +1,10 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
-import id.ac.idu.administrasi.service.MahasiswaService;
+import com.trg.search.Filter;
 import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.webui.util.GFCBaseListCtrl;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -17,9 +18,11 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 
 /**
- * User: hermanto
- * Date: 08 Mar 12
- * Time: 16:55:45
+ * @author <a href="dbbottle@gmail.com">hermanto</a>
+ * @Date 17 Mar 12
+ * ==================================================================
+ * Copyright (c) 2012  All rights reserved.
+ * ==================================================================
  */
 
 public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Serializable {
@@ -27,29 +30,26 @@ public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Se
     private static final Logger logger = Logger.getLogger(MahasiswaListCtrl.class);
 
     protected Window windowMahasiswaList;
-    private transient MahasiswaService service;
+    protected Borderlayout borderLayoutList;
 
-    protected Panel panelList;
-    protected Borderlayout borderLayout_List;
-    protected Paging paging_list;
+    /* List Object */
+    protected Paging paginglist;
     protected Listbox listBox;
+    protected Listheader headerCnim;
+    protected Listheader headerCnama;
+    protected Listheader headerNoktp;
+    protected Listheader headerCjnsmhs;
+    protected Listheader headerCtemplhr;
+    protected Listheader headerDtglhr;
+    protected Listheader headerCjenkel;
+    protected Listheader headerCgoldar;
+    protected Listheader headerCkdagama;
+    protected Listheader headerCstatnkh;
+
+    private MahasiswaMainCtrl mainCtrl;
 
     private HibernateSearchObject<Mmahasiswa> searchObj;
     private int countRows;
-    private AnnotateDataBinder binder;
-    private MahasiswaMainCtrl mainCtrl;
-
-    protected Listheader list_header_cnim;
-    protected Listheader list_header_cnama;
-    protected Listheader list_header_noktp;
-    protected Listheader list_header_cjnsmhs;
-    protected Listheader list_header_ctemplhr;
-    protected Listheader list_header_dtglhr;
-    protected Listheader list_header_cjenkel;
-    protected Listheader list_header_cgoldar;
-    protected Listheader list_header_ckdagama;
-    protected Listheader list_header_cstatnkh;
-
 
     public MahasiswaListCtrl() {
         super();
@@ -57,149 +57,110 @@ public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Se
 
     @Override
     public void doAfterCompose(Component window) throws Exception {
-        super.doAfterCompose(window);
+        logger.info("Page List Mahasiswa Loaded");
 
+        super.doAfterCompose(window);
         this.self.setAttribute("controller", this, false);
 
         if (arg.containsKey("ModuleMainController")) {
             setMainCtrl((MahasiswaMainCtrl) arg.get("ModuleMainController"));
             getMainCtrl().setListCtrl(this);
-
-            /*if (getMainCtrl().getSelected() != null) setSelected(getMainCtrl().getSelected());
-            else setSelected(null);*/
-        } /*else {
-            setSelected(null);
-        }*/
+        }
     }
 
     public void onCreate$windowMahasiswaList(Event event) throws Exception {
-        binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
-
-        doFillListbox();
+        AnnotateDataBinder binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
+        loadListData();
         binder.loadAll();
     }
 
-    public void doFillListbox() {
-        doFitSize();
-
-        paging_list.setPageSize(getCountRows());
-        paging_list.setDetailed(true);
-
-        list_header_cnim.setSortAscending(new FieldComparator("cnim",true));
-        list_header_cnama.setSortAscending(new FieldComparator("cnama",true));
-        list_header_noktp.setSortAscending(new FieldComparator("noktp",true));
-        list_header_cjnsmhs.setSortAscending(new FieldComparator("cjnsmhs",true));
-        list_header_ctemplhr.setSortAscending(new FieldComparator("ctemplhr",true));
-        list_header_dtglhr.setSortAscending(new FieldComparator("dtglhr",true));
-        list_header_cjenkel.setSortAscending(new FieldComparator("cjenkel",true));
-        list_header_cgoldar.setSortAscending(new FieldComparator("cgoldar",true));
-        list_header_ckdagama.setSortAscending(new FieldComparator("ckdagama",true));
-        list_header_cstatnkh.setSortAscending(new FieldComparator("cstatnkh",true));
-        list_header_cnim.setSortDescending(new FieldComparator("cnim",true));
-        list_header_cnama.setSortDescending(new FieldComparator("cnama",true));
-        list_header_noktp.setSortDescending(new FieldComparator("noktp",true));
-        list_header_cjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",true));
-        list_header_ctemplhr.setSortDescending(new FieldComparator("ctemplhr",true));
-        list_header_dtglhr.setSortDescending(new FieldComparator("dtglhr",true));
-        list_header_cjenkel.setSortDescending(new FieldComparator("cjenkel",true));
-        list_header_cgoldar.setSortDescending(new FieldComparator("cgoldar",true));
-        list_header_ckdagama.setSortDescending(new FieldComparator("ckdagama",true));
-        list_header_cstatnkh.setSortDescending(new FieldComparator("cstatnkh",true));
-
-        searchObj = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class, getCountRows());
-        searchObj.addSort("cnim", false);
-        setSearchObj(searchObj);
-
-        getPagedBindingListWrapper().init(searchObj, getListBox(), paging_list);
-        BindingListModelList lml = (BindingListModelList) getListBox().getModel();
-        setBinding(lml);
-
-        if (getSelected() == null) {
-            if (lml.size() > 0) {
-                final int rowIndex = 0;
-                getListBox().setSelectedIndex(rowIndex);
-                setSelected((Mmahasiswa) lml.get(0));
-                Events.sendEvent(new Event("onSelect", getListBox(), getSelected()));
-            } else new MahasiswaDetailCtrl();
-        }
-    }
-
-    public void onDoubleClickedOfficeItem(Event event) {
-        Mmahasiswa anObject = getSelected();
-
-        if (anObject != null) {
-            setSelected(anObject);
-
-            if (getMainCtrl().getDetailCtrl() == null) Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, null));
-            else Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, null));
-
-            Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, anObject));
-        }
-    }
-
     public void onSelect$listBox(Event event) {
-        Mmahasiswa anObject = getSelected();
+        Mmahasiswa anObject = getMahasiswa();
 
         if (anObject == null) return;
-        if (getMainCtrl().getDetailCtrl() == null) Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, null));
-        else  Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, null));
 
-        getMainCtrl().getDetailCtrl().setSelected(anObject);
-        getMainCtrl().getDetailCtrl().doStoreInitValues();
+        getMainCtrl().setMahasiswa(anObject);
+        getMainCtrl().doStoreInitValues();
 
         String str = "Mahasiswa: " + anObject.getCnim();
         EventQueues.lookup("selectedObjectEventQueue", EventQueues.DESKTOP, true).publish(new Event("onChangeSelectedObject", null, str));
-
     }
 
-    public void doFitSize() {
+    public void onDoubleClicked(Event event) {
+        final Mmahasiswa anObject = getMahasiswa();
+        getMainCtrl().setMahasiswa(anObject);
+
+        if (anObject == null) return;
+
+        Events.sendEvent(new Event("onSelect", getMainCtrl().tabDetail, anObject));
+        getMainCtrl().tabDetail.setSelected(true);
+    }
+
+    public void loadListData() {
+        resizeWindow();
+        paginglist.setPageSize(countRows);
+        paginglist.setDetailed(true);
+        initSort();
+
+        searchObj = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class, countRows);
+
+        if (StringUtils.isNotEmpty(getMainCtrl().txtbNim.getValue()))
+            searchObj.addFilter(new Filter("cnim", "%" + getMainCtrl().txtbNim.getValue() + "%", com.trg.search.Filter.OP_LIKE));
+
+        if (StringUtils.isNotEmpty(getMainCtrl().txtbNama.getValue()))
+            searchObj.addFilter(new Filter("cnama", "%" + getMainCtrl().txtbNama.getValue() + "%", com.trg.search.Filter.OP_LIKE));
+
+        searchObj.addSort("cnim", false);
+
+        getPagedBindingListWrapper().init(searchObj, listBox, paginglist);
+        BindingListModelList lml = (BindingListModelList) listBox.getModel();
+        setBinding(lml);
+
+        if(lml.size() < 1) {
+            return;
+        }
+
+        int rowIndex = listBox.getSelectedIndex();
+        if(rowIndex < 0) rowIndex = 0;
+
+        listBox.setSelectedIndex(rowIndex);
+        setMahasiswa((Mmahasiswa) lml.get(rowIndex));
+        
+        Event ev = new Event(Events.ON_SELECT, listBox, getMahasiswa());
+        Events.sendEvent(ev);
+    }
+
+    private void initSort() {
+        headerCnim.setSortAscending(new FieldComparator("cnim",true));
+        headerCnim.setSortDescending(new FieldComparator("cnim",true));
+        headerCnama.setSortAscending(new FieldComparator("cnama",true));
+        headerCnama.setSortDescending(new FieldComparator("cnama",true));
+        headerNoktp.setSortAscending(new FieldComparator("noktp",true));
+        headerNoktp.setSortDescending(new FieldComparator("noktp",true));
+        headerCjnsmhs.setSortAscending(new FieldComparator("cjnsmhs",true));
+        headerCjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",true));
+        headerCtemplhr.setSortAscending(new FieldComparator("ctemplhr",true));
+        headerCtemplhr.setSortDescending(new FieldComparator("ctemplhr",true));
+        headerDtglhr.setSortAscending(new FieldComparator("dtglhr",true));
+        headerDtglhr.setSortDescending(new FieldComparator("dtglhr",true));
+        headerCjenkel.setSortAscending(new FieldComparator("cjenkel",true));
+        headerCjenkel.setSortDescending(new FieldComparator("cjenkel",true));
+        headerCgoldar.setSortAscending(new FieldComparator("cgoldar",true));
+        headerCgoldar.setSortDescending(new FieldComparator("cgoldar",true));
+        headerCkdagama.setSortAscending(new FieldComparator("ckdagama",true));
+        headerCkdagama.setSortDescending(new FieldComparator("ckdagama",true));
+        headerCstatnkh.setSortAscending(new FieldComparator("cstatnkh",true));
+        headerCstatnkh.setSortDescending(new FieldComparator("cstatnkh",true));
+    }
+
+    private void resizeWindow() {
         final int specialSize = 5;
         final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue().intValue();
-        final int maxListBoxHeight = height - specialSize - 148;
-        setCountRows((int) Math.round(maxListBoxHeight / 17.7));
-        borderLayout_List.setHeight(String.valueOf(maxListBoxHeight) + "px");
+        final int maxListBoxHeight = height - specialSize - 214;
 
+        countRows = (int) Math.round(maxListBoxHeight / 17.7);
+        borderLayoutList.setHeight(String.valueOf(maxListBoxHeight) + "px");
         windowMahasiswaList.invalidate();
-    }
-
-    public Mmahasiswa getSelected() {
-        return getMainCtrl().getSelected();
-    }
-
-    public void setSelected(Mmahasiswa _obj) {
-        getMainCtrl().setSelected(_obj);
-    }
-
-    public HibernateSearchObject<Mmahasiswa> getSearchObj() {
-        return searchObj;
-    }
-
-    public void setSearchObj(HibernateSearchObject<Mmahasiswa> searchObj) {
-        this.searchObj = searchObj;
-    }
-
-    public int getCountRows() {
-        return countRows;
-    }
-
-    public void setCountRows(int countRows) {
-        this.countRows = countRows;
-    }
-
-    public BindingListModelList getBinding() {
-        return getMainCtrl().getBinding();
-    }
-
-    public void setBinding(BindingListModelList _obj) {
-        getMainCtrl().setBinding(_obj);
-    }
-
-    public AnnotateDataBinder getBinder() {
-        return binder;
-    }
-
-    public void setBinder(AnnotateDataBinder binder) {
-        this.binder = binder;
     }
 
     public MahasiswaMainCtrl getMainCtrl() {
@@ -210,19 +171,27 @@ public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Se
         this.mainCtrl = mainCtrl;
     }
 
-    public MahasiswaService getService() {
-        return service;
+    public BindingListModelList getBinding() {
+        return getMainCtrl().getBinding();
     }
 
-    public void setService(MahasiswaService service) {
-        this.service = service;
+    public void setBinding(BindingListModelList _obj) {
+        getMainCtrl().setBinding(_obj);
     }
 
-    public Listbox getListBox() {
-        return listBox;
+    public Mmahasiswa getMahasiswa() {
+        return getMainCtrl().getMahasiswa();
     }
 
-    public void setListBox(Listbox listBox) {
-        this.listBox = listBox;
+    public void setMahasiswa(Mmahasiswa _obj) {
+        getMainCtrl().setMahasiswa(_obj);
+    }
+
+    public HibernateSearchObject<Mmahasiswa> getSearchObj() {
+        return searchObj;
+    }
+
+    public void setSearchObj(HibernateSearchObject<Mmahasiswa> searchObj) {
+        this.searchObj = searchObj;
     }
 }

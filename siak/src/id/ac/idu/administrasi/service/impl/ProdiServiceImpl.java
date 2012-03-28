@@ -4,6 +4,7 @@ import id.ac.idu.administrasi.dao.JenjangDAO;
 import id.ac.idu.administrasi.dao.ProdiDAO;
 import id.ac.idu.administrasi.service.ProdiService;
 import id.ac.idu.backend.bean.ResultObject;
+import id.ac.idu.backend.model.Mjenjang;
 import id.ac.idu.backend.model.Mprodi;
 
 import java.util.List;
@@ -37,7 +38,10 @@ public class ProdiServiceImpl implements ProdiService {
 
     @Override
     public Mprodi getNewProdi() {
-        return getProdiDAO().getNewProdi();
+        //return getProdiDAO().getNewProdi();
+        Mprodi obj = getProdiDAO().getNewProdi();
+        obj.setMjenjang((Mjenjang) getJenjangDAO().getAllJenjangs().get(0));
+        return obj;
     }
 
     @Override

@@ -7,8 +7,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowPendidikanDetail" ?>
+
     <window id="windowPendidikanDetail" apply="${pendidikanDetailCtrl}" border="none" width="100%">
-        <borderlayout id="borderlayout_Pendidikan">
+        <borderlayout id="borderPendidikan">
             <center border="none" autoscroll="true">
                 <panel border="none">
                     <panelchildren>
@@ -23,39 +26,39 @@
                                 <rows>
                                     <row>
                                         <label value="Kode Perguruan Tinggi"/>
-                                        <textbox id="txtb_a1" maxlength="12" readonly="true"/>
+                                            <textbox id="txtbPt1Code" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Nama Perguruan Tinggi"/>
-                                        <textbox id="txtb_a2" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1Name" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Status Perguruan Tinggi"/>
-                                        <textbox id="txtb_a3" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1Status" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Kode Program Studi"/>
-                                        <textbox id="txtb_a4" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1CodeProgram" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Nama Program Studi"/>
-                                        <textbox id="txtb_a5" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1NamaProgram" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Kode Jenjang"/>
-                                        <textbox id="txtb_a6" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1KodeJenjang" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="IPK / Yudisium"/>
-                                        <textbox id="txtb_a7" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1Ipk" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Lulus"/>
-                                        <textbox id="txtb_a8" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1TglLulus" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Beban Studi"/>
-                                        <textbox id="txtb_a9" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt1BebanStudi" maxlength="12" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>
@@ -71,39 +74,39 @@
                                 <rows>
                                     <row>
                                         <label value="Kode Perguruan Tinggi"/>
-                                        <textbox id="txtb_b1" maxlength="12" readonly="true"/>
+                                            <textbox id="txtbPt2Code" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Nama Perguruan Tinggi"/>
-                                        <textbox id="txtb_b2" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2Name" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Status Perguruan Tinggi"/>
-                                        <textbox id="txtb_b3" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2Status" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Kode Program Studi"/>
-                                        <textbox id="txtb_b4" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2CodeProgram" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Nama Program Studi"/>
-                                        <textbox id="txtb_b5" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2NamaProgram" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Kode Jenjang"/>
-                                        <textbox id="txtb_b6" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2KodeJenjang" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="IPK / Yudisium"/>
-                                        <textbox id="txtb_b7" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2Ipk" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Lulus"/>
-                                        <textbox id="txtb_b8" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2TglLulus" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Beban Studi"/>
-                                        <textbox id="txtb_b9" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbPt2BebanStudi" maxlength="12" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>

@@ -29,11 +29,11 @@ public class GFCListModelCtrl  {
     public void setListModel(List _list, Listbox _lbox, Bandbox _box, Object _select) {
         String selidx = String.valueOf(_select);
 
-        for(int i=0; i<_list.size(); i++) {
-            Listitem lu = _lbox.appendItem(((CodecInterface) _list.get(i)).getLabel(), ((CodecInterface) _list.get(i)).getValue());
-            if(selidx.equals(((CodecInterface) _list.get(i)).getValue())) {
+        for (Object a_list : _list) {
+            Listitem lu = _lbox.appendItem(((CodecInterface) a_list).getLabel(), ((CodecInterface) a_list).getValue());
+            if (selidx.equals(((CodecInterface) a_list).getValue())) {
                 _lbox.setSelectedItem(lu);
-                _box.setValue(((CodecInterface) _list.get(i)).getLabel());
+                _box.setValue(((CodecInterface) a_list).getLabel());
             }
         }
     }
@@ -43,5 +43,21 @@ public class GFCListModelCtrl  {
         l.addAll(_list);
 
         return (new ListModelList(l));
+    }
+
+    public void doCheckBox(Listbox lst, Bandbox bnd, String val) {
+        boolean b = false;
+
+        lst.selectItem(null);
+        for (Object lmh : lst.getItems()) {
+               if(((Listitem) lmh).getValue().equals(val)) {
+                   ((Listitem) lmh).setSelected(true);
+                   bnd.setValue(((Listitem) lmh).getLabel());
+                   b = true;
+                   break;
+               }
+        }
+
+        if(!b) bnd.setValue("");
     }
 }

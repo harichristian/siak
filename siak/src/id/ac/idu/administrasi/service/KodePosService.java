@@ -14,7 +14,7 @@ import id.ac.idu.backend.model.MkodePos;
 public interface KodePosService {
     public MkodePos getNewKodePos();
 
-    public MkodePos getKodePosById(int id);
+    public MkodePos getKodePosById(String id);
 
     public MkodePos getKodePosByStringId(String id);
 
