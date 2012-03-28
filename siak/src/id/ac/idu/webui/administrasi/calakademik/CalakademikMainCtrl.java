@@ -289,8 +289,8 @@ public class CalakademikMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mcalakademik> soCalakademik = new HibernateSearchObject<Mcalakademik>(Mcalakademik.class, getCalakademikListCtrl().getCountRows());
-            soCalakademik.addFilter(new Filter("ckdkgt", "%" + txtb_Calakademik_Name.getValue() + "%", Filter.OP_ILIKE));
-            soCalakademik.addSort("ckdkgt", false);
+            soCalakademik.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Calakademik_Name.getValue() + "%", Filter.OP_ILIKE));
+            soCalakademik.addSort("msekolah.cnamaSekolah", false);
 
             // Change the BindingListModel.
             if (getCalakademikListCtrl().getBinder() != null) {
