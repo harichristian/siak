@@ -550,8 +550,12 @@ public class Mmahasiswa implements java.io.Serializable {
     }
 
     public void setMmhspascakhs(Mmhspascakhs mmhspascakhs) {
-        mmhspascakhs.setMahasiswaId(this.id);
-        this.mmhspascakhs = mmhspascakhs;
+        Mmhspascakhs a =  new Mmhspascakhs();
+        if  (mmhspascakhs != null)   {
+                a = mmhspascakhs;
+        }
+        a.setMahasiswaId(this.id);
+        this.mmhspascakhs = a;
     }
 
     public Set<Tabsenmhs> getTabsenmhses() {
