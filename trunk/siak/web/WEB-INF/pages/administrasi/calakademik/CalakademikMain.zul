@@ -47,7 +47,7 @@
                                 tooltiptext="${c:l('button_CalakademikList_SearchNo.tooltiptext')}"/>
                         <space width="20px"/>
 
-                        <label value="Kode"
+                        <label value="Sekolah"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Calakademik_Name" width="100px" maxlength="2"/>
                         <button id="button_CalakademikList_SearchName"
