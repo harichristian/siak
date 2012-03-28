@@ -205,13 +205,13 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         setPageSize(20);
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.YaTidak.class)).getEnumToList(),
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
                  txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
                 txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
                  txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
 
         binder.loadAll();
@@ -464,7 +464,7 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_tgllahir.setValue(mhs.getDtglhr());
             txtb_alamat.setValue(mhs.getCalamat());
             if (mhs.getKodeposId()!=null) {
-                MkodePos pos = (MkodePos) getKodePosService().getKodePosByStringId(mhs.getKodeposId().toString());
+                MkodePos pos = (MkodePos) getKodePosService().getKodePosById(mhs.getKodeposId().getId());
                 txtb_kodepos.setValue(pos.getKodepos());
             }
             txtb_hp.setValue(mhs.getCnohp());
