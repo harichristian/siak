@@ -24,7 +24,7 @@ import id.ac.idu.administrasi.service.MalumniService;
 import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.util.Codec;
-import id.ac.idu.webui.administrasi.mahasiswa.model.OrderSearchKodeposList;
+import id.ac.idu.webui.administrasi.mahasiswa.model.PribadiSearchKodeposList;
 import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
@@ -244,7 +244,7 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_alamat.setValue(getMalumniMainCtrl().getMahasiswa().getCalamat());
             //txtb_kdpos.setValue(getMalumniMainCtrl().getMahasiswa().getKodeposId().toString());
             txtb_kodeposid.setValue(getMalumniMainCtrl().getMahasiswa().getKodeposId().toString());
-            Integer kodePosId = getMalumniMainCtrl().getMahasiswa().getKodeposId();
+            String kodePosId = getMalumniMainCtrl().getMahasiswa().getKodeposId().getId();
             setKodepos(getKodePosService().getKodePosByStringId(kodePosId.toString()));
             txtb_kodepos.setValue(getKodepos().getKodepos());
             //txtb_prop_id.setValue(getMalumniMainCtrl().getMahasiswa().getC);
@@ -526,7 +526,7 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
 		paging_kodepos.setPageSize(pageSize);
 		paging_kodepos.setDetailed(true);
 		getPlwKodepos().init(soKodepos, listKodepos, paging_kodepos);
-		listKodepos.setItemRenderer(new OrderSearchKodeposList());
+		listKodepos.setItemRenderer(new PribadiSearchKodeposList());
     }
 
     public void onClick$button_close(Event event) {
