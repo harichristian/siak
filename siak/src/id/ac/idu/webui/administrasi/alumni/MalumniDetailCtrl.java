@@ -174,6 +174,23 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+     public void onSelect$txtb_ckdbekerja(Event event) throws Exception {
+            Malumni alumni =  getMalumni();
+            alumni.setCsudahkerja(txtb_ckdbekerja.getSelectedItem().getValue().toString().charAt(0));
+            setMalumni(alumni);
+    }
+
+     public void onSelect$txtb_ckdagama(Event event) throws Exception {
+            Malumni alumni =  getMalumni();
+            alumni.setCkdagama(txtb_ckdagama.getSelectedItem().getValue().toString().charAt(0));
+            setMalumni(alumni);
+    }
+
+     public void onSelect$txtb_cstatnkh(Event event) throws Exception {
+            Malumni alumni =  getMalumni();
+            alumni.setCstatnkh(txtb_cstatnkh.getSelectedItem().getValue().toString().charAt(0));
+            setMalumni(alumni);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++ Component Events ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

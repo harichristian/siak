@@ -47,10 +47,10 @@
         <property name="cstatnkh" type="char">
             <column name="CSTATNKH" length="1"/>
         </property>
-        <property name="ckdagama" type="java.lang.Character">
+        <property name="ckdagama" type="char">
             <column name="CKDAGAMA" length="1" />
         </property>
-        <property name="csudahkerja" type="java.lang.Character">
+        <property name="csudahkerja" type="char">
             <column name="CSUDAHKERJA" length="1" />
         </property>
         <property name="ccreatedby" type="string">
