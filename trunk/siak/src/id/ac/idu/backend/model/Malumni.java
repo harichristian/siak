@@ -26,8 +26,8 @@ public class Malumni  implements java.io.Serializable {
      private String cnotelp;
      private String cnohp;
      private char cstatnkh;
-     private Character ckdagama;
-     private Character csudahkerja;
+     private char ckdagama;
+     private char csudahkerja;
      private String ccreatedby;
      private Date dcreateddate;
      private String cupdatedby;
@@ -52,7 +52,7 @@ public class Malumni  implements java.io.Serializable {
         this.ckdpos = ckdpos;
         this.cstatnkh = cstatnkh;
     }
-    public Malumni(int id, Mprov mprov, Msekolah msekolah, Mprodi mprodi, Mkab mkab, Mmahasiswa mmahasiswa, Mkel mkel, Mkec mkec, String cterm, String calamat, String ckdpos, String cnotelp, String cnohp, char cstatnkh, Character ckdagama, Character csudahkerja, String ccreatedby, Date dcreateddate, String cupdatedby, Date dupdateddate, Set<Tfeedbackinstansi> tfeedbackinstansis) {
+    public Malumni(int id, Mprov mprov, Msekolah msekolah, Mprodi mprodi, Mkab mkab, Mmahasiswa mmahasiswa, Mkel mkel, Mkec mkec, String cterm, String calamat, String ckdpos, String cnotelp, String cnohp, char cstatnkh, char ckdagama, char csudahkerja, String ccreatedby, Date dcreateddate, String cupdatedby, Date dupdateddate, Set<Tfeedbackinstansi> tfeedbackinstansis) {
        this.id = id;
        this.mprov = mprov;
        this.msekolah = msekolah;
@@ -174,18 +174,18 @@ public class Malumni  implements java.io.Serializable {
     public void setCstatnkh(char cstatnkh) {
         this.cstatnkh = cstatnkh;
     }
-    public Character getCkdagama() {
+    public char getCkdagama() {
         return this.ckdagama;
     }
     
-    public void setCkdagama(Character ckdagama) {
+    public void setCkdagama(char ckdagama) {
         this.ckdagama = ckdagama;
     }
-    public Character getCsudahkerja() {
+    public char getCsudahkerja() {
         return this.csudahkerja;
     }
     
-    public void setCsudahkerja(Character csudahkerja) {
+    public void setCsudahkerja(char csudahkerja) {
         this.csudahkerja = csudahkerja;
     }
     public String getCcreatedby() {
