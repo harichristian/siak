@@ -8,15 +8,15 @@
             <column name="ID" />
             <generator class="sequence"><param name="sequence">MMHSPASCAKHS_SEQ</param></generator>
         </id>
-        <many-to-one name="mpangkatgolongan" class="id.ac.idu.backend.model.Mpangkatgolongan" fetch="select" lazy="false">
+        <many-to-one name="mpangkatgolongan" class="id.ac.idu.backend.model.Mpangkatgolongan" lazy="false" cascade="none">
             <column name="PANGKATGOLONGAN_ID" />
         </many-to-one>
-        <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="select" lazy="false">
-            <column name="MAHASISWA_ID" not-null="true" />
-        </many-to-one>
-        <many-to-one name="mjabatan" class="id.ac.idu.backend.model.Mjabatan" fetch="select" lazy="false">
+        <many-to-one name="mjabatan" class="id.ac.idu.backend.model.Mjabatan" lazy="false" cascade="none">
             <column name="JABATAN_ID" />
         </many-to-one>
+        <property name="mahasiswaId" type="int">
+            <column name="MAHASISWA_ID" length="4"/>
+        </property>
         <property name="cnip" type="string">
             <column name="CNIP" length="20" />
         </property>

@@ -28,7 +28,7 @@
         </property>
         <set name="mmhspascakhses" inverse="true">
             <key>
-                <column name="PANGKATGOLONGAN_ID" />
+                <column name="PANGKATGOLONGAN_ID" not-null="false" />
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mmhspascakhs" />
         </set>

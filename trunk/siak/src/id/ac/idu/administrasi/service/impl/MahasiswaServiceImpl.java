@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.service.impl;
 
+import id.ac.idu.administrasi.dao.KodePosDAO;
 import id.ac.idu.administrasi.dao.MahasiswaDAO;
 import id.ac.idu.administrasi.service.MahasiswaService;
 import id.ac.idu.backend.bean.ResultObject;
@@ -15,16 +16,25 @@ import java.util.List;
  * ==================================================================
  */
 
-public class MahasiswaServiceImpl implements MahasiswaService {
+public class MahasiswaServiceImpl implements MahasiswaService{
 
     private MahasiswaDAO mahasiswaDAO;
-
+    private KodePosDAO kodeposDAO;
+    
     public MahasiswaDAO getMahasiswaDAO() {
         return mahasiswaDAO;
     }
 
     public void setMahasiswaDAO(MahasiswaDAO mahasiswaDAO) {
         this.mahasiswaDAO = mahasiswaDAO;
+    }
+
+    public KodePosDAO getKodeposDAO() {
+        return kodeposDAO;
+    }
+
+    public void setKodeposDAO(KodePosDAO kodeposDAO) {
+        this.kodeposDAO = kodeposDAO;
     }
 
     @Override

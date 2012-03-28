@@ -30,7 +30,7 @@ public class KodePosServiceImpl implements KodePosService {
     }
 
     @Override
-    public MkodePos getKodePosById(int id) {
+    public MkodePos getKodePosById(String id) {
         return getKodePosDAO().getKodePosById(id);
     }
 

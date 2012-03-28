@@ -326,8 +326,8 @@
           scope="prototype">
         <property name="service" ref="matakuliahService"/>
     </bean>
-
-     <!-- Feedback Alumni -->
+    
+    <!-- Feedback Alumni -->
     <bean id="feedbackAlumniMainCtrl" class="id.ac.idu.webui.administrasi.feedbackalumni.FeedbackAlumniMainCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="feedbackAlumniService" ref="feedbackAlumniService"/>
@@ -341,38 +341,34 @@
         <property name="feedbackAlumniService" ref="feedbackAlumniService"/>
     </bean>
 
-    <bean id="mahasiswaMainCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaMainCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="service" ref="mahasiswaService"/>
-        <property name="listCtrl" ref="mahasiswaListCtrl"/>
+    <bean id="mahasiswaMainCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaMainCtrl" parent="basisCtrl" scope="prototype">
+        <property name="mhsservice" ref="mahasiswaService"/>
+        <property name="mmhspascakhsService" ref="mmhspascakhsService"/>
+        <property name="mppumhskhususService" ref="mppumhskhususService"/>
+        <property name="mhistpangkatmhsService" ref="mhistpangkatmhsService"/>
         <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
+        <property name="listCtrl" ref="mahasiswaListCtrl"/>
     </bean>
-    <bean id="mahasiswaListCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaListCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="service" ref="mahasiswaService"/>
-    </bean>
-    <bean id="mahasiswaDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaDetailCtrl"
-          parent="basisCtrl" scope="prototype">
-        <property name="service" ref="mahasiswaService"/>
+    <bean id="mahasiswaListCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaListCtrl" parent="basisCtrl" scope="prototype" />
+    <bean id="mahasiswaDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaDetailCtrl" parent="basisCtrl" scope="prototype">
         <property name="pribadiCtrl" ref="pribadiDetailCtrl"/>
         <property name="khususCtrl" ref="khususDetailCtrl"/>
         <property name="pendidikanCtrl" ref="pendidikanDetailCtrl"/>
-        <property name="kursusCtrl" ref="kursusDetailCtrl"/>
-        <property name="kegiatanCtrl" ref="kegiatanIlmiahDetailCtrl"/>
-        <property name="pekerjaanCtrl" ref="pekerjaanDetailCtrl"/>
-        <property name="statusCtrl" ref="statusDetailCtrl"/>
     </bean>
     <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
-        <property name="service" ref="mahasiswaService"/>
-        <property name="service2" ref="kodePosService"/>
         <property name="plwKodepos" ref="pagedListWrapper"/>
     </bean>
-    <bean id="khususDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKhususCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="khususDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKhususCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwPangkat" ref="pagedListWrapper"/>
+        <property name="plwJabatan" ref="pagedListWrapper"/>
+        <property name="plwKhusus" ref="pagedListWrapper"/>
+        <property name="plwHisPangkat" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="riwayatPendidikanCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatPendidikanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="riwayatPangkatCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatPangkatCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwPangkat" ref="pagedListWrapper"/>
+    </bean>
     <bean id="pendidikanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPendidikanCtrl" parent="basisCtrl" scope="prototype"/>
-    <bean id="kursusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKursusCtrl" parent="basisCtrl" scope="prototype"/>
-    <bean id="kegiatanIlmiahDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKegiatanCtrl" parent="basisCtrl" scope="prototype"/>
-    <bean id="pekerjaanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPekerjaanCtrl" parent="basisCtrl" scope="prototype"/>
-    <bean id="statusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaStatusCtrl" parent="basisCtrl" scope="prototype"/>
 
     <!-- +++++ KURIKULUM MODULE +++++ -->
     <!-- Kurikulum -->

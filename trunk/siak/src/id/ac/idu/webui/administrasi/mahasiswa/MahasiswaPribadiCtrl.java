@@ -1,16 +1,16 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
-import id.ac.idu.administrasi.service.KodePosService;
-import id.ac.idu.administrasi.service.MahasiswaService;
+import com.trg.search.Filter;
 import id.ac.idu.backend.model.MkodePos;
 import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.util.Codec;
-import id.ac.idu.webui.administrasi.mahasiswa.model.OrderSearchKodeposList;
+import id.ac.idu.webui.administrasi.mahasiswa.model.PribadiSearchKodeposList;
+import id.ac.idu.webui.util.EnumConverter;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
-import id.ac.idu.webui.util.test.EnumConverter;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 /**
  * @author <a href="dbbottle@gmail.com">hermanto</a>
- * @Date 11 Mar 12
+ * @Date 17 Mar 12
  * ==================================================================
  * Copyright (c) 2012  All rights reserved.
  * ==================================================================
@@ -30,27 +30,12 @@ import java.io.Serializable;
 
 public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     private static final long serialVersionUID = -8352659530536077973L;
-    private static final Logger logger = Logger.getLogger(MahasiswaDetailCtrl.class);
+    private static final Logger logger = Logger.getLogger(MahasiswaPribadiCtrl.class);
 
     protected Window windowPribadiDetail;
-    protected Borderlayout borderlayout_Pribadi;
-    protected Listbox txtb_cjnsmhs;
-    protected Listbox txtb_cjenkel;
-    protected Listbox txtb_cgoldar;
-    protected Listbox txtb_ckdagama;
-    protected Listbox txtb_cwarga;
-    protected Listbox txtb_cstatnkh;
-    protected Intbox txtb_kodeposid;
-    protected Textbox txtb_kodepos;
-    protected Intbox txtb_kodepos_srtid;
-    protected Textbox txtb_kodepos_srt;
+    protected Borderlayout borderPribadi;
 
-    private transient PagedListWrapper<MkodePos> plwKodepos;
-    protected Paging paging_kodepos;
-    protected Listbox listKodepos;
-    protected Paging paging_kodepos_srt;
-    protected Listbox listKodepos_srt;
-
+    /* Input Form */
     protected Textbox txtb_cnim;
     protected Textbox txtb_cnama ;
     protected Textbox txtb_noktp ;
@@ -74,16 +59,32 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     protected Bandbox cmb_kodepos;
     protected Bandbox cmb_kodepos_srt;
 
-    protected Textbox txth_cjnsmhs;
+    /* Combo Box */
+    protected Listbox txtb_cjnsmhs;
+    protected Listbox txtb_cjenkel;
+    protected Listbox txtb_cgoldar;
+    protected Listbox txtb_ckdagama;
+    protected Listbox txtb_cwarga;
+    protected Listbox txtb_cstatnkh;
 
     private int pageSize;
     private String kodetype;
 
-    protected transient AnnotateDataBinder binder;
-    private transient MahasiswaService service;
-    private transient KodePosService service2;
+    /* Kode Pos */
+    private transient PagedListWrapper<MkodePos> plwKodepos;
+    protected Paging paging_kodepos;
+    protected Listbox listKodepos;
+    protected Paging paging_kodepos_srt;
+    protected Listbox listKodepos_srt;
+
+    protected Textbox txtb_kodepos;
+    protected Textbox tb_kodepos;
+    protected Textbox txtb_kodepos_srt;
+    protected Textbox tb_kodepos_srt;
 
     private MahasiswaDetailCtrl detailCtrl;
+    
+    protected transient AnnotateDataBinder binder;
 
     public MahasiswaPribadiCtrl() {
         super();
@@ -91,66 +92,93 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     @Override
     public void doAfterCompose(Component window) throws Exception {
-        super.doAfterCompose(window);
-        this.self.setAttribute("controller", this, false);
+        logger.info("Page Pribadi Makasiswa Loaded");
 
-        if (arg.containsKey("ModuleMainController")) {
+        super.doAfterCompose(window);
+        self.setAttribute("controller", this, false);
+
+        if(arg.containsKey("ModuleMainController")) {
             setDetailCtrl((MahasiswaDetailCtrl) arg.get("ModuleMainController"));
             getDetailCtrl().setPribadiCtrl(this);
-
-            if (getDetailCtrl().getSelected() != null) setSelected(getDetailCtrl().getSelected());
-            else setSelected(null);
-        } else setSelected(null);
+        }
+        else setMahasiswa(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     public void onCreate$windowPribadiDetail(Event event) throws Exception {
         setPageSize(20);
-        
-        binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisMahasiswa.class)).getEnumToList(),
-                txtb_cjnsmhs, cmb_cjnsmhs, (getSelected() != null)?getSelected().getCjnsmhs():null);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList()
-                , txtb_cjenkel, cmb_cjenkel, (getSelected() != null)?getSelected().getCjenkel():null);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList()
-                , txtb_cgoldar, cmb_cgoldar, (getSelected() != null)?getSelected().getCgoldar():null);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList()
-                , txtb_ckdagama, cmb_ckdagama, (getSelected() != null)?getSelected().getCkdagama():null);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList()
-                , txtb_cstatnkh, cmb_cstatnkh, (getSelected() != null)?getSelected().getCstatnkh():null);
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.WargaNegara.class)).getEnumToList()
-                , txtb_cwarga, cmb_cwarga, (getSelected() != null)?getSelected().getCwarga():null);
-        
-        binder.loadAll();
 
-        doFitSize(event);
+        binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
+
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisMahasiswa.class)).getEnumToList()
+                ,txtb_cjnsmhs, cmb_cjnsmhs, (getMahasiswa() != null)?getMahasiswa().getCjnsmhs():null);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList()
+                , txtb_cjenkel, cmb_cjenkel, (getMahasiswa() != null)?getMahasiswa().getCjenkel():null);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList()
+                , txtb_cgoldar, cmb_cgoldar, (getMahasiswa() != null)?getMahasiswa().getCgoldar():null);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList()
+                , txtb_ckdagama, cmb_ckdagama, (getMahasiswa() != null)?getMahasiswa().getCkdagama():null);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList()
+                , txtb_cstatnkh, cmb_cstatnkh, (getMahasiswa() != null)?getMahasiswa().getCstatnkh():null);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.WargaNegara.class)).getEnumToList()
+                , txtb_cwarga, cmb_cwarga, (getMahasiswa() != null)?getMahasiswa().getCwarga():null);
+
+        binder.loadAll();
+        doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
+        
+        this.doFitSize();
+        this.doTabKhusus();
     }
 
     public void onOpen$cmb_kodepos(Event event) {
-        this.kodetype = "_1";
+        kodetype = "_1";
+        this.searchKodepos(null);
+    }
+
+    public void onClick$buttonSearch(Event event) {
+        if (StringUtils.isNotEmpty(tb_kodepos.getValue()))
+            this.searchKodepos(new Filter("kodepos", "%" + tb_kodepos.getValue() + "%", Filter.OP_LIKE));
+        else
+            this.searchKodepos(null);
+    }
+
+    public void searchKodepos(Filter filter) {
         HibernateSearchObject<MkodePos> soKodepos = new HibernateSearchObject<MkodePos>(MkodePos.class);
+        if(filter != null) soKodepos.addFilter(filter);
 		soKodepos.addSort("kodepos", false);
 
 		paging_kodepos.setPageSize(pageSize);
 		paging_kodepos.setDetailed(true);
 		getPlwKodepos().init(soKodepos, listKodepos, paging_kodepos);
-		listKodepos.setItemRenderer(new OrderSearchKodeposList());
-    }
-
-    public void onOpen$cmb_kodepos_srt(Event event) {
-        this.kodetype = "_2";
-        HibernateSearchObject<MkodePos> soKodepos = new HibernateSearchObject<MkodePos>(MkodePos.class);
-		soKodepos.addSort("kodepos", false);
-
-		paging_kodepos_srt.setPageSize(pageSize);
-		paging_kodepos_srt.setDetailed(true);
-		getPlwKodepos().init(soKodepos, listKodepos_srt, paging_kodepos_srt);
-		listKodepos_srt.setItemRenderer(new OrderSearchKodeposList());
+		listKodepos.setItemRenderer(new PribadiSearchKodeposList());
     }
 
     public void onClick$button_close(Event event) {
         cmb_kodepos.close();
 	}
+
+    public void onOpen$cmb_kodepos_srt(Event event) {
+        kodetype = "_2";
+        this.searchKodeposSrt(null);
+    }
+
+    public void onClick$buttonSearchSrt(Event event) {
+        if (StringUtils.isNotEmpty(tb_kodepos_srt.getValue()))
+            this.searchKodeposSrt(new Filter("kodepos", "%" + tb_kodepos_srt.getValue() + "%", Filter.OP_LIKE));
+        else
+            this.searchKodeposSrt(null);
+    }
+
+    public void searchKodeposSrt(Filter filter) {
+        HibernateSearchObject<MkodePos> soKodepos = new HibernateSearchObject<MkodePos>(MkodePos.class);
+        if(filter != null) soKodepos.addFilter(filter);
+		soKodepos.addSort("kodepos", false);
+
+		paging_kodepos_srt.setPageSize(pageSize);
+		paging_kodepos_srt.setDetailed(true);
+		getPlwKodepos().init(soKodepos, listKodepos_srt, paging_kodepos_srt);
+		listKodepos_srt.setItemRenderer(new PribadiSearchKodeposList());
+    }
 
     public void onClick$button_close_srt(Event event) {
         cmb_kodepos_srt.close();
@@ -158,41 +186,103 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onKodeposItem(Event event) {
         Listitem item;
-        if(this.kodetype.equals("_1")) item = listKodepos.getSelectedItem();
+        if(kodetype.equals("_1")) item = listKodepos.getSelectedItem();
         else item = listKodepos_srt.getSelectedItem();
-        
+
         if (item != null) {
             MkodePos aKodepos = (MkodePos) item.getAttribute("data");
-            getDetailCtrl().setKodepos(aKodepos);
-
-            if(this.kodetype.equals("_1")) {
-                txtb_kodeposid.setValue(Integer.valueOf((getDetailCtrl().getKodepos().getId()).trim()));
-                txtb_kodepos.setValue(getDetailCtrl().getKodepos().getKodepos());
+            
+            if(kodetype.equals("_1")) {
+                getDetailCtrl().getMainCtrl().getMahasiswa().setKodeposId(aKodepos);
+                txtb_kodepos.setValue(aKodepos.getKodepos());
             }
             else {
-                txtb_kodepos_srtid.setValue(Integer.valueOf((getDetailCtrl().getKodepos().getId()).trim()));
-                txtb_kodepos_srt.setValue(getDetailCtrl().getKodepos().getKodepos());
+                getDetailCtrl().getMainCtrl().getMahasiswa().setKodeposSrtId(aKodepos);
+                txtb_kodepos_srt.setValue(aKodepos.getKodepos());
             }
         }
 
-        if(this.kodetype.equals("_1")) cmb_kodepos.close();
+        if(kodetype.equals("_1")) cmb_kodepos.close();
         else cmb_kodepos_srt.close();
     }
 
-    public void onChange$onChanging(Event event) {
-        try {
-            Messagebox.show("test");
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+    public void onSelect$txtb_cjnsmhs(Event event) {
+        cmb_cjnsmhs.setValue(txtb_cjnsmhs.getSelectedItem().getLabel());
+        getMahasiswa().setCjnsmhs((String) txtb_cjnsmhs.getSelectedItem().getValue());
+        cmb_cjnsmhs.close();
+        this.doTabKhusus();
     }
 
-    public void doFitSize(Event event) {
-        final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue().intValue();
-        final int maxListBoxHeight = height - 243;
-        borderlayout_Pribadi.setHeight(String.valueOf(maxListBoxHeight) + "px");
+    public void onSelect$txtb_cjenkel(Event event) {
+        cmb_cjenkel.setValue(txtb_cjenkel.getSelectedItem().getLabel());
+        getMahasiswa().setCjenkel(((String)txtb_cjenkel.getSelectedItem().getValue()).charAt(0));
+        cmb_cjenkel.close();
+    }
 
+    public void onSelect$txtb_cgoldar(Event event) {
+        cmb_cgoldar.setValue(txtb_cgoldar.getSelectedItem().getLabel());
+        getMahasiswa().setCgoldar(((String)txtb_cgoldar.getSelectedItem().getValue()).charAt(0));
+        cmb_cgoldar.close();
+    }
+
+    public void onSelect$txtb_ckdagama(Event event) {
+        cmb_ckdagama.setValue(txtb_ckdagama.getSelectedItem().getLabel());
+        getMahasiswa().setCkdagama((String) txtb_ckdagama.getSelectedItem().getValue());
+        cmb_ckdagama.close();
+    }
+
+    public void onSelect$txtb_cstatnkh(Event event) {
+        cmb_cstatnkh.setValue(txtb_cstatnkh.getSelectedItem().getLabel());
+        getMahasiswa().setCstatnkh(((String)txtb_cstatnkh.getSelectedItem().getValue()).charAt(0));
+        cmb_cstatnkh.close();
+    }
+
+    public void onSelect$txtb_cwarga(Event event) {
+        cmb_cwarga.setValue(txtb_cwarga.getSelectedItem().getLabel());
+        getMahasiswa().setCwarga(((String)txtb_cwarga.getSelectedItem().getValue()).charAt(0));
+        cmb_cwarga.close();
+    }
+
+    private void doFitSize() {
+        final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
+        final int maxListBoxHeight = height - 277;
+
+        borderPribadi.setHeight(String.valueOf(maxListBoxHeight) + "px");
         windowPribadiDetail.invalidate();
+    }
+
+    private void doTabKhusus() {
+        if(getMahasiswa() == null) return;
+
+        if(getMahasiswa().getCjnsmhs() == null) {
+            getDetailCtrl().tabKhusus.setVisible(false);
+            return;
+        }
+
+        if(getMahasiswa().getCjnsmhs().equals(Codec.JenisMahasiswa.JenMhs2.getValue())) {
+            getDetailCtrl().tabKhusus.setVisible(true);
+            if(getDetailCtrl().tabPanelKhusus.getChildren().size() > 0)
+                getDetailCtrl().getKhususCtrl().doFitSize();
+        }
+        else
+            getDetailCtrl().tabKhusus.setVisible(false);
+    }
+
+    public void doReset() {
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_cjnsmhs, cmb_cjnsmhs
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCjnsmhs()):null);
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_cjenkel, cmb_cjenkel
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCjenkel()):null);
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_cgoldar, cmb_cgoldar
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCgoldar()):null);
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_ckdagama, cmb_ckdagama
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCkdagama()):null);
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_cstatnkh, cmb_cstatnkh
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCstatnkh()):null);
+        GFCListModelCtrl.getInstance().doCheckBox(txtb_cwarga, cmb_cwarga
+                , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCwarga()):null);
+
+        this.doTabKhusus();
     }
 
     public void doReadOnlyMode(boolean b) {
@@ -220,21 +310,9 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
         cmb_kodepos_srt.setDisabled(b);
     }
 
-    public MahasiswaService getService() {
-        return service;
-    }
-
-
-    public void setService(MahasiswaService service) {
-        this.service = service;
-    }
-
-    public KodePosService getService2() {
-        return service2;
-    }
-
-    public void setService2(KodePosService service2) {
-        this.service2 = service2;
+    public void reLoadPage() {
+        binder.loadAll();
+        this.doReset();
     }
 
     public MahasiswaDetailCtrl getDetailCtrl() {
@@ -245,20 +323,20 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
         this.detailCtrl = detailCtrl;
     }
 
-    public Listbox getTxtb_cgoldar() {
-        return txtb_cgoldar;
+    public AnnotateDataBinder getBinder() {
+        return this.binder;
     }
 
-    public void setTxtb_cgoldar(Listbox txtb_cgoldar) {
-        this.txtb_cgoldar = txtb_cgoldar;
+    public void setBinder(AnnotateDataBinder binder) {
+        this.binder = binder;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public Mmahasiswa getMahasiswa() {
+        return getDetailCtrl().getMainCtrl().getMahasiswa();
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setMahasiswa(Mmahasiswa _obj) {
+        getDetailCtrl().getMainCtrl().setMahasiswa(_obj);
     }
 
     public PagedListWrapper<MkodePos> getPlwKodepos() {
@@ -269,23 +347,11 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
         this.plwKodepos = plwKodepos;
     }
 
-    public AnnotateDataBinder getBinder() {
-        return binder;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setBinder(AnnotateDataBinder binder) {
-        this.binder = binder;
-    }
-
-    public Mmahasiswa getSelected() {
-        return getDetailCtrl().getSelected();
-    }
-
-    public void setSelected(Mmahasiswa selected) {
-        getDetailCtrl().setSelected(selected);
-    }
-
-    public Textbox getTxth_cjnsmhs() {
-        return txth_cjnsmhs;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }

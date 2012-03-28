@@ -3,6 +3,8 @@ package id.ac.idu.administrasi.dao;
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.MkodePos;
 
+import java.util.List;
+
 /**
  * @author <a href="dbbottle@gmail.com">hermanto</a>
  * @Date 13 Mar 12
@@ -15,13 +17,13 @@ public interface KodePosDAO {
 
     public MkodePos getNewKodePos();
 
-    public MkodePos getKodePosById(int id);
+    public MkodePos getKodePosById(String id);
 
     public MkodePos getKodePosByStringId(String id);
 
     public MkodePos getKodePos(String code);
     
-    public void deleteKodePosById(int id);
+    public void deleteKodePosById(String id);
 
     public int getCount();
 

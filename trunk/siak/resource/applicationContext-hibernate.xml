@@ -187,11 +187,15 @@
     <bean id="kegiatanDAO" class="id.ac.idu.administrasi.dao.impl.KegiatanDAOImpl" parent="basisDAO"/>
     <bean id="calakademikDAO" class="id.ac.idu.administrasi.dao.impl.CalakademikDAOImpl" parent="basisDAO"/>
     <bean id="mahasiswaDAO" class="id.ac.idu.administrasi.dao.impl.MahasiswaDAOImpl" parent="basisDAO"/>
+    <bean id="mmhspascakhsDAO" class="id.ac.idu.administrasi.dao.impl.MmhspascakhsDAOImpl" parent="basisDAO"/>
+    <bean id="mppumhskhususDAO" class="id.ac.idu.administrasi.dao.impl.MppumhskhususDAOImpl" parent="basisDAO"/>
+    <bean id="mhistpangkatmhsDAO" class="id.ac.idu.administrasi.dao.impl.MhistpangkatmhsDAOImpl" parent="basisDAO"/>
     <bean id="mpegawaiDAO" class="id.ac.idu.administrasi.dao.impl.MpegawaiDAOImpl" parent="basisDAO"/>
     <bean id="malumniDAO" class="id.ac.idu.administrasi.dao.impl.MalumniDAOImpl" parent="basisDAO"/>
     <bean id="mfasilitasruangDAO" class="id.ac.idu.administrasi.dao.impl.MfasilitasruangDAOImpl" parent="basisDAO"/>
     <bean id="mfeedbackDAO" class="id.ac.idu.administrasi.dao.impl.MfeedbackDAOImpl" parent="basisDAO"/>
     <bean id="tfeedbackinstansiDAO" class="id.ac.idu.administrasi.dao.impl.TfeedbackinstansiDAOImpl" parent="basisDAO"/>
+    <bean id="kodeposDAO" class="id.ac.idu.administrasi.dao.impl.KodePosDAOImpl" parent="basisDAO"/>
     <bean id="mprovDAO" class="id.ac.idu.administrasi.dao.impl.MprovDAOImpl" parent="basisDAO"/>
     <bean id="mkabDAO" class="id.ac.idu.administrasi.dao.impl.MkabDAOImpl" parent="basisDAO"/>
     <bean id="mkecDAO" class="id.ac.idu.administrasi.dao.impl.MkecDAOImpl" parent="basisDAO"/>
@@ -274,7 +278,21 @@
     </bean>
     <bean name="mahasiswaService" class="id.ac.idu.administrasi.service.impl.MahasiswaServiceImpl">
         <property name="mahasiswaDAO" ref="mahasiswaDAO"/>
+        <property name="kodeposDAO" ref="kodeposDAO"/>
     </bean>
+
+    <bean name="mmhspascakhsService" class="id.ac.idu.administrasi.service.impl.MmhspascakhsServiceImpl">
+        <property name="mmhspascakhsDAO" ref="mmhspascakhsDAO"/>
+    </bean>
+
+    <bean name="mppumhskhususService" class="id.ac.idu.administrasi.service.impl.MppumhskhususServiceImpl">
+        <property name="mppumhskhususDAO" ref="mppumhskhususDAO"/>
+    </bean>
+
+    <bean name="mhistpangkatmhsService" class="id.ac.idu.administrasi.service.impl.MhistpangkatmhsServiceImpl">
+        <property name="mhistpangkatmhsDAO" ref="mhistpangkatmhsDAO"/>
+    </bean>
+    
     <bean name="feedbackAlumniService" class="id.ac.idu.administrasi.service.impl.FeedbackAlumniServiceImpl">
         <property name="feedbackAlumniDAO" ref="feedbackAlumniDAO"/>
         <property name="mahasiswaDAO" ref="mahasiswaDAO"/>

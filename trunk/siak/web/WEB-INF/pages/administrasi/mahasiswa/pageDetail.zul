@@ -7,17 +7,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
-    <style>
-        .z-tab-ver .z-tab-ver-text {
-            text-align: left;
-        }
-    </style>
+
     <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMahasiswaDetail" ?>
+
     <window id="windowMahasiswaDetail" apply="${mahasiswaDetailCtrl}" border="none" width="100%">
-        <tabbox id="tabbox_Main">
+        <tabbox id="tabboxMain">
             <tabs width="130px">
                 <tab id="tabPribadi" label="Data Pribadi"/>
-                <tab id="tabKhusus" label="Khusus"/>
+                <tab id="tabKhusus" label="Khusus" visible="false"/>
                 <tab id="tabPendidikan" label="Pendidikan"/>
                 <tab id="tabKursus" label="Kursus / Latihan"/>
                 <tab id="tabKegiatan" label="Kegiatan Ilmiah"/>
@@ -26,7 +23,7 @@
             </tabs>
             <tabpanels>
                 <tabpanel id="tabPanelPribadi" height="100%" style="border: none; padding: 0px; "/>
-                <tabpanel id="tabPanelKhusus" height="100%" style="border: none; padding: 0px; "/>
+                <tabpanel id="tabPanelKhusus" height="100%" style="border: none; padding: 0px; " />
                 <tabpanel id="tabPanelPendidikan" height="100%" style="border: none; padding: 0px; "/>
                 <tabpanel id="tabPanelKursus" height="100%" style="border: none; padding: 0px; "/>
                 <tabpanel id="tabPanelKegiatan" height="100%" style="border: none; padding: 0px; "/>
