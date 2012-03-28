@@ -224,7 +224,7 @@
                                                     <listbox id="txtb_cstatnkh" mold="paging" autopaging="true"
                                                              width="180px"
                                                              onSelect="cmb_cstatnkh.value=self.selectedItem.label;
-                                                             txth_cstatnkh.value=self.selectedItem.value; cmb_cstatnkh.close();"/>
+                                                             txtb_statusnikah.value=self.selectedItem.value; cmb_cstatnkh.close();"/>
                                                 </bandpopup>
                                             </bandbox>
                                         </hbox>
@@ -246,7 +246,7 @@
                                                     <listbox id="txtb_ckdagama" mold="paging" autopaging="true"
                                                              width="180px"
                                                              onSelect="cmb_ckdagama.value=self.selectedItem.label;
-                                                             txth_ckdagama.value=self.selectedItem.value; cmb_ckdagama.close();"/>
+                                                             txtb_agama.value=self.selectedItem.value; cmb_ckdagama.close();"/>
                                                 </bandpopup>
                                             </bandbox>
                                         </hbox>
@@ -268,7 +268,7 @@
                                                     <listbox id="txtb_ckdbekerja" mold="paging" autopaging="true"
                                                              width="180px"
                                                              onSelect="cmb_ckdbekerja.value=self.selectedItem.label;
-                                                             txth_ckdbekerja.value=self.selectedItem.value; cmb_ckdbekerja.close();"/>
+                                                             txtb_bekerja.value=self.selectedItem.value; cmb_ckdbekerja.close();"/>
                                                 </bandpopup>
                                             </bandbox>
                                         </hbox>
