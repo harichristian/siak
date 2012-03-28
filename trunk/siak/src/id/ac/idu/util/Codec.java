@@ -428,4 +428,85 @@ public class Codec {
             return this.name();
         }
     }
+
+    public enum SudahBekerja implements CodecInterface {
+        Y("Y","Ya"),
+        T("T","Tidak");
+
+        private final String value;
+        private final String label;
+
+        private SudahBekerja(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+
+    public enum AgamaAlumni implements CodecInterface {
+        I("I","Islam"),
+        C("C","Khatolik"),
+        N("N","Kristen"),
+        B("B","Buddha"),
+        H("H","Hindu"),
+        K("K","Kepercayaan");
+
+        private final String value;
+        private final String label;
+
+        private AgamaAlumni(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+    public enum StsNikahAlumni implements CodecInterface {
+        B("B","Belum Kawin"),
+        K("K","Kawin"),
+        J("J","Janda"),
+        D("D","Duda");
+
+        private final String value;
+        private final String label;
+
+        private StsNikahAlumni(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
 }
+
