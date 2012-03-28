@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowTermList" ?>
+
+    <window id="windowTermList" apply="${termListCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderLayout_termList">
+
+            <!-- PAGING COMPONENT -->
+            <north border="none" height="26px">
+                <paging id="paging_TermList"/>
+            </north>
+
+            <center border="none">
+
+                <listbox id="listBoxTerm"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.terms}"
+                         selectedItem="@{controller.selectedTerm}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_TermList_No"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="KODE" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_TermList_Name1"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="DESKRIPSI" sort="auto"
+                                    width="30%"/>
+                    </listhead>
+
+                    <listitem self="@{each='term'}" value="@{term}"
+                              forward="onDoubleClick=onDoubleClickedTermItem">
+
+                        <listcell label="@{term.kdTerm}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{term.deskripsi}"
+                                  style="padding-left: 5px"/>
+                    </listitem>
+
+                </listbox>
+
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>

@@ -6,7 +6,7 @@
     <class name="id.ac.idu.backend.model.Mterm" table="MTERM" >
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+            <generator class="sequence"><param name="sequence">MTERM_SEQ</param></generator>
         </id>
         <property name="kdTerm" type="string">
             <column name="KD_TERM" length="4" not-null="true" unique="true" />

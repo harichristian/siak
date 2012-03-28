@@ -281,6 +281,22 @@
         <property name="kegiatanService" ref="kegiatanService"/>
     </bean>
 
+    <!-- Term -->
+    <bean id="termMainCtrl" class="id.ac.idu.webui.administrasi.term.TermMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="termService" ref="termService"/>
+        <property name="termListCtrl" ref="termListCtrl"/>
+        <property name="termDetailCtrl" ref="termDetailCtrl"/>
+    </bean>
+    <bean id="termListCtrl" class="id.ac.idu.webui.administrasi.term.TermListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="termService" ref="termService"/>
+    </bean>
+    <bean id="termDetailCtrl" class="id.ac.idu.webui.administrasi.term.TermDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="termService" ref="termService"/>
+    </bean>
+
     <!-- Sekolah -->
     <bean id="sekolahMainCtrl" class="id.ac.idu.webui.administrasi.sekolah.SekolahMainCtrl"
           parent="basisCtrl" scope="prototype">

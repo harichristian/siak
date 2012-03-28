@@ -180,6 +180,7 @@
     <bean id="jabatanDAO" class="id.ac.idu.administrasi.dao.impl.JabatanDAOImpl" parent="basisDAO"/>
     <bean id="kodePosDAO" class="id.ac.idu.administrasi.dao.impl.KodePosDAOImpl" parent="basisDAO"/>
     <bean id="gradeDAO" class="id.ac.idu.administrasi.dao.impl.GradeDAOImpl" parent="basisDAO"/>
+    <bean id="termDAO" class="id.ac.idu.administrasi.dao.impl.TermDAOImpl" parent="basisDAO"/>
     <bean id="sekolahDAO" class="id.ac.idu.administrasi.dao.impl.SekolahDAOImpl" parent="basisDAO"/>
     <bean id="mruangDAO" class="id.ac.idu.administrasi.dao.impl.MruangDAOImpl" parent="basisDAO"/>
     <bean id="fasilitasDAO" class="id.ac.idu.administrasi.dao.impl.FasilitasDAOImpl" parent="basisDAO"/>
@@ -263,6 +264,9 @@
     </bean>
     <bean name="gradeService" class="id.ac.idu.administrasi.service.impl.GradeServiceImpl">
         <property name="gradeDAO" ref="gradeDAO"/>
+    </bean>
+    <bean name="termService" class="id.ac.idu.administrasi.service.impl.TermServiceImpl">
+        <property name="termDAO" ref="termDAO"/>
     </bean>
     <bean name="sekolahService" class="id.ac.idu.administrasi.service.impl.SekolahServiceImpl">
         <property name="sekolahDAO" ref="sekolahDAO"/>
@@ -469,7 +473,7 @@
         <property name="fasilitasDAO" ref="fasilitasDAO"/>
     </bean>
 
-     <bean name="mpegawaiService" class="id.ac.idu.administrasi.service.impl.MpegawaiServiceImpl">
+    <bean name="mpegawaiService" class="id.ac.idu.administrasi.service.impl.MpegawaiServiceImpl">
         <property name="mpegawaiDAO" ref="mpegawaiDAO"/>
     </bean>
 
@@ -493,15 +497,15 @@
         <property name="mprovDAO" ref="mprovDAO"/>
     </bean>
 
-      <bean name="mkabService" class="id.ac.idu.administrasi.service.impl.MkabServiceImpl">
+    <bean name="mkabService" class="id.ac.idu.administrasi.service.impl.MkabServiceImpl">
         <property name="mkabDAO" ref="mkabDAO"/>
     </bean>
 
-      <bean name="mkecService" class="id.ac.idu.administrasi.service.impl.MkecServiceImpl">
+    <bean name="mkecService" class="id.ac.idu.administrasi.service.impl.MkecServiceImpl">
         <property name="mkecDAO" ref="mkecDAO"/>
     </bean>
 
-      <bean name="mkelService" class="id.ac.idu.administrasi.service.impl.MkelServiceImpl">
+    <bean name="mkelService" class="id.ac.idu.administrasi.service.impl.MkelServiceImpl">
         <property name="mkelDAO" ref="mkelDAO"/>
     </bean>
 
