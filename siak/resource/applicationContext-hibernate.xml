@@ -106,6 +106,8 @@
                 <value>id/ac/idu/backend/model/Mmahasiswa.hbm.xml</value>
                 <value>id/ac/idu/backend/model/Mfeedback.hbm.xml</value>
                 <value>id/ac/idu/backend/model/Tfeedbackalumni.hbm.xml</value>
+                <value>id/ac/idu/backend/model/Tfeedbackdosen.hbm.xml</value>
+                <value>id/ac/idu/backend/model/Tfeedbackwisudawan.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -532,9 +534,17 @@
 
      <bean name="feedbackDosenService" class="id.ac.idu.administrasi.service.impl.FeedbackDosenServiceImpl">
         <property name="feedbackDosenDAO" ref="feedbackDosenDAO"/>
+        <property name="mahasiswaDAO" ref="mahasiswaDAO"/>
+        <property name="sekolahDAO" ref="sekolahDAO"/>
+        <property name="prodiDAO" ref="prodiDAO"/>
+        <property name="feedbackDAO" ref="feedbackDAO"/>
     </bean>
 
      <bean name="feedbackWisudawanService" class="id.ac.idu.administrasi.service.impl.FeedbackWisudawanServiceImpl">
         <property name="feedbackWisudawanDAO" ref="feedbackWisudawanDAO"/>
+        <property name="mahasiswaDAO" ref="mahasiswaDAO"/>
+        <property name="sekolahDAO" ref="sekolahDAO"/>
+        <property name="prodiDAO" ref="prodiDAO"/>
+        <property name="feedbackDAO" ref="feedbackDAO"/>
     </bean>
 </beans>

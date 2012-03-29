@@ -143,7 +143,7 @@ public class FeedbackDosenListCtrl extends GFCBaseListCtrl<Tfeedbackdosen> imple
         // ++ create the searchObject and init sorting ++//
         // ++ create the searchObject and init sorting ++//
         searchObj = new HibernateSearchObject<Tfeedbackdosen>(Tfeedbackdosen.class, getCountRows());
-        searchObj.addSort(ConstantUtil.PEGAWAI_DOT_NAMA, false);
+        searchObj.addSort(ConstantUtil.TERM, false);
         setSearchObj(searchObj);
 
         // Set the BindingListModel
