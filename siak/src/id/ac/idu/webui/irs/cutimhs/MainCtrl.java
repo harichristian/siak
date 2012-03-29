@@ -6,10 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.ibm.xtq.bcel.classfile.Code;
+import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.administrasi.service.MahasiswaService;
+import id.ac.idu.administrasi.service.StatusMahasiswaService;
 import id.ac.idu.backend.model.Mmahasiswa;
+import id.ac.idu.backend.model.Mstatusmhs;
 import id.ac.idu.backend.model.Tcutimhs;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
@@ -17,6 +19,7 @@ import id.ac.idu.irs.service.CutimhsService;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.office.report.OfficeSimpleDJReport;
 import id.ac.idu.webui.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -49,14 +52,10 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnHelp;
 
     protected Checkbox checkbox_List_ShowAll;
-    protected Button button_List_PrintList;
-
     protected Textbox txtb_search1;
-	protected Button button_search1;
-	protected Textbox txtb_search2;
-	protected Button button_search2;
-    protected Textbox txtb_search3;
-	protected Button button_search3;
+	protected Datebox txtb_search2;
+	protected Textbox txtb_search3;
+	protected Button buttonSearch;
 
     private final String btnCtroller_ClassPrefix = "button_Ctrl_Main";
     private ButtonStatusCtrl btnCtrl;
@@ -66,8 +65,10 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     private Mmahasiswa mahasiswa;
 
     private BindingListModelList binding;
+
     private CutimhsService service;
     private MahasiswaService service2;
+    private StatusMahasiswaService statusService;
 
     private ListCtrl listCtrl;
     private DetailCtrl detailCtrl;
@@ -106,8 +107,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         if (tabPanelList != null) {
-            ZksampleCommonUtils.createTabPanelContent(tabPanelList, this, "ModuleMainController"
-                    , "/WEB-INF/pages/irs/cutimhs/pageList.zul");
+            ZksampleCommonUtils.createTabPanelContent(tabPanelList, this, "ModuleMainController" , "/WEB-INF/pages/irs/cutimhs/pageList.zul");
         }
     }
 
@@ -121,30 +121,48 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         if (tabPanelDetail != null) {
-            ZksampleCommonUtils.createTabPanelContent(tabPanelDetail, this, "ModuleMainController"
-                    , "/WEB-INF/pages/irs/cutimhs/pageDetail.zul");
+            ZksampleCommonUtils.createTabPanelContent(tabPanelDetail, this, "ModuleMainController" , "/WEB-INF/pages/irs/cutimhs/pageDetail.zul");
         }
-    }
-
-    public void onClick$button_List_PrintList(Event event) throws InterruptedException {
-        final Window win = (Window) Path.getComponent("/outerIndexWindow");
-        new OfficeSimpleDJReport(win);
     }
 
     public void onClick$checkbox_List_ShowAll(Event event) {
         txtb_search1.setValue("");
-        txtb_search2.setValue("");
+        txtb_search2.setValue(null);
         txtb_search3.setValue("");
+        this.searchList();
+    }
 
-        HibernateSearchObject<Tcutimhs> soData = new HibernateSearchObject<Tcutimhs>(Tcutimhs.class
-                , getListCtrl().getCountRows());
+    public void onClick$buttonSearch(Event event) {
+        Filter filter1 = null;
+        Filter filter2 = null;
+        Filter filter3 = null;
+
+        if (StringUtils.isNotEmpty(txtb_search1.getValue()))
+            filter1 = new Filter("cnosurat", "%" + txtb_search1.getValue() + "%", Filter.OP_LIKE);
+
+        if (txtb_search2.getValue() != null)
+            filter2 = new Filter("dtglsurat", txtb_search2.getValue() , Filter.OP_EQUAL);
+
+        if (StringUtils.isNotEmpty(txtb_search3.getValue()))
+            filter3 = new Filter("cthajar", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
+
+        this.searchList(filter1, filter2, filter3);
+    }
+
+    public void searchList(Filter... filters) {
+        HibernateSearchObject<Tcutimhs> soData = new HibernateSearchObject<Tcutimhs>(Tcutimhs.class , getListCtrl().getCountRows());
+
+        if(filters != null) {
+            for(Filter onFiler : filters) {
+                if(onFiler != null) soData.addFilter(onFiler);
+            }
+        }
+        soData.addFilter(new com.trg.search.Filter("cjenis", Codec.JenisSurat.Status2.getValue(), com.trg.search.Filter.OP_EQUAL));
         soData.addSort("cnosurat", false);
 
         if (getListCtrl().getBinder() != null) {
             getListCtrl().getPagedBindingListWrapper().setSearchObject(soData);
-
             Tab currentTab = tabbox_Main.getSelectedTab();
-
             if (!currentTab.equals(tabList)) tabList.setSelected(true);
             else currentTab.setSelected(true);
         }
@@ -153,10 +171,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights() {
         final UserWorkspace workspace = getUserWorkspace();
 
-        button_List_PrintList.setVisible(true);
-        button_search1.setVisible(true);
-        button_search2.setVisible(true);
-        button_search3.setVisible(true);
+        buttonSearch.setVisible(true);
         btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
@@ -187,7 +202,6 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         doStoreInitValues();
 
         final Tcutimhs anObject = getService().getNew();
-
         getDetailCtrl().setSelected(anObject);
         getDetailCtrl().setSelected(getSelected());
 
@@ -204,12 +218,15 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doSave(Event event) throws InterruptedException {
+        final Mstatusmhs anStatus = getStatusService().getStatusMahasiswaById(Integer.valueOf(Codec.JenisSurat.Status2.getValue()));
+        getMahasiswa().setMstatusmhs(anStatus);
+        
         getDetailCtrl().getSelected().setCjenis(Codec.JenisSurat.Status2.getValue());
         getDetailCtrl().getSelected().setMmahasiswa(getMahasiswa());
         getDetailCtrl().getBinder().saveAll();
         try {
             getService().saveOrUpdate(getDetailCtrl().getSelected());
-            getService2().saveOrUpdate(calculateMahasiswa());
+            getService2().saveOrUpdate(getMahasiswa());
             doStoreInitValues();
             getListCtrl().doFillListbox();
             Events.postEvent("onSelect", getListCtrl().getListBox(), getSelected());
@@ -226,13 +243,6 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
             btnCtrl.setInitEdit();
             getDetailCtrl().doReadOnlyMode(true);
         }
-    }
-
-    public Mmahasiswa calculateMahasiswa() {
-        Mmahasiswa mhs = getMahasiswa();
-        mhs.setCkdstatmhs(Codec.StatusMahasiswa.Status2.getValue());
-
-        return mhs;
     }
 
     public void onClick$btnEdit(Event event) throws InterruptedException {
@@ -437,6 +447,14 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setService2(MahasiswaService service2) {
         this.service2 = service2;
+    }
+
+    public StatusMahasiswaService getStatusService() {
+        return statusService;
+    }
+
+    public void setStatusService(StatusMahasiswaService statusService) {
+        this.statusService = statusService;
     }
 
     public ListCtrl getListCtrl() {

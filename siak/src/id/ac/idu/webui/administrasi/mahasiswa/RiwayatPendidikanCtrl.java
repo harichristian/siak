@@ -117,11 +117,13 @@ public class RiwayatPendidikanCtrl extends GFCBaseCtrl implements Serializable {
 
 
         ListModelList lml = (ListModelList) listRiwayatPendidikan.getListModel();
-        lml.clear();
-
-        for(Object onPendidikan : _lst) {
-            Listitem item = (Listitem) onPendidikan;
-            lml.add((Mppumhskhusus) item.getAttribute(MahasiswaKhususCtrl.LIST_DATA));
+        if(lml == null) lml = new ListModelList();
+        else {
+            lml.clear();
+            for(Object onPendidikan : _lst) {
+                Listitem item = (Listitem) onPendidikan;
+                lml.add((Mppumhskhusus) item.getAttribute(MahasiswaKhususCtrl.LIST_DATA));
+            }
         }
         
         if(!this.isnew) lml.set(idx, getMppumhskhusus());

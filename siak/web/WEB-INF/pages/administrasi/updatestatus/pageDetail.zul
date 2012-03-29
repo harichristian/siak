@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul
+	http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowUpdateStatusDetail" ?>
+
+    <window id="windowUpdateStatusDetail" apply="${updateStatusDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderDetail">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false">
+                            <caption image="/images/icons/view.gif" label="${c:l('common.Details')}"/>
+
+                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="200px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label value="Nim"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox id="txtbCnim" value="@{controller.mahasiswa.cnim}" readonly="true" constraint="no empty" maxlength="8" width="100px"/>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Nama"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox id="txtbCnama" value="@{controller.mahasiswa.cnama}" readonly="true" constraint="no empty" maxlength="8" width="200px"/>
+                                    </row>
+                                    <row>
+                                        <space/>
+                                        <space/>
+                                    </row>
+                                    <row>
+                                        <label value="Status Lama"/>
+                                        <textbox id="txtbCkdstatmhs" value="@{controller.mahasiswa.mstatusmhs.ckdstatmhs}" readonly="true" maxlength="8" width="80px"/>
+                                    </row>
+                                    <row>
+                                         <label value="Nama Status Lama"/>
+                                        <textbox id="txtbCnmstatmhs" value="@{controller.mahasiswa.mstatusmhs.cnmstatmhs}" readonly="true" maxlength="8" width="150px"/>
+                                    </row>
+                                    <row>
+                                        <label value="Status Baru"/>
+                                        <hbox>
+                                            <textbox id="txtbCodeStatBaru" value="" readonly="true" maxlength="8" width="80px"/>
+                                            <bandbox id="cmbStatus" sclass="mybandbox" width="0px" tooltiptext="Status Mahasiswa" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Status Mahasiswa"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelStatus" value="Status"/>
+                                                                        <textbox id="tbStatus" width="98%"/>
+                                                                        <button id="buttonSearch" image="/images/icons/search.gif" label="Search" tooltiptext="Search Status"/>
+                                                                        <button id="buttonClose" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingStatus" pageSize="20"/>
+                                                                            <listbox id="listStatus" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="cnmstatmhs" sort="auto" width="90%" label="Status"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                         <label value="Nama Status Baru"/>
+                                        <textbox id="txtbNamaStatBaru" value="" readonly="true" maxlength="8" width="150px"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+    </window>
+</zk>

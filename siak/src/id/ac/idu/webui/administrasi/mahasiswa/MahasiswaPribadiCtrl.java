@@ -32,8 +32,13 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     private static final long serialVersionUID = -8352659530536077973L;
     private static final Logger logger = Logger.getLogger(MahasiswaPribadiCtrl.class);
 
+    protected transient AnnotateDataBinder binder;
+
     protected Window windowPribadiDetail;
     protected Borderlayout borderPribadi;
+    private MahasiswaDetailCtrl detailCtrl;
+    private int pageSize;
+
 
     /* Input Form */
     protected Textbox txtb_cnim;
@@ -66,8 +71,7 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox txtb_ckdagama;
     protected Listbox txtb_cwarga;
     protected Listbox txtb_cstatnkh;
-
-    private int pageSize;
+    
     private String kodetype;
 
     /* Kode Pos */
@@ -81,10 +85,6 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox tb_kodepos;
     protected Textbox txtb_kodepos_srt;
     protected Textbox tb_kodepos_srt;
-
-    private MahasiswaDetailCtrl detailCtrl;
-    
-    protected transient AnnotateDataBinder binder;
 
     public MahasiswaPribadiCtrl() {
         super();
@@ -124,10 +124,9 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
                 , txtb_cwarga, cmb_cwarga, (getMahasiswa() != null)?getMahasiswa().getCwarga():null);
 
         binder.loadAll();
-        doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
-        
         this.doFitSize();
         this.doTabKhusus();
+        doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
     }
 
     public void onOpen$cmb_kodepos(Event event) {

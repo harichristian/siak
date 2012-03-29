@@ -7,67 +7,80 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowKursusDetail" ?>
     
     <window id="windowKursusDetail" apply="${kursusDetailCtrl}" border="none" width="100%">
-        <borderlayout id="borderlayout_Kursus">
+        <borderlayout id="borderKursus">
             <center border="none" autoscroll="true">
                 <panel border="none">
                     <panelchildren>
                         <groupbox mold="3d" closable="false" style="height:100%; ">
                             <caption image="/images/icons/view.gif" label="Kursus"/>
-                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
-                                  style="border:0px; padding-left:5px; padding-right:5px; ">
-                                <columns>
-                                    <column width="200px"/>
-                                    <column/>
-                                </columns>
-                                <rows>
-                                    <row>
-                                        <label value="Nama Kursus"/>
-                                        <textbox id="txtb_a1" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Lama"/>
-                                        <textbox id="txtb_a2" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Tahun Selesai"/>
-                                        <textbox id="txtb_a3" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Tempat"/>
-                                        <textbox id="txtb_a4" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Keterangan"/>
-                                        <textbox id="txtb_a5" maxlength="12" readonly="true"/>
-                                    </row>
-                                </rows>
-                            </grid>
+                            <div sclass="z-toolbar" style="padding:0">
+                                <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                    <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                        <button id="btnNewKursus" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                        <button id="btnDeleteKursus" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                    </toolbar>
+                                </hbox>
+                            </div>
+                            <borderlayout id="borderRiwayatKursus" style="height:200px">
+                                <north border="none" height="26px">
+                                    <paging id="pagingRiwayatKursus" style="width:100%" pageSize="20"/>
+                                </north>
+                                <center border="none">
+                                    <listbox id="listRiwayatKursus" width="100%" height="100%" multiple="false">
+                                        <listhead sizable="true">
+                                            <listheader id="cno" sort="auto" width="5%" label="No"/>
+                                            <listheader id="cnmkursus" sort="auto" width="20%" label="Nama Kursus"/>
+                                            <listheader id="clama" sort="auto" width="10%" label="Lama"/>
+                                            <listheader id="cthnselesai" sort="auto" width="10%" label="Tahun Selesai"/>
+                                            <listheader id="ctempat" sort="auto" width="25%" label="Tempat"/>
+                                            <listheader id="cket" sort="auto" width="30%" label="Keterangan"/>
+                                        </listhead>
+                                    </listbox>
+                                </center>
+                            </borderlayout>
                         </groupbox>
+                        
                         <groupbox mold="3d" closable="false" style="height:100%; ">
                             <caption image="/images/icons/view.gif" label="Bahasa" />
-                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
-                                  style="border:0px; padding-left:5px; padding-right:5px; ">
-                                <columns>
-                                    <column width="200px"/>
-                                    <column/>
-                                </columns>
-                                <rows>
-                                    <row>
-                                        <label value="Bahasa"/>
-                                        <textbox id="txtb_b1" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Aktif / Pasif"/>
-                                        <textbox id="txtb_b2" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Keterangan"/>
-                                        <textbox id="txtb_b3" maxlength="12" readonly="true"/>
-                                    </row>
-                                </rows>
-                            </grid>
+                            <div sclass="z-toolbar" style="padding:0">
+                                <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                    <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                        <button id="btnNewBahasa" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                        <button id="btnDeleteBahasa" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                    </toolbar>
+                                </hbox>
+                            </div>
+                            <borderlayout id="borderRiwayatBahasa" style="height:200px">
+                                <north border="none" height="26px">
+                                    <paging id="pagingRiwayatBahasa" style="width:100%" pageSize="20"/>
+                                </north>
+                                <center border="none">
+                                    <listbox id="listRiwayatBahasa" width="100%" height="100%" multiple="false">
+                                        <listhead sizable="true">
+                                            <listheader id="cnob" sort="auto" width="5%" label="No"/>
+                                                <listheader id="cnmbahasab" sort="auto" width="30%" label="Bahasa"/>
+                                            <listheader id="cstatusb" sort="auto" width="20%" label="Atif/Pasif"/>
+                                            <listheader id="cketb" sort="auto" width="45%" label="Keterangan"/>
+                                        </listhead>
+                                    </listbox>
+                                </center>
+                            </borderlayout>
                         </groupbox>
                     </panelchildren>
                 </panel>

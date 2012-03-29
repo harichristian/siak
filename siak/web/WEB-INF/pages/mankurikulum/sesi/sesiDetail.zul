@@ -31,27 +31,20 @@
                                             <label value="Kode Sesi" />
                                             <label value="*" style="color:red;font-size:10px" />
                                         </hbox>
-                                        <textbox id="txtb_ckdsesi"
-                                            value="@{controller.selected.ckdsesi}" readonly="true"
-                                            constraint="no empty" maxlength="20" width="100px" />
+                                        <textbox id="txtb_ckdsesi" value="@{controller.selected.ckdsesi}" readonly="true" constraint="no empty" maxlength="20" width="100px" />
                                     </row>
                                     <row>
                                         <separator bar="true"></separator>
                                         <separator bar="true"></separator>
                                     </row>
                                     <row>
-                                        <label
-                                            value="Jam Awal" />
-                                        <textbox
-                                            id="txtb_cjamawal" value="@{controller.selected.cjamawal}"
-                                            readonly="true" maxlength="5" width="8%" />
+                                        <label value="Jam Awal" />
+                                        <textbox id="txtb_cjamawal" value="@{controller.selected.cjamawal}" readonly="true" maxlength="5" width="8%" />
                                     </row>
                                     <row>
                                         <label
                                             value="Jam Akhir" />
-                                        <textbox
-                                            id="txtb_cjamakhir" value="@{controller.selected.cjamakhir}"
-                                            readonly="true" maxlength="50" width="8%" />
+                                        <textbox id="txtb_cjamakhir" value="@{controller.selected.cjamakhir}" readonly="true" maxlength="50" width="8%" />
                                     </row>
                                     <row>
                                         <hbox>
@@ -60,8 +53,51 @@
                                         </hbox>
                                         <hbox>
                                             <textbox id="txtb_sekolah_id" value="@{controller.selected.msekolah.ckdsekolah}" readonly="true" constraint="no empty" width="80px" />
-                                            <textbox id="txtb_sekolah_name" value="@{controller.selected.msekolah.cnamaSekolah}" readonly="true" width="250px" />
+                                            <bandbox id="cmbSekolah" sclass="mybandbox" width="0px" tooltiptext="Sekolah" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Sekolah"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelSekolah" value="Kode Sekolah"/>
+                                                                        <textbox id="tbKode" width="98%"/>
+                                                                        <button id="buttonSearch" image="/images/icons/search.gif" label="Search" tooltiptext="Search Sekolah"/>
+                                                                        <button id="buttonClose" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNama" value="Nama Sekolah"/>
+                                                                        <textbox id="tbNama" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingSekolah" pageSize="20"/>
+                                                                            <listbox id="listSekolah" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="code" sort="auto" width="90%" label="Kode Sekolah"/>
+                                                                                    <listheader id="name" sort="auto" width="90%" label="Nama Sekolah"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
                                         </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Nama Sekolah" />
+                                        <textbox id="txtb_sekolah_name" value="@{controller.selected.msekolah.cnamaSekolah}" readonly="true" width="250px" />
                                     </row>
                                 </rows>
                             </grid>
