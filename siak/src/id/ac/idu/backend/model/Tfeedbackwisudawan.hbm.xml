@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 21, 2012 2:09:06 AM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="id.ac.idu.backend.model.Tfeedbackwisudawan" table="TFEEDBACKWISUDAWAN">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="sequence"><param name="sequence">TFEEDBACKWISUDAWAN_SEQ</param></generator>
+        </id>
+        <property name="cterm" type="string">
+            <column name="CTERM" length="2" not-null="true" />
+        </property>
+        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="join"  lazy="false">
+            <column name="SEKOLAH_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="join"  lazy="false">
+            <column name="PRODI_ID" not-null="true" />
+        </many-to-one>
+        <property name="ckelompok" type="string">
+            <column name="CKELOMPOK" length="2" not-null="true" />
+        </property>
+        <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="join"  lazy="false">
+            <column name="MAHASISWA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mfeedback" class="id.ac.idu.backend.model.Mfeedback" fetch="join"  lazy="false">
+            <column name="FEEDBACK_ID" not-null="true" />
+        </many-to-one>
+        <property name="nnopertanyaan" type="int">
+            <column name="NNOPERTANYAAN" not-null="true" />
+        </property>
+        <property name="cjawaban" type="string">
+            <column name="CJAWABAN" length="1" />
+        </property>
+        <property name="ccreatedby" type="string">
+            <column name="CCREATEDBY" length="10" />
+        </property>
+        <property name="dcreateddate" type="date">
+            <column name="DCREATEDDATE" length="10" />
+        </property>
+        <property name="cupdateby" type="string">
+            <column name="CUPDATEBY" length="10" />
+        </property>
+        <property name="dupdateddate" type="date">
+            <column name="DUPDATEDDATE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
