@@ -814,6 +814,34 @@
           parent="basisCtrl" scope="prototype">
         <property name="mpeminatanService" ref="mpeminatanService"/>
     </bean>
+
+     <!-- Feedback Dosen -->
+    <bean id="feedbackDosenMainCtrl" class="id.ac.idu.webui.administrasi.feedbackdosen.FeedbackDosenMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackDosenService" ref="feedbackDosenService"/>
+    </bean>
+    <bean id="feedbackDosenListCtrl" class="id.ac.idu.webui.administrasi.feedbackdosen.FeedbackDosenListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackDosenService" ref="feedbackDosenService"/>
+    </bean>
+    <bean id="feedbackDosenDetailCtrl" class="id.ac.idu.webui.administrasi.feedbackdosen.FeedbackDosenDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackDosenService" ref="feedbackDosenService"/>
+    </bean>
+
+      <!-- Feedback Wisudawan -->
+    <bean id="feedbackWisudawanMainCtrl" class="id.ac.idu.webui.administrasi.feedbackwisudawan.FeedbackWisudawanMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackWisudawanService" ref="feedbackWisudawanService"/>
+    </bean>
+    <bean id="feedbackWisudawanListCtrl" class="id.ac.idu.webui.administrasi.feedbackwisudawan.FeedbackWisudawanListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackWisudawanService" ref="feedbackWisudawanService"/>
+    </bean>
+    <bean id="feedbackWisudawanDetailCtrl" class="id.ac.idu.webui.administrasi.feedbackwisudawan.FeedbackWisudawanDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="feedbackWisudawanService" ref="feedbackWisudawanService"/>
+    </bean>
 </beans>
 
 
