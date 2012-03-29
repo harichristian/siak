@@ -194,6 +194,9 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
             // refresh the Binding mechanism
             getTfeedbackinstansiDetailCtrl().setTfeedbackinstansi(getSelectedTfeedbackinstansi());
             getTfeedbackinstansiDetailCtrl().getBinder().loadAll();
+
+            //mastiin ke render lagi
+            getTfeedbackinstansiDetailCtrl().doRenderCombo();
             return;
         }
 
