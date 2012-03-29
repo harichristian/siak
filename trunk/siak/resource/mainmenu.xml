@@ -6,22 +6,22 @@
     <menuItem id="menu_Item_Calendar" zulNavigation="/WEB-INF/pages/calendar/calendar.zul"
               iconName="/images/icons/calendar1_16x16.gif"/>
     <!-- OfficeData MenuTree -->
-    <!--<menu id="menu_Category_OfficeData" rightName="menuCat_OfficeData">
+    <!--menu id="menu_Category_OfficeData" rightName="menuCat_OfficeData">
         <menuItem id="menu_Item_Customers" zulNavigation="/WEB-INF/pages/customer/customerList.zul"
                   iconName="/images/icons/view.gif" rightName="menuItem_OfficeData_Customers"/>
         <menuItem id="menu_Item_Orders" zulNavigation="/WEB-INF/pages/order/orderList.zul"
                   iconName="/images/icons/view.gif" rightName="menuItem_OfficeData_Orders"/>
-    </menu>-->
+    </menu-->
 
     <!-- BaseData MenuTree -->
-    <!--<menu id="menu_Category_MainData" rightName="menuCat_MainData">
+    <!--menu id="menu_Category_MainData" rightName="menuCat_MainData">
         <menuItem id="menu_Item_Articles" zulNavigation="/WEB-INF/pages/article/articleMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_ArticleItems"/>
         <menuItem id="menu_Item_Branches" zulNavigation="/WEB-INF/pages/branch/branchMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_Branch"/>
         <menuItem id="menu_Item_Offices" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_MainData_Office"/>
-    </menu>-->
+    </menu-->
 
     <menu id="menu_Category_Administrasi" rightName="menuCat_Administrasi">
         <!-- Administrasi MenuTree -->
@@ -75,6 +75,10 @@
                   iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackInstansi"/>
          <menuItem id="menu_Item_FeedbackAlumni" zulNavigation="/WEB-INF/pages/administrasi/feedbackalumni/feedbackAlumniMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackAlumni"/>
+         <menuItem id="menu_Item_FeedbackDosen" zulNavigation="/WEB-INF/pages/administrasi/feedbackdosen/feedbackDosenMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackDosen"/>
+         <menuItem id="menu_Item_FeedbackWisudawan" zulNavigation="/WEB-INF/pages/administrasi/feedbackwisudawan/feedbackWisudawanMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menu_Item_FeedbackWisudawan"/>
     </menu>
     <menu id="menu_Category_ManajemenKurikulum" rightName="menuCat_ManajemenKurikulum">
         <!-- Manajemen Kurikulum MenuTree -->
