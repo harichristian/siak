@@ -8,9 +8,9 @@
             <column name="ID" />
             <generator class="sequence"><param name="sequence">MHISTKURSUSMHS_SEQ</param></generator>
         </id>
-        <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="select" lazy="false">
-            <column name="MAHASISWA_ID" not-null="true" />
-        </many-to-one>
+        <property name="mahasiswaId" type="int">
+            <column name="MAHASISWA_ID" length="4" not-null="true" />
+        </property>
         <property name="cno" type="string">
             <column name="CNO" length="2" not-null="true" />
         </property>

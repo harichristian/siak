@@ -34,7 +34,8 @@ public class Mpeminatan  implements java.io.Serializable {
         this.ckdminat = ckdminat;
         this.cnmminat = cnmminat;
     }
-    public Mpeminatan(int id, Mprodi mprodi, String ckdminat, String cnmminat, String cnmminating, String caktif, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby, Set<Mmahasiswa> mmahasiswas) {
+    public Mpeminatan(int id, Mprodi mprodi, String ckdminat, String cnmminat, String cnmminating, String caktif
+            , Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby, Set<Mmahasiswa> mmahasiswas) {
        this.id = id;
        this.mprodi = mprodi;
        this.ckdminat = ckdminat;

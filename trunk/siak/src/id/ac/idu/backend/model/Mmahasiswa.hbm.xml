@@ -119,9 +119,9 @@
         <many-to-one name="kodeposSrtId" class="id.ac.idu.backend.model.MkodePos" lazy="false" cascade="none">
             <column name="KODEPOS_SRT_ID" not-null="false" />
         </many-to-one>
-        <property name="ckdstatmhs" type="string">
-            <column name="CKDSTATMHS" length="1" />
-        </property>
+        <many-to-one name="mstatusmhs" class="id.ac.idu.backend.model.Mstatusmhs" fetch="select" lazy="false">
+            <column name="STATMHS_ID" />
+        </many-to-one>
         <property name="cthnlaporan" type="string">
             <column name="CTHNLAPORAN" length="4" />
         </property>
@@ -162,6 +162,24 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mhistpangkatmhs" />
         </set>
+        <set name="mhistpnddkmhses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="MAHASISWA_ID" not-null="true" length="4" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mhistpnddkmhs" />
+        </set>
+        <set name="mpbahasamhses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="MAHASISWA_ID" not-null="true" length="4" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mpbahasamhs" />
+        </set>
+        <set name="mhistkursusmhses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="MAHASISWA_ID" not-null="true"  length="4" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mhistkursusmhs" />
+        </set>
         <set name="tabsenmhses" inverse="true">
             <key>
                 <column name="MAHASISWA_ID" not-null="true" />
@@ -173,12 +191,6 @@
                 <column name="MAHASISWA_ID" not-null="true" />
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mkgtmhs" />
-        </set>
-        <set name="mpbahasamhses" inverse="true">
-            <key>
-                <column name="MAHASISWA_ID" not-null="true" />
-            </key>
-            <one-to-many class="id.ac.idu.backend.model.Mpbahasamhs" />
         </set>
         <set name="tlognilais" inverse="true">
             <key>
@@ -198,23 +210,11 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mkurmhs" />
         </set>
-        <set name="mhistkursusmhses" inverse="true">
-            <key>
-                <column name="MAHASISWA_ID" not-null="true" />
-            </key>
-            <one-to-many class="id.ac.idu.backend.model.Mhistkursusmhs" />
-        </set>
         <set name="tirspascas" inverse="true">
             <key>
                 <column name="MAHASISWA_ID" not-null="true" />
             </key>
             <one-to-many class="id.ac.idu.backend.model.Tirspasca" />
-        </set>
-        <set name="mhistpnddkmhses" inverse="true">
-            <key>
-                <column name="MAHASISWA_ID" not-null="true" />
-            </key>
-            <one-to-many class="id.ac.idu.backend.model.Mhistpnddkmhs" />
         </set>
         <set name="mprestasimhses" inverse="true">
             <key>

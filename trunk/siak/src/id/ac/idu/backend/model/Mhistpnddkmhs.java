@@ -13,7 +13,7 @@ public class Mhistpnddkmhs  implements java.io.Serializable {
 
      private int id;
      private Mprodi mprodi;
-     private Mmahasiswa mmahasiswa;
+     private int mahasiswaId;
      private Muniv muniv;
      private Mjenjang mjenjang;
      private BigDecimal nhistipk;
@@ -28,16 +28,16 @@ public class Mhistpnddkmhs  implements java.io.Serializable {
     }
 
 	
-    public Mhistpnddkmhs(int id, Mprodi mprodi, Mmahasiswa mmahasiswa, Mjenjang mjenjang) {
+    public Mhistpnddkmhs(int id, Mprodi mprodi, int mahasiswaId, Mjenjang mjenjang) {
         this.id = id;
         this.mprodi = mprodi;
-        this.mmahasiswa = mmahasiswa;
+        this.mahasiswaId = mahasiswaId;
         this.mjenjang = mjenjang;
     }
-    public Mhistpnddkmhs(int id, Mprodi mprodi, Mmahasiswa mmahasiswa, Muniv muniv, Mjenjang mjenjang, BigDecimal nhistipk, Date dtgllulus, String cbebanstudi, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
+    public Mhistpnddkmhs(int id, Mprodi mprodi, int mahasiswaId, Muniv muniv, Mjenjang mjenjang, BigDecimal nhistipk, Date dtgllulus, String cbebanstudi, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
        this.id = id;
        this.mprodi = mprodi;
-       this.mmahasiswa = mmahasiswa;
+       this.mahasiswaId = mahasiswaId;
        this.muniv = muniv;
        this.mjenjang = mjenjang;
        this.nhistipk = nhistipk;
@@ -63,13 +63,15 @@ public class Mhistpnddkmhs  implements java.io.Serializable {
     public void setMprodi(Mprodi mprodi) {
         this.mprodi = mprodi;
     }
-    public Mmahasiswa getMmahasiswa() {
-        return this.mmahasiswa;
+
+    public int getMahasiswaId() {
+        return mahasiswaId;
     }
-    
-    public void setMmahasiswa(Mmahasiswa mmahasiswa) {
-        this.mmahasiswa = mmahasiswa;
+
+    public void setMahasiswaId(int mahasiswaId) {
+        this.mahasiswaId = mahasiswaId;
     }
+
     public Muniv getMuniv() {
         return this.muniv;
     }
@@ -133,10 +135,6 @@ public class Mhistpnddkmhs  implements java.io.Serializable {
     public void setCupdatedby(String cupdatedby) {
         this.cupdatedby = cupdatedby;
     }
-
-
-
-
 }
 
 

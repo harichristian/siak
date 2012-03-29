@@ -429,7 +429,32 @@ public class Codec {
         }
     }
 
-    public enum SudahBekerja implements CodecInterface {
+    public enum Jenjang implements CodecInterface {
+        Jen1("S1","S1"),
+        Jen2("S2","S1");
+
+        private final String value;
+        private final String label;
+
+        private Jenjang(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+	
+	public enum SudahBekerja implements CodecInterface {
         Y("Y","Ya"),
         T("T","Tidak");
 
@@ -492,6 +517,31 @@ public class Codec {
         private final String label;
 
         private StsNikahAlumni(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+	
+	public enum StatusBahasa implements CodecInterface {
+        Status1("A","Aktif"),
+        Status2("P","Pasif");
+
+        private final String value;
+        private final String label;
+
+        private StatusBahasa(String _value, String _label) {
             this.value = _value;
             this.label = _label;
         }

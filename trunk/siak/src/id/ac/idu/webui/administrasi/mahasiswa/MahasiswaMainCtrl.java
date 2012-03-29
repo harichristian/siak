@@ -1,9 +1,6 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
-import id.ac.idu.administrasi.service.MahasiswaService;
-import id.ac.idu.administrasi.service.MhistpangkatmhsService;
-import id.ac.idu.administrasi.service.MmhspascakhsService;
-import id.ac.idu.administrasi.service.MppumhskhususService;
+import id.ac.idu.administrasi.service.*;
 import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.webui.util.ButtonStatusCtrl;
@@ -31,6 +28,8 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
     private MmhspascakhsService mmhspascakhsService;
     private MppumhskhususService mppumhskhususService;
     private MhistpangkatmhsService mhistpangkatmhsService;
+    private MhistkursusmhsService mhistkursusmhsService;
+    private MpbahasamhsService mpbahasamhsService;
 
     /* model */
     private Mmahasiswa mahasiswa;
@@ -137,6 +136,12 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
         if(!currentTab.equals(tabDetail)) tabDetail.setSelected(true);
         
         this.doStoreInitValues();
+
+        if(getDetailCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabDetail, null));
+        else if(getDetailCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabDetail, null));
+
         getDetailCtrl().doEdit(event);
     }
 
@@ -147,6 +152,11 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onClick$btnDelete(Event event) throws InterruptedException {
+        if(getDetailCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabDetail, null));
+        else if(getDetailCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabDetail, null));
+        
         getDetailCtrl().doDelete(event);
         btnCtrl.setInitEdit();
         getListCtrl().loadListData();
@@ -245,6 +255,22 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setMhistpangkatmhsService(MhistpangkatmhsService mhistpangkatmhsService) {
         this.mhistpangkatmhsService = mhistpangkatmhsService;
+    }
+
+    public MhistkursusmhsService getMhistkursusmhsService() {
+        return mhistkursusmhsService;
+    }
+
+    public void setMhistkursusmhsService(MhistkursusmhsService mhistkursusmhsService) {
+        this.mhistkursusmhsService = mhistkursusmhsService;
+    }
+
+    public MpbahasamhsService getMpbahasamhsService() {
+        return mpbahasamhsService;
+    }
+
+    public void setMpbahasamhsService(MpbahasamhsService mpbahasamhsService) {
+        this.mpbahasamhsService = mpbahasamhsService;
     }
 
     public Mmahasiswa getMahasiswa() {

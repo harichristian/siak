@@ -327,6 +327,7 @@
           scope="prototype">
         <property name="service" ref="sesiService"/>
         <property name="sekolah" ref="sekolahService"/>
+        <property name="plwSekolah" ref="pagedListWrapper"/>
     </bean>
 
     <bean id="matakuliahMainCtrl" class="id.ac.idu.webui.mankurikulum.matakuliah.MatakuliahMainCtrl" parent="basisCtrl"
@@ -362,6 +363,8 @@
         <property name="mmhspascakhsService" ref="mmhspascakhsService"/>
         <property name="mppumhskhususService" ref="mppumhskhususService"/>
         <property name="mhistpangkatmhsService" ref="mhistpangkatmhsService"/>
+        <property name="mhistkursusmhsService" ref="mhistkursusmhsService"/>
+        <property name="mpbahasamhsService" ref="mpbahasamhsService"/>
         <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
         <property name="listCtrl" ref="mahasiswaListCtrl"/>
     </bean>
@@ -370,6 +373,7 @@
         <property name="pribadiCtrl" ref="pribadiDetailCtrl"/>
         <property name="khususCtrl" ref="khususDetailCtrl"/>
         <property name="pendidikanCtrl" ref="pendidikanDetailCtrl"/>
+        <property name="kursusCtrl" ref="kursusDetailCtrl"/>
     </bean>
     <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
         <property name="plwKodepos" ref="pagedListWrapper"/>
@@ -384,7 +388,40 @@
     <bean id="riwayatPangkatCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatPangkatCtrl" parent="basisCtrl" scope="prototype">
         <property name="plwPangkat" ref="pagedListWrapper"/>
     </bean>
-    <bean id="pendidikanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPendidikanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="pendidikanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPendidikanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwUniv" ref="pagedListWrapper"/>
+        <property name="plwProdi" ref="pagedListWrapper"/>
+        <property name="plwJenjang" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="kursusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKursusCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwKursus" ref="pagedListWrapper"/>
+        <property name="plwBahasa" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="riwayatBahasaCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatBahasaCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="riwayatKursusCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatKursusCtrl" parent="basisCtrl" scope="prototype"/>
+
+    <!-- Update Konsentrasi Mahasiswa -->
+    <bean id="updateKonsentrasiMainCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiMainCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+        <property name="listCtrl" ref="updateKonsentrasiListCtrl"/>
+        <property name="detailCtrl" ref="updateKonsentrasiDetailCtrl"/>
+    </bean>
+    <bean id="updateKonsentrasiListCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiListCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="updateKonsentrasiDetailCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiDetailCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwKonsentrasi" ref="pagedListWrapper"/>
+    </bean>
+
+    <!-- Update Status -->
+    <bean id="updateStatusMainCtrl" class="id.ac.idu.webui.administrasi.updatestatus.UpdateStatusMainCtrl" parent="basisCtrl" scope="prototype">
+        <property name="service" ref="mahasiswaService"/>
+        <property name="listCtrl" ref="updateStatusListCtrl"/>
+        <property name="detailCtrl" ref="updateStatusDetailCtrl"/>
+    </bean>
+    <bean id="updateStatusListCtrl" class="id.ac.idu.webui.administrasi.updatestatus.UpdateStatusListCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="updateStatusDetailCtrl" class="id.ac.idu.webui.administrasi.updatestatus.UpdateStatusDetailCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwStatus" ref="pagedListWrapper"/>
+    </bean>
+
 
     <!-- +++++ KURIKULUM MODULE +++++ -->
     <!-- Kurikulum -->
@@ -456,6 +493,7 @@
           parent="basisCtrl" scope="prototype">
         <property name="service" ref="cutimhsService"/>
         <property name="service2" ref="mahasiswaService"/>
+        <property name="statusService" ref="statusMahasiswaService"/>
         <property name="listCtrl" ref="aktifmhsListCtrl"/>
         <property name="detailCtrl" ref="aktifmhsDetailCtrl"/>
     </bean>
@@ -474,6 +512,7 @@
           parent="basisCtrl" scope="prototype">
         <property name="service" ref="cutimhsService"/>
         <property name="service2" ref="mahasiswaService"/>
+        <property name="statusService" ref="statusMahasiswaService"/>
         <property name="listCtrl" ref="cutimhsListCtrl"/>
         <property name="detailCtrl" ref="cutimhsDetailCtrl"/>
     </bean>

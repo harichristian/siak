@@ -1,5 +1,6 @@
 package id.ac.idu.webui.mankurikulum.sesi;
 
+import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.backend.model.Msesikuliah;
 import id.ac.idu.backend.util.HibernateSearchObject;
@@ -7,6 +8,7 @@ import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.mankurikulum.service.SesiService;
 import id.ac.idu.webui.office.report.OfficeSimpleDJReport;
 import id.ac.idu.webui.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -42,16 +44,11 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnCancel;
     protected Button btnHelp;
 
-    protected Checkbox checkbox_List_ShowAll;
-    protected Button button_List_PrintList;
-
     protected Textbox txtb_Sesi_Code;
-    protected Button button_SesiList_SearchCode;
     protected Textbox txtb_Sesi_KodeSekolah;
     protected Textbox txtb_Sesi_JamAwal;
-    protected Button button_SesiList_SearchJamAwal;
     protected Textbox txtb_Sesi_JamAkhir;
-    protected Button button_SesiList_SearchJamakhir;
+    protected Button buttonSesiList;
 
     private final String btnCtroller_ClassPrefix = "button_SesiMain_";
     private ButtonStatusCtrl btnCtrl;
@@ -117,18 +114,39 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onClick$button_List_PrintList(Event event) throws InterruptedException {
-        final Window win = (Window) Path.getComponent("/outerIndexWindow");
-        new OfficeSimpleDJReport(win);
-    }
-
     public void onClick$checkbox_List_ShowAll(Event event) {
         txtb_Sesi_Code.setValue("");
         txtb_Sesi_KodeSekolah.setValue("");
         txtb_Sesi_JamAwal.setValue("");
         txtb_Sesi_JamAkhir.setValue("");
+        this.searchList();
+    }
 
+    public void onClick$buttonSesiList(Event event) {
+        Filter filter1 = null;
+        Filter filter2 = null;
+        Filter filter3 = null;
+
+        if (StringUtils.isNotEmpty(txtb_Sesi_Code.getValue()))
+            filter1 = new Filter("ckdsesi", "%" + txtb_Sesi_Code.getValue() + "%", Filter.OP_LIKE);
+
+        if (txtb_Sesi_JamAwal.getValue() != null)
+            filter2 = new Filter("cjamawal", txtb_Sesi_JamAwal.getValue() , Filter.OP_EQUAL);
+
+        if (StringUtils.isNotEmpty(txtb_Sesi_JamAkhir.getValue()))
+            filter3 = new Filter("cjamakhir", "%" + txtb_Sesi_JamAkhir.getValue() + "%", Filter.OP_LIKE);
+
+        this.searchList(filter1, filter2, filter3);
+    }
+
+    public void searchList(Filter... filters) {
         HibernateSearchObject<Msesikuliah> soData = new HibernateSearchObject<Msesikuliah>(Msesikuliah.class, getListCtrl().getCountRows());
+        if(filters != null) {
+            for(Filter anFilter : filters) {
+                if(anFilter!=null) soData.addFilter(anFilter);
+            }
+        }
+
         soData.addSort("ckdsesi", false);
 
         if (getListCtrl().getBinder() != null) {
@@ -144,10 +162,7 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights() {
         final UserWorkspace workspace = getUserWorkspace();
 
-        button_List_PrintList.setVisible(true);
-        button_SesiList_SearchCode.setVisible(true);
-        button_SesiList_SearchJamAwal.setVisible(true);
-        button_SesiList_SearchJamakhir.setVisible(true);
+        buttonSesiList.setVisible(true);
         btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);

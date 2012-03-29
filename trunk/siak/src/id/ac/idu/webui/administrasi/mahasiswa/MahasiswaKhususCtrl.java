@@ -113,8 +113,10 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
         doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
-        loadRiwayatPendidikan();
-        loadRiwayatPangkat();
+        if(getMahasiswa() != null) {
+            loadRiwayatPendidikan();
+            loadRiwayatPangkat();
+        }
         
         binder.loadAll();
         this.doFitSize();

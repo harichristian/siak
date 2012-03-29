@@ -1,9 +1,6 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
-import id.ac.idu.backend.model.Mhistpangkatmhs;
-import id.ac.idu.backend.model.Mmahasiswa;
-import id.ac.idu.backend.model.Mmhspascakhs;
-import id.ac.idu.backend.model.Mppumhskhusus;
+import id.ac.idu.backend.model.*;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.MultiLineMessageBox;
 import id.ac.idu.webui.util.ZksampleCommonUtils;
@@ -42,11 +39,16 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Tabpanel tabPanelPribadi;
     protected Tab tabKhusus;
     protected Tabpanel tabPanelKhusus;
+    protected Tab tabPendidikan;
+    protected Tabpanel tabPanelPendidikan;
+    protected Tab tabKursus;
+    protected Tabpanel tabPanelKursus;
 
     private MahasiswaMainCtrl mainCtrl;
     private MahasiswaPribadiCtrl pribadiCtrl;
     private MahasiswaKhususCtrl khususCtrl;
     private MahasiswaPendidikanCtrl pendidikanCtrl;
+    private MahasiswaKursusCtrl kursusCtrl;
 
     public MahasiswaDetailCtrl() {
         super();
@@ -106,6 +108,34 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
+    public void onSelect$tabPendidikan(Event event) {
+        if(tabPanelPendidikan.getFirstChild() != null) {
+            tabPendidikan.setSelected(true);
+            getPendidikanCtrl().reLoadPage();
+
+            return;
+        }
+
+        if(tabPanelPendidikan != null) {
+            if(tabPanelPendidikan.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelPendidikan, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pagePendidikan.zul");
+        }
+    }
+
+    public void onSelect$tabKursus(Event event) {
+        if(tabPanelKursus.getFirstChild() != null) {
+            tabKursus.setSelected(true);
+            getKursusCtrl().reLoadPage();
+
+            return;
+        }
+
+        if(tabPanelKursus != null) {
+            if(tabPanelKursus.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelKursus, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageKursus.zul");
+        }
+    }
+
     public void doNew(Event event) {
         final Mmhspascakhs nMmhspascakhs = getMainCtrl().getMmhspascakhsService().getNew();
         final Mmahasiswa nData = getMainCtrl().getMhsservice().getNew();
@@ -114,8 +144,12 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         this.setMahasiswa(nData);
         this.checkAllTab();
         this.loadAllBind();
-        this.doReadOnlyMode(false);
-        this.doReset();
+
+        if(getPribadiCtrl().getBinder() != null) {
+            this.doReadOnlyMode(false);
+            this.doReset();
+        }
+
         tabPribadi.setSelected(true);
     }
 
@@ -134,7 +168,8 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void doSave(Event event) throws InterruptedException  {
         this.saveAllBind();
         Listitem item;
-        
+
+        /* Tab Khusus */
         Mppumhskhusus oPendidikan;
         Set<Mppumhskhusus> mppumhskhususes = new HashSet<Mppumhskhusus>();
         
@@ -157,18 +192,62 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             mhistpangkatmhses.add(oPangkat);
         }
 
+        /* Tab pendidikan */
+        Set<Mhistpnddkmhs> mhistpnddkmhses = new HashSet<Mhistpnddkmhs>();
+        Mhistpnddkmhs mhistpnddkmhsS1 = getPendidikanCtrl().getMhistpnddkmhsS1();
+        Mhistpnddkmhs mhistpnddkmhsS2 = getPendidikanCtrl().getMhistpnddkmhsS2();
+        
+        if(mhistpnddkmhsS1.getMjenjang()!= null && mhistpnddkmhsS1.getMprodi()!=null && mhistpnddkmhsS1.getMuniv()!=null)
+            mhistpnddkmhses.add(mhistpnddkmhsS1);
+
+        if(mhistpnddkmhsS2.getMjenjang()!= null && mhistpnddkmhsS2.getMprodi()!=null && mhistpnddkmhsS2.getMuniv()!=null)
+            mhistpnddkmhses.add(mhistpnddkmhsS2);
+
+        /* Tab Kursus/Bahasa */
+        Mhistkursusmhs oKursus;
+        Set<Mhistkursusmhs> mhistkursusmhses = new HashSet<Mhistkursusmhs>();
+
+        List anKursus = getKursusCtrl().getListRiwayatKursus().getItems();
+        for(Object kursus : anKursus) {
+            item = (Listitem) kursus;
+            oKursus = (Mhistkursusmhs) item.getAttribute(MahasiswaKursusCtrl.DATA);
+            if(getMahasiswa().getId() > 0) oKursus.setMahasiswaId(getMahasiswa().getId());
+            mhistkursusmhses.add(oKursus);
+        }
+
+        Mpbahasamhs oBahasa;
+        Set<Mpbahasamhs> mpbahasamhses = new HashSet<Mpbahasamhs>();
+
+        List anBahasa = getKursusCtrl().getListRiwayatBahasa().getItems();
+        for(Object bahasa : anBahasa) {
+            item = (Listitem) bahasa;
+            oBahasa = (Mpbahasamhs) item.getAttribute(MahasiswaKursusCtrl.DATA);
+            if(getMahasiswa().getId() > 0) oBahasa.setMahasiswaId(getMahasiswa().getId());
+            mpbahasamhses.add(oBahasa);
+        }
+
+        /* Save All */
         try {
-            getMainCtrl().getMahasiswa().getMppumhskhususes().clear();
-            getMainCtrl().getMahasiswa().getMhistpangkatmhses().clear();
+            getMainCtrl().getMahasiswa().getMppumhskhususes().clear();   // Page Khusus
+            getMainCtrl().getMahasiswa().getMhistpangkatmhses().clear(); // Page Khusus
+            getMainCtrl().getMahasiswa().getMhistkursusmhses().clear();  // Page Kursus
+            getMainCtrl().getMahasiswa().getMpbahasamhses().clear();     // Page Kursus
+            
             if(getMahasiswa().getId() > 0)  {
-                getMainCtrl().getMahasiswa().getMppumhskhususes().addAll(mppumhskhususes);
-                getMainCtrl().getMahasiswa().getMhistpangkatmhses().addAll(mhistpangkatmhses);
+                getMainCtrl().getMahasiswa().getMppumhskhususes().addAll(mppumhskhususes);       // Page Khusus
+                getMainCtrl().getMahasiswa().getMhistpangkatmhses().addAll(mhistpangkatmhses);   // Page Khusus
+                getMainCtrl().getMahasiswa().getMhistkursusmhses().addAll(mhistkursusmhses);     // Page Kursus
+                getMainCtrl().getMahasiswa().getMpbahasamhses().addAll(mpbahasamhses);           // Page Kursus
             }
             else {
-                getMainCtrl().getMahasiswa().setMppumhskhususes(mppumhskhususes);
-                getMainCtrl().getMahasiswa().setMhistpangkatmhses(mhistpangkatmhses);
+                getMainCtrl().getMahasiswa().setMppumhskhususes(mppumhskhususes);                // Page Khusus
+                getMainCtrl().getMahasiswa().setMhistpangkatmhses(mhistpangkatmhses);            // Page Khusus
+                getMainCtrl().getMahasiswa().setMhistkursusmhses(mhistkursusmhses);              // Page Kursus
+                getMainCtrl().getMahasiswa().setMpbahasamhses(mpbahasamhses);                    // Page Kursus
             }
-
+            
+            getMainCtrl().getMahasiswa().setMhistpnddkmhses(mhistpnddkmhses);
+            
             getMainCtrl().getMhsservice().saveOrUpdate(getMainCtrl().getMahasiswa());
             getMainCtrl().getListCtrl().loadListData();
         }
@@ -228,10 +307,42 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         getMainCtrl().tabList.setSelected(true);
 
         this.checkAllTab();
-        
     }
 
     public void doCancel(Event event) { this.doReadOnlyMode(true); }
+
+    public void reLoadPage() {
+        binder.loadAll();
+        Events.sendEvent(new Event("onSelect", tabPribadi, getMainCtrl().getMahasiswa()));
+    }
+
+    private void saveAllBind() {
+        getPribadiCtrl().getBinder().saveAll();
+        getKhususCtrl().getBinder().saveAll();
+        getPendidikanCtrl().getBinder().saveAll();
+        getKursusCtrl().getBinder().saveAll();
+    }
+
+    private void loadAllBind() {
+        if(getPribadiCtrl().getBinder() != null)
+            getPribadiCtrl().getBinder().loadAll();
+
+        if(getKhususCtrl().getBinder() != null)
+            getKhususCtrl().getBinder().loadAll();
+
+        if(getPendidikanCtrl().getBinder() != null)
+            getPendidikanCtrl().getBinder().loadAll();
+
+        if(getKursusCtrl().getBinder() != null)
+            getKursusCtrl().getBinder().loadAll();
+    }
+
+    private void doReadOnlyMode(boolean b) {
+        if(getPribadiCtrl() != null) getPribadiCtrl().doReadOnlyMode(b);
+        if(getPribadiCtrl() != null) getKhususCtrl().doReadOnlyMode(b);
+        if(getPendidikanCtrl() != null) getPendidikanCtrl().doReadOnlyMode(b);
+        if(getKursusCtrl() != null) getKursusCtrl().doReadOnlyMode(b);
+    }
 
     private void checkAllTab() {
         if(getPribadiCtrl() == null)
@@ -243,24 +354,16 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             Events.sendEvent(new Event("onSelect", tabKhusus, null));
         else if(getKhususCtrl().getBinder() == null)
             Events.sendEvent(new Event("onSelect", tabKhusus, null));
-    }
 
-    private void loadAllBind() {
-        if(getPribadiCtrl().getBinder() != null)
-            getPribadiCtrl().getBinder().loadAll();
+        if(getPendidikanCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabPendidikan, null));
+        else if(getPendidikanCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabPendidikan, null));
 
-        if(getKhususCtrl().getBinder() != null)
-            getKhususCtrl().getBinder().loadAll();
-    }
-
-    public void reLoadPage() {
-        binder.loadAll();
-        Events.sendEvent(new Event("onSelect", tabPribadi, getMainCtrl().getMahasiswa()));
-    }
-
-    private void saveAllBind() {
-        getPribadiCtrl().getBinder().saveAll();
-        getKhususCtrl().getBinder().saveAll();
+        if(getKursusCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabKursus, null));
+        else if(getKursusCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabKursus, null));
     }
 
     public AnnotateDataBinder getBinder() {
@@ -269,11 +372,6 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setBinder(AnnotateDataBinder binder) {
         this.binder = binder;
-    }
-
-    private void doReadOnlyMode(boolean b) {
-        getPribadiCtrl().doReadOnlyMode(b);
-        getKhususCtrl().doReadOnlyMode(b);
     }
 
     private void doReset() {
@@ -310,6 +408,14 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPendidikanCtrl(MahasiswaPendidikanCtrl pendidikanCtrl) {
         this.pendidikanCtrl = pendidikanCtrl;
+    }
+
+    public MahasiswaKursusCtrl getKursusCtrl() {
+        return kursusCtrl;
+    }
+
+    public void setKursusCtrl(MahasiswaKursusCtrl kursusCtrl) {
+        this.kursusCtrl = kursusCtrl;
     }
 
     public Mmahasiswa getMahasiswa() {

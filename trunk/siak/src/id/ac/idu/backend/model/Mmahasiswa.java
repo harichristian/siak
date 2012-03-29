@@ -50,7 +50,7 @@ public class Mmahasiswa implements java.io.Serializable {
     private String ckdposkntor;
     private String calamatsrt;
     private MkodePos kodeposSrtId;
-    private String ckdstatmhs;
+    private Mstatusmhs mstatusmhs;
     private String cthnlaporan;
     private String cketkerja;
     private String ctujuan;
@@ -91,7 +91,7 @@ public class Mmahasiswa implements java.io.Serializable {
             , Character cstatnkh, Character cwarga, String cnosttb, Date dtglsttb, Date dtglmasuk, Date dtglwisuda
             , Date dtglyudisi, Date dtglteori, Character cflagspbm, Character cflagnilai, String cemail, String cnohp
             , String cnmkntor, String calmkntor, String ctelpkntor, String cfaxkantor, String ckdposkntor
-            , String calamatsrt, MkodePos kodeposSrtId, String ckdstatmhs, String cthnlaporan, String cketkerja
+            , String calamatsrt, MkodePos kodeposSrtId, Mstatusmhs mstatusmhs, String cthnlaporan, String cketkerja
             , String ctujuan, String cgelombang, String cstatawal, Date dcreateddate, String ccreatedby
             , Date dupdateddate, String cupdatedby, Mmhspascakhs mmhspascakhs, Set<Tabsenmhs> tabsenmhses, Set<Mkgtmhs> mkgtmhses
             , Set<Mhistpangkatmhs> mhistpangkatmhses, Set<Mpbahasamhs> mpbahasamhses, Set<Tlognilai> tlognilais
@@ -136,7 +136,7 @@ public class Mmahasiswa implements java.io.Serializable {
         this.ckdposkntor = ckdposkntor;
         this.calamatsrt = calamatsrt;
         this.kodeposSrtId = kodeposSrtId;
-        this.ckdstatmhs = ckdstatmhs;
+        this.mstatusmhs = mstatusmhs;
         this.cthnlaporan = cthnlaporan;
         this.cketkerja = cketkerja;
         this.ctujuan = ctujuan;
@@ -466,12 +466,12 @@ public class Mmahasiswa implements java.io.Serializable {
         this.kodeposSrtId = kodeposSrtId;
     }
 
-    public String getCkdstatmhs() {
-        return this.ckdstatmhs;
+    public Mstatusmhs getMstatusmhs() {
+        return mstatusmhs;
     }
 
-    public void setCkdstatmhs(String ckdstatmhs) {
-        this.ckdstatmhs = ckdstatmhs;
+    public void setMstatusmhs(Mstatusmhs mstatusmhs) {
+        this.mstatusmhs = mstatusmhs;
     }
 
     public String getCthnlaporan() {
@@ -551,12 +551,8 @@ public class Mmahasiswa implements java.io.Serializable {
     }
 
     public void setMmhspascakhs(Mmhspascakhs mmhspascakhs) {
-        Mmhspascakhs a =  new Mmhspascakhs();
-        if  (mmhspascakhs != null)   {
-                a = mmhspascakhs;
-        }
-        a.setMahasiswaId(this.id);
-        this.mmhspascakhs = a;
+        mmhspascakhs.setMahasiswaId(this.id);
+        this.mmhspascakhs = mmhspascakhs;
     }
 
     public Set<Tabsenmhs> getTabsenmhses() {
@@ -580,6 +576,9 @@ public class Mmahasiswa implements java.io.Serializable {
     }
 
     public void setMpbahasamhses(Set<Mpbahasamhs> mpbahasamhses) {
+        for(Object anBahasa : mpbahasamhses)
+            ((Mpbahasamhs) anBahasa).setMahasiswaId(this.id);
+        
         this.mpbahasamhses = mpbahasamhses;
     }
 
@@ -629,11 +628,25 @@ public class Mmahasiswa implements java.io.Serializable {
         this.mhistpangkatmhses = mhistpangkatmhses;
     }
 
+    public Set<Mhistpnddkmhs> getMhistpnddkmhses() {
+        return this.mhistpnddkmhses;
+    }
+
+    public void setMhistpnddkmhses(Set<Mhistpnddkmhs> mhistpnddkmhses) {
+        for(Object anHisPnddk : mhistpnddkmhses)
+            ((Mhistpnddkmhs) anHisPnddk).setMahasiswaId(this.id);
+        
+        this.mhistpnddkmhses = mhistpnddkmhses;
+    }
+
     public Set<Mhistkursusmhs> getMhistkursusmhses() {
         return this.mhistkursusmhses;
     }
 
     public void setMhistkursusmhses(Set<Mhistkursusmhs> mhistkursusmhses) {
+        for(Object anHisKursrs : mhistkursusmhses)
+            ((Mhistkursusmhs) anHisKursrs).setMahasiswaId(this.id);
+
         this.mhistkursusmhses = mhistkursusmhses;
     }
 
@@ -643,14 +656,6 @@ public class Mmahasiswa implements java.io.Serializable {
 
     public void setTirspascas(Set<Tirspasca> tirspascas) {
         this.tirspascas = tirspascas;
-    }
-
-    public Set<Mhistpnddkmhs> getMhistpnddkmhses() {
-        return this.mhistpnddkmhses;
-    }
-
-    public void setMhistpnddkmhses(Set<Mhistpnddkmhs> mhistpnddkmhses) {
-        this.mhistpnddkmhses = mhistpnddkmhses;
     }
 
     public Set<Mprestasimhs> getMprestasimhses() {

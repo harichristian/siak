@@ -38,8 +38,8 @@
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitas"/>
         <menuItem id="menu_Item_MasterFasilitasRuangan" zulNavigation="/WEB-INF/pages/administrasi/fasilitasruang/mfasilitasruangMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitasRuangan"/>
-        <!--<menuItem id="menu_Item_MasterKodePos" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
-                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKodePos"/>-->
+        <menuItem id="menu_Item_MasterKodePos" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKodePos"/>
         <menuItem id="menu_Item_MasterPegawai" zulNavigation="/WEB-INF/pages/administrasi/pegawai/mpegawaiMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterPegawai"/>
         <menuItem id="menu_Item_MasterJabatan" zulNavigation="/WEB-INF/pages/jabatan/jabatanMain.zul"
@@ -63,10 +63,10 @@
         <menuItem id="menu_Item_MasterKalenderKegiatanAkademik"
                   zulNavigation="/WEB-INF/pages/administrasi/calakademik/calakademikMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKalenderKegiatanAkademik"/>
-        <!--menuItem id="menu_Item_UpdateKonsentrasiMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+        <menuItem id="menu_Item_UpdateKonsentrasiMahasiswa" zulNavigation="/WEB-INF/pages/administrasi/updatekonsentrasi/pageMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_UpdateKonsentrasiMahasiswa"/>
-        <menuItem id="menu_Item_UpdateStatusMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
-                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_UpdateStatusMahasiswa"/-->
+        <menuItem id="menu_Item_UpdateStatusMahasiswa" zulNavigation="/WEB-INF/pages/administrasi/updatestatus/pageMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_UpdateStatusMahasiswa"/>
          <menuItem id="menu_Item_Alumni" zulNavigation="/WEB-INF/pages/administrasi/alumni/malumniMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Alumni"/>
          <menuItem id="menu_Item_Feedback" zulNavigation="/WEB-INF/pages/administrasi/feedback/mfeedbackMain.zul"

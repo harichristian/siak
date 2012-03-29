@@ -1,5 +1,6 @@
 package id.ac.idu.webui.irs.cutimhs;
 
+import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.MahasiswaService;
 import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tcutimhs;
@@ -9,6 +10,7 @@ import id.ac.idu.util.Codec;
 import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -18,8 +20,6 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * User: hermanto
@@ -42,6 +42,11 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_nama;
     protected Intbox txtb_mhsid;
     protected Datebox txtb_tanggal;
+
+    /* Search Box */
+    protected Textbox tb_Nim;
+    protected Textbox tb_Nama;
+    protected Textbox tb_NoKtp;
 
     protected transient AnnotateDataBinder binder;
 
@@ -82,8 +87,36 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
+        this.searchMahasiswa(null);
+    }
+
+    public void onClick$button_bbox_Search(Event event) {
+        Filter filter1 = null;
+        Filter filter2 = null;
+        Filter filter3 = null;
+
+        if (StringUtils.isNotEmpty(tb_Nim.getValue()))
+            filter1 = new Filter("cnim", "%" + tb_Nim.getValue() + "%", Filter.OP_LIKE);
+
+        if (StringUtils.isNotEmpty(tb_Nama.getValue()))
+            filter2 = new Filter("cnama", "%" + tb_Nama.getValue() + "%", Filter.OP_LIKE);
+
+        if (StringUtils.isNotEmpty(tb_NoKtp.getValue()))
+            filter3 = new Filter("noktp", "%" + tb_NoKtp.getValue() + "%", Filter.OP_LIKE);
+        
+        this.searchMahasiswa(filter1, filter2, filter3);
+    }
+
+    public void searchMahasiswa(Filter... filters) {
+
         HibernateSearchObject<Mmahasiswa> soCuti = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
-        soCuti.addFilter(new com.trg.search.Filter("ckdstatmhs", Codec.StatusMahasiswa.Status1.getValue(), com.trg.search.Filter.OP_EQUAL));
+        soCuti.addFilter(new com.trg.search.Filter("mstatusmhs.ckdstatmhs", Codec.StatusMahasiswa.Status1.getValue(), com.trg.search.Filter.OP_EQUAL));
+        if(filters != null) {
+            for(Filter anFilter : filters) {
+                if(anFilter != null) soCuti.addFilter(anFilter);
+            }
+        }
+        
 		soCuti.addSort("cnim", false);
 
 		paging_MahasiswaSearchList.setPageSize(pageSize);

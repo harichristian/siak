@@ -26,45 +26,172 @@
                                 <rows>
                                     <row>
                                         <label value="Kode Perguruan Tinggi"/>
-                                            <textbox id="txtbPt1Code" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbCodeS1" value="@{controller.mhistpnddkmhsS1.muniv.ckdUniv}" readonly="true" width="60px"/>
+                                            <bandbox id="cmbPgurTinggiS1" sclass="mybandbox" width="0px" tooltiptext="Perguruan Tinggi" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Perguruan Tinggi"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeS1" value="Code"/>
+                                                                        <textbox id="tbCodeS1" width="98%"/>
+                                                                        <button id="buttonSearchPgurTinggiS1" image="/images/icons/search.gif" label="Search" tooltiptext="Search Perguruan Tinggi"/>
+                                                                        <button id="buttonClosePgurTinggiS1" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaS1" value="Nama"/>
+                                                                        <textbox id="tbNameS1" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingPgurTinggiS1" pageSize="20"/>
+                                                                            <listbox id="listPgurTinggiS1" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeS1" sort="auto" width="20%" label="Kode Perguruan Tinggi"/>
+                                                                                    <listheader id="nameS1" sort="auto" width="60%" label="Nama Perguruan Tinggi"/>
+                                                                                    <listheader id="statusS1" sort="auto" width="20%" label="Status Perguruan Tinggi"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Nama Perguruan Tinggi"/>
-                                        <textbox id="txtbPt1Name" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbNameS1" value="@{controller.mhistpnddkmhsS1.muniv.cnamaUniv}" readonly="true" width="250px"/>
                                     </row>
                                     <row>
                                         <label value="Status Perguruan Tinggi"/>
-                                        <textbox id="txtbPt1Status" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbStatusS1" value="@{controller.mhistpnddkmhsS1.muniv.cstatus}" readonly="true" width="80px"/>
                                     </row>
                                     <row>
                                         <label value="Kode Program Studi"/>
-                                        <textbox id="txtbPt1CodeProgram" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbCodeProgramS1" value="@{controller.mhistpnddkmhsS1.mprodi.ckdprogst}" readonly="true" width="60px"/>
+                                            <bandbox id="cmbProgramS1" sclass="mybandbox" width="0px" tooltiptext="Program Studi" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Program Studi"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeProgramS1" value="Code program"/>
+                                                                        <textbox id="tbCodeProgramS1" width="98%"/>
+                                                                        <button id="buttonSearchProgramS1" image="/images/icons/search.gif" label="Search" tooltiptext="Search Program Studi"/>
+                                                                        <button id="buttonCloseProgramS1" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaProgramS1" value="Nama Program"/>
+                                                                        <textbox id="tbNameProgramS1" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingProgramS1" pageSize="20"/>
+                                                                            <listbox id="listProgramS1" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeProgramS1" sort="auto" width="30%" label="Kode Program Studi"/>
+                                                                                    <listheader id="nameProgramS1" sort="auto" width="60%" label="Nama Program Studi"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Nama Program Studi"/>
-                                        <textbox id="txtbPt1NamaProgram" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbNamaProgramS1" value="@{controller.mhistpnddkmhsS1.mprodi.cnmprogst}" readonly="true" width="150px"/>
                                     </row>
                                     <row>
                                         <label value="Kode Jenjang"/>
-                                        <textbox id="txtbPt1KodeJenjang" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbNamaJenjangS1" value="@{controller.mhistpnddkmhsS1.mjenjang.cnmjen}" readonly="true" width="120px"/>
+                                            <bandbox id="cmbJenjangS1" sclass="mybandbox" width="0px" tooltiptext="Jenjang" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Jenjang"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeJenjangS1" value="Kode Jenjang"/>
+                                                                        <textbox id="tbCodeJenjangS1" width="98%"/>
+                                                                        <button id="buttonSearchJenjangS1" image="/images/icons/search.gif" label="Search" tooltiptext="Search Jenjang"/>
+                                                                        <button id="buttonCloseJenjangS1" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaJenjangS1" value="Nama Jenjang"/>
+                                                                        <textbox id="tbNameJenjangS1" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingJenjangS1" pageSize="20"/>
+                                                                            <listbox id="listJenjangS1" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeJenjangS1" sort="auto" width="30%" label="Kode Jenjang"/>
+                                                                                    <listheader id="nameJenjangS1" sort="auto" width="70%" label="Nama Jenjang"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="IPK / Yudisium"/>
-                                        <textbox id="txtbPt1Ipk" maxlength="12" readonly="true"/>
+                                        <decimalbox id="txtbIpkS1" value="@{controller.mhistpnddkmhsS1.nhistipk}" readonly="true" maxlength="5" width="40px" format="#.###"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Lulus"/>
-                                        <textbox id="txtbPt1TglLulus" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbTglLulusS1" value="@{controller.mhistpnddkmhsS1.dtgllulus}" readonly="true" disabled="true"/>
                                     </row>
                                     <row>
                                         <label value="Beban Studi"/>
-                                        <textbox id="txtbPt1BebanStudi" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbBebanStudiS1" value="@{controller.mhistpnddkmhsS1.cbebanstudi}" maxlength="3" width="50px" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>
                         </groupbox>
                         <groupbox mold="3d" closable="false" style="height:100%; ">
-                            <caption image="/images/icons/view.gif" label="S2"/>
+                            <caption image="/images/icons/view.gif" label="S2" />
                             <grid sclass="GridLayoutNoBorder" fixedLayout="true"
                                   style="border:0px; padding-left:5px; padding-right:5px; ">
                                 <columns>
@@ -74,39 +201,166 @@
                                 <rows>
                                     <row>
                                         <label value="Kode Perguruan Tinggi"/>
-                                            <textbox id="txtbPt2Code" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbCodeS2" value="@{controller.mhistpnddkmhsS2.muniv.ckdUniv}" readonly="true" width="60px"/>
+                                            <bandbox id="cmbPgurTinggiS2" sclass="mybandbox" width="0px" tooltiptext="Perguruan Tinggi" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Perguruan Tinggi"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeS2" value="Code"/>
+                                                                        <textbox id="tbCodeS2" width="98%"/>
+                                                                        <button id="buttonSearchPgurTinggiS2" image="/images/icons/search.gif" label="Search" tooltiptext="Search Perguruan Tinggi"/>
+                                                                        <button id="buttonClosePgurTinggiS2" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaS2" value="Nama"/>
+                                                                        <textbox id="tbNameS2" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingPgurTinggiS2" pageSize="20"/>
+                                                                            <listbox id="listPgurTinggiS2" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeS2" sort="auto" width="20%" label="Kode Perguruan Tinggi"/>
+                                                                                    <listheader id="nameS2" sort="auto" width="60%" label="Nama Perguruan Tinggi"/>
+                                                                                    <listheader id="statusS2" sort="auto" width="20%" label="Status Perguruan Tinggi"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Nama Perguruan Tinggi"/>
-                                        <textbox id="txtbPt2Name" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbNameS2" value="@{controller.mhistpnddkmhsS2.muniv.cnamaUniv}" readonly="true" width="250px"/>
                                     </row>
                                     <row>
                                         <label value="Status Perguruan Tinggi"/>
-                                        <textbox id="txtbPt2Status" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbStatusS2" value="@{controller.mhistpnddkmhsS2.muniv.cstatus}" readonly="true" width="80px"/>
                                     </row>
                                     <row>
                                         <label value="Kode Program Studi"/>
-                                        <textbox id="txtbPt2CodeProgram" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbCodeProgramS2" value="@{controller.mhistpnddkmhsS2.mprodi.ckdprogst}" readonly="true" width="60px"/>
+                                            <bandbox id="cmbProgramS2" sclass="mybandbox" width="0px" tooltiptext="Program Studi" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Program Studi"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeProgramS2" value="Code program"/>
+                                                                        <textbox id="tbCodeProgramS2" width="98%"/>
+                                                                        <button id="buttonSearchProgramS2" image="/images/icons/search.gif" label="Search" tooltiptext="Search Program Studi"/>
+                                                                        <button id="buttonCloseProgramS2" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaProgramS2" value="Nama Program"/>
+                                                                        <textbox id="tbNameProgramS2" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingProgramS2" pageSize="20"/>
+                                                                            <listbox id="listProgramS2" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeProgramS2" sort="auto" width="30%" label="Kode Program Studi"/>
+                                                                                    <listheader id="nameProgramS2" sort="auto" width="60%" label="Nama Program Studi"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Nama Program Studi"/>
-                                        <textbox id="txtbPt2NamaProgram" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbNamaProgramS2" value="@{controller.mhistpnddkmhsS2.mprodi.cnmprogst}" readonly="true" width="150px"/>
                                     </row>
                                     <row>
                                         <label value="Kode Jenjang"/>
-                                        <textbox id="txtbPt2KodeJenjang" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbNamaJenjangS2" value="@{controller.mhistpnddkmhsS2.mjenjang.cnmjen}" readonly="true" width="120px"/>
+                                            <bandbox id="cmbJenjangS2" sclass="mybandbox" width="0px" tooltiptext="Jenjang" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Jenjang"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="20%"/>
+                                                                    <column width="40%"/>
+                                                                    <column width="30%"/>
+                                                                    <column width="10%"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelCodeJenjangS2" value="Kode Jenjang"/>
+                                                                        <textbox id="tbCodeJenjangS2" width="98%"/>
+                                                                        <button id="buttonSearchJenjangS2" image="/images/icons/search.gif" label="Search" tooltiptext="Search Jenjang"/>
+                                                                        <button id="buttonCloseJenjangS2" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelNamaJenjangS2" value="Nama Jenjang"/>
+                                                                        <textbox id="tbNameJenjangS2" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingJenjangS2" pageSize="20"/>
+                                                                            <listbox id="listJenjangS2" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="codeJenjangS2" sort="auto" width="30%" label="Kode Jenjang"/>
+                                                                                    <listheader id="nameJenjangS2" sort="auto" width="70%" label="Nama Jenjang"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="IPK / Yudisium"/>
-                                        <textbox id="txtbPt2Ipk" maxlength="12" readonly="true"/>
+                                        <decimalbox id="txtbIpkS2" value="@{controller.mhistpnddkmhsS2.nhistipk}" readonly="true" maxlength="5" width="40px" format="#.###"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Lulus"/>
-                                        <textbox id="txtbPt2TglLulus" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbTglLulusS2" value="@{controller.mhistpnddkmhsS2.dtgllulus}" readonly="true" disabled="true"/>
                                     </row>
                                     <row>
                                         <label value="Beban Studi"/>
-                                        <textbox id="txtbPt2BebanStudi" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbBebanStudiS2" value="@{controller.mhistpnddkmhsS2.cbebanstudi}" maxlength="3" width="50px" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>
