@@ -596,6 +596,10 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
     private void doSave(Event event) throws InterruptedException {
         // logger.debug(event.toString());
 
+        if (getTfeedbackinstansiDetailCtrl().jenis_instansi!=null){
+
+        getTfeedbackinstansiDetailCtrl().txtb_jenis.setValue(getTfeedbackinstansiDetailCtrl().jenis_instansi);
+        getTfeedbackinstansiDetailCtrl().getTfeedbackinstansi().setCjnsinstansi(getTfeedbackinstansiDetailCtrl().jenis_instansi);
         // save all components data in the several tabs to the bean
         getTfeedbackinstansiDetailCtrl().getBinder().saveAll();
 
@@ -638,6 +642,11 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
             btnCtrlTfeedbackinstansi.setInitEdit();
             getTfeedbackinstansiDetailCtrl().doReadOnlyMode(true);
         }
+
+        } else {
+             ZksampleMessageUtils.showErrorMessage("Jenis Instansi Mohon Dipilih.");
+             return;
+        }
     }
 
     /**
@@ -676,6 +685,9 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
         if (getTfeedbackinstansiDetailCtrl().getBinder() != null) {
             getTfeedbackinstansiDetailCtrl().getBinder().loadAll();
         }
+
+        getTfeedbackinstansiDetailCtrl().doRenderCombo();
+
 
         // set editable Mode
         getTfeedbackinstansiDetailCtrl().doReadOnlyMode(false);

@@ -685,6 +685,8 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
             getMfeedbackDetailCtrl().getBinder().loadAll();
         }
 
+        getMfeedbackDetailCtrl().doRenderCombo();
+        getMfeedbackDetailCtrl().list_jenis.setSelectedIndex(0);
         // set editable Mode
         getMfeedbackDetailCtrl().doReadOnlyMode(false);
 
