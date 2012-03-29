@@ -25,6 +25,7 @@ import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
@@ -150,14 +151,16 @@ public class MfeedbackDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void onCreate$windowMfeedbackDetail(Event event) throws Exception {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.KodeFeedback.class)).getEnumToList(),
-                list_jenis, cmb_jenis, (getMfeedback() != null)?getMfeedback().getCkdfeedback():null);
-
         binder.loadAll();
 
         doFitSize(event);
     }
 
+    public void doRenderCombo(){
+        ListBoxUtil.resetList(list_jenis);
+          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.KodeFeedback.class)).getEnumToList(),
+                list_jenis, cmb_jenis, (getMfeedback() != null)?getMfeedback().getCkdfeedback():null);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++++ Business Logic ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

@@ -148,12 +148,21 @@ public class TfeedbackinstansiDetailCtrl extends GFCBaseCtrl implements Serializ
     public void onCreate$windowTfeedbackinstansiDetail(Event event) throws Exception {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisInstansi.class)).getEnumToList(),
-                list_jenis, cmb_jenis, (getTfeedbackinstansi() != null)?getTfeedbackinstansi().getCjnsinstansi():null);
-
         binder.loadAll();
 
         doFitSize(event);
+    }
+
+    public void doRenderCombo(){
+                resetListJenis();
+                 GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisInstansi.class)).getEnumToList(),
+                list_jenis, cmb_jenis, (getTfeedbackinstansi() != null)?getTfeedbackinstansi().getCjnsinstansi():null);
+    }
+
+    public void resetListJenis(){
+        while (list_jenis.getItemCount() > 0) {
+            list_jenis.removeItemAt(0);
+        }
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

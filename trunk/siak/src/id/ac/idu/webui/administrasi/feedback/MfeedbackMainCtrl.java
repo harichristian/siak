@@ -194,6 +194,9 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getMfeedbackDetailCtrl().setMfeedback(getSelectedMfeedback());
             getMfeedbackDetailCtrl().getBinder().loadAll();
+
+            //refresh combo
+            getMfeedbackDetailCtrl().doRenderCombo();
             return;
         }
 
