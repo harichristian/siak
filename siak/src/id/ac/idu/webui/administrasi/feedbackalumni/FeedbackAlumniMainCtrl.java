@@ -10,6 +10,7 @@ import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.administrasi.report.FeedbackAlumniSimpleDJReport;
 import id.ac.idu.webui.util.*;
+import id.ac.idu.webui.util.pagging.PagedBindingListWrapper;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -25,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * @author <a href="valeo.gumilang@gmail.com">Valeo Gumilang</a>
@@ -80,6 +82,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
     // Databinding
     private Tfeedbackalumni selectedFeedbackAlumni;
+    private List<Tfeedbackalumni> selectedFeedbackAlumniList;
     private BindingListModelList feedbackAlumnis;
     private Mfeedback selectedFeedback;
     private BindingListModelList feedbacks;
@@ -588,18 +591,36 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         try {
 
             /**
-             * Do not allow to modify the demo feedbackAlumnis
+             * Create list of FeedbackAlumni based on master feedback
              */
-//			if (getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getId() <= 2) {
-//				ZksampleMessageUtils.doShowNotAllowedForDemoRecords();
-//
-//				doResetToInitValues();
-//				getFeedbackAlumniDetailCtrl().getBinder().loadAll();
-//				return;
-//			}
+            /*setSelectedFeedbackAlumniList(new ArrayList<Tfeedbackalumni>());
+            for (Mfeedback mf : (List<Mfeedback>) getFeedbacks()) {
+                final Tfeedbackalumni fa = getFeedbackAlumniService().getNewFeedbackAlumni();
+                fa.setMmahasiswa(getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getMmahasiswa());
+                fa.setCterm(getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getCterm());
+                fa.setCkelompok(getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getCkelompok());
+                fa.setMprodi(getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getMprodi());
+                fa.setMsekolah(getFeedbackAlumniDetailCtrl().getFeedbackAlumni().getMsekolah());
+                fa.setMfeedback(mf);
+                fa.setCjawaban("1");
+                getSelectedFeedbackAlumniList().add(fa);
+            } */
+            getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(getSelectedFeedbackAlumni());
+            if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
+                getFeedbackAlumniDetailCtrl().getBinder().loadAll();
+            }
+            for (Tfeedbackalumni tfa : getFeedbackAlumniDetailCtrl().getFeedbackAlumniList()) {
+                tfa.setMmahasiswa(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMmahasiswa());
+                tfa.setCterm(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCterm());
+                tfa.setCkelompok(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCkelompok());
+                tfa.setMprodi(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMprodi());
+                tfa.setMsekolah(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMsekolah());
+                //tfa.setCjawaban();
+            }
 
             // save it to database
-            getFeedbackAlumniService().saveOrUpdate(getFeedbackAlumniDetailCtrl().getFeedbackAlumni());
+            //getFeedbackAlumniService().saveOrUpdate(getFeedbackAlumniDetailCtrl().getFeedbackAlumni());
+            getFeedbackAlumniService().saveOrUpdateList(getFeedbackAlumniDetailCtrl().getFeedbackAlumniList());
             // if saving is successfully than actualize the beans as
             // origins.
             doStoreInitValues();
@@ -652,17 +673,29 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         // We don't create a new DomainObject() in the frontend.
         // We GET it from the backend.
         final Tfeedbackalumni anFeedbackAlumni = getFeedbackAlumniService().getNewFeedbackAlumni();
-
+        List<Tfeedbackalumni> listFeedbackAlumni = getFeedbackAlumniService().getNewFeedbackAlumniList();
         // set the beans in the related databinded controllers
         getFeedbackAlumniDetailCtrl().setFeedbackAlumni(anFeedbackAlumni);
         getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(anFeedbackAlumni);
 
+        getFeedbackAlumniDetailCtrl().setFeedbackAlumniList(listFeedbackAlumni);
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(listFeedbackAlumni);
+
         // Refresh the binding mechanism
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(getSelectedFeedbackAlumni());
         getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(getSelectedFeedbackAlumni());
         if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
             getFeedbackAlumniDetailCtrl().getBinder().loadAll();
         }
 
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(getSelectedFeedbackAlumniList());
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(getSelectedFeedbackAlumniList());
+        if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
+            getFeedbackAlumniDetailCtrl().getBinder().loadAll();
+        }
+        PagedBindingListWrapper<Tfeedbackalumni> pblw = getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper();
+        pblw.clear();
+        pblw.addAll(getSelectedFeedbackAlumniList());
         // set editable Mode
         getFeedbackAlumniDetailCtrl().doReadOnlyMode(false);
 
@@ -803,10 +836,29 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
     public void setSelectedFeedbackAlumni(Tfeedbackalumni selectedFeedbackAlumni) {
         this.selectedFeedbackAlumni = selectedFeedbackAlumni;
+        try {
+        List<Tfeedbackalumni> ltf = this.selectedFeedbackAlumniList;
+        for(Tfeedbackalumni tf : ltf) {
+            tf.setMmahasiswa(selectedFeedbackAlumni.getMmahasiswa());
+            tf.setCterm(selectedFeedbackAlumni.getCterm());
+            tf.setCkelompok(selectedFeedbackAlumni.getCkelompok());
+            tf.setMprodi(selectedFeedbackAlumni.getMprodi());
+            tf.setMsekolah(selectedFeedbackAlumni.getMsekolah());
+        }
+        } catch (NullPointerException e) {}
+
     }
 
     public Tfeedbackalumni getSelectedFeedbackAlumni() {
         return this.selectedFeedbackAlumni;
+    }
+
+    public void setSelectedFeedbackAlumniList(List<Tfeedbackalumni> selectedFeedbackAlumniList) {
+        this.selectedFeedbackAlumniList = selectedFeedbackAlumniList;
+    }
+
+    public List<Tfeedbackalumni> getSelectedFeedbackAlumniList() {
+        return this.selectedFeedbackAlumniList;
     }
 
     public void setFeedbackAlumnis(BindingListModelList feedbackAlumnis) {

@@ -33,7 +33,13 @@ public class ConstantUtil {
     public static String JENJANG_NAME = "cnmjen";
     public static String JENJANG_SINGKATAN = "csingkat";
     public static String MAHASISWA_DOT_NAME = "mmahasiswa.cnmstatmhs";
+    public static String MAHASISWA_DOT_NAMA = "mmahasiswa.cnama";
+    public static String MAHASISWA_DOT_NIM = "mmahasiswa.cnim";
     public static String FEEDBACK_CODE = "ckdfeedback";
     public static String PRODI_DOT_NAME = "mprodi.ckdprogst";
     public static String SEKOLAH_DOT_NAME = "msekolah.cnamaSekolah";
+    public static String NO_PERTANYAAN = "nnopertanyaan";
+    public static String PERTANYAAN = "cpertanyaan";
+    public static String JAWABAN = "cjawaban";
+    public static String JENIS_FEEDBACK = "ckdfeedback";
 }

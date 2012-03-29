@@ -16,7 +16,7 @@
             border="none" width="100%">
 
         <borderlayout id="borderlayout_FeedbackAlumniDetail">
-            <center border="none" autoscroll="true">
+            <north border="none" autoscroll="true">
                 <panel border="none">
                     <panelchildren>
 
@@ -66,70 +66,137 @@
                                         </hbox>
                                     </row>
                                     <row>
-                                        <label value="Prodi"/>
-                                        <hbox>
-                                            <textbox id="txtb_prodi" value="@{controller.feedbackAlumni.mprodi.cnmprogst}"
-                                                    readonly="true" maxlength="40" width="100px" />
+                                        <label value="Program Studi"/>
+                                        <hbox pack="stretch" width="100px">
+                                            <textbox
+                                                    id="txtb_prodi"
+                                                    value="@{controller.feedbackAlumni.mprodi.cnmprogst}"
+                                                    readonly="true" maxlength="40" width="100px"/>
+                                            <button
+                                                    id="btnSearchProdiExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Prodi"/>
                                         </hbox>
                                     </row>
                                     <row>
                                         <label value="Sekolah"/>
-                                        <hbox>
+                                        <hbox pack="stretch" width="100px">
+                                            <textbox
+                                                    id="txtb_sekolah"
+                                                    value="@{controller.feedbackAlumni.msekolah.cnamaSekolah}"
+                                                    readonly="true" maxlength="50" width="100px"/>
+                                            <button
+                                                    id="btnSearchSekolahExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Sekolah"/>
+                                        </hbox>
+                                        <!--hbox>
                                             <textbox id="txtb_sekolah" value="@{controller.feedbackAlumni.msekolah.cnamaSekolah}"
                                                     readonly="true" maxlength="50" width="100px" />
+                                        </hbox-->
+                                    </row>
+                                    <row>
+                                        <label value="jawaban"/>
+                                        <hbox pack="stretch" width="100px">
+                                            <textbox
+                                                    id="txtb_jawaban"
+                                                    value="@{controller.feedbackAlumni.cjawaban}"
+                                                    readonly="true" maxlength="50" width="100px"/>
                                         </hbox>
                                     </row>
-                                    <!--row>
-                                        <hbox>
-                                            <label
-                                                    value="Jenis Instansi"/>
-                                            <label value="*"
-                                                   style="color:red;font-size:10px"/>
-                                        </hbox>
-                                         <hbox>
-                                        <textbox
-                                                id="txtb_jenis" value="@{controller.feedbackAlumni.cjnsinstansi}"
-                                                  visible="false" />
-                                            <bandbox id="cmb_jenis" mold="rounded" autodrop="true" readonly="true" disabled="true">
-                                                <bandpopup>
-                                                    <listbox id="list_jenis" mold="paging" autopaging="true" width="180px"
-                                                             onSelect="cmb_jenis.value=self.selectedItem.label;
-                                                             txtb_jenis.value=self.selectedItem.value; cmb_jenis.close();"/>
-                                                </bandpopup>
-                                            </bandbox>
-                                        </hbox>
-                                    </row-->
                                     <row>
                                         <separator bar="true"></separator>
                                         <separator bar="true"></separator>
-                                    </row>
-                                    <row>
-                                        <label
-                                                value="Nomer"/>
-                                        <textbox
-                                                id="txtb_nomer" value="@{controller.feedbackAlumni.nnopertanyaan}"
-                                                readonly="true" maxlength="1" width="50px" constraint="no empty"/>
-                                    </row>
-                                    <row>
-                                        <label
-                                                value="Pertanyaan"/>
-                                        <textbox
-                                                id="txtb_pertanyaan" value="@{controller.feedbackAlumni.mfeedback.cpertanyaan}"
-                                                readonly="true" maxlength="100" width="99%" constraint="no empty"/>
-                                    </row>
-                                    <row>
-                                        <label
-                                                value="Jawaban"/>
-                                        <textbox
-                                                id="txtb_jawaban" value="@{controller.feedbackAlumni.cjawaban}"
-                                                readonly="true" maxlength="1" width="50px" constraint="no empty"/>
                                     </row>
                                 </rows>
                             </grid>
                         </groupbox>
                     </panelchildren>
                 </panel>
+            </north>
+            <center border="none">
+            <listbox id="listBoxFeedbackAlumniDetail"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.feedbackAlumnis}"
+                         selectedItem="@{controller.feedbackAlumni}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                <listhead sizable="true">
+                    <listheader id="listheader_FeedbackAlumniDetailList_no"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                label="No" sort="auto"
+                                width="40px"/>
+                    <listheader id="listheader_FeedbackAlumniDetailList_pertanyaan"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                label="Pertanyaan" sort="auto"
+                                width="40%"/>
+                    <listheader id="listheader_FeedbackAlumniDetailList_1"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                label="Jawaban" sort="auto"
+                                width="300px"/>
+                </listhead>
+                <!--radiogroup onCheck="choice.value = self.selectedItem.label"-->
+                <listitem self="@{each='feedbackAlumni'}" value="@{feedbackAlumni}">
+                    <listcell label="@{feedbackAlumni.mfeedback.nnopertanyaan}"
+                              style="padding-left: 5px"/>
+                    <listcell label="@{feedbackAlumni.mfeedback.cpertanyaan}"
+                              style="padding-left: 5px"/>
+                    <listcell style="padding-left: 5px">
+                        <label value="Buruk Sekali"/>
+                        <radiogroup onCheck="controller.feedbackAlumni.cjawaban = feedbackAlumni.cjawaban = self.selectedItem.label">
+                        <radio label="1"/>
+                        <radio label="2"/>
+                        <radio label="3"/>
+                        <radio label="4"/>
+                        <radio label="5"/>
+                        </radiogroup><label value="Baik Sekali"/>
+                    </listcell>
+                </listitem>
+            </listbox>
+            <!--listbox id="listBoxFeedbackAlumniDetail"
+                         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                         model="@{controller.feedbacks}"
+                         selectedItem="@{controller.selectedFeedback}" vflex="true"
+                         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                         height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_FeedbackAlumniDetailList_no"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="No" sort="auto"
+                                    width="40px"/>
+                        <listheader id="listheader_FeedbackAlumniDetailList_pertanyaan"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Pertanyaan" sort="auto"
+                                    width="40%"/>
+                        <listheader id="listheader_FeedbackAlumniDetailList_1"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="Jawaban" sort="auto"
+                                    width="300px"/>
+                    </listhead>
+                    <listitem self="@{each='feedback'}" value="@{feedback}">
+                        <listcell label="@{feedback.nnopertanyaan}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{feedback.cpertanyaan}"
+                                  style="padding-left: 5px"/>
+                        <listcell style="padding-left: 5px">
+                            <label value="Buruk Sekali"/>
+                            <radiogroup>
+                            <radio id="radio1"/>
+                            <radio id="radio2"/>
+                            <radio id="radio3"/>
+                            <radio id="radio4"/>
+                            <radio id="radio5"/>
+                            </radiogroup>
+                            <label value="Baik Sekali"/>
+                        </listcell>
+                    </listitem>
+                </listbox-->
             </center>
+            <south border="none">
+                <paging id="paging_FeedbackAlumniDetailList"/>
+            </south>
         </borderlayout>
 
     </window>

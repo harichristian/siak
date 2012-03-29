@@ -3,10 +3,10 @@ package id.ac.idu.administrasi.service.impl;
 import id.ac.idu.administrasi.dao.*;
 import id.ac.idu.administrasi.service.FeedbackAlumniService;
 import id.ac.idu.backend.model.Mfeedback;
-import id.ac.idu.backend.model.Mprodi;
-import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tfeedbackalumni;
+import id.ac.idu.util.Codec;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,11 +65,24 @@ public class FeedbackAlumniServiceImpl implements FeedbackAlumniService{
     public Tfeedbackalumni getNewFeedbackAlumni() {
         Tfeedbackalumni obj = getFeedbackAlumniDAO().getNewFeedbackAlumni();
         //obj.setMmahasiswa((Mmahasiswa) getMahasiswaDAO().getAll().get(0));
-        obj.setMsekolah((Msekolah) getSekolahDAO().getAllSekolah().get(0));
-        obj.setMprodi((Mprodi) getProdiDAO().getAllProdis().get(0));
+        //obj.setMsekolah((Msekolah) getSekolahDAO().getAllSekolah().get(0));
+        //obj.setMprodi((Mprodi) getProdiDAO().getAllProdis().get(0));
         obj.setMfeedback((Mfeedback) getFeedbackDAO().getAll().get(0));
         obj.setNnopertanyaan(getFeedbackDAO().getAll().get(0).getNnopertanyaan());
         return obj;
+    }
+
+    @Override
+    public List<Tfeedbackalumni> getNewFeedbackAlumniList() {
+        List<Mfeedback> lmf = getFeedbackDAO().getFeedbackLikeCode(Codec.KodeFeedback.A.getValue());
+        List<Tfeedbackalumni> ltf = new ArrayList<Tfeedbackalumni>();
+        for (Mfeedback mf : lmf) {
+            Tfeedbackalumni obj = getFeedbackAlumniDAO().getNewFeedbackAlumni();
+            obj.setMfeedback(mf);
+            obj.setNnopertanyaan(mf.getNnopertanyaan());
+            ltf.add(obj);
+        }
+        return ltf;
     }
 
     @Override
@@ -99,7 +112,7 @@ public class FeedbackAlumniServiceImpl implements FeedbackAlumniService{
 
     @Override
     public List<Tfeedbackalumni> getFeedbackAlumniLikeMahasiswaName(String string) {
-        return getFeedbackAlumniLikeMahasiswaName(string);
+        return getFeedbackAlumniDAO().getFeedbackAlumniLikeMahasiswaName(string);
     }
 
     @Override
@@ -110,5 +123,16 @@ public class FeedbackAlumniServiceImpl implements FeedbackAlumniService{
     @Override
     public void delete(Tfeedbackalumni entity) {
         getFeedbackAlumniDAO().delete(entity);
+    }
+
+    @Override
+    public void saveOrUpdateList(List<Tfeedbackalumni> list) {
+        for (Tfeedbackalumni entity:list) {
+            getFeedbackAlumniDAO().saveOrUpdate(entity);
+        }
+    }
+    @Override
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String string, String term, String kelompok) {
+        return getFeedbackAlumniDAO().getFeedbackAlumniByNim(string, term, kelompok);
     }
 }
