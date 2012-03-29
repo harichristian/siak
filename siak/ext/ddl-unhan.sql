@@ -4621,3 +4621,44 @@ ALTER TABLE TFEEDBACKWISUDAWAN
 	ENABLE QUERY OPTIMIZATION;
 
 COMMIT;
+
+INSERT INTO SEC_GROUP (GRP_ID, GRP_SHORTDESCRIPTION, GRP_LONGDESCRIPTION, VERSION) VALUES
+(60000,'FeedbackDosen_View','Allow to  view FeedbackDosen',0),
+(60001,'FeedbackDosen_New','Allow create new FeedbackDosen',0),
+(60002,'FeedbackDosen_Edit','Allow editing of FeedbackDosen',0),
+(60003,'FeedbackDosen_Delete','Allow deleting of FeedbackDosen',0);
+
+INSERT INTO SEC_ROLEGROUP (RLG_ID, GRP_ID, ROL_ID, VERSION) VALUES 
+(60144,60000,10000,0),
+(60145,60001,10000,0),
+(60146,60002,10000,0),
+(60147,60003,10000,0);
+
+INSERT INTO SEC_RIGHT (RIG_ID, RIG_TYPE, RIG_NAME, VERSION) VALUES 
+(61085,2,'menu_Item_FeedbackDosen',0);
+
+INSERT INTO SEC_GROUPRIGHT (GRI_ID, GRP_ID, RIG_ID, VERSION) VALUES 
+(60694,13089,61085,0);
+
+commit;
+/* End Siak Menu */
+
+INSERT INTO SEC_GROUP (GRP_ID, GRP_SHORTDESCRIPTION, GRP_LONGDESCRIPTION, VERSION) VALUES
+(70000,'FeedbackWisudawan_View','Allow to  view FeedbackWisudawan',0),
+(70001,'FeedbackWisudawan_New','Allow create new FeedbackWisudawan',0),
+(70002,'FeedbackWisudawan_Edit','Allow editing of FeedbackWisudawan',0),
+(70003,'FeedbackWisudawan_Delete','Allow deleting of FeedbackWisudawan',0);
+
+INSERT INTO SEC_ROLEGROUP (RLG_ID, GRP_ID, ROL_ID, VERSION) VALUES 
+(70144,70000,10000,0),
+(70145,70001,10000,0),
+(70146,70002,10000,0),
+(70147,70003,10000,0);
+
+INSERT INTO SEC_RIGHT (RIG_ID, RIG_TYPE, RIG_NAME, VERSION) VALUES 
+(71085,2,'menu_Item_FeedbackWisudawan',0);
+
+INSERT INTO SEC_GROUPRIGHT (GRI_ID, GRP_ID, RIG_ID, VERSION) VALUES 
+(70694,13089,71085,0);
+
+commit;
