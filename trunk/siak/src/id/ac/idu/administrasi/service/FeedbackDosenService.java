@@ -63,7 +63,7 @@ public interface FeedbackDosenService {
      * @param string mahasiswa name of the Tfeedbackdosen
      * @return List of Tfeedbackdosen
      */
-    public List<Tfeedbackdosen> getFeedbackDosenLikeMahasiswaName(String string);
+    public List<Tfeedbackdosen> getFeedbackDosenLikePegawaiName(String string);
 
     /**
      * EN: Saves new or updates an Tfeedbackdosen.<br>
@@ -80,5 +80,5 @@ public interface FeedbackDosenService {
      */
     public void saveOrUpdateList(List<Tfeedbackdosen> list);
 
-    public List<Tfeedbackdosen> getFeedbackDosenByNim(String string, String term, String kelompok);
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(String string, String term, String kelompok);
 }
