@@ -78,6 +78,7 @@ public class TfeedbackinstansiDetailCtrl extends GFCBaseCtrl implements Serializ
     protected Button btnSearchAlumniExtended;
     protected Listbox list_jenis;
     protected Bandbox cmb_jenis;
+    public String jenis_instansi;
 
     // Databinding
     protected transient AnnotateDataBinder binder;
@@ -134,6 +135,7 @@ public class TfeedbackinstansiDetailCtrl extends GFCBaseCtrl implements Serializ
             Tfeedbackinstansi feed =  getTfeedbackinstansi();
             feed.setCjnsinstansi(list_jenis.getSelectedItem().getValue().toString());
             setTfeedbackinstansi(feed);
+            jenis_instansi = list_jenis.getSelectedItem().getValue().toString();
     }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++ Component Events ++++++++++++++++ //
