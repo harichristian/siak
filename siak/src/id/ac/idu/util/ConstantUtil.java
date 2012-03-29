@@ -42,4 +42,6 @@ public class ConstantUtil {
     public static String PERTANYAAN = "cpertanyaan";
     public static String JAWABAN = "cjawaban";
     public static String JENIS_FEEDBACK = "ckdfeedback";
+    public static String PEGAWAI_DOT_NAMA = "mpegawai.cnama";
+    public static String PEGAWAI_DOT_NIP = "mpegawai.cnip";
 }

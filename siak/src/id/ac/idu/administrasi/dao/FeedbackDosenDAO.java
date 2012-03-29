@@ -61,7 +61,7 @@ public interface FeedbackDosenDAO {
      * @param string Tfeedbackdosen of the Tfeedbackdosen
      * @return List of Tfeedbackdosen
      */
-    public List<Tfeedbackdosen> getFeedbackDosenLikeMahasiswaName(String string);
+    public List<Tfeedbackdosen> getFeedbackDosenLikePegawaiName(String string);
 
     /**
      * EN: Deletes an Tfeedbackdosen by its Id.<br>
@@ -85,5 +85,5 @@ public interface FeedbackDosenDAO {
      */
     public void save(Tfeedbackdosen entity);
 
-    public List<Tfeedbackdosen> getFeedbackDosenByNim(String nim, String term, String kelompok);
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(String nip, String term, String kelompok);
 }
