@@ -15,231 +15,116 @@
 
 <panel id="panelTjadkulmasterList"
        title="JADWAL KULIAH" border="none">
-<panelchildren>
+    <panelchildren>
 
 
-<div sclass="z-toolbar" style="padding:0">
-    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
-          width="100%">
+        <div sclass="z-toolbar" style="padding:0">
+            <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
+                  width="100%">
 
-        <!-- COMMON BUTTONS -->
-        <toolbar align="start"
-                 style="float:left; border-style: none;" height="28px">
-            <button id="btnHelp" height="24px"
-                    image="/images/icons/light_16x16.gif"
-                    tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
-            <button id="btnRefresh" height="24px"
-                    image="/images/icons/refresh2_yellow_16x16.gif"
-                    tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
-            <separator orient="vertical"/>
-            <button id="button_TjadkulmasterList_NewTjadkulmaster"
-                    height="24px" image="/images/icons/btn_new2_16x16.gif"
-                    tooltiptext="${c:l('button_TjadkulmasterList_NewTjadkulmaster.tooltiptext')}"/>
-        </toolbar>
-
-
-        <!-- SEARCH AREA -->
-        <toolbar align="center"
-                 style="float:left; border-style: none;" height="28px">
-            <hbox id="hBoxCustomerSearch" align="center"
-                  style="padding: 2px">
-
-                <!--
-                    <hbox id="hBoxCustomerSearch">
-                -->
-                <label id="label_TjadkulmasterList_Customer"
-                       value="${c:l('label_TjadkulmasterList_Customer.value')}"/>
+                <!-- COMMON BUTTONS -->
+                <toolbar align="start"
+                         style="float:left; border-style: none;" height="28px">
+                    <button id="btnHelp" height="24px"
+                            image="/images/icons/light_16x16.gif"
+                            tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
+                    <button id="btnRefresh" height="24px"
+                            image="/images/icons/refresh2_yellow_16x16.gif"
+                            tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
+                    <separator orient="vertical"/>
+                    <button id="button_TjadkulmasterList_NewTjadkulmaster"
+                            height="24px" image="/images/icons/btn_new2_16x16.gif"
+                            tooltiptext="${c:l('button_TjadkulmasterList_NewTjadkulmaster.tooltiptext')}"/>
+                </toolbar>
 
 
-                <bandbox
-                        id="bandbox_TjadkulmasterList_CustomerSearch" width="250px"
-                        tooltiptext="${c:l('bandbox_TjadkulmasterList_CustomerSearch.tooltiptext')}">
-                    <bandpopup
-                            id="bpop_Tjadkulmasters_CustomerSearch" width="540px"
-                            height="455px">
-                        <panel
-                                id="panel_bboxCustomerSearch"
-                                title="${c:l('panel_bboxCustomerSearch.title')}"/>
+                <!-- SEARCH AREA -->
+                <toolbar align="center"
+                         style="float:left; border-style: none;">
+                    <hbox align="center" style="padding: 2px">
+                        <space/>
+                        <checkbox id="checkbox_KegiatanList_ShowAll"
+                                  checked="true"
+                                  label="Tampilkan Semua"/>
+                        <space/>
 
-                        <vbox>
-                            <hbox width="100%">
+                        <label value="Sekolah"
+                               style="padding-right: 3px"/>
+                        <textbox id="txtb_Kegiatan_No" width="60px" maxlength="2"/>
+                        <button id="button_KegiatanList_SearchNo"
+                                height="24px" image="/images/icons/search.gif"
+                                tooltiptext="Cari Berdasarkan Kode"/>
+                        <space width="20px"/>
 
-                                <grid fixedLayout="true"
-                                      style="border:0px" width="100%">
-                                    <columns>
-                                        <column
-                                                width="150px"/>
-                                        <column
-                                                width="250px"/>
-                                        <column
-                                                width="100px"/>
-                                        <column
-                                                width="40px"/>
-                                    </columns>
-                                    <rows>
-                                        <row>
-                                            <label
-                                                    id="label_bboxCustomerSearch_CustNo"
-                                                    value="${c:l('label_bboxCustomerSearch_CustNo.value')}"/>
-                                            <textbox
-                                                    id="tb_Tjadkulmasters_SearchCustNo" width="99%"/>
-                                            <button
-                                                    id="button_bbox_CustomerSearch_Search"
-                                                    image="/images/icons/search.gif"
-                                                    label="${c:l('button_bbox_CustomerSearch_Search.label')}"
-                                                    tooltiptext="${c:l('button_bbox_CustomerSearch_Search.tooltiptext')}"/>
-                                            <button
-                                                    id="button_bbox_CustomerSearch_Close"
-                                                    image="/images/icons/stop.gif"
-                                                    tooltiptext="${c:l('button_bbox_CustomerSearch_Close.tooltiptext')}"/>
-                                        </row>
-                                        <row>
-                                            <label
-                                                    id="label_bboxCustomerSearch_CustMatchcode"
-                                                    value="${c:l('label_bboxCustomerSearch_CustMatchcode.value')}"/>
-                                            <textbox
-                                                    id="tb_Tjadkulmasters_CustSearchMatchcode" width="99%"/>
-                                        </row>
-                                        <row>
-                                            <label
-                                                    id="label_bboxCustomerSearch_CustName1"
-                                                    value="${c:l('label_bboxCustomerSearch_CustName1.value')}"/>
-                                            <textbox
-                                                    id="tb_Tjadkulmasters_SearchCustName1" width="99%"/>
-                                        </row>
-                                        <row>
-                                            <label
-                                                    id="label_bboxCustomerSearch_CustCity"
-                                                    value="${c:l('label_bboxCustomerSearch_CustCity.value')}"/>
-                                            <textbox
-                                                    id="tb_Tjadkulmasters_SearchCustCity" width="99%"/>
-                                        </row>
+                        <label value="Dosen"
+                               style="padding-right: 3px"/>
+                        <textbox id="txtb_Kegiatan_Name" width="100px" maxlength="50"/>
+                        <button id="button_KegiatanList_SearchName"
+                                height="24px" image="/images/icons/search.gif"
+                                tooltiptext="Cari Berdasarkan Nama"/>
+                        <space width="20px"/>
 
-                                        <row
-                                                spans="4">
-                                            <vbox
-                                                    width="100%">
-                                                <paging
-                                                        id="paging_TjadkulmasterList_CustomerSearchList"
-                                                        pageSize="20"/>
-                                                <listbox
-                                                        id="listBoxCustomerSearch"
-                                                        style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
-                                                        width="100%" height="100%" multiple="false">
-                                                    <listhead
-                                                            sizable="true">
-                                                        <listheader
-                                                                id="listheader_CustNo" sclass="FDListBoxHeader1"
-                                                                image="/images/icons/builder.gif" sort="auto"
-                                                                width="15%"
-                                                                label="${c:l('listheader_CustNo.label')}"/>
-                                                        <listheader
-                                                                id="listheader_CustMatchcode"
-                                                                sclass="FDListBoxHeader1"
-                                                                image="/images/icons/create_doc.gif" sort="auto"
-                                                                width="25%"
-                                                                label="${c:l('listheader_CustMatchcode.label')}"/>
-                                                        <listheader
-                                                                id="listheader_CustName1"
-                                                                sclass="FDListBoxHeader1"
-                                                                image="/images/icons/create_doc.gif" sort="auto"
-                                                                width="30%"
-                                                                label="${c:l('listheader_CustName1.label')}"/>
-                                                        <listheader
-                                                                id="listheader_CustCity"
-                                                                sclass="FDListBoxHeader1"
-                                                                image="/images/icons/home_blue16x16.gif"
-                                                                sort="auto"
-                                                                width="30%"
-                                                                label="${c:l('listheader_CustCity.label')}"/>
-                                                    </listhead>
-                                                </listbox>
-                                            </vbox>
-                                        </row>
+                    </hbox>
+                </toolbar>
 
-                                    </rows>
-                                </grid>
+                <!-- CRUD BUTTONS -->
+                <toolbar align="end"
+                         style="float:right; border-style: none;" height="28px">
+                </toolbar>
 
-                            </hbox>
-                        </vbox>
-                    </bandpopup>
-                </bandbox>
-
-                <separator bar="true" orient="vertical"/>
-
-                <label
-                        id="label_TjadkulmasterList_SearchTjadkulmasterName"
-                        value="${c:l('label_TjadkulmasterList_SearchTjadkulmasterName.value')}"/>
-                <textbox id="tb_Tjadkulmasters_Tjadkulmaster"
-                         width="120px"/>
-                <button
-                        id="button_TjadkulmasterList_TjadkulmasterNameSearch" height="24px"
-                        image="/images/icons/search.gif"
-                        label="${c:l('button_TjadkulmasterList_TjadkulmasterNameSearch.label')}"
-                        tooltiptext="${c:l('button_TjadkulmasterList_TjadkulmasterNameSearch.tooltiptext')}"/>
-                <separator bar="true" orient="vertical"/>
             </hbox>
-        </toolbar>
+        </div>
 
+        <paging id="paging_TjadkulmasterList"/>
+        <listbox id="listBoxTjadkulmaster"
+                 style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                 tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                 multiple="false">
+            <listhead sizable="true">
+                <listheader id="listheader_TjadkulmasterList_TjadkulmasterNo"
+                            sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                            sort="auto" width="40%"
+                            label="SEKOLAH"/>
+                <listheader id="listheader_TjadkulmasterList_OderDescr"
+                            sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                            sort="auto" width="60%"
+                            label="PRODI"/>
+                <listheader id="listheader_TjadkulmasterList_Pegawai1"
+                            sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                            sort="auto" width="40%"
+                            label="DOSEN1"/>
+                <listheader id="listheader_TjadkulmasterList_Pegawai2"
+                            sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                            sort="auto" width="60%"
+                            label="DOSEN2"/>
+                <listheader id="listheader_TjadkulmasterList_Matakuliah"
+                            sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                            sort="auto" width="60%"
+                            label="MATA KULIAH"/>
+                <listheader id="listheader_TjadkulmasterList_Term"
+                            sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                            sort="auto" width="40%"
+                            label="TERM"/>
+                <listheader id="listheader_TjadkulmasterList_Kelompok"
+                            sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                            sort="auto" width="40%"
+                            label="KELOMPOK"/>
+                <listheader id="listheader_TjadkulmasterList_Tahunajaran"
+                            sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                            sort="auto" width="60%"
+                            label="TAHUN AJARAN"/>
+                <listheader id="listheader_TjadkulmasterList_Semester"
+                            sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                            sort="auto" width="40%"
+                            label="SEMESTER"/>
+                <listheader id="listheader_TjadkulmasterList_Sks"
+                            sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                            sort="auto" width="60%"
+                            label="SKS"/>
+            </listhead>
+        </listbox>
 
-        <!-- CRUD BUTTONS -->
-        <toolbar align="end"
-                 style="float:right; border-style: none;" height="28px">
-        </toolbar>
-
-    </hbox>
-</div>
-
-<paging id="paging_TjadkulmasterList"/>
-<listbox id="listBoxTjadkulmaster"
-         style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
-         tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
-         multiple="false">
-    <listhead sizable="true">
-        <listheader id="listheader_TjadkulmasterList_TjadkulmasterNo"
-                    sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                    sort="auto" width="40%"
-                    label="SEKOLAH"/>
-        <listheader id="listheader_TjadkulmasterList_OderDescr"
-                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                    sort="auto" width="60%"
-                    label="PRODI"/>
-        <listheader id="listheader_TjadkulmasterList_Pegawai1"
-                    sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                    sort="auto" width="40%"
-                    label="DOSEN1"/>
-        <listheader id="listheader_TjadkulmasterList_Pegawai2"
-                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                    sort="auto" width="60%"
-                    label="DOSEN2"/>
-        <listheader id="listheader_TjadkulmasterList_Matakuliah"
-                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                    sort="auto" width="60%"
-                    label="MATA KULIAH"/>
-        <listheader id="listheader_TjadkulmasterList_Term"
-                    sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                    sort="auto" width="40%"
-                    label="TERM"/>
-        <listheader id="listheader_TjadkulmasterList_Kelompok"
-                    sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                    sort="auto" width="40%"
-                    label="KELOMPOK"/>
-        <listheader id="listheader_TjadkulmasterList_Tahunajaran"
-                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                    sort="auto" width="60%"
-                    label="TAHUN AJARAN"/>
-        <listheader id="listheader_TjadkulmasterList_Semester"
-                    sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                    sort="auto" width="40%"
-                    label="SEMESTER"/>
-        <listheader id="listheader_TjadkulmasterList_Sks"
-                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                    sort="auto" width="60%"
-                    label="SKS"/>
-    </listhead>
-</listbox>
-
-</panelchildren>
+    </panelchildren>
 </panel>
 
 <separator/>

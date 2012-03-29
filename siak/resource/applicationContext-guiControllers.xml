@@ -430,7 +430,6 @@
         <property name="jadkulService" ref="jadkulService"/>
         <property name="plwTjadkulmasters" ref="pagedListWrapper"/>
         <property name="plwTjadkuldetils" ref="pagedListWrapper"/>
-        <property name="plwCustomers" ref="pagedListWrapper"/>
     </bean>
     <bean id="jadkulmasterDialogCtrl" class="id.ac.idu.webui.irs.jadwalkuliah.JadkulmasterDialogCtrl"
           parent="basisCtrl" scope="prototype">

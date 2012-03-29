@@ -2,17 +2,15 @@ package id.ac.idu.webui.irs.jadwalkuliah;
 
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
-import id.ac.idu.backend.model.Customer;
 import id.ac.idu.backend.model.Tjadkuldetil;
 import id.ac.idu.backend.model.Tjadkulmaster;
 import id.ac.idu.backend.service.BrancheService;
 import id.ac.idu.backend.service.CustomerService;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.irs.service.JadkulService;
-import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.GFCBaseListCtrl;
 import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -29,14 +27,14 @@ import java.util.Map;
  * Time: 19:03
  * To change this template use File | Settings | File Templates.
  */
-public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
+public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> implements Serializable {
 
     private static final long serialVersionUID = 5710086946825179284L;
     private static final Logger logger = Logger.getLogger(JadkulmasterListCtrl.class);
 
     private PagedListWrapper<Tjadkulmaster> plwTjadkulmasters;
     private PagedListWrapper<Tjadkuldetil> plwTjadkuldetils;
-    private PagedListWrapper<Customer> plwCustomers;
+    //    private PagedListWrapper<Customer> plwCustomers;
     /*
       * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       * All the components that are defined here and have a corresponding
@@ -53,47 +51,54 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
     // Listbox tjadkulmasterPositions
     protected Paging paging_TjadkulmasterArticleList; // autowire
     protected Listbox listBoxTjadkulmasterArticle; // autowired
-    protected Listheader listheader_TjadkulmasterPosList_Tjadkulmasterpos_No; // autowired
-    protected Listheader listheader_TjadkulmasterPosList_Shorttext; // autowired
-    protected Listheader listheader_TjadkulmasterPosList_Count; // autowired
-    protected Listheader listheader_TjadkulmasterPosList_SinglePrice; // autowired
-    protected Listheader listheader_TjadkulmasterPosList_WholePrice; // autowired
+//    protected Listheader listheader_TjadkulmasterPosList_Tjadkulmasterpos_No; // autowired
+//    protected Listheader listheader_TjadkulmasterPosList_Shorttext; // autowired
+//    protected Listheader listheader_TjadkulmasterPosList_Count; // autowired
+//    protected Listheader listheader_TjadkulmasterPosList_SinglePrice; // autowired
+//    protected Listheader listheader_TjadkulmasterPosList_WholePrice; // autowired
 
-    protected Listfooter listfooter_TjadkulmasterPosList_Count; // autowired
-    protected Listfooter listfooter_TjadkulmasterPosList_WholePrice; // autowired
+//    protected Listfooter listfooter_TjadkulmasterPosList_Count; // autowired
+//    protected Listfooter listfooter_TjadkulmasterPosList_WholePrice; // autowired
 
-    protected Hbox hBoxCustomerSearch; // autowired
+//    protected Hbox hBoxCustomerSearch; // autowired
 
     // bandbox searchCustomer
-    protected Bandbox bandbox_TjadkulmasterList_CustomerSearch;
-    protected Textbox tb_Tjadkulmasters_SearchCustNo; // autowired
-    protected Textbox tb_Tjadkulmasters_CustSearchMatchcode; // autowired
-    protected Textbox tb_Tjadkulmasters_SearchCustName1; // autowired
-    protected Textbox tb_Tjadkulmasters_SearchCustCity; // autowired
+//    protected Bandbox bandbox_TjadkulmasterList_CustomerSearch;
+//    protected Textbox tb_Tjadkulmasters_SearchCustNo; // autowired
+//    protected Textbox tb_Tjadkulmasters_CustSearchMatchcode; // autowired
+//    protected Textbox tb_Tjadkulmasters_SearchCustName1; // autowired
+//    protected Textbox tb_Tjadkulmasters_SearchCustCity; // autowired
     // listbox searchCustomer
-    protected Paging paging_TjadkulmasterList_CustomerSearchList; // autowired
-    protected Listbox listBoxCustomerSearch; // autowired
-    transient protected Listheader listheader_CustNo; // autowired
-    protected Listheader listheader_CustMatchcode; // autowired
-    protected Listheader listheader_CustName1; // autowired
-    protected Listheader listheader_CustCity; // autowired
+//    protected Paging paging_TjadkulmasterList_CustomerSearchList; // autowired
+//    protected Listbox listBoxCustomerSearch; // autowired
+//    transient protected Listheader listheader_CustNo; // autowired
+//    protected Listheader listheader_CustMatchcode; // autowired
+//    protected Listheader listheader_CustName1; // autowired
+//    protected Listheader listheader_CustCity; // autowired
 
     // checkRights
     protected Button btnHelp; // autowired
     protected Button button_TjadkulmasterList_NewTjadkulmaster; // autowired
 
-    private transient HibernateSearchObject<Customer> searchObjCustomer;
+//    private transient HibernateSearchObject<Customer> searchObjCustomer;
 
     private transient int pageSizeTjadkulmasters;
     private int pageSizeTjadkuldetils;
-    private final int pageSizeSearchCustomers = 20;
+//    private final int pageSizeSearchCustomers = 20;
 
     // ServiceDAOs / Domain Classes
-    private Customer customer;
+//    private Customer customer;
     private Tjadkulmaster tjadkulmaster;
     private transient JadkulService jadkulService;
     private transient CustomerService customerService;
     private transient BrancheService brancheService;
+
+    // filter components
+    protected Checkbox checkbox_KegiatanList_ShowAll; // autowired
+    protected Textbox txtb_Kegiatan_No; // aurowired
+    protected Button button_KegiatanList_SearchNo; // aurowired
+    protected Textbox txtb_Kegiatan_Name; // aurowired
+    protected Button button_KegiatanList_SearchName; // aurowired
 
     /**
      * default constructor.<br>
@@ -113,18 +118,18 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
         Map<String, Object> args = getCreationArgsMap(event);
 
         // check if the tjadkulmasterList is called with a customer param
-        if (args.containsKey("customerDialogCtrl")) {
-            hBoxCustomerSearch.setVisible(false);
-        } else {
-            hBoxCustomerSearch.setVisible(true);
-        }
+//        if (args.containsKey("customerDialogCtrl")) {
+//            hBoxCustomerSearch.setVisible(false);
+//        } else {
+//            hBoxCustomerSearch.setVisible(true);
+//        }
 
         // check if the tjadkulmasterList is called with a customer param
-        if (args.containsKey("customer")) {
-            setCustomer((Customer) args.get("customer"));
-        } else {
-            setCustomer(null);
-        }
+//        if (args.containsKey("customer")) {
+//            setCustomer((Customer) args.get("customer"));
+//        } else {
+//            setCustomer(null);
+//        }
 
         // check if the tjadkulmasterList is called from the Customer Dialog
         // and set the pageSizes
@@ -147,7 +152,7 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
 
     private void paintComponents() {
         // set the bandbox to readonly
-        bandbox_TjadkulmasterList_CustomerSearch.setReadonly(true);
+//        bandbox_TjadkulmasterList_CustomerSearch.setReadonly(true);
 
         // not used listheaders must be declared like ->
         // lh.setSortAscending(""); lh.setSortDescending("")
@@ -182,15 +187,15 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
         paging_TjadkulmasterArticleList.setDetailed(true);
 
         // Set the ListModel for the tjadkulmasters.
-        if (customer == null) {
-            // Set the ListModel.
-            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
-        } else {
-            soTjadkulmaster.addFilter(new Filter("customer", customer, Filter.OP_EQUAL));
+//        if (customer == null) {
+//            // Set the ListModel.
+//            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
+//        } else {
+//            soTjadkulmaster.addFilter(new Filter("customer", customer, Filter.OP_EQUAL));
 
-            // Set the ListModel.
-            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
-        }
+        // Set the ListModel.
+        getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
+//        }
         listBoxTjadkulmaster.setItemRenderer(new JadkulmasterListItemRenderer());
 
         listBoxTjadkulmasterArticle.setItemRenderer(new JadkuldetilListItemRenderer());
@@ -392,6 +397,107 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
         tjadkulmasterListWindow.invalidate();
     }
 
+    /**
+     * when the checkBox 'Show All' for filtering is checked. <br>
+     *
+     * @param event
+     */
+    public void onCheck$checkbox_KegiatanList_ShowAll(Event event) {
+        // logger.debug(event.toString());
+
+        // empty the text search boxes
+        txtb_Kegiatan_No.setValue(""); // clear
+        txtb_Kegiatan_Name.setValue(""); // clear
+
+        // ++ create the searchObject and init sorting ++//
+        HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
+        soKegiatan.addSort("id", false);
+        // Change the BindingListModel.
+//        if (getKegiatanListCtrl().getBinder() != null) {
+        this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
+
+        // get the current Tab for later checking if we must change it
+//            Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
+
+        // check if the tab is one of the Detail tabs. If so do not
+        // change the selection of it
+//            if (!currentTab.equals(tabKegiatanList)) {
+//                tabKegiatanList.setSelected(true);
+//            } else {
+//                currentTab.setSelected(true);
+//            }
+//        }
+
+    }
+
+    /**
+     * Filter the kegiatan list with 'like kegiatan number'. <br>
+     */
+    public void onClick$button_KegiatanList_SearchNo(Event event) throws Exception {
+        // logger.debug(event.toString());
+
+        // if not empty
+        if (!txtb_Kegiatan_No.getValue().isEmpty()) {
+            checkbox_KegiatanList_ShowAll.setChecked(false); // unCheck
+            txtb_Kegiatan_Name.setValue(""); // clear
+
+            // ++ create the searchObject and init sorting ++//
+            HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
+            soKegiatan.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Kegiatan_No.getValue() + "%", Filter.OP_ILIKE));
+            soKegiatan.addSort("msekolah.cnamaSekolah", false);
+
+            // Change the BindingListModel.
+//            if (getKegiatanListCtrl().getBinder() != null) {
+            this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
+
+            // get the current Tab for later checking if we must change it
+//                Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
+
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+//                if (!currentTab.equals(tabKegiatanList)) {
+//                    tabKegiatanList.setSelected(true);
+//                } else {
+//                    currentTab.setSelected(true);
+//                }
+//            }
+        }
+    }
+
+    /**
+     * Filter the kegiatan list with 'like kegiatan name'. <br>
+     */
+    public void onClick$button_KegiatanList_SearchName(Event event) throws Exception {
+        // logger.debug(event.toString());
+
+        // if not empty
+        if (!txtb_Kegiatan_Name.getValue().isEmpty()) {
+            checkbox_KegiatanList_ShowAll.setChecked(false); // unCheck
+            txtb_Kegiatan_No.setValue(""); // clear
+
+            // ++ create the searchObject and init sorting ++//
+            HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
+            soKegiatan.addFilter(new Filter("mpegawai1.cnama", "%" + txtb_Kegiatan_Name.getValue() + "%", Filter.OP_ILIKE));
+            soKegiatan.addSort("mpegawai1.cnama", false);
+
+            // Change the BindingListModel.
+//            if (getKegiatanListCtrl().getBinder() != null) {
+            this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
+
+            // get the current Tab for later checking if we must change it
+//                Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
+//
+//                // check if the tab is one of the Detail tabs. If so do not
+//                // change the selection of it
+//                if (!currentTab.equals(tabKegiatanList)) {
+//                    tabKegiatanList.setSelected(true);
+//                } else {
+//                    currentTab.setSelected(true);
+//                }
+//            }
+        }
+    }
+
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++ bandbox search Customer +++++++++++++++//
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -404,7 +510,7 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
     public void onClick$button_bbox_CustomerSearch_Close(Event event) {
         // logger.debug(event.toString());
 
-        bandbox_TjadkulmasterList_CustomerSearch.close();
+//        bandbox_TjadkulmasterList_CustomerSearch.close();
     }
 
     /**
@@ -433,18 +539,18 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
 //        listheader_CustCity.setSortDescending(new FieldComparator("kunOrt", false));
 
         // set the paging params
-        paging_TjadkulmasterList_CustomerSearchList.setPageSize(pageSizeSearchCustomers);
-        paging_TjadkulmasterList_CustomerSearchList.setDetailed(true);
+//        paging_TjadkulmasterList_CustomerSearchList.setPageSize(pageSizeSearchCustomers);
+//        paging_TjadkulmasterList_CustomerSearchList.setDetailed(true);
 
         // ++ create the searchObject and init sorting ++ //
-        if (getSearchObjCustomer() == null) {
-            setSearchObjCustomer(new HibernateSearchObject<Customer>(Customer.class, pageSizeSearchCustomers));
-            getSearchObjCustomer().addSort("kunMatchcode", false);
-            setSearchObjCustomer(searchObjCustomer);
-        }
+//        if (getSearchObjCustomer() == null) {
+//            setSearchObjCustomer(new HibernateSearchObject<Customer>(Customer.class, pageSizeSearchCustomers));
+//            getSearchObjCustomer().addSort("kunMatchcode", false);
+//            setSearchObjCustomer(searchObjCustomer);
+//        }
 
         // Set the ListModel.
-        getPlwCustomers().init(getSearchObjCustomer(), listBoxCustomerSearch, paging_TjadkulmasterList_CustomerSearchList);
+//        getPlwCustomers().init(getSearchObjCustomer(), listBoxCustomerSearch, paging_TjadkulmasterList_CustomerSearchList);
         // set the itemRenderer
 //        listBoxCustomerSearch.setItemRenderer(new TjadkulmasterSearchCustomerListModelItemRenderer());
     }
@@ -459,29 +565,29 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
      */
     private void doSearch() {
 
-        searchObjCustomer = new HibernateSearchObject<Customer>(Customer.class, pageSizeSearchCustomers);
-
-        // check which field have input
-        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustNo.getValue())) {
-            searchObjCustomer.addFilter(new Filter("kunNr", tb_Tjadkulmasters_SearchCustNo.getValue(), Filter.OP_EQUAL));
-        }
-
-        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_CustSearchMatchcode.getValue())) {
-            searchObjCustomer.addFilter(new Filter("kunMatchcode", "%" + tb_Tjadkulmasters_CustSearchMatchcode.getValue().toUpperCase() + "%", Filter.OP_ILIKE));
-        }
-
-        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustName1.getValue())) {
-            searchObjCustomer.addFilter(new Filter("kunName1", "%" + tb_Tjadkulmasters_SearchCustName1.getValue() + "%", Filter.OP_ILIKE));
-        }
-
-        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustCity.getValue())) {
-            searchObjCustomer.addFilter(new Filter("kunOrt", "%" + tb_Tjadkulmasters_SearchCustCity.getValue() + "%", Filter.OP_ILIKE));
-        }
-
-        setSearchObjCustomer(this.searchObjCustomer);
-
-        // Set the ListModel.
-        getPlwCustomers().init(getSearchObjCustomer(), listBoxCustomerSearch, paging_TjadkulmasterList_CustomerSearchList);
+//        searchObjCustomer = new HibernateSearchObject<Customer>(Customer.class, pageSizeSearchCustomers);
+//
+//        // check which field have input
+//        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustNo.getValue())) {
+//            searchObjCustomer.addFilter(new Filter("kunNr", tb_Tjadkulmasters_SearchCustNo.getValue(), Filter.OP_EQUAL));
+//        }
+//
+//        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_CustSearchMatchcode.getValue())) {
+//            searchObjCustomer.addFilter(new Filter("kunMatchcode", "%" + tb_Tjadkulmasters_CustSearchMatchcode.getValue().toUpperCase() + "%", Filter.OP_ILIKE));
+//        }
+//
+//        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustName1.getValue())) {
+//            searchObjCustomer.addFilter(new Filter("kunName1", "%" + tb_Tjadkulmasters_SearchCustName1.getValue() + "%", Filter.OP_ILIKE));
+//        }
+//
+//        if (StringUtils.isNotEmpty(tb_Tjadkulmasters_SearchCustCity.getValue())) {
+//            searchObjCustomer.addFilter(new Filter("kunOrt", "%" + tb_Tjadkulmasters_SearchCustCity.getValue() + "%", Filter.OP_ILIKE));
+//        }
+//
+//        setSearchObjCustomer(this.searchObjCustomer);
+//
+//        // Set the ListModel.
+//        getPlwCustomers().init(getSearchObjCustomer(), listBoxCustomerSearch, paging_TjadkulmasterList_CustomerSearchList);
 
     }
 
@@ -493,63 +599,63 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      */
     public void onDoubleClickedCustomerItem(Event event) {
-        // logger.debug(event.toString());
-
-        // get the customer
-        Listitem item = this.listBoxCustomerSearch.getSelectedItem();
-        if (item != null) {
-
-            /* clear the listboxes from older stuff */
-            if ((ListModelList) listBoxTjadkulmaster.getModel() != null) {
-                ((ListModelList) listBoxTjadkulmaster.getModel()).clear();
-            }
-            if ((ListModelList) listBoxTjadkulmasterArticle.getModel() != null) {
-                ((ListModelList) listBoxTjadkulmasterArticle.getModel()).clear();
-            }
-
-            Customer customer = (Customer) item.getAttribute("data");
-
-            bandbox_TjadkulmasterList_CustomerSearch.setValue(customer.getKunName1() + ", " + customer.getKunOrt());
-
-            // get all tjadkulmasters for the selected customer
-            HibernateSearchObject<Tjadkulmaster> soTjadkulmaster = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, getPageSizeTjadkulmasters());
-            soTjadkulmaster.addSort("aufNr", false);
-            soTjadkulmaster.addFilter(new Filter("customer", customer, Filter.OP_EQUAL));
-
-            // Set the ListModel.
-            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
-
-            // get the first object and poll and show the tjadkulmasterpositions
-            ListModelList lml = (ListModelList) listBoxTjadkulmaster.getModel();
-
-            if (lml.size() > 0) {
-
-                Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) lml.get(0);
-
-                if (anTjadkulmaster != null) {
-                    HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
-                    soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
-                    // deeper loading of the relation to prevent the lazy
-                    // loading problem.
-                    soTjadkuldetil.addFetch("mruang");
-
-                    getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
-                }
-            } else {
-                // get a new Tjadkulmaster for searching that the resultList is cleared
-                Tjadkulmaster anTjadkulmaster = getJadkulService().getNewTjadkulmaster();
-                HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
-                soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
-                // deeper loading of the relation to prevent the lazy
-                // loading problem.
-                soTjadkuldetil.addFetch("mruang");
-
-                getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
-            }
-        }
-
-        // close the bandbox
-        bandbox_TjadkulmasterList_CustomerSearch.close();
+//        // logger.debug(event.toString());
+//
+//        // get the customer
+//        Listitem item = this.listBoxCustomerSearch.getSelectedItem();
+//        if (item != null) {
+//
+//            /* clear the listboxes from older stuff */
+//            if ((ListModelList) listBoxTjadkulmaster.getModel() != null) {
+//                ((ListModelList) listBoxTjadkulmaster.getModel()).clear();
+//            }
+//            if ((ListModelList) listBoxTjadkulmasterArticle.getModel() != null) {
+//                ((ListModelList) listBoxTjadkulmasterArticle.getModel()).clear();
+//            }
+//
+//            Customer customer = (Customer) item.getAttribute("data");
+//
+//            bandbox_TjadkulmasterList_CustomerSearch.setValue(customer.getKunName1() + ", " + customer.getKunOrt());
+//
+//            // get all tjadkulmasters for the selected customer
+//            HibernateSearchObject<Tjadkulmaster> soTjadkulmaster = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, getPageSizeTjadkulmasters());
+//            soTjadkulmaster.addSort("aufNr", false);
+//            soTjadkulmaster.addFilter(new Filter("customer", customer, Filter.OP_EQUAL));
+//
+//            // Set the ListModel.
+//            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
+//
+//            // get the first object and poll and show the tjadkulmasterpositions
+//            ListModelList lml = (ListModelList) listBoxTjadkulmaster.getModel();
+//
+//            if (lml.size() > 0) {
+//
+//                Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) lml.get(0);
+//
+//                if (anTjadkulmaster != null) {
+//                    HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
+//                    soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
+//                    // deeper loading of the relation to prevent the lazy
+//                    // loading problem.
+//                    soTjadkuldetil.addFetch("mruang");
+//
+//                    getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
+//                }
+//            } else {
+//                // get a new Tjadkulmaster for searching that the resultList is cleared
+//                Tjadkulmaster anTjadkulmaster = getJadkulService().getNewTjadkulmaster();
+//                HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
+//                soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
+//                // deeper loading of the relation to prevent the lazy
+//                // loading problem.
+//                soTjadkuldetil.addFetch("mruang");
+//
+//                getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
+//            }
+//        }
+//
+//        // close the bandbox
+//        bandbox_TjadkulmasterList_CustomerSearch.close();
 
     }
 
@@ -563,14 +669,6 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
 
     public Tjadkulmaster getTjadkulmaster() {
         return this.tjadkulmaster;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Customer getCustomer() {
-        return this.customer;
     }
 
     public BrancheService getBrancheService() {
@@ -595,14 +693,6 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
 
     public JadkulService getJadkulService() {
         return this.jadkulService;
-    }
-
-    public void setSearchObjCustomer(HibernateSearchObject<Customer> searchObjCustomer) {
-        this.searchObjCustomer = searchObjCustomer;
-    }
-
-    public HibernateSearchObject<Customer> getSearchObjCustomer() {
-        return this.searchObjCustomer;
     }
 
     public void setPageSizeTjadkulmasters(int pageSizeTjadkulmasters) {
@@ -643,14 +733,6 @@ public class JadkulmasterListCtrl extends GFCBaseCtrl implements Serializable {
 
     public PagedListWrapper<Tjadkuldetil> getPlwTjadkuldetils() {
         return this.plwTjadkuldetils;
-    }
-
-    public void setPlwCustomers(PagedListWrapper<Customer> plwCustomers) {
-        this.plwCustomers = plwCustomers;
-    }
-
-    public PagedListWrapper<Customer> getPlwCustomers() {
-        return this.plwCustomers;
     }
 
 }
