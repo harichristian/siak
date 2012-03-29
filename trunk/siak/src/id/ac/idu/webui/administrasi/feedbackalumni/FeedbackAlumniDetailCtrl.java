@@ -1,15 +1,17 @@
 package id.ac.idu.webui.administrasi.feedbackalumni;
 
+import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.FeedbackAlumniService;
-import id.ac.idu.backend.model.Malumni;
-import id.ac.idu.backend.model.Mfeedback;
-import id.ac.idu.backend.model.Tfeedbackalumni;
+import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
+import id.ac.idu.util.Codec;
 import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.pagging.PagedBindingListWrapper;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MalumniExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -20,6 +22,7 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author <a href="valeo.gumilang@gmail.com">Valeo Gumilang</a>
@@ -42,17 +45,22 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     protected Borderlayout borderlayout_FeedbackAlumniDetail; // autowired
 
     protected Textbox txtb_term; // autowired
-    protected Textbox txtb_nomer; // autowired
+    protected Textbox txtb_nim; // autowired
     protected Textbox txtb_pertanyaan; // autowired
     protected Textbox txtb_jawaban;
     protected Textbox txtb_nmalumni; // autowired
     protected Textbox txtb_kelompok; // autowired
     protected Button button_FeedbackAlumniDialog_PrintFeedbackAlumni; // autowired
     protected Button btnSearchAlumniExtended;
+    protected Textbox txtb_prodi;
+    protected Button btnSearchProdiExtended;
+    protected Textbox txtb_sekolah;
+    protected Button btnSearchSekolahExtended;
     protected Listbox list_jenis;
     protected Bandbox cmb_jenis;
 
     protected Paging paging_FeedbackAlumniDetailList;
+    protected Paging paging_FeedbackList;
     protected Listbox listBoxFeedbackAlumniDetail;
     protected Listheader listheader_FeedbackAlumniDetailList_no; // autowired
     protected Listheader listheader_FeedbackAlumniDetailList_pertanyaan; // autowired
@@ -73,7 +81,8 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     private int countRows;
 
     // NEEDED for ReUse in the SearchWindow
-    private HibernateSearchObject<Mfeedback> searchObj;
+    private HibernateSearchObject<Tfeedbackalumni> searchObj;
+    private HibernateSearchObject<Mfeedback> so;
 
     /**
      * default constructor.<br>
@@ -111,10 +120,17 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
             // than the selectedXXXBean should be null
             if (getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumni() != null) {
                 setSelectedFeedbackAlumni(getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumni());
-            } else
+            } else {
                 setSelectedFeedbackAlumni(null);
+            }
+            if (getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumniList() != null) {
+                setSelectedFeedbackAlumniList(getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumniList());
+            } else {
+                setSelectedFeedbackAlumniList(null);
+            }
         } else {
             setSelectedFeedbackAlumni(null);
+            setSelectedFeedbackAlumniList(null);
         }
 
     }
@@ -149,47 +165,46 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
 
         // not used listheaders must be declared like ->
         // lh.setSortAscending(""); lh.setSortDescending("")
-        listheader_FeedbackAlumniDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAME, true));
-        listheader_FeedbackAlumniDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAME, false));
-        listheader_FeedbackAlumniDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.TERM, true));
-        listheader_FeedbackAlumniDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.TERM, false));
-        listheader_FeedbackAlumniDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.KELOMPOK, true));
-        listheader_FeedbackAlumniDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.KELOMPOK, false));
-        listheader_FeedbackAlumniDetailList_2.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
-        listheader_FeedbackAlumniDetailList_2.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
-        listheader_FeedbackAlumniDetailList_3.setSortAscending(new FieldComparator(ConstantUtil.KELOMPOK, true));
-        listheader_FeedbackAlumniDetailList_3.setSortDescending(new FieldComparator(ConstantUtil.KELOMPOK, false));
-        listheader_FeedbackAlumniDetailList_4.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
-        listheader_FeedbackAlumniDetailList_4.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
-        listheader_FeedbackAlumniDetailList_5.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
-        listheader_FeedbackAlumniDetailList_5.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
+        listheader_FeedbackAlumniDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
+        listheader_FeedbackAlumniDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
+        listheader_FeedbackAlumniDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
+        listheader_FeedbackAlumniDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
+        listheader_FeedbackAlumniDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
+        listheader_FeedbackAlumniDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
 
         // ++ create the searchObject and init sorting ++//
-        // ++ create the searchObject and init sorting ++//
-        searchObj = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
-        searchObj.addSort(ConstantUtil.ID, false);
-        setSearchObj(searchObj);
+        so = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
+        so.addFilter(new Filter(ConstantUtil.JENIS_FEEDBACK, Codec.KodeFeedback.A.getValue().charAt(0), Filter.OP_EQUAL));
+        so.addSort(ConstantUtil.NO_PERTANYAAN, false);
+        searchObj = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getCountRows());
+        if(getSelectedFeedbackAlumni().getMmahasiswa()!=null) {
+            searchObj.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NIM, getSelectedFeedbackAlumni().getMmahasiswa().getCnim(), Filter.OP_EQUAL));
+        }
+        searchObj.addSort(ConstantUtil.NO_PERTANYAAN, false);
+        // Change the BindingListModel.
+        if (getBinder() != null) {
 
-        // Set the BindingListModel
-        getPagedBindingListWrapper().init(searchObj, getListBoxFeedbackAlumniDetail(), paging_FeedbackAlumniDetailList);
-        BindingListModelList lml = (BindingListModelList) getListBoxFeedbackAlumniDetail().getModel();
-        setFeedbacks(lml);
+            /*getPagedBindingListFeedbackWrapper().init(so, getListBoxFeedbackAlumniDetail(), paging_FeedbackList);
+            BindingListModelList blml = (BindingListModelList) getListBoxFeedbackAlumniDetail().getModel();
+            setFeedbacks(blml);*/
+            getPagedBindingListWrapper().init(searchObj, getListBoxFeedbackAlumniDetail(), paging_FeedbackAlumniDetailList);
+            try{
+                getPagedBindingListWrapper().addAll(getSelectedFeedbackAlumniList());
+            } catch (NullPointerException e) {}
+            //pagedBindingListWrapper = new PagedBindingListWrapper<Tfeedbackalumni>();
+            //pagedBindingListFeedbackWrapper.addAll(getSelectedFeedbackAlumniList());
 
-        // check if first time opened and init databinding for selectedBean
-        if (getSelectedFeedback() == null) {
-            // init the bean with the first record in the List
-            if (lml.getSize() > 0) {
-                final int rowIndex = 0;
-                // only for correct showing after Rendering. No effect as an
-                // Event
-                // yet.
-                getListBoxFeedbackDetailAlumni().setSelectedIndex(rowIndex);
-                // get the first entry and cast them to the needed object
-                setSelectedFeedback((Mfeedback) lml.get(0));
+            BindingListModelList lml = (BindingListModelList) getListBoxFeedbackAlumniDetail().getModel();
 
-                // call the onSelect Event for showing the objects data in the
-                // statusBar
-                Events.sendEvent(new Event("onSelect", getListBoxFeedbackDetailAlumni(), getSelectedFeedback()));
+            setFeedbackAlumnis(lml);
+            if (getSelectedFeedbackAlumni() == null) {
+                // init the bean with the first record in the List
+                if (lml.getSize() > 0) {
+                    final int rowIndex = 0;
+                    getListBoxFeedbackDetailAlumni().setSelectedIndex(rowIndex);
+                    setSelectedFeedbackAlumni((Tfeedbackalumni) lml.get(0));
+                    Events.sendEvent(new Event("onSelect", getListBoxFeedbackDetailAlumni(), getSelectedFeedbackAlumni()));
+                }
             }
         }
 
@@ -239,12 +254,9 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     public void doReadOnlyMode(boolean b) {
         txtb_term.setReadonly(b);
         txtb_kelompok.setReadonly(b);
-        txtb_nomer.setReadonly(b);
-        txtb_pertanyaan.setReadonly(b);
-        txtb_jawaban.setReadonly(b);
+        btnSearchProdiExtended.setDisabled(b);
+        btnSearchSekolahExtended.setDisabled(b);
         btnSearchAlumniExtended.setDisabled(b);
-        //list_jenis.setDisabled(b);
-        //cmb_jenis.setDisabled(b);
     }
 
       /**
@@ -266,7 +278,7 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         Malumni malumni = MalumniExtendedSearchListBox.show(windowFeedbackAlumniDetail);
 
         if (malumni != null) {
-//            txtb_kdalumni.setValue(malumni.getMmahasiswa().getCnim());
+            txtb_nim.setValue(malumni.getMmahasiswa().getCnim());
             txtb_nmalumni.setValue(malumni.getMmahasiswa().getCnama());
             Tfeedbackalumni afeedback = getFeedbackAlumni();
             afeedback.setMmahasiswa(malumni.getMmahasiswa());
@@ -274,6 +286,43 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         }
     }
 
+    public void onClick$btnSearchSekolahExtended(Event event) {
+        doSearchSekolahExtended(event);
+    }
+
+    private void doSearchSekolahExtended(Event event) {
+        Msekolah sekolah = SekolahExtendedSearchListBox.show(windowFeedbackAlumniDetail);
+
+        if (sekolah != null) {
+            txtb_sekolah.setValue(sekolah.getCnamaSekolah());
+            Tfeedbackalumni obj = getFeedbackAlumni();
+            obj.setMsekolah(sekolah);
+            setFeedbackAlumni(obj);
+        }
+    }
+
+    public void onClick$btnSearchProdiExtended(Event event) {
+        doSearchProdiExtended(event);
+    }
+
+    private void doSearchProdiExtended(Event event) {
+        Mprodi prodi = ProdiExtendedSearchListBox.show(windowFeedbackAlumniDetail);
+
+        if (prodi != null) {
+            txtb_prodi.setValue(prodi.getCnmprogst());
+            Tfeedbackalumni obj = getFeedbackAlumni();
+            obj.setMprodi(prodi);
+            setFeedbackAlumni(obj);
+        }
+    }
+
+    public void onChange$txtb_jawaban() {
+        if (txtb_jawaban.getValue() != null) {
+            Tfeedbackalumni obj = getFeedbackAlumni();
+            obj.setCjawaban(txtb_jawaban.getValue());
+            setFeedbackAlumni(obj);
+        }
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++ Setter/Getter ++++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -294,6 +343,16 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         getFeedbackAlumniMainCtrl().setSelectedFeedbackAlumni(anFeedbackAlumni);
     }
 
+    public List<Tfeedbackalumni> getFeedbackAlumniList() {
+        // STORED IN THE module's MainController
+        return getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumniList();
+    }
+
+    public void setFeedbackAlumniList(List<Tfeedbackalumni> list) {
+        // STORED IN THE module's MainController
+        getFeedbackAlumniMainCtrl().setSelectedFeedbackAlumniList(list);
+    }
+
     public Tfeedbackalumni getSelectedFeedbackAlumni() {
         // STORED IN THE module's MainController
         return getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumni();
@@ -302,6 +361,16 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     public void setSelectedFeedbackAlumni(Tfeedbackalumni selectedFeedbackAlumni) {
         // STORED IN THE module's MainController
         getFeedbackAlumniMainCtrl().setSelectedFeedbackAlumni(selectedFeedbackAlumni);
+    }
+
+    public List<Tfeedbackalumni> getSelectedFeedbackAlumniList() {
+        // STORED IN THE module's MainController
+        return getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumniList();
+    }
+
+    public void setSelectedFeedbackAlumniList(List<Tfeedbackalumni> selectedFeedbackAlumniList) {
+        // STORED IN THE module's MainController
+        getFeedbackAlumniMainCtrl().setSelectedFeedbackAlumniList(selectedFeedbackAlumniList);
     }
 
     public BindingListModelList getFeedbackAlumnis() {
@@ -353,11 +422,11 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         this.listBoxFeedbackAlumniDetail = listBoxFeedbackAlumniDetail;
     }
 
-    public void setSearchObj(HibernateSearchObject<Mfeedback> searchObj) {
+    public void setSearchObj(HibernateSearchObject<Tfeedbackalumni> searchObj) {
         this.searchObj = searchObj;
     }
 
-    public HibernateSearchObject<Mfeedback> getSearchObj() {
+    public HibernateSearchObject<Tfeedbackalumni> getSearchObj() {
         return this.searchObj;
     }
 
@@ -390,23 +459,39 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     }
 
 
-    private PagedListWrapper<Mfeedback> pagedListWrapper;
+    private PagedListWrapper<Mfeedback> pagedListFeedbackWrapper;
+    private PagedListWrapper<Tfeedbackalumni> pagedListWrapper;
 
-    private PagedBindingListWrapper<Mfeedback> pagedBindingListWrapper;
+    private PagedBindingListWrapper<Mfeedback> pagedBindingListFeedbackWrapper;
+    private PagedBindingListWrapper<Tfeedbackalumni> pagedBindingListWrapper;
 
-    public PagedListWrapper<Mfeedback> getPagedListWrapper() {
+    public PagedListWrapper<Mfeedback> getPagedListFeedbackWrapper() {
+        return pagedListFeedbackWrapper;
+    }
+
+    public void setPagedListFeedbackWrapper(PagedListWrapper<Mfeedback> pagedListFeedbackWrapper) {
+        this.pagedListFeedbackWrapper = pagedListFeedbackWrapper;
+    }
+    public PagedListWrapper<Tfeedbackalumni> getPagedListWrapper() {
         return pagedListWrapper;
     }
 
-    public void setPagedListWrapper(PagedListWrapper<Mfeedback> pagedListWrapper) {
+    public void setPagedListWrapper(PagedListWrapper<Tfeedbackalumni> pagedListWrapper) {
         this.pagedListWrapper = pagedListWrapper;
     }
 
-    public void setPagedBindingListWrapper(PagedBindingListWrapper<Mfeedback> pagedBindingListWrapper) {
+    public void setPagedBindingListFeedbackWrapper(PagedBindingListWrapper<Mfeedback> pagedBindingListFeedbackWrapper) {
+        this.pagedBindingListFeedbackWrapper = pagedBindingListFeedbackWrapper;
+    }
+
+    public PagedBindingListWrapper<Mfeedback> getPagedBindingListFeedbackWrapper() {
+        return pagedBindingListFeedbackWrapper;
+    }
+    public void setPagedBindingListWrapper(PagedBindingListWrapper<Tfeedbackalumni> pagedBindingListWrapper) {
         this.pagedBindingListWrapper = pagedBindingListWrapper;
     }
 
-    public PagedBindingListWrapper<Mfeedback> getPagedBindingListWrapper() {
+    public PagedBindingListWrapper<Tfeedbackalumni> getPagedBindingListWrapper() {
         return pagedBindingListWrapper;
     }
 }

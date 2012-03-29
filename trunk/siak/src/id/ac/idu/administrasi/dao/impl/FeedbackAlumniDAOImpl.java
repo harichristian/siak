@@ -2,11 +2,10 @@ package id.ac.idu.administrasi.dao.impl;
 
 import id.ac.idu.administrasi.dao.FeedbackAlumniDAO;
 import id.ac.idu.backend.dao.impl.BasisDAO;
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tfeedbackalumni;
 import id.ac.idu.util.ConstantUtil;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.dao.support.DataAccessUtils;
 
 import java.util.List;
@@ -54,7 +53,8 @@ public class FeedbackAlumniDAOImpl extends BasisDAO<Tfeedbackalumni> implements 
     @Override
     public List<Tfeedbackalumni> getFeedbackAlumniLikeMahasiswaName(String string) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackalumni.class);
-        criteria.add(Restrictions.ilike(ConstantUtil.MAHASISWA_DOT_NAME, string, MatchMode.ANYWHERE));
+        //criteria.
+        criteria.add(Restrictions.ilike(ConstantUtil.MAHASISWA_DOT_NAMA, string, MatchMode.ANYWHERE));
         return getHibernateTemplate().findByCriteria(criteria);
     }
 
@@ -64,5 +64,20 @@ public class FeedbackAlumniDAOImpl extends BasisDAO<Tfeedbackalumni> implements 
         if (obj != null) {
             delete(obj);
         }
+    }
+    @Override
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String nim, String term, String kelompok) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackalumni.class, "tfeedbackalumni");
+        DetachedCriteria subCriteria = DetachedCriteria.forClass(Mmahasiswa.class, "mmahasiswa");
+        subCriteria.setProjection(Projections.id());
+        subCriteria.createAlias("model.mmahasiswa", "mmahasiswa", CriteriaSpecification.INNER_JOIN);
+        subCriteria.createAlias("model.tfeedbackalumni", "tfeedbackalumni", CriteriaSpecification.INNER_JOIN);
+        subCriteria.add(Restrictions.eqProperty(ConstantUtil.MAHASISWA_DOT_NIM, nim));
+        subCriteria.add(Restrictions.eqProperty(ConstantUtil.TERM, term));
+        subCriteria.add(Restrictions.eqProperty(ConstantUtil.KELOMPOK, kelompok));
+        //criteria.add(Expression.eq("lang.langCode", "EN"));
+        subCriteria.add(Restrictions.eqProperty("tfeedbackalumni.mahasiswaId","mmahasiswa.mahasiswaId"));
+        //criteria.add(Subqueries.lt(0, subCriteria));
+        return getHibernateTemplate().findByCriteria(criteria);
     }
 }

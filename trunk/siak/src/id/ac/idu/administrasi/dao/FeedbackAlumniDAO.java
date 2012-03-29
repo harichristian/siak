@@ -84,4 +84,6 @@ public interface FeedbackAlumniDAO {
      * EN: Saves an Tfeedbackalumni.<br>
      */
     public void save(Tfeedbackalumni entity);
+
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String nim, String term, String kelompok);
 }

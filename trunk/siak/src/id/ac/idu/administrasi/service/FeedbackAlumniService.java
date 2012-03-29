@@ -17,6 +17,8 @@ public interface FeedbackAlumniService {
      */
     public Tfeedbackalumni getNewFeedbackAlumni();
 
+    public List<Tfeedbackalumni> getNewFeedbackAlumniList();
+
     /**
      * EN: Get the count of all Tfeedbackalumni.<br>
      *
@@ -72,4 +74,11 @@ public interface FeedbackAlumniService {
      * EN: Deletes an Tfeedbackalumni.<br>
      */
     public void delete(Tfeedbackalumni entity);
+
+    /**
+     * EN: Saves new or updates a list of Tfeedbackalumni.<br>
+     */
+    public void saveOrUpdateList(List<Tfeedbackalumni> list);
+
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String string, String term, String kelompok);
 }

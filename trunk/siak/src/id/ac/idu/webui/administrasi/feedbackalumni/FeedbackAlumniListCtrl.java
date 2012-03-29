@@ -16,6 +16,7 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author <a href="valeo.gumilang@gmail.com">Valeo Gumilang</a>
@@ -207,10 +208,14 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
 
         // selectedFeedbackAlumni is filled by annotated databinding mechanism
         Tfeedbackalumni anFeedbackAlumni = getSelectedFeedbackAlumni();
+        //List<Tfeedbackalumni> ltfa = getSelectedFeedbackAlumniList();
+        //List<Tfeedbackalumni> ltfa = getFeedbackAlumniService().getFeedbackAlumniByNim(anFeedbackAlumni.getMmahasiswa().getCnim());
 
         if (anFeedbackAlumni == null) {
             return;
         }
+        List<Tfeedbackalumni> ltfa = getFeedbackAlumniService().getFeedbackAlumniByNim(anFeedbackAlumni.getMmahasiswa().getCnim(),
+                anFeedbackAlumni.getCterm(), anFeedbackAlumni.getCkelompok());
 
         // check first, if the tabs are created
         if (getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl() == null) {
@@ -225,6 +230,24 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
         getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(anFeedbackAlumni);
         getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl().setFeedbackAlumni(anFeedbackAlumni);
 
+        getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(ltfa);
+        getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl().setFeedbackAlumniList(ltfa);
+        /*
+        // set the beans in the related databinded controllers
+        getFeedbackAlumniDetailCtrl().setFeedbackAlumni(anFeedbackAlumni);
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(anFeedbackAlumni);
+
+        getFeedbackAlumniDetailCtrl().setFeedbackAlumniList(listFeedbackAlumni);
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(listFeedbackAlumni);
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(getSelectedFeedbackAlumniList());
+        getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumniList(getSelectedFeedbackAlumniList());
+        if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
+            getFeedbackAlumniDetailCtrl().getBinder().loadAll();
+        }
+        PagedBindingListWrapper<Tfeedbackalumni> pblw = getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper();
+        pblw.clear();
+        pblw.addAll(getSelectedFeedbackAlumniList());
+        */
         // store the selected bean values as current
         getFeedbackAlumniMainCtrl().doStoreInitValues();
 
@@ -288,6 +311,16 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
     public Tfeedbackalumni getSelectedFeedbackAlumni() {
         // STORED IN THE module's MainController
         return getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumni();
+    }
+
+    public void setSelectedFeedbackAlumniList(List<Tfeedbackalumni> selectedFeedbackAlumniList) {
+        // STORED IN THE module's MainController
+        getFeedbackAlumniMainCtrl().setSelectedFeedbackAlumniList(selectedFeedbackAlumniList);
+    }
+
+    public List<Tfeedbackalumni> getSelectedFeedbackAlumniList() {
+        // STORED IN THE module's MainController
+        return getFeedbackAlumniMainCtrl().getSelectedFeedbackAlumniList();
     }
 
     public void setFeedbackAlumnis(BindingListModelList feedbackAlumnis) {

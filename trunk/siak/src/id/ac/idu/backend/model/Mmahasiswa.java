@@ -74,6 +74,7 @@ public class Mmahasiswa implements java.io.Serializable {
     private Set<Mhistpnddkmhs> mhistpnddkmhses = new HashSet<Mhistpnddkmhs>(0);
     private Set<Mprestasimhs> mprestasimhses = new HashSet<Mprestasimhs>(0);
     private Set<Tcutimhs> tcutimhses = new HashSet<Tcutimhs>(0);
+    private Set<Tfeedbackalumni> tfeedbackalumnis = new HashSet<Tfeedbackalumni>(0);
 
     public Mmahasiswa() {
     }
@@ -668,6 +669,13 @@ public class Mmahasiswa implements java.io.Serializable {
         this.tcutimhses = tcutimhses;
     }
 
+    public Set<Tfeedbackalumni> getTfeedbackalumni() {
+        return this.tfeedbackalumnis;
+    }
+
+    public void setTfeedbackalumni(Set<Tfeedbackalumni> tfeedbackalumnis) {
+        this.tfeedbackalumnis = tfeedbackalumnis;
+    }
 }
 
 
