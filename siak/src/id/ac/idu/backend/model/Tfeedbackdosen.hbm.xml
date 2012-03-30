@@ -21,7 +21,7 @@
             <column name="CKELOMPOK" length="2" not-null="true" />
         </property>
         <many-to-one name="mpegawai" class="id.ac.idu.backend.model.Mpegawai" fetch="join"  lazy="false">
-            <column name="PEGAWAI_ID" not-null="true" />
+            <column name="DOSEN_ID" not-null="true" />
         </many-to-one>
         <many-to-one name="mfeedback" class="id.ac.idu.backend.model.Mfeedback" fetch="join"  lazy="false">
             <column name="FEEDBACK_ID" not-null="true" />

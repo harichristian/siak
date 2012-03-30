@@ -74,7 +74,7 @@ public class FeedbackWisudawanServiceImpl implements FeedbackWisudawanService{
 
     @Override
     public List<Tfeedbackwisudawan> getNewFeedbackWisudawanList() {
-        List<Mfeedback> lmf = getFeedbackDAO().getFeedbackLikeCode(Codec.KodeFeedback.A.getValue());
+        List<Mfeedback> lmf = getFeedbackDAO().getFeedbackLikeCode(Codec.KodeFeedback.W.getValue());
         List<Tfeedbackwisudawan> ltf = new ArrayList<Tfeedbackwisudawan>();
         for (Mfeedback mf : lmf) {
             Tfeedbackwisudawan obj = getFeedbackWisudawanDAO().getNewFeedbackWisudawan();
