@@ -83,21 +83,16 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
         paging_list.setDetailed(true);
 
         listheader_filed1.setSortAscending(new FieldComparator("cnosurat", true));
-        listheader_filed1.setSortDescending(new FieldComparator("cnosurat   ", true));
-
-        listheader_filed2.setSortAscending(new FieldComparator("dtglsurat", false));
+        listheader_filed1.setSortDescending(new FieldComparator("cnosurat", false));
+        listheader_filed2.setSortAscending(new FieldComparator("dtglsurat", true));
         listheader_filed2.setSortDescending(new FieldComparator("dtglsurat", false));
-
-        listheader_filed3.setSortAscending(new FieldComparator("mahasiswa_id", true));
-        listheader_filed3.setSortDescending(new FieldComparator("mahasiswa_id", true));
-
-        listheader_filed4.setSortAscending(new FieldComparator("cterm", false));
+        listheader_filed3.setSortAscending(new FieldComparator("mmahasiswa.cnim", true));
+        listheader_filed3.setSortDescending(new FieldComparator("mmahasiswa.cnim", false));
+        listheader_filed4.setSortAscending(new FieldComparator("cterm", true));
         listheader_filed4.setSortDescending(new FieldComparator("cterm", false));
-
-        listheader_filed5.setSortAscending(new FieldComparator("cthajar", false));
+        listheader_filed5.setSortAscending(new FieldComparator("cthajar", true));
         listheader_filed5.setSortDescending(new FieldComparator("cthajar", false));
-
-        listheader_filed6.setSortAscending(new FieldComparator("cket", false));
+        listheader_filed6.setSortAscending(new FieldComparator("cket", true));
         listheader_filed6.setSortDescending(new FieldComparator("cket", false));
 
         searchObj = new HibernateSearchObject<Tcutimhs>(Tcutimhs.class, getCountRows());

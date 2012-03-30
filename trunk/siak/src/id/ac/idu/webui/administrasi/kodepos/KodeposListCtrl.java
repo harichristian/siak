@@ -124,9 +124,9 @@ public class KodeposListCtrl extends GFCBaseListCtrl<MkodePos> implements Serial
 
     private void initSort() {
         headerId.setSortAscending(new FieldComparator("id",true));
-        headerId.setSortDescending(new FieldComparator("id",true));
+        headerId.setSortDescending(new FieldComparator("id",false));
         headerKodepos.setSortAscending(new FieldComparator("kodepos",true));
-        headerKodepos.setSortDescending(new FieldComparator("kodepos",true));
+        headerKodepos.setSortDescending(new FieldComparator("kodepos",false));
     }
 
     private void resizeWindow() {

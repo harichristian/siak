@@ -81,12 +81,12 @@ public class SesiListCtrl extends GFCBaseListCtrl<Msesikuliah> implements Serial
         paging_list.setDetailed(true);
 
         listheader_Cdksesi.setSortAscending(new FieldComparator("ckdsesi", true));
-        listheader_Cdksesi.setSortDescending(new FieldComparator("ckdsesi", true));
-        listheader_Sekolah_Id.setSortAscending(new FieldComparator("msekolah.id", false));
+        listheader_Cdksesi.setSortDescending(new FieldComparator("ckdsesi", false));
+        listheader_Sekolah_Id.setSortAscending(new FieldComparator("msekolah.id", true));
         listheader_Sekolah_Id.setSortDescending(new FieldComparator("msekolah.id", false));
         listheader_Cjamawal.setSortAscending(new FieldComparator("cjamawal", true));
-        listheader_Cjamawal.setSortDescending(new FieldComparator("cjamawal", true));
-        listheader_CJamakhir.setSortAscending(new FieldComparator("cjamakhir", false));
+        listheader_Cjamawal.setSortDescending(new FieldComparator("cjamawal", false));
+        listheader_CJamakhir.setSortAscending(new FieldComparator("cjamakhir", true));
         listheader_CJamakhir.setSortDescending(new FieldComparator("cjamakhir", false));
 
         searchObj = new HibernateSearchObject<Msesikuliah>(Msesikuliah.class, getCountRows());
