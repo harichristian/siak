@@ -38,7 +38,7 @@
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitas"/>
         <menuItem id="menu_Item_MasterFasilitasRuangan" zulNavigation="/WEB-INF/pages/administrasi/fasilitasruang/mfasilitasruangMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterFasilitasRuangan"/>
-        <menuItem id="menu_Item_MasterKodePos" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+        <menuItem id="menu_Item_MasterKodePos" zulNavigation="/WEB-INF/pages/administrasi/kodepos/pageMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKodePos"/>
         <menuItem id="menu_Item_MasterPegawai" zulNavigation="/WEB-INF/pages/administrasi/pegawai/mpegawaiMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterPegawai"/>
