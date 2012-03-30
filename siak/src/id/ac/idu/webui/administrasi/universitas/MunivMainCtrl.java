@@ -320,7 +320,7 @@ public class MunivMainCtrl extends GFCBaseCtrl implements Serializable {
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Muniv> soMuniv = new HibernateSearchObject<Muniv>(Muniv.class, getMunivListCtrl().getCountRows());
             soMuniv.addFilter(new Filter("alamatUniv", "%" + txtb_Muniv_Alamat.getValue() + "%", Filter.OP_ILIKE));
-            soMuniv.addSort("alamatUniv", false);
+            //soMuniv.addSort("alamatUniv", false);
 
             // Change the BindingListModel.
             if (getMunivListCtrl().getBinder() != null) {

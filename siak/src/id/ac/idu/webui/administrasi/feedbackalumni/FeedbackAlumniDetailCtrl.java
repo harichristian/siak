@@ -165,12 +165,12 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
 
         // not used listheaders must be declared like ->
         // lh.setSortAscending(""); lh.setSortDescending("")
-        listheader_FeedbackAlumniDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
-        listheader_FeedbackAlumniDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
-        listheader_FeedbackAlumniDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
-        listheader_FeedbackAlumniDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
-        listheader_FeedbackAlumniDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
-        listheader_FeedbackAlumniDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
+        //listheader_FeedbackAlumniDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
+        //listheader_FeedbackAlumniDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
+        //listheader_FeedbackAlumniDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
+        //listheader_FeedbackAlumniDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
+        //listheader_FeedbackAlumniDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
+        //listheader_FeedbackAlumniDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
 
         // ++ create the searchObject and init sorting ++//
         so = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
