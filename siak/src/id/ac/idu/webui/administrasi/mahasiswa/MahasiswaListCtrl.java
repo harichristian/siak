@@ -132,25 +132,25 @@ public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Se
 
     private void initSort() {
         headerCnim.setSortAscending(new FieldComparator("cnim",true));
-        headerCnim.setSortDescending(new FieldComparator("cnim",true));
+        headerCnim.setSortDescending(new FieldComparator("cnim",false));
         headerCnama.setSortAscending(new FieldComparator("cnama",true));
-        headerCnama.setSortDescending(new FieldComparator("cnama",true));
+        headerCnama.setSortDescending(new FieldComparator("cnama",false));
         headerNoktp.setSortAscending(new FieldComparator("noktp",true));
-        headerNoktp.setSortDescending(new FieldComparator("noktp",true));
+        headerNoktp.setSortDescending(new FieldComparator("noktp",false));
         headerCjnsmhs.setSortAscending(new FieldComparator("cjnsmhs",true));
-        headerCjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",true));
+        headerCjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",false));
         headerCtemplhr.setSortAscending(new FieldComparator("ctemplhr",true));
-        headerCtemplhr.setSortDescending(new FieldComparator("ctemplhr",true));
+        headerCtemplhr.setSortDescending(new FieldComparator("ctemplhr",false));
         headerDtglhr.setSortAscending(new FieldComparator("dtglhr",true));
-        headerDtglhr.setSortDescending(new FieldComparator("dtglhr",true));
+        headerDtglhr.setSortDescending(new FieldComparator("dtglhr",false));
         headerCjenkel.setSortAscending(new FieldComparator("cjenkel",true));
-        headerCjenkel.setSortDescending(new FieldComparator("cjenkel",true));
+        headerCjenkel.setSortDescending(new FieldComparator("cjenkel",false));
         headerCgoldar.setSortAscending(new FieldComparator("cgoldar",true));
-        headerCgoldar.setSortDescending(new FieldComparator("cgoldar",true));
+        headerCgoldar.setSortDescending(new FieldComparator("cgoldar",false));
         headerCkdagama.setSortAscending(new FieldComparator("ckdagama",true));
-        headerCkdagama.setSortDescending(new FieldComparator("ckdagama",true));
+        headerCkdagama.setSortDescending(new FieldComparator("ckdagama",false));
         headerCstatnkh.setSortAscending(new FieldComparator("cstatnkh",true));
-        headerCstatnkh.setSortDescending(new FieldComparator("cstatnkh",true));
+        headerCstatnkh.setSortDescending(new FieldComparator("cstatnkh",false));
     }
 
     private void resizeWindow() {
