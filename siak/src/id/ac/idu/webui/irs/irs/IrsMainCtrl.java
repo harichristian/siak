@@ -249,12 +249,12 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 		if (!txtb_Irs_Mahasiswa.getValue().isEmpty()) {
 			checkbox_IrsList_ShowAll.setChecked(false); // unCheck
 			txtb_Irs_Sekolah.setValue(""); // clear
-			//txtb_Irs_Prodi.setValue(""); // clear
+			txtb_Irs_Prodi.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Tirspasca> soIrs = new HibernateSearchObject<Tirspasca>(Tirspasca.class, getIrsListCtrl().getCountRows());
-			soIrs.addFilter(new Filter(ConstantUtil.MAHASISWA, "%" + txtb_Irs_Mahasiswa.getValue() + "%", Filter.OP_ILIKE));
-			soIrs.addSort(ConstantUtil.MAHASISWA, false);
+			soIrs.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAMA, "%" + txtb_Irs_Mahasiswa.getValue() + "%", Filter.OP_ILIKE));
+			soIrs.addSort(ConstantUtil.MAHASISWA_DOT_NAMA, false);
 
 			// Change the BindingListModel.
 			if (getIrsListCtrl().getBinder() != null) {
@@ -283,13 +283,13 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 		// if not empty
 		if (!txtb_Irs_Sekolah.getValue().isEmpty()) {
 			checkbox_IrsList_ShowAll.setChecked(false); // unCheck
-			//txtb_Irs_Prodi.setValue(""); // clear
+			txtb_Irs_Prodi.setValue(""); // clear
 			txtb_Irs_Mahasiswa.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Tirspasca> soIrs = new HibernateSearchObject<Tirspasca>(Tirspasca.class, getIrsListCtrl().getCountRows());
-			soIrs.addFilter(new Filter(ConstantUtil.SEKOLAH, "%" + txtb_Irs_Sekolah.getValue() + "%", Filter.OP_ILIKE));
-			soIrs.addSort(ConstantUtil.SEKOLAH, false);
+			soIrs.addFilter(new Filter(ConstantUtil.SEKOLAH_DOT_NAME, "%" + txtb_Irs_Sekolah.getValue() + "%", Filter.OP_ILIKE));
+			soIrs.addSort(ConstantUtil.SEKOLAH_DOT_NAME, false);
 
 			// Change the BindingListModel.
 			if (getIrsListCtrl().getBinder() != null) {
@@ -322,8 +322,8 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Tirspasca> soIrs = new HibernateSearchObject<Tirspasca>(Tirspasca.class, getIrsListCtrl().getCountRows());
-			soIrs.addFilter(new Filter(ConstantUtil.PRODI, "%" + txtb_Irs_Prodi.getValue() + "%", Filter.OP_ILIKE));
-			soIrs.addSort(ConstantUtil.PRODI, false);
+			soIrs.addFilter(new Filter(ConstantUtil.PRODI_DOT_NAME, "%" + txtb_Irs_Prodi.getValue() + "%", Filter.OP_ILIKE));
+			soIrs.addSort(ConstantUtil.PRODI_DOT_NAME, false);
 
 			// Change the BindingListModel.
 			if (getIrsListCtrl().getBinder() != null) {

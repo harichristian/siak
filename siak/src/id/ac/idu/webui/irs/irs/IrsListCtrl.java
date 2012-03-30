@@ -45,6 +45,9 @@ public class IrsListCtrl extends GFCBaseListCtrl<Tirspasca> implements Serializa
 	protected Listheader listheader_IrsList_Nim; // autowired
 	protected Listheader listheader_IrsList_Sekolah; // autowired
 	protected Listheader listheader_IrsList_Prodi; // autowired
+	protected Listheader listheader_IrsList_Term;
+	protected Listheader listheader_IrsList_Thajar;
+	protected Listheader listheader_IrsList_Semester;
 
 	// NEEDED for ReUse in the SearchWindow
 	private HibernateSearchObject<Tirspasca> searchObj;
@@ -131,17 +134,22 @@ public class IrsListCtrl extends GFCBaseListCtrl<Tirspasca> implements Serializa
 
 		// not used listheaders must be declared like ->
 		// lh.setSortAscending(""); lh.setSortDescending("")
-		listheader_IrsList_Nim.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA, true));
-		listheader_IrsList_Nim.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA, false));
-		listheader_IrsList_Sekolah.setSortAscending(new FieldComparator(ConstantUtil.SEKOLAH, true));
-		listheader_IrsList_Sekolah.setSortDescending(new FieldComparator(ConstantUtil.SEKOLAH, false));
-		listheader_IrsList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI, true));
-		listheader_IrsList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI, false));
-
+		listheader_IrsList_Nim.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, true));
+		listheader_IrsList_Nim.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, false));
+		listheader_IrsList_Sekolah.setSortAscending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, true));
+		listheader_IrsList_Sekolah.setSortDescending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, false));
+		listheader_IrsList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
+		listheader_IrsList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
+        listheader_IrsList_Term.setSortAscending(new FieldComparator(ConstantUtil.TERM, true));
+        listheader_IrsList_Term.setSortDescending(new FieldComparator(ConstantUtil.TERM, false));
+        listheader_IrsList_Thajar.setSortAscending(new FieldComparator(ConstantUtil.THAJAR, true));
+        listheader_IrsList_Thajar.setSortDescending(new FieldComparator(ConstantUtil.THAJAR, false));
+        listheader_IrsList_Semester.setSortAscending(new FieldComparator(ConstantUtil.SEMESTER, true));
+        listheader_IrsList_Semester.setSortDescending(new FieldComparator(ConstantUtil.SEMESTER, false));
 		// ++ create the searchObject and init sorting ++//
 		// ++ create the searchObject and init sorting ++//
 		searchObj = new HibernateSearchObject<Tirspasca>(Tirspasca.class, getCountRows());
-		searchObj.addSort(ConstantUtil.MAHASISWA, false);
+		searchObj.addSort(ConstantUtil.MAHASISWA_DOT_NAMA, false);
 		setSearchObj(searchObj);
 
 		// Set the BindingListModel

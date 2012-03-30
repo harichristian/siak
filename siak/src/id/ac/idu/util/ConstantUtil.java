@@ -18,6 +18,7 @@ public class ConstantUtil {
     public static String SINGKATAN = "csingkatan";
     public static String THAJAR = "cthajar";
     public static String TERM = "cterm";
+    public static String SEMESTER = "csmt";
     public static String COHORT = "ccohort";
     public static String KELOMPOK = "ckelompok";
     public static String KURIKULUM = "mkurikulum";
