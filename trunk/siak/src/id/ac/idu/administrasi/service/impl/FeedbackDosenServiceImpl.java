@@ -74,7 +74,7 @@ public class FeedbackDosenServiceImpl implements FeedbackDosenService{
 
     @Override
     public List<Tfeedbackdosen> getNewFeedbackDosenList() {
-        List<Mfeedback> lmf = getFeedbackDAO().getFeedbackLikeCode(Codec.KodeFeedback.A.getValue());
+        List<Mfeedback> lmf = getFeedbackDAO().getFeedbackLikeCode(Codec.KodeFeedback.D.getValue());
         List<Tfeedbackdosen> ltf = new ArrayList<Tfeedbackdosen>();
         for (Mfeedback mf : lmf) {
             Tfeedbackdosen obj = getFeedbackDosenDAO().getNewFeedbackDosen();

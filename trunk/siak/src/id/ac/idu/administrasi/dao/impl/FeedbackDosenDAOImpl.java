@@ -68,9 +68,9 @@ public class FeedbackDosenDAOImpl extends BasisDAO<Tfeedbackdosen> implements Fe
     @Override
     public List<Tfeedbackdosen> getFeedbackDosenByNip(String nip, String term, String kelompok) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackdosen.class, "tfeedbackdosen");
-        DetachedCriteria subCriteria = DetachedCriteria.forClass(Mpegawai.class, "mpegawai");
+        DetachedCriteria subCriteria = DetachedCriteria.forClass(Mpegawai.class, "tfeedbackdosen.mpegawai");
         subCriteria.setProjection(Projections.id());
-        subCriteria.createAlias("model.mpegawai", "mpegawai", CriteriaSpecification.INNER_JOIN);
+        subCriteria.createAlias("model.tfeedbackdosen.mpegawai", "tfeedbackdosen.mpegawai", CriteriaSpecification.INNER_JOIN);
         subCriteria.createAlias("model.tfeedbackdosen", "tfeedbackdosen", CriteriaSpecification.INNER_JOIN);
         subCriteria.add(Restrictions.eqProperty(ConstantUtil.PEGAWAI_DOT_NIP, nip));
         subCriteria.add(Restrictions.eqProperty(ConstantUtil.TERM, term));
