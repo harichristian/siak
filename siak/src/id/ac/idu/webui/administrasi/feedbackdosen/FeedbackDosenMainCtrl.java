@@ -609,14 +609,14 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
             if (getFeedbackDosenDetailCtrl().getBinder() != null) {
                 getFeedbackDosenDetailCtrl().getBinder().loadAll();
             }
-            for (Tfeedbackdosen tfa : getFeedbackDosenDetailCtrl().getFeedbackDosenList()) {
-                tfa.setMpegawai(getFeedbackDosenDetailCtrl().getSelectedFeedbackDosen().getMpegawai());
-                tfa.setCterm(getFeedbackDosenDetailCtrl().getSelectedFeedbackDosen().getCterm());
-                tfa.setCkelompok(getFeedbackDosenDetailCtrl().getSelectedFeedbackDosen().getCkelompok());
-                tfa.setMprodi(getFeedbackDosenDetailCtrl().getSelectedFeedbackDosen().getMprodi());
-                tfa.setMsekolah(getFeedbackDosenDetailCtrl().getSelectedFeedbackDosen().getMsekolah());
-                //tfa.setCjawaban();
-            }
+//            for (Tfeedbackdosen tfa : getFeedbackDosenDetailCtrl().getFeedbackDosenList()) {
+//                tfa.setMpegawai(getFeedbackDosenDetailCtrl().getFeedbackDosen().getMpegawai());
+//                tfa.setCterm(getFeedbackDosenDetailCtrl().getFeedbackDosen().getCterm());
+//                tfa.setCkelompok(getFeedbackDosenDetailCtrl().getFeedbackDosen().getCkelompok());
+//                tfa.setMprodi(getFeedbackDosenDetailCtrl().getFeedbackDosen().getMprodi());
+//                tfa.setMsekolah(getFeedbackDosenDetailCtrl().getFeedbackDosen().getMsekolah());
+//                //tfa.setCjawaban();
+//            }
 
             // save it to database
             //getFeedbackDosenService().saveOrUpdate(getFeedbackDosenDetailCtrl().getFeedbackDosen());
