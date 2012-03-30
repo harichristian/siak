@@ -36,10 +36,10 @@
 						<space />
 						<checkbox id="checkbox_IrsList_ShowAll"
 							checked="true"
-							label="${c:l('checkbox_IrsList_ShowAll.label')}" />
+							label="Tampilkan semua" />
 						<space />
 
-						<label value="${c:l('common.Mahasiswa')}"
+						<label value="Nama Mahasiswa"
 							style="padding-right: 3px" />
 						<textbox id="txtb_Irs_Mahasiswa" width="60px" />
 						<button id="button_IrsList_SearchMahasiswa"
@@ -47,7 +47,7 @@
 							tooltiptext="${c:l('button_IrsList_SearchMahasiswa.tooltiptext')}" />
 						<space width="20px" />
 
-						<label value="${c:l('common.Sekolah')}"
+						<label value="Sekolah"
 							style="padding-right: 3px" />
 						<textbox id="txtb_Irs_Sekolah" width="100px" />
 						<button id="button_IrsList_SearchSekolah"
