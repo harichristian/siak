@@ -15,7 +15,7 @@
             <column name="CNAMA_UNIV" length="100" not-null="true" />
         </property>
         <property name="alamatUniv" type="string">
-            <column name="ALAMAT_UNIV" length="32700" not-null="true" />
+            <column name="ALAMAT_UNIV" length="100" not-null="true" />
         </property>
         <property name="cstatus" type="char">
             <column name="CSTATUS" length="1" not-null="true" />
