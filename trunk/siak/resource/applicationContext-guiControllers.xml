@@ -422,6 +422,16 @@
         <property name="plwStatus" ref="pagedListWrapper"/>
     </bean>
 
+    <!-- KodePos -->
+    <bean id="kodeposMainCtrl" class="id.ac.idu.webui.administrasi.kodepos.KodeposMainCtrl" parent="basisCtrl" scope="prototype">
+        <property name="kodePosService" ref="kodePosService"/>
+        <property name="listCtrl" ref="kodeposListCtrl"/>
+        <property name="detailCtrl" ref="kodeposDetailCtrl"/>
+    </bean>
+    <bean id="kodeposListCtrl" class="id.ac.idu.webui.administrasi.kodepos.KodeposListCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="kodeposDetailCtrl" class="id.ac.idu.webui.administrasi.kodepos.KodeposDetailCtrl" parent="basisCtrl" scope="prototype">
+        <property name="kodePosService" ref="kodePosService"/>
+    </bean>
 
     <!-- +++++ KURIKULUM MODULE +++++ -->
     <!-- Kurikulum -->
