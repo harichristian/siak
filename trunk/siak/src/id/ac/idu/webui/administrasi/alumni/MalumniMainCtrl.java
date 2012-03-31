@@ -230,7 +230,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Malumni> soMalumni = new HibernateSearchObject<Malumni>(Malumni.class, getMalumniListCtrl().getCountRows());
-        soMalumni.addSort("filName1", false);
+        soMalumni.addSort("mmahasiswa.cnama", false);
 
         // Change the BindingListModel.
         if (getMalumniListCtrl().getBinder() != null) {
@@ -264,8 +264,8 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Malumni> soMalumni = new HibernateSearchObject<Malumni>(Malumni.class, getMalumniListCtrl().getCountRows());
-            soMalumni.addFilter(new Filter("filNr", "%" + txtb_Malumni_No.getValue() + "%", Filter.OP_ILIKE));
-            soMalumni.addSort("filNr", false);
+            soMalumni.addFilter(new Filter("mmahasiswa.cnim", "%" + txtb_Malumni_No.getValue() + "%", Filter.OP_ILIKE));
+            soMalumni.addSort("mmahasiswa.cnama", false);
 
             // Change the BindingListModel.
             if (getMalumniListCtrl().getBinder() != null) {
@@ -299,8 +299,8 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Malumni> soMalumni = new HibernateSearchObject<Malumni>(Malumni.class, getMalumniListCtrl().getCountRows());
-            soMalumni.addFilter(new Filter("filName1", "%" + txtb_Malumni_Name.getValue() + "%", Filter.OP_ILIKE));
-            soMalumni.addSort("filName1", false);
+            soMalumni.addFilter(new Filter("mmahasiswa.cnama", "%" + txtb_Malumni_Name.getValue() + "%", Filter.OP_ILIKE));
+            soMalumni.addSort("mmahasiswa.cnama", false);
 
             // Change the BindingListModel.
             if (getMalumniListCtrl().getBinder() != null) {
@@ -334,8 +334,8 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Malumni> soMalumni = new HibernateSearchObject<Malumni>(Malumni.class, getMalumniListCtrl().getCountRows());
-            soMalumni.addFilter(new Filter("filOrt", "%" + txtb_Malumni_City.getValue() + "%", Filter.OP_ILIKE));
-            soMalumni.addSort("filOrt", false);
+            soMalumni.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Malumni_City.getValue() + "%", Filter.OP_ILIKE));
+            soMalumni.addSort("mmahasiswa.cnama", false);
 
             // Change the BindingListModel.
             if (getMalumniListCtrl().getBinder() != null) {
