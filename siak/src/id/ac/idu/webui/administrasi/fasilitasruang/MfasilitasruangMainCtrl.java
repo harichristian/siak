@@ -228,7 +228,7 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mfasilitasruang> soMfasilitasruang = new HibernateSearchObject<Mfasilitasruang>(Mfasilitasruang.class, getMfasilitasruangListCtrl().getCountRows());
-        soMfasilitasruang.addSort("filName1", false);
+        soMfasilitasruang.addSort("mruang.cnmRuang", false);
 
         // Change the BindingListModel.
         if (getMfasilitasruangListCtrl().getBinder() != null) {
@@ -262,8 +262,8 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitasruang> soMfasilitasruang = new HibernateSearchObject<Mfasilitasruang>(Mfasilitasruang.class, getMfasilitasruangListCtrl().getCountRows());
-            soMfasilitasruang.addFilter(new Filter("filNr", "%" + txtb_Mfasilitasruang_No.getValue() + "%", Filter.OP_ILIKE));
-            soMfasilitasruang.addSort("filNr", false);
+            soMfasilitasruang.addFilter(new Filter("mruang.ckdruang", "%" + txtb_Mfasilitasruang_No.getValue() + "%", Filter.OP_ILIKE));
+            soMfasilitasruang.addSort("mruang.cnmRuang", false);
 
             // Change the BindingListModel.
             if (getMfasilitasruangListCtrl().getBinder() != null) {
@@ -297,8 +297,8 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitasruang> soMfasilitasruang = new HibernateSearchObject<Mfasilitasruang>(Mfasilitasruang.class, getMfasilitasruangListCtrl().getCountRows());
-            soMfasilitasruang.addFilter(new Filter("filName1", "%" + txtb_Mfasilitasruang_Name.getValue() + "%", Filter.OP_ILIKE));
-            soMfasilitasruang.addSort("filName1", false);
+            soMfasilitasruang.addFilter(new Filter("mruang.cnmRuang", "%" + txtb_Mfasilitasruang_Name.getValue() + "%", Filter.OP_ILIKE));
+            soMfasilitasruang.addSort("mruang.cnmRuang", false);
 
             // Change the BindingListModel.
             if (getMfasilitasruangListCtrl().getBinder() != null) {
@@ -332,8 +332,8 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitasruang> soMfasilitasruang = new HibernateSearchObject<Mfasilitasruang>(Mfasilitasruang.class, getMfasilitasruangListCtrl().getCountRows());
-            soMfasilitasruang.addFilter(new Filter("filOrt", "%" + txtb_Mfasilitasruang_City.getValue() + "%", Filter.OP_ILIKE));
-            soMfasilitasruang.addSort("filOrt", false);
+            soMfasilitasruang.addFilter(new Filter("mfasilitas.cnamaFasilitas", "%" + txtb_Mfasilitasruang_City.getValue() + "%", Filter.OP_ILIKE));
+            soMfasilitasruang.addSort("mruang.cnmRuang", false);
 
             // Change the BindingListModel.
             if (getMfasilitasruangListCtrl().getBinder() != null) {

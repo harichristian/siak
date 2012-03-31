@@ -72,7 +72,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 	protected Textbox txtb_Mpegawai_Name; // aurowired
 	protected Button button_MpegawaiList_SearchName; // aurowired
 	protected Textbox txtb_Mpegawai_City; // aurowired
-	protected Button button_MpegawaiList_SearchCity; // aurowired
+//	protected Button button_MpegawaiList_SearchCity; // aurowired
 
 	// checkRights
 	protected Button button_MpegawaiList_PrintList;
@@ -229,7 +229,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 
 		// ++ create the searchObject and init sorting ++//
 		HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
-		soMpegawai.addSort("filName1", false);
+		soMpegawai.addSort("cnama", false);
 
 		// Change the BindingListModel.
 		if (getMpegawaiListCtrl().getBinder() != null) {
@@ -263,8 +263,8 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
-			soMpegawai.addFilter(new Filter("filNr", "%" + txtb_Mpegawai_No.getValue() + "%", Filter.OP_ILIKE));
-			soMpegawai.addSort("filNr", false);
+			soMpegawai.addFilter(new Filter("cnip", "%" + txtb_Mpegawai_No.getValue() + "%", Filter.OP_ILIKE));
+			soMpegawai.addSort("cnama", false);
 
 			// Change the BindingListModel.
 			if (getMpegawaiListCtrl().getBinder() != null) {
@@ -298,8 +298,8 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
-			soMpegawai.addFilter(new Filter("filName1", "%" + txtb_Mpegawai_Name.getValue() + "%", Filter.OP_ILIKE));
-			soMpegawai.addSort("filName1", false);
+			soMpegawai.addFilter(new Filter("cnama", "%" + txtb_Mpegawai_Name.getValue() + "%", Filter.OP_ILIKE));
+			soMpegawai.addSort("cnama", false);
 
 			// Change the BindingListModel.
 			if (getMpegawaiListCtrl().getBinder() != null) {
@@ -322,38 +322,38 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 	/**
 	 * Filter the mpegawai list with 'like mpegawai city'. <br>
 	 */
-	public void onClick$button_MpegawaiList_SearchCity(Event event) throws Exception {
-		// logger.debug(event.toString());
-
-		// if not empty
-		if (!txtb_Mpegawai_City.getValue().isEmpty()) {
-			checkbox_MpegawaiList_ShowAll.setChecked(false); // unCheck
-			txtb_Mpegawai_Name.setValue(""); // clear
-			txtb_Mpegawai_No.setValue(""); // clear
-
-			// ++ create the searchObject and init sorting ++//
-			HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
-			soMpegawai.addFilter(new Filter("filOrt", "%" + txtb_Mpegawai_City.getValue() + "%", Filter.OP_ILIKE));
-			soMpegawai.addSort("filOrt", false);
-
-			// Change the BindingListModel.
-			if (getMpegawaiListCtrl().getBinder() != null) {
-				getMpegawaiListCtrl().getPagedBindingListWrapper().setSearchObject(soMpegawai);
-
-				// get the current Tab for later checking if we must change it
-				Tab currentTab = tabbox_MpegawaiMain.getSelectedTab();
-
-				// check if the tab is one of the Detail tabs. If so do not
-				// change the selection of it
-				if (!currentTab.equals(tabMpegawaiList)) {
-					tabMpegawaiList.setSelected(true);
-				} else {
-					currentTab.setSelected(true);
-				}
-			}
-
-		}
-	}
+//	public void onClick$button_MpegawaiList_SearchCity(Event event) throws Exception {
+//		// logger.debug(event.toString());
+//
+//		// if not empty
+//		if (!txtb_Mpegawai_City.getValue().isEmpty()) {
+//			checkbox_MpegawaiList_ShowAll.setChecked(false); // unCheck
+//			txtb_Mpegawai_Name.setValue(""); // clear
+//			txtb_Mpegawai_No.setValue(""); // clear
+//
+//			// ++ create the searchObject and init sorting ++//
+//			HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
+//			soMpegawai.addFilter(new Filter("filOrt", "%" + txtb_Mpegawai_City.getValue() + "%", Filter.OP_ILIKE));
+//			soMpegawai.addSort("filOrt", false);
+//
+//			// Change the BindingListModel.
+//			if (getMpegawaiListCtrl().getBinder() != null) {
+//				getMpegawaiListCtrl().getPagedBindingListWrapper().setSearchObject(soMpegawai);
+//
+//				// get the current Tab for later checking if we must change it
+//				Tab currentTab = tabbox_MpegawaiMain.getSelectedTab();
+//
+//				// check if the tab is one of the Detail tabs. If so do not
+//				// change the selection of it
+//				if (!currentTab.equals(tabMpegawaiList)) {
+//					tabMpegawaiList.setSelected(true);
+//				} else {
+//					currentTab.setSelected(true);
+//				}
+//			}
+//
+//		}
+//	}
 
 	/**
 	 * When the "help" button is clicked.
@@ -792,7 +792,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 		button_MpegawaiList_PrintList.setVisible(workspace.isAllowed("button_MpegawaiList_PrintList"));
 		button_MpegawaiList_SearchNo.setVisible(workspace.isAllowed("button_MpegawaiList_SearchNo"));
 		button_MpegawaiList_SearchName.setVisible(workspace.isAllowed("button_MpegawaiList_SearchName"));
-		button_MpegawaiList_SearchCity.setVisible(workspace.isAllowed("button_MpegawaiList_SearchCity"));
+//		button_MpegawaiList_SearchCity.setVisible(workspace.isAllowed("button_MpegawaiList_SearchCity"));
 
 		btnHelp.setVisible(workspace.isAllowed("button_MpegawaiMain_btnHelp"));
 		btnNew.setVisible(workspace.isAllowed("button_MpegawaiMain_btnNew"));
