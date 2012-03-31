@@ -224,7 +224,7 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
         // empty the text search boxes
         txtb_Fasilitas_No.setValue(""); // clear
         txtb_Fasilitas_Name.setValue(""); // clear
-        txtb_Fasilitas_City.setValue(""); // clear
+//        txtb_Fasilitas_City.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
@@ -258,7 +258,7 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
         if (!txtb_Fasilitas_No.getValue().isEmpty()) {
             checkbox_FasilitasList_ShowAll.setChecked(false); // unCheck
             txtb_Fasilitas_Name.setValue(""); // clear
-            txtb_Fasilitas_City.setValue(""); // clear
+//            txtb_Fasilitas_City.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
@@ -292,7 +292,7 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
         // if not empty
         if (!txtb_Fasilitas_Name.getValue().isEmpty()) {
             checkbox_FasilitasList_ShowAll.setChecked(false); // unCheck
-            txtb_Fasilitas_City.setValue(""); // clear
+//            txtb_Fasilitas_City.setValue(""); // clear
             txtb_Fasilitas_No.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
@@ -321,38 +321,38 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
     /**
      * Filter the fasilitas list with 'like fasilitas city'. <br>
      */
-    public void onClick$button_FasilitasList_SearchCity(Event event) throws Exception {
-        // logger.debug(event.toString());
-
-        // if not empty
-        if (!txtb_Fasilitas_City.getValue().isEmpty()) {
-            checkbox_FasilitasList_ShowAll.setChecked(false); // unCheck
-            txtb_Fasilitas_Name.setValue(""); // clear
-            txtb_Fasilitas_No.setValue(""); // clear
-
-            // ++ create the searchObject and init sorting ++//
-            HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
-            soFasilitas.addFilter(new Filter("filOrt", "%" + txtb_Fasilitas_City.getValue() + "%", Filter.OP_ILIKE));
-            soFasilitas.addSort("filOrt", false);
-
-            // Change the BindingListModel.
-            if (getFasilitasListCtrl().getBinder() != null) {
-                getFasilitasListCtrl().getPagedBindingListWrapper().setSearchObject(soFasilitas);
-
-                // get the current Tab for later checking if we must change it
-                Tab currentTab = tabbox_FasilitasMain.getSelectedTab();
-
-                // check if the tab is one of the Detail tabs. If so do not
-                // change the selection of it
-                if (!currentTab.equals(tabFasilitasList)) {
-                    tabFasilitasList.setSelected(true);
-                } else {
-                    currentTab.setSelected(true);
-                }
-            }
-
-        }
-    }
+//    public void onClick$button_FasilitasList_SearchCity(Event event) throws Exception {
+//        // logger.debug(event.toString());
+//
+//        // if not empty
+//        if (!txtb_Fasilitas_City.getValue().isEmpty()) {
+//            checkbox_FasilitasList_ShowAll.setChecked(false); // unCheck
+//            txtb_Fasilitas_Name.setValue(""); // clear
+//            txtb_Fasilitas_No.setValue(""); // clear
+//
+//            // ++ create the searchObject and init sorting ++//
+//            HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
+//            soFasilitas.addFilter(new Filter("filOrt", "%" + txtb_Fasilitas_City.getValue() + "%", Filter.OP_ILIKE));
+//            soFasilitas.addSort("filOrt", false);
+//
+//            // Change the BindingListModel.
+//            if (getFasilitasListCtrl().getBinder() != null) {
+//                getFasilitasListCtrl().getPagedBindingListWrapper().setSearchObject(soFasilitas);
+//
+//                // get the current Tab for later checking if we must change it
+//                Tab currentTab = tabbox_FasilitasMain.getSelectedTab();
+//
+//                // check if the tab is one of the Detail tabs. If so do not
+//                // change the selection of it
+//                if (!currentTab.equals(tabFasilitasList)) {
+//                    tabFasilitasList.setSelected(true);
+//                } else {
+//                    currentTab.setSelected(true);
+//                }
+//            }
+//
+//        }
+//    }
 
     /**
      * When the "help" button is clicked.

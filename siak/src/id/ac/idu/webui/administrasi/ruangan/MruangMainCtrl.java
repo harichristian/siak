@@ -224,7 +224,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
         // empty the text search boxes
         txtb_Mruang_No.setValue(""); // clear
         txtb_Mruang_Name.setValue(""); // clear
-        txtb_Mruang_City.setValue(""); // clear
+//        txtb_Mruang_City.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
@@ -258,7 +258,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
         if (!txtb_Mruang_No.getValue().isEmpty()) {
             checkbox_MruangList_ShowAll.setChecked(false); // unCheck
             txtb_Mruang_Name.setValue(""); // clear
-            txtb_Mruang_City.setValue(""); // clear
+//            txtb_Mruang_City.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
@@ -292,7 +292,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
         // if not empty
         if (!txtb_Mruang_Name.getValue().isEmpty()) {
             checkbox_MruangList_ShowAll.setChecked(false); // unCheck
-            txtb_Mruang_City.setValue(""); // clear
+//            txtb_Mruang_City.setValue(""); // clear
             txtb_Mruang_No.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//

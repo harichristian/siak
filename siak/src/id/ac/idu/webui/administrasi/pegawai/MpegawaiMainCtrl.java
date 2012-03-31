@@ -225,7 +225,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 		// empty the text search boxes
 		txtb_Mpegawai_No.setValue(""); // clear
 		txtb_Mpegawai_Name.setValue(""); // clear
-		txtb_Mpegawai_City.setValue(""); // clear
+//		txtb_Mpegawai_City.setValue(""); // clear
 
 		// ++ create the searchObject and init sorting ++//
 		HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
@@ -259,7 +259,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 		if (!txtb_Mpegawai_No.getValue().isEmpty()) {
 			checkbox_MpegawaiList_ShowAll.setChecked(false); // unCheck
 			txtb_Mpegawai_Name.setValue(""); // clear
-			txtb_Mpegawai_City.setValue(""); // clear
+//			txtb_Mpegawai_City.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Mpegawai> soMpegawai = new HibernateSearchObject<Mpegawai>(Mpegawai.class, getMpegawaiListCtrl().getCountRows());
@@ -293,7 +293,7 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 		// if not empty
 		if (!txtb_Mpegawai_Name.getValue().isEmpty()) {
 			checkbox_MpegawaiList_ShowAll.setChecked(false); // unCheck
-			txtb_Mpegawai_City.setValue(""); // clear
+//			txtb_Mpegawai_City.setValue(""); // clear
 			txtb_Mpegawai_No.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
