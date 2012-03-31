@@ -21,6 +21,7 @@ public class ConstantUtil {
     public static String SEMESTER = "csmt";
     public static String COHORT = "ccohort";
     public static String KELOMPOK = "ckelompok";
+    public static String KURIKULUM_ID = "kurikulumId";
     public static String KURIKULUM = "mkurikulum";
     public static String KURIKULUM_CODE = "ckodekur";
     public static String MAHASISWA_CODE = "ckdstatmhs";
@@ -45,4 +46,5 @@ public class ConstantUtil {
     public static String JENIS_FEEDBACK = "ckdfeedback";
     public static String PEGAWAI_DOT_NAMA = "mpegawai.cnama";
     public static String PEGAWAI_DOT_NIP = "mpegawai.cnip";
+    public static String PEMINATAN_NAME = "cnmminat";
 }

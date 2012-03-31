@@ -23,6 +23,7 @@ public class Mpeminatan  implements java.io.Serializable {
      private Date dupdateddate;
      private String cupdatedby;
      private Set<Mmahasiswa> mmahasiswas = new HashSet<Mmahasiswa>(0);
+     private Set<Mkurikulum> mkurikulums = new HashSet<Mkurikulum>(0);
 
     public Mpeminatan() {
     }
@@ -122,9 +123,16 @@ public class Mpeminatan  implements java.io.Serializable {
     public Set<Mmahasiswa> getMmahasiswas() {
         return this.mmahasiswas;
     }
-    
+
     public void setMmahasiswas(Set<Mmahasiswa> mmahasiswas) {
         this.mmahasiswas = mmahasiswas;
+    }
+    public Set<Mkurikulum> getMkurikulums() {
+        return this.mkurikulums;
+    }
+
+    public void setMkurikulums(Set<Mkurikulum> mkurikulums) {
+        this.mkurikulums = mkurikulums;
     }
 
 

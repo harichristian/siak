@@ -4,7 +4,6 @@ import id.ac.idu.administrasi.dao.JenjangDAO;
 import id.ac.idu.administrasi.dao.ProdiDAO;
 import id.ac.idu.administrasi.service.ProdiService;
 import id.ac.idu.backend.bean.ResultObject;
-import id.ac.idu.backend.model.Mjenjang;
 import id.ac.idu.backend.model.Mprodi;
 
 import java.util.List;

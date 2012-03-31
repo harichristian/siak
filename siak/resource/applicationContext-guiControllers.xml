@@ -438,6 +438,7 @@
     <bean id="kurikulumMainCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.KurikulumMainCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="kurikulumService" ref="kurikulumService"/>
+        <property name="detilKurikulumService" ref="detilKurikulumService"/>
         <property name="kurikulumListCtrl" ref="kurikulumListCtrl"/>
         <property name="kurikulumDetailCtrl" ref="kurikulumDetailCtrl"/>
     </bean>
@@ -448,6 +449,7 @@
     <bean id="kurikulumDetailCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.KurikulumDetailCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="kurikulumService" ref="kurikulumService"/>
+        <property name="plwDetilKurikulum" ref="pagedListWrapper"/>
     </bean>
     <!-- Kurikulum Mahasiswa -->
     <bean id="kurikulumMahasiswaMainCtrl"

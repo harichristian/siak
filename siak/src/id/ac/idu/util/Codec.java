@@ -558,5 +558,80 @@ public class Codec {
             return this.name();
         }
     }
+    public enum JenisMatakuliah implements CodecInterface {
+        JM1("I","Inti"),
+        JM2("P","Pilihan"),
+        JM3("W","Wajib");
+
+        private final String value;
+        private final String label;
+
+        private JenisMatakuliah(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+
+    public enum Mun implements CodecInterface {
+        M1("L","Lokal"),
+        M2("N","Negara");
+
+        private final String value;
+        private final String label;
+
+        private Mun(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
+
+    public enum LintasProdi implements CodecInterface {
+        LP0("0","Tidak Lintas Prodi"),
+        LP1("1","Lintas Prodi");
+
+        private final String value;
+        private final String label;
+
+        private LintasProdi(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
 }
 

@@ -100,4 +100,5 @@ public interface MpeminatanService {
          */
         public ResultObject getAllAlumniLikeText(String text, int start, int pageSize);
 
+        public ResultObject getAllPeminatanLikeText(String text, int start, int pageSize);
 }
