@@ -228,7 +228,7 @@ public class MpeminatanMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mpeminatan> soMpeminatan = new HibernateSearchObject<Mpeminatan>(Mpeminatan.class, getMpeminatanListCtrl().getCountRows());
-        soMpeminatan.addSort("filName1", false);
+        soMpeminatan.addSort("cnmminat", false);
 
         // Change the BindingListModel.
         if (getMpeminatanListCtrl().getBinder() != null) {
@@ -262,8 +262,8 @@ public class MpeminatanMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mpeminatan> soMpeminatan = new HibernateSearchObject<Mpeminatan>(Mpeminatan.class, getMpeminatanListCtrl().getCountRows());
-            soMpeminatan.addFilter(new Filter("filNr", "%" + txtb_Mpeminatan_No.getValue() + "%", Filter.OP_ILIKE));
-            soMpeminatan.addSort("filNr", false);
+            soMpeminatan.addFilter(new Filter("ckdminat", "%" + txtb_Mpeminatan_No.getValue() + "%", Filter.OP_ILIKE));
+            soMpeminatan.addSort("cnmminat", false);
 
             // Change the BindingListModel.
             if (getMpeminatanListCtrl().getBinder() != null) {
@@ -297,8 +297,8 @@ public class MpeminatanMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mpeminatan> soMpeminatan = new HibernateSearchObject<Mpeminatan>(Mpeminatan.class, getMpeminatanListCtrl().getCountRows());
-            soMpeminatan.addFilter(new Filter("filName1", "%" + txtb_Mpeminatan_Name.getValue() + "%", Filter.OP_ILIKE));
-            soMpeminatan.addSort("filName1", false);
+            soMpeminatan.addFilter(new Filter("cnmminat", "%" + txtb_Mpeminatan_Name.getValue() + "%", Filter.OP_ILIKE));
+            soMpeminatan.addSort("cnmminat", false);
 
             // Change the BindingListModel.
             if (getMpeminatanListCtrl().getBinder() != null) {
@@ -332,8 +332,8 @@ public class MpeminatanMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mpeminatan> soMpeminatan = new HibernateSearchObject<Mpeminatan>(Mpeminatan.class, getMpeminatanListCtrl().getCountRows());
-            soMpeminatan.addFilter(new Filter("filOrt", "%" + txtb_Mpeminatan_City.getValue() + "%", Filter.OP_ILIKE));
-            soMpeminatan.addSort("filOrt", false);
+            soMpeminatan.addFilter(new Filter("mprodi.cnmprogst", "%" + txtb_Mpeminatan_City.getValue() + "%", Filter.OP_ILIKE));
+            soMpeminatan.addSort("cnmminat", false);
 
             // Change the BindingListModel.
             if (getMpeminatanListCtrl().getBinder() != null) {

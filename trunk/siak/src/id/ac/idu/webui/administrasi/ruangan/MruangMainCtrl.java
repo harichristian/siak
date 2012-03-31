@@ -790,7 +790,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
         button_MruangList_PrintList.setVisible(workspace.isAllowed("button_MruangList_PrintList"));
         button_MruangList_SearchNo.setVisible(workspace.isAllowed("button_MruangList_SearchNo"));
         button_MruangList_SearchName.setVisible(workspace.isAllowed("button_MruangList_SearchName"));
-        button_MruangList_SearchCity.setVisible(workspace.isAllowed("button_MruangList_SearchCity"));
+//        button_MruangList_SearchCity.setVisible(workspace.isAllowed("button_MruangList_SearchCity"));
 
         btnHelp.setVisible(workspace.isAllowed("button_MruangMain_btnHelp"));
         btnNew.setVisible(workspace.isAllowed("button_MruangMain_btnNew"));
