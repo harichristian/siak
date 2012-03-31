@@ -94,7 +94,7 @@
                                     </row>
                                     <row>
                                          <label value="Nama Konsentrasi Baru"/>
-                                        <textbox id="txtbNamaStatBaru" value="" readonly="true" maxlength="8" width="150px"/>
+                                        <textbox id="txtbNamaStatBaru" value="" readonly="true" maxlength="50" width="150px"/>
                                     </row>
                                 </rows>
                             </grid>
