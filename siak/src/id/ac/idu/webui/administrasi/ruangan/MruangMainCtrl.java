@@ -71,7 +71,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_Mruang_Name; // aurowired
     protected Button button_MruangList_SearchName; // aurowired
     protected Textbox txtb_Mruang_City; // aurowired
-    protected Button button_MruangList_SearchCity; // aurowired
+//    protected Button button_MruangList_SearchCity; // aurowired
 
     // checkRights
     protected Button button_MruangList_PrintList;
@@ -228,7 +228,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
-        soMruang.addSort("filName1", false);
+        soMruang.addSort("cnmRuang", false);
 
         // Change the BindingListModel.
         if (getMruangListCtrl().getBinder() != null) {
@@ -262,8 +262,8 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
-            soMruang.addFilter(new Filter("filNr", "%" + txtb_Mruang_No.getValue() + "%", Filter.OP_ILIKE));
-            soMruang.addSort("filNr", false);
+            soMruang.addFilter(new Filter("ckdruang", "%" + txtb_Mruang_No.getValue() + "%", Filter.OP_ILIKE));
+            soMruang.addSort("ckdruang", false);
 
             // Change the BindingListModel.
             if (getMruangListCtrl().getBinder() != null) {
@@ -297,8 +297,8 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
-            soMruang.addFilter(new Filter("filName1", "%" + txtb_Mruang_Name.getValue() + "%", Filter.OP_ILIKE));
-            soMruang.addSort("filName1", false);
+            soMruang.addFilter(new Filter("cnmRuang", "%" + txtb_Mruang_Name.getValue() + "%", Filter.OP_ILIKE));
+            soMruang.addSort("cnmRuang", false);
 
             // Change the BindingListModel.
             if (getMruangListCtrl().getBinder() != null) {
@@ -321,38 +321,38 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
     /**
      * Filter the mruang list with 'like mruang city'. <br>
      */
-    public void onClick$button_MruangList_SearchCity(Event event) throws Exception {
-        // logger.debug(event.toString());
-
-        // if not empty
-        if (!txtb_Mruang_City.getValue().isEmpty()) {
-            checkbox_MruangList_ShowAll.setChecked(false); // unCheck
-            txtb_Mruang_Name.setValue(""); // clear
-            txtb_Mruang_No.setValue(""); // clear
-
-            // ++ create the searchObject and init sorting ++//
-            HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
-            soMruang.addFilter(new Filter("filOrt", "%" + txtb_Mruang_City.getValue() + "%", Filter.OP_ILIKE));
-            soMruang.addSort("filOrt", false);
-
-            // Change the BindingListModel.
-            if (getMruangListCtrl().getBinder() != null) {
-                getMruangListCtrl().getPagedBindingListWrapper().setSearchObject(soMruang);
-
-                // get the current Tab for later checking if we must change it
-                Tab currentTab = tabbox_MruangMain.getSelectedTab();
-
-                // check if the tab is one of the Detail tabs. If so do not
-                // change the selection of it
-                if (!currentTab.equals(tabMruangList)) {
-                    tabMruangList.setSelected(true);
-                } else {
-                    currentTab.setSelected(true);
-                }
-            }
-
-        }
-    }
+//    public void onClick$button_MruangList_SearchCity(Event event) throws Exception {
+//        // logger.debug(event.toString());
+//
+//        // if not empty
+//        if (!txtb_Mruang_City.getValue().isEmpty()) {
+//            checkbox_MruangList_ShowAll.setChecked(false); // unCheck
+//            txtb_Mruang_Name.setValue(""); // clear
+//            txtb_Mruang_No.setValue(""); // clear
+//
+//            // ++ create the searchObject and init sorting ++//
+//            HibernateSearchObject<Mruang> soMruang = new HibernateSearchObject<Mruang>(Mruang.class, getMruangListCtrl().getCountRows());
+//            soMruang.addFilter(new Filter("cstatus", "%" + txtb_Mruang_City.getValue().charAt(0) + "%", Filter.OP_ILIKE));
+//            soMruang.addSort("cstatus", false);
+//
+//            // Change the BindingListModel.
+//            if (getMruangListCtrl().getBinder() != null) {
+//                getMruangListCtrl().getPagedBindingListWrapper().setSearchObject(soMruang);
+//
+//                // get the current Tab for later checking if we must change it
+//                Tab currentTab = tabbox_MruangMain.getSelectedTab();
+//
+//                // check if the tab is one of the Detail tabs. If so do not
+//                // change the selection of it
+//                if (!currentTab.equals(tabMruangList)) {
+//                    tabMruangList.setSelected(true);
+//                } else {
+//                    currentTab.setSelected(true);
+//                }
+//            }
+//
+//        }
+//    }
 
     /**
      * When the "help" button is clicked.

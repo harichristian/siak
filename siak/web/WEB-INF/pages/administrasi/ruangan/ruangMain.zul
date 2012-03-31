@@ -55,12 +55,12 @@
                                 tooltiptext="${c:l('button_MruangList_SearchName.tooltiptext')}"/>
                         <space width="20px"/>
 
-                        <label value="Status"
-                               style="padding-right: 3px"/>
-                        <textbox id="txtb_Mruang_City" width="100px"/>
-                        <button id="button_MruangList_SearchCity"
-                                height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MruangList_SearchCity.tooltiptext')}"/>
+                        <!--<label value="Status"-->
+                               <!--style="padding-right: 3px"/>-->
+                        <!--<textbox id="txtb_Mruang_City" width="100px"/>-->
+                        <!--<button id="button_MruangList_SearchCity"-->
+                                <!--height="24px" image="/images/icons/search.gif"-->
+                                <!--tooltiptext="${c:l('button_MruangList_SearchCity.tooltiptext')}"/>-->
 
                     </hbox>
                 </toolbar>

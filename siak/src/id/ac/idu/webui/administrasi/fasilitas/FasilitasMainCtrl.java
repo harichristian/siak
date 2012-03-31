@@ -228,7 +228,7 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
-        soFasilitas.addSort("filName1", false);
+        soFasilitas.addSort("cnamaFasilitas", false);
 
         // Change the BindingListModel.
         if (getFasilitasListCtrl().getBinder() != null) {
@@ -262,8 +262,8 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
-            soFasilitas.addFilter(new Filter("filNr", "%" + txtb_Fasilitas_No.getValue() + "%", Filter.OP_ILIKE));
-            soFasilitas.addSort("filNr", false);
+            soFasilitas.addFilter(new Filter("ckdfasilitas", "%" + txtb_Fasilitas_No.getValue() + "%", Filter.OP_ILIKE));
+            soFasilitas.addSort("cnamaFasilitas", false);
 
             // Change the BindingListModel.
             if (getFasilitasListCtrl().getBinder() != null) {
@@ -297,8 +297,8 @@ public class FasilitasMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfasilitas> soFasilitas = new HibernateSearchObject<Mfasilitas>(Mfasilitas.class, getFasilitasListCtrl().getCountRows());
-            soFasilitas.addFilter(new Filter("filName1", "%" + txtb_Fasilitas_Name.getValue() + "%", Filter.OP_ILIKE));
-            soFasilitas.addSort("filName1", false);
+            soFasilitas.addFilter(new Filter("cnamaFasilitas", "%" + txtb_Fasilitas_Name.getValue() + "%", Filter.OP_ILIKE));
+            soFasilitas.addSort("cnamaFasilitas", false);
 
             // Change the BindingListModel.
             if (getFasilitasListCtrl().getBinder() != null) {
