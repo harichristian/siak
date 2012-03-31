@@ -609,14 +609,14 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
             if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
                 getFeedbackAlumniDetailCtrl().getBinder().loadAll();
             }
-            for (Tfeedbackalumni tfa : getFeedbackAlumniDetailCtrl().getFeedbackAlumniList()) {
-                tfa.setMmahasiswa(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMmahasiswa());
-                tfa.setCterm(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCterm());
-                tfa.setCkelompok(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCkelompok());
-                tfa.setMprodi(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMprodi());
-                tfa.setMsekolah(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMsekolah());
-                //tfa.setCjawaban();
-            }
+//            for (Tfeedbackalumni tfa : getFeedbackAlumniDetailCtrl().getFeedbackAlumniList()) {
+//                tfa.setMmahasiswa(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMmahasiswa());
+//                tfa.setCterm(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCterm());
+//                tfa.setCkelompok(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCkelompok());
+//                tfa.setMprodi(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMprodi());
+//                tfa.setMsekolah(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMsekolah());
+//                //tfa.setCjawaban();
+//            }
 
             // save it to database
             //getFeedbackAlumniService().saveOrUpdate(getFeedbackAlumniDetailCtrl().getFeedbackAlumni());
