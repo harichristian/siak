@@ -55,10 +55,10 @@ public class TermDAOImpl extends BasisDAO<Mterm> implements TermDAO {
         DetachedCriteria criteria = DetachedCriteria.forClass(Mterm.class);
 
         if (!StringUtils.isEmpty(text)) {
-            criteria.add(Restrictions.ilike("deskripsi", text, MatchMode.ANYWHERE));
+            criteria.add(Restrictions.ilike("kdTerm", text, MatchMode.ANYWHERE));
         }
 
-        criteria.addOrder(Order.asc("deskripsi"));
+        criteria.addOrder(Order.asc("kdTerm"));
 
         int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
 

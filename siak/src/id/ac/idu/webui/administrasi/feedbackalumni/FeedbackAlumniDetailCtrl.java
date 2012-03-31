@@ -12,6 +12,7 @@ import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MalumniExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.TermExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -54,6 +55,7 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
     protected Button btnSearchAlumniExtended;
     protected Textbox txtb_prodi;
     protected Button btnSearchProdiExtended;
+    protected Button btnSearchTermExtended;
     protected Textbox txtb_sekolah;
     protected Button btnSearchSekolahExtended;
     protected Listbox list_jenis;
@@ -257,6 +259,7 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         btnSearchProdiExtended.setDisabled(b);
         btnSearchSekolahExtended.setDisabled(b);
         btnSearchAlumniExtended.setDisabled(b);
+        btnSearchTermExtended.setDisabled(b);
     }
 
       /**
@@ -312,6 +315,21 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
             txtb_prodi.setValue(prodi.getCnmprogst());
             Tfeedbackalumni obj = getFeedbackAlumni();
             obj.setMprodi(prodi);
+            setFeedbackAlumni(obj);
+        }
+    }
+
+     public void onClick$btnSearchTermExtended(Event event) {
+        doSearchTermExtended(event);
+    }
+
+    private void doSearchTermExtended(Event event) {
+        Mterm term = TermExtendedSearchListBox.show(windowFeedbackAlumniDetail);
+
+        if (term != null) {
+            txtb_term.setValue(term.getKdTerm());
+            Tfeedbackalumni obj = getFeedbackAlumni();
+            obj.setCterm(term.getKdTerm());
             setFeedbackAlumni(obj);
         }
     }
