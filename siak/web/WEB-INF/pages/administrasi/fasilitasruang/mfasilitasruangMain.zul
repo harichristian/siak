@@ -36,31 +36,31 @@
                         <space/>
                         <checkbox id="checkbox_MfasilitasruangList_ShowAll"
                                   checked="true"
-                                  label="${c:l('checkbox_MfasilitasruangList_ShowAll.label')}"/>
+                                  label="Lihat Semua"/>
                         <space/>
 
-                        <label value="${c:l('common.No')}"
+                        <label value="Kode Ruang"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfasilitasruang_No" width="60px"/>
                         <button id="button_MfasilitasruangList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfasilitasruangList_SearchNo.tooltiptext')}"/>
+                                tooltiptext="Cari Kode Ruang"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.Name1')}"
+                        <label value="Nama Ruang"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfasilitasruang_Name" width="100px"/>
                         <button id="button_MfasilitasruangList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfasilitasruangList_SearchName.tooltiptext')}"/>
+                                tooltiptext="Cari Nama Ruang"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.City')}"
+                        <label value="Nama Fasilitas"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfasilitasruang_City" width="100px"/>
                         <button id="button_MfasilitasruangList_SearchCity"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfasilitasruangList_SearchCity.tooltiptext')}"/>
+                                tooltiptext="Cari Nama Fasilitas"/>
 
                     </hbox>
                 </toolbar>
