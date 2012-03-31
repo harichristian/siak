@@ -55,12 +55,12 @@
 							tooltiptext="${c:l('button_MpegawaiList_SearchName.tooltiptext')}" />
 						<space width="20px" />
 
-						<label value="Status"
-							style="padding-right: 3px" />
-						<textbox id="txtb_Mpegawai_City" width="100px" />
-						<button id="button_MpegawaiList_SearchCity"
-							height="24px" image="/images/icons/search.gif"
-							tooltiptext="${c:l('button_MpegawaiList_SearchCity.tooltiptext')}" />
+						<!--<label value="Status"-->
+							<!--style="padding-right: 3px" />-->
+						<!--<textbox id="txtb_Mpegawai_City" width="100px" />-->
+						<!--<button id="button_MpegawaiList_SearchCity"-->
+							<!--height="24px" image="/images/icons/search.gif"-->
+							<!--tooltiptext="${c:l('button_MpegawaiList_SearchCity.tooltiptext')}" />-->
 
 					</hbox>
 				</toolbar>

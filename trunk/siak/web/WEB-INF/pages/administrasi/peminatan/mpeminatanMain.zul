@@ -36,31 +36,31 @@
                         <space/>
                         <checkbox id="checkbox_MpeminatanList_ShowAll"
                                   checked="true"
-                                  label="${c:l('checkbox_MpeminatanList_ShowAll.label')}"/>
+                                  label="Lihat Semua"/>
                         <space/>
 
-                        <label value="${c:l('common.No')}"
+                        <label value="Kode Peminatan"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mpeminatan_No" width="60px"/>
                         <button id="button_MpeminatanList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MpeminatanList_SearchNo.tooltiptext')}"/>
+                                tooltiptext="Cari Kode Peminatan"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.Name1')}"
+                        <label value="Nama Peminatan"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mpeminatan_Name" width="100px"/>
                         <button id="button_MpeminatanList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MpeminatanList_SearchName.tooltiptext')}"/>
+                                tooltiptext="Cari Nama Peminatan"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.City')}"
+                        <label value="Prodi"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mpeminatan_City" width="100px"/>
                         <button id="button_MpeminatanList_SearchCity"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MpeminatanList_SearchCity.tooltiptext')}"/>
+                                tooltiptext="Cari Prodi"/>
 
                     </hbox>
                 </toolbar>
