@@ -36,31 +36,31 @@
                         <space/>
                         <checkbox id="checkbox_TfeedbackinstansiList_ShowAll"
                                   checked="true"
-                                  label="${c:l('checkbox_TfeedbackinstansiList_ShowAll.label')}"/>
+                                  label="Lihat Semua"/>
                         <space/>
 
-                        <label value="${c:l('common.No')}"
+                        <label value="Nama Instansi"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Tfeedbackinstansi_No" width="60px"/>
                         <button id="button_TfeedbackinstansiList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_TfeedbackinstansiList_SearchNo.tooltiptext')}"/>
+                                tooltiptext="Cari Nama Instansi"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.Name1')}"
+                        <label value="Alamat"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Tfeedbackinstansi_Name" width="100px"/>
                         <button id="button_TfeedbackinstansiList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_TfeedbackinstansiList_SearchName.tooltiptext')}"/>
+                                tooltiptext="Cari Alamat"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.City')}"
+                        <label value="Nama Alumni"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Tfeedbackinstansi_City" width="100px"/>
                         <button id="button_TfeedbackinstansiList_SearchCity"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_TfeedbackinstansiList_SearchCity.tooltiptext')}"/>
+                                tooltiptext="Cari Alumni"/>
 
                     </hbox>
                 </toolbar>

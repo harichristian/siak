@@ -231,7 +231,7 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Tfeedbackinstansi> soTfeedbackinstansi = new HibernateSearchObject<Tfeedbackinstansi>(Tfeedbackinstansi.class, getTfeedbackinstansiListCtrl().getCountRows());
-        soTfeedbackinstansi.addSort("filName1", false);
+        soTfeedbackinstansi.addSort("cnminstansi", false);
 
         // Change the BindingListModel.
         if (getTfeedbackinstansiListCtrl().getBinder() != null) {
@@ -265,8 +265,8 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackinstansi> soTfeedbackinstansi = new HibernateSearchObject<Tfeedbackinstansi>(Tfeedbackinstansi.class, getTfeedbackinstansiListCtrl().getCountRows());
-            soTfeedbackinstansi.addFilter(new Filter("filNr", "%" + txtb_Tfeedbackinstansi_No.getValue() + "%", Filter.OP_ILIKE));
-            soTfeedbackinstansi.addSort("filNr", false);
+            soTfeedbackinstansi.addFilter(new Filter("cnminstansi", "%" + txtb_Tfeedbackinstansi_No.getValue() + "%", Filter.OP_ILIKE));
+            soTfeedbackinstansi.addSort("cnminstansi", false);
 
             // Change the BindingListModel.
             if (getTfeedbackinstansiListCtrl().getBinder() != null) {
@@ -300,8 +300,8 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackinstansi> soTfeedbackinstansi = new HibernateSearchObject<Tfeedbackinstansi>(Tfeedbackinstansi.class, getTfeedbackinstansiListCtrl().getCountRows());
-            soTfeedbackinstansi.addFilter(new Filter("filName1", "%" + txtb_Tfeedbackinstansi_Name.getValue() + "%", Filter.OP_ILIKE));
-            soTfeedbackinstansi.addSort("filName1", false);
+            soTfeedbackinstansi.addFilter(new Filter("calminstansi", "%" + txtb_Tfeedbackinstansi_Name.getValue() + "%", Filter.OP_ILIKE));
+            soTfeedbackinstansi.addSort("calminstansi", false);
 
             // Change the BindingListModel.
             if (getTfeedbackinstansiListCtrl().getBinder() != null) {
@@ -335,8 +335,8 @@ public class TfeedbackinstansiMainCtrl extends GFCBaseCtrl implements Serializab
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackinstansi> soTfeedbackinstansi = new HibernateSearchObject<Tfeedbackinstansi>(Tfeedbackinstansi.class, getTfeedbackinstansiListCtrl().getCountRows());
-            soTfeedbackinstansi.addFilter(new Filter("filOrt", "%" + txtb_Tfeedbackinstansi_City.getValue() + "%", Filter.OP_ILIKE));
-            soTfeedbackinstansi.addSort("filOrt", false);
+            soTfeedbackinstansi.addFilter(new Filter("malumni.mmahasiswa.cnama", "%" + txtb_Tfeedbackinstansi_City.getValue() + "%", Filter.OP_ILIKE));
+            soTfeedbackinstansi.addSort("malumni.mmahasiswa.cnama", false);
 
             // Change the BindingListModel.
             if (getTfeedbackinstansiListCtrl().getBinder() != null) {

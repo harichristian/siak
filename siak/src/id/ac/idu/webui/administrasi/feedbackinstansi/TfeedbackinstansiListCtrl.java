@@ -169,6 +169,8 @@ public class TfeedbackinstansiListCtrl extends GFCBaseListCtrl<Tfeedbackinstansi
         listheader_TfeedbackinstansiList_alamat.setSortDescending(new FieldComparator("calminstansi", false));
         listheader_TfeedbackinstansiList_nmalumni.setSortAscending(new FieldComparator("malumni.mmahasiswa.cnama", true));
         listheader_TfeedbackinstansiList_nmalumni.setSortDescending(new FieldComparator("malumni.mmahasiswa.cnama", false));
+        listheader_TfeedbackinstansiList_kesan.setSortAscending(new FieldComparator("ckesanpesan", true));
+        listheader_TfeedbackinstansiList_kesan.setSortDescending(new FieldComparator("ckesanpesan", false));
 
         // ++ create the searchObject and init sorting ++//
         // ++ create the searchObject and init sorting ++//
