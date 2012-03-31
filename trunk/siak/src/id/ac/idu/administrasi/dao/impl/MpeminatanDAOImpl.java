@@ -4,6 +4,7 @@ import id.ac.idu.administrasi.dao.MpeminatanDAO;
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Mpeminatan;
+import id.ac.idu.util.ConstantUtil;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
@@ -98,6 +99,24 @@ public class MpeminatanDAOImpl  extends BasisDAO<Mpeminatan> implements Mpeminat
         }
 
         criteria.addOrder(Order.asc("cnmminat"));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Mpeminatan> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllPeminatanLikeText(String text, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mpeminatan.class);
+
+        if (!StringUtils.isEmpty(text)) {
+            criteria.add(Restrictions.ilike(ConstantUtil.PEMINATAN_NAME, text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc(ConstantUtil.PEMINATAN_NAME));
 
         int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
 

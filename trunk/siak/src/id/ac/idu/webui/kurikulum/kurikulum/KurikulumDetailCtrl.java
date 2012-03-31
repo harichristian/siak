@@ -1,12 +1,22 @@
 package id.ac.idu.webui.kurikulum.kurikulum;
 
+import com.trg.search.Filter;
+import id.ac.idu.backend.model.Mdetilkurikulum;
 import id.ac.idu.backend.model.Mkurikulum;
+import id.ac.idu.backend.model.Mpeminatan;
 import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.util.HibernateSearchObject;
+import id.ac.idu.kurikulum.service.DetilKurikulumService;
 import id.ac.idu.kurikulum.service.KurikulumService;
+import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.ZksampleMessageUtils;
+import id.ac.idu.webui.util.pagging.PagedListWrapper;
+import id.ac.idu.webui.util.searchdialogs.PeminatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
@@ -14,6 +24,9 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -41,7 +54,28 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_cohort; // autowired
     protected Textbox txtb_prodi;
     protected Button btnSearchProdiExtended;
+    protected Textbox txtb_peminatan;
+    protected Button btnSearchPeminatanExtended;
     protected Button button_KurikulumDialog_PrintKurikulum; // autowired
+
+    private int pageSize;
+    private int kurikulumId;
+
+    public static final String DATA = "data";
+    public static final String LIST = "LIST";
+    public static final String CONTROL = "CONTROL";
+    public static final String ISNEW = "ISNEW";
+
+    protected Button btnNewDetilKurikulum;
+    protected Button btnDeleteDetilKurikulum;
+
+    protected Set<Mdetilkurikulum> delDetilKurikulum = new HashSet<Mdetilkurikulum>();
+    private transient PagedListWrapper<Mdetilkurikulum> plwDetilKurikulum;
+    protected Listbox listDetilKurikulum;
+    protected Paging pagingDetilKurikulum;
+
+    //protected RiwayatBahasaCtrl riwayatBahasaCtrl;
+    //protected RiwayatKursusCtrl riwayatKursusCtrl;
 
     // Databinding
     protected transient AnnotateDataBinder binder;
@@ -49,6 +83,7 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     // ServiceDAOs / Domain Classes
     private transient KurikulumService kurikulumService;
+    private transient DetilKurikulumService detilKurikulumService;
 
     /**
      * default constructor.<br>
@@ -105,11 +140,62 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
      * @throws Exception
      */
     public void onCreate$windowKurikulumDetail(Event event) throws Exception {
+        setPageSize(20);
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
-
+        //doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
+        if(getKurikulum() != null) {
+            loadDetilKurikulum();
+        }
         binder.loadAll();
-
         doFitSize(event);
+    }
+
+    public void loadDetilKurikulum() {
+        this.kurikulumId = getKurikulum().getId();
+
+        HibernateSearchObject<Mdetilkurikulum> so = new HibernateSearchObject<Mdetilkurikulum>(Mdetilkurikulum.class);
+        if(getKurikulum() != null)
+            so.addFilter(new Filter(ConstantUtil.KURIKULUM_ID, this.kurikulumId, Filter.OP_EQUAL));
+
+        so.addSort(ConstantUtil.KURIKULUM_ID, false);
+
+        pagingDetilKurikulum.setPageSize(pageSize);
+		pagingDetilKurikulum.setDetailed(true);
+		getPlwDetilKurikulum().init(so, listDetilKurikulum, pagingDetilKurikulum);
+		listDetilKurikulum.setItemRenderer(new DetilKurikulumSearchList());
+    }
+    public void onClick$btnNewDetilKurikulum(Event event) throws Exception {
+        final Mdetilkurikulum dk = getKurikulumMainCtrl().getDetilKurikulumService().getNew();
+        this.showDetail(dk, true);
+    }
+
+    public void onClick$btnDetilKurikulum(Event event) throws Exception {
+        Listitem item = listDetilKurikulum.getSelectedItem();
+        getDelDetilKurikulum().add((Mdetilkurikulum) item.getAttribute(KurikulumDetailCtrl.DATA));
+        listDetilKurikulum.removeItemAt(listDetilKurikulum.getSelectedIndex());
+    }
+
+    public void onDetilKurikulumItem(Event event) throws Exception {
+        Listitem item = listDetilKurikulum.getSelectedItem();
+        if(item == null) return;
+
+        final Mdetilkurikulum obj = (Mdetilkurikulum) item.getAttribute(KurikulumDetailCtrl.DATA);
+        this.showDetail(obj, false);
+    }
+
+    public void showDetail(Mdetilkurikulum obj, boolean isnew) throws Exception {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put(KurikulumDetailCtrl.DATA, obj);
+        map.put(KurikulumDetailCtrl.LIST, listDetilKurikulum);
+        map.put(KurikulumDetailCtrl.CONTROL, this);
+        map.put(KurikulumDetailCtrl.ISNEW, isnew);
+
+        try {
+            Executions.createComponents("/WEB-INF/pages/kurikulum/kurikulum/kurikulumDetail.zul", null, map);
+        } catch (final Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+            ZksampleMessageUtils.showErrorMessage(e.toString());
+        }
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -147,6 +233,7 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_code.setReadonly(b);
         txtb_cohort.setReadonly(b);
         btnSearchProdiExtended.setDisabled(b);
+        btnSearchPeminatanExtended.setDisabled(b);
     }
 
 
@@ -165,6 +252,20 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
+    public void onClick$btnSearchPeminatanExtended(Event event) {
+        doSearchPeminatanExtended(event);
+    }
+
+    private void doSearchPeminatanExtended(Event event) {
+        Mpeminatan peminatan = PeminatanExtendedSearchListBox.show(windowKurikulumDetail);
+
+        if (peminatan != null) {
+            txtb_peminatan.setValue(peminatan.getCnmminat());
+            Mkurikulum obj = getKurikulum();
+            obj.setMpeminatan(peminatan);
+            setKurikulum(obj);
+        }
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++ Setter/Getter ++++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -227,5 +328,29 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public KurikulumMainCtrl getKurikulumMainCtrl() {
         return this.kurikulumMainCtrl;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public PagedListWrapper<Mdetilkurikulum> getPlwDetilKurikulum() {
+        return plwDetilKurikulum;
+    }
+
+    public void setPlwDetilKurikulum(PagedListWrapper<Mdetilkurikulum> plwDetilKurikulum) {
+        this.plwDetilKurikulum = plwDetilKurikulum;
+    }
+
+    public Set<Mdetilkurikulum> getDelDetilKurikulum() {
+        return delDetilKurikulum;
+    }
+
+    public void setDelDetilKurikulum(Set<Mdetilkurikulum> delDetilKurikulum) {
+        this.delDetilKurikulum = delDetilKurikulum;
     }
 }

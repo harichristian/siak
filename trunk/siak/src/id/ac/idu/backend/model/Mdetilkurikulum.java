@@ -13,7 +13,7 @@ public class Mdetilkurikulum  implements java.io.Serializable {
      private int id;
      private Mprodi mprodi;
      private Mtbmtkl mtbmtkl;
-     private String ckodekur;
+     private int kurikulumId;
      private String ccohort;
      private String cjenis;
      private String cstatus;
@@ -29,16 +29,16 @@ public class Mdetilkurikulum  implements java.io.Serializable {
     }
 
 	
-    public Mdetilkurikulum(int id, Mprodi mprodi, String ckodekur) {
+    public Mdetilkurikulum(int id, Mprodi mprodi, int kurikulumId) {
         this.id = id;
         this.mprodi = mprodi;
-        this.ckodekur = ckodekur;
+        this.kurikulumId = kurikulumId;
     }
-    public Mdetilkurikulum(int id, Mprodi mprodi, Mtbmtkl mtbmtkl, String ckodekur, String ccohort, String cjenis, String cstatus, String cmun, String clintasprodi, String ctermsmt, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
+    public Mdetilkurikulum(int id, Mprodi mprodi, Mtbmtkl mtbmtkl, int kurikulumId, String ccohort, String cjenis, String cstatus, String cmun, String clintasprodi, String ctermsmt, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
        this.id = id;
        this.mprodi = mprodi;
        this.mtbmtkl = mtbmtkl;
-       this.ckodekur = ckodekur;
+       this.kurikulumId = kurikulumId;
        this.ccohort = ccohort;
        this.cjenis = cjenis;
        this.cstatus = cstatus;
@@ -72,12 +72,12 @@ public class Mdetilkurikulum  implements java.io.Serializable {
     public void setMtbmtkl(Mtbmtkl mtbmtkl) {
         this.mtbmtkl = mtbmtkl;
     }
-    public String getCkodekur() {
-        return this.ckodekur;
+    public int getKurikulumId() {
+        return this.kurikulumId;
     }
     
-    public void setCkodekur(String ckodekur) {
-        this.ckodekur = ckodekur;
+    public void setKurikulumId(int kurikulumId) {
+        this.kurikulumId = kurikulumId;
     }
     public String getCcohort() {
         return this.ccohort;

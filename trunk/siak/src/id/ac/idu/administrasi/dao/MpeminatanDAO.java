@@ -122,4 +122,6 @@ public interface MpeminatanDAO  {
          * @return List of YoutubeLinks / Liste von YoutubeLinks
          */
         public ResultObject getAllAlumniLikeText(String text, int start, int pageSize);
+
+        public ResultObject getAllPeminatanLikeText(String text, int start, int pageSize);
     }

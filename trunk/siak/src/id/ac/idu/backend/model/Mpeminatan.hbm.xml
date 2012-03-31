@@ -41,5 +41,11 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mmahasiswa" />
         </set>
+        <set name="mkurikulums" inverse="true">
+            <key>
+                <column name="PEMINATAN_ID" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mkurikulum" />
+        </set>
     </class>
 </hibernate-mapping>

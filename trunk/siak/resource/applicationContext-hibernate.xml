@@ -218,6 +218,7 @@
     <bean id="matakuliahDAO" class="id.ac.idu.mankurikulum.dao.impl.MatakuliahDAOImpl" parent="basisDAO"/>
     <bean id="kurikulumDAO" class="id.ac.idu.kurikulum.dao.impl.KurikulumDAOImpl" parent="basisDAO"/>
     <bean id="kurikulumMahasiswaDAO" class="id.ac.idu.kurikulum.dao.impl.KurikulumMahasiswaDAOImpl" parent="basisDAO"/>
+    <bean id="detilKurikulumDAO" class="id.ac.idu.kurikulum.dao.impl.DetilKurikulumDAOImpl" parent="basisDAO"/>
     <!-- Isi Rencana Studi -->
     <bean id="cutimhsDAO" class="id.ac.idu.irs.dao.impl.CutimhsDAOImpl" parent="basisDAO"/>
     <bean id="irsDAO" class="id.ac.idu.irs.dao.impl.IrsDAOImpl" parent="basisDAO"/>
@@ -333,6 +334,10 @@
     </bean>
     <bean name="kurikulumService" class="id.ac.idu.kurikulum.service.impl.KurikulumServiceImpl">
         <property name="kurikulumDAO" ref="kurikulumDAO"/>
+        <property name="prodiDAO" ref="prodiDAO"/>
+    </bean>
+    <bean name="detilKurikulumService" class="id.ac.idu.kurikulum.service.impl.DetilKurikulumServiceImpl">
+        <property name="detilKurikulumDAO" ref="detilKurikulumDAO"/>
         <property name="prodiDAO" ref="prodiDAO"/>
     </bean>
 

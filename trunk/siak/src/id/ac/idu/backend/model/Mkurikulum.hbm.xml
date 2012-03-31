@@ -29,11 +29,20 @@
         <property name="cupdatedby" type="string">
             <column name="CUPDATEDBY" length="10" />
         </property>
+        <many-to-one name="mpeminatan" class="id.ac.idu.backend.model.Mpeminatan" fetch="select" lazy="false">
+            <column name="PEMINATAN_ID" not-null="true" />
+        </many-to-one>
         <set name="mkurmhses" inverse="true">
             <key>
                 <column name="KURIKULUM_ID" not-null="true" />
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mkurmhs" />
+        </set>
+        <set name="mdetilkurikulums" inverse="true">
+            <key>
+                <column name="KURIKULUM_ID" not-null="true" />
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mdetilkurikulum" />
         </set>
     </class>
 </hibernate-mapping>

@@ -6,6 +6,7 @@ import id.ac.idu.administrasi.service.ProdiService;
 import id.ac.idu.backend.model.Mkurikulum;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
+import id.ac.idu.kurikulum.service.DetilKurikulumService;
 import id.ac.idu.kurikulum.service.KurikulumService;
 import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.*;
@@ -86,6 +87,7 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
     // ServiceDAOs / Domain Classes
     private KurikulumService kurikulumService;
     private ProdiService prodiService;
+    private DetilKurikulumService detilKurikulumService;
 
     // always a copy from the bean before modifying. Used for reseting
     private Mkurikulum originalKurikulum;
@@ -822,5 +824,13 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public ProdiService getProdiService() {
         return this.prodiService;
+    }
+
+    public DetilKurikulumService getDetilKurikulumService() {
+        return detilKurikulumService;
+    }
+
+    public void setDetilKurikulumService(DetilKurikulumService detilKurikulumService) {
+        this.detilKurikulumService = detilKurikulumService;
     }
 }

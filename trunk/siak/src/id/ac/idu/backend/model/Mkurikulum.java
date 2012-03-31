@@ -23,7 +23,9 @@ public class Mkurikulum  implements java.io.Serializable {
      private String ccreatedby;
      private Date dupdateddate;
      private String cupdatedby;
+     private Mpeminatan mpeminatan;
      private Set<Mkurmhs> mkurmhses = new HashSet<Mkurmhs>(0);
+     private Set<Mdetilkurikulum> mdetilkurikulums = new HashSet<Mdetilkurikulum>(0);
 
     public Mkurikulum() {
     }
@@ -110,9 +112,21 @@ public class Mkurikulum  implements java.io.Serializable {
         this.mkurmhses = mkurmhses;
     }
 
+    public Mpeminatan getMpeminatan() {
+        return this.mpeminatan;
+    }
 
+    public void setMpeminatan(Mpeminatan mpeminatan) {
+        this.mpeminatan = mpeminatan;
+    }
 
+    public Set<Mdetilkurikulum> getMdetilkurikulums() {
+        return this.mdetilkurikulums;
+    }
 
+    public void setMdetilkurikulums(Set<Mdetilkurikulum> mdetilkurikulums) {
+        this.mdetilkurikulums = mdetilkurikulums;
+    }
 }
 
 

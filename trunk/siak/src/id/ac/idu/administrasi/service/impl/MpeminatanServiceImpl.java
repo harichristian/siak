@@ -76,4 +76,8 @@ public class MpeminatanServiceImpl implements MpeminatanService {
         return getMpeminatanDAO().getAllAlumniLikeText(text, start, pageSize);
     }
 
+    @Override
+    public ResultObject getAllPeminatanLikeText(String text, int start, int pageSize) {
+        return getMpeminatanDAO().getAllPeminatanLikeText(text, start, pageSize);
+    }
 }
