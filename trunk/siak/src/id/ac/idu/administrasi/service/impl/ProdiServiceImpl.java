@@ -38,10 +38,7 @@ public class ProdiServiceImpl implements ProdiService {
 
     @Override
     public Mprodi getNewProdi() {
-        //return getProdiDAO().getNewProdi();
-        Mprodi obj = getProdiDAO().getNewProdi();
-        obj.setMjenjang((Mjenjang) getJenjangDAO().getAllJenjangs().get(0));
-        return obj;
+        return getProdiDAO().getNewProdi();
     }
 
     @Override
