@@ -231,7 +231,7 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Mfeedback> soMfeedback = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getMfeedbackListCtrl().getCountRows());
-        soMfeedback.addSort("filName1", false);
+        soMfeedback.addSort("ckdfeedback", false);
 
         // Change the BindingListModel.
         if (getMfeedbackListCtrl().getBinder() != null) {
@@ -265,8 +265,8 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfeedback> soMfeedback = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getMfeedbackListCtrl().getCountRows());
-            soMfeedback.addFilter(new Filter("filNr", "%" + txtb_Mfeedback_No.getValue() + "%", Filter.OP_ILIKE));
-            soMfeedback.addSort("filNr", false);
+            soMfeedback.addFilter(new Filter("cpertanyaan", "%" + txtb_Mfeedback_No.getValue() + "%", Filter.OP_ILIKE));
+            soMfeedback.addSort("cpertanyaan", false);
 
             // Change the BindingListModel.
             if (getMfeedbackListCtrl().getBinder() != null) {
@@ -300,8 +300,8 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfeedback> soMfeedback = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getMfeedbackListCtrl().getCountRows());
-            soMfeedback.addFilter(new Filter("filName1", "%" + txtb_Mfeedback_Name.getValue() + "%", Filter.OP_ILIKE));
-            soMfeedback.addSort("filName1", false);
+            soMfeedback.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Mfeedback_Name.getValue() + "%", Filter.OP_ILIKE));
+            soMfeedback.addSort("msekolah.cnamaSekolah", false);
 
             // Change the BindingListModel.
             if (getMfeedbackListCtrl().getBinder() != null) {
@@ -335,8 +335,8 @@ public class MfeedbackMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Mfeedback> soMfeedback = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getMfeedbackListCtrl().getCountRows());
-            soMfeedback.addFilter(new Filter("filOrt", "%" + txtb_Mfeedback_City.getValue() + "%", Filter.OP_ILIKE));
-            soMfeedback.addSort("filOrt", false);
+            soMfeedback.addFilter(new Filter("mprodi.cnmprogst", "%" + txtb_Mfeedback_City.getValue() + "%", Filter.OP_ILIKE));
+            soMfeedback.addSort("mprodi.cnmprogst", false);
 
             // Change the BindingListModel.
             if (getMfeedbackListCtrl().getBinder() != null) {
