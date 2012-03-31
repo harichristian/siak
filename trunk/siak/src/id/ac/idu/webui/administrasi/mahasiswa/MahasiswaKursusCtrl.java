@@ -60,6 +60,18 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox listRiwayatKursus;
     protected Paging pagingRiwayatKursus;
 
+    protected Listheader cno;
+    protected Listheader cnmkursus;
+    protected Listheader clama;
+    protected Listheader cthnselesai;
+    protected Listheader ctempat;
+    protected Listheader cket;
+
+    protected Listheader cnob;
+    protected Listheader cnmbahasab;
+    protected Listheader cstatusb;
+    protected Listheader cketb;
+
     protected Set<Mpbahasamhs> delBahasa = new HashSet<Mpbahasamhs>();
     private transient PagedListWrapper<Mpbahasamhs> plwBahasa;
     protected Listbox listRiwayatBahasa;
@@ -105,6 +117,19 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
     public void loadRiwayatKursus() {
         this.mhsid = getMahasiswa().getId();
 
+        cno.setSortAscending(new FieldComparator("cno",true));
+        cno.setSortDescending(new FieldComparator("cno",false));
+        cnmkursus.setSortAscending(new FieldComparator("cnmkursus",true));
+        cnmkursus.setSortDescending(new FieldComparator("cnmkursus",false));
+        clama.setSortAscending(new FieldComparator("clama",true));
+        clama.setSortDescending(new FieldComparator("clama",false));
+        cthnselesai.setSortAscending(new FieldComparator("cthnselesai",true));
+        cthnselesai.setSortDescending(new FieldComparator("cthnselesai",false));
+        ctempat.setSortAscending(new FieldComparator("ctempat",true));
+        ctempat.setSortDescending(new FieldComparator("ctempat",false));
+        cket.setSortAscending(new FieldComparator("cket",true));
+        cket.setSortDescending(new FieldComparator("cket",false));
+
         HibernateSearchObject<Mhistkursusmhs> onKursus = new HibernateSearchObject<Mhistkursusmhs>(Mhistkursusmhs.class);
         if(getMahasiswa() != null)
             onKursus.addFilter(new Filter("mahasiswaId", this.mhsid, Filter.OP_EQUAL));
@@ -124,6 +149,8 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnDeleteKursus(Event event) throws Exception {
         Listitem item = listRiwayatKursus.getSelectedItem();
+        if(item == null) return;
+        
         getDelKursus().add((Mhistkursusmhs) item.getAttribute(MahasiswaKursusCtrl.DATA));
         listRiwayatKursus.removeItemAt(listRiwayatKursus.getSelectedIndex());
     }
@@ -154,6 +181,15 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
     public void loadRiwayatBahasa() {
         this.mhsid = getMahasiswa().getId();
 
+        cnob.setSortAscending(new FieldComparator("cno",true));
+        cnob.setSortDescending(new FieldComparator("cno",false));
+        cnmbahasab.setSortAscending(new FieldComparator("cnmbahasa",true));
+        cnmbahasab.setSortDescending(new FieldComparator("cnmbahasa",false));
+        cstatusb.setSortAscending(new FieldComparator("cstatus",true));
+        cstatusb.setSortDescending(new FieldComparator("cstatus",false));
+        cketb.setSortAscending(new FieldComparator("cket",true));
+        cketb.setSortDescending(new FieldComparator("cket",false));
+
         HibernateSearchObject<Mpbahasamhs> onBahasa = new HibernateSearchObject<Mpbahasamhs>(Mpbahasamhs.class);
         if(getMahasiswa() != null)
             onBahasa.addFilter(new Filter("mahasiswaId", this.mhsid, Filter.OP_EQUAL));
@@ -173,6 +209,8 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnDeleteBahasa(Event event) throws Exception {
         Listitem item = listRiwayatBahasa.getSelectedItem();
+        if(item == null) return;
+        
         getDelBahasa().add((Mpbahasamhs) item.getAttribute(MahasiswaKursusCtrl.DATA));
         listRiwayatBahasa.removeItemAt(listRiwayatBahasa.getSelectedIndex());
     }
@@ -204,8 +242,8 @@ public class MahasiswaKursusCtrl extends GFCBaseCtrl implements Serializable {
         binder.loadAll();
         this.doFitSize();
 
-        if(this.mhsid == getMahasiswa().getId())
-            return;
+        if(getMahasiswa()== null) return;
+        if(this.mhsid==getMahasiswa().getId()) return;
 
         loadRiwayatKursus();
         loadRiwayatBahasa();

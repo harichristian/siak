@@ -8,76 +8,98 @@
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="windowKegiatanDetail" apply="${kegiatanIlmiahDetailCtrl}" border="none" width="100%">
-        <borderlayout id="borderlayout_Kegiatan">
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowKgtIlmiahDetail" ?>
+
+    <window id="windowKgtIlmiahDetail" apply="${kgtIlmiahDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderDetailKegiatan">
             <center border="none" autoscroll="true">
                 <panel border="none">
                     <panelchildren>
-                        <hbox>
-                            <separator/>
-                        </hbox>
-                        <hbox>
-                            <label value="Tujuan Studi"/>
-                            <textbox id="txtb_tujuan" maxlength="12" readonly="true"/>
-                        </hbox>
-                        <hbox>
-                            <separator/>
-                        </hbox>
                         <groupbox mold="3d" closable="false" style="height:100%; ">
-                            <caption image="/images/icons/view.gif" label="Simposium / Seminar"/>
+                            <caption image="/images/icons/view.gif" label="Kegiatan &amp; Karya Ilmiah"/>
                             <grid sclass="GridLayoutNoBorder" fixedLayout="true"
                                   style="border:0px; padding-left:5px; padding-right:5px; ">
                                 <columns>
-                                    <column width="200px"/>
+                                    <column width="10%"/>
                                     <column/>
                                 </columns>
                                 <rows>
                                     <row>
-                                        <label value="Nama Simposium / Seminar"/>
-                                        <textbox id="txtb_a1" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Peranan"/>
-                                        <textbox id="txtb_a2" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Tahun Penyelenggaraan"/>
-                                        <textbox id="txtb_a3" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Institusi Penyelenggaraan"/>
-                                        <textbox id="txtb_a4" maxlength="12" readonly="true"/>
+                                        <label value="Tujuan Studi"/>
+                                        <textbox id="txtbStudi" maxlength="20" width="200px" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>
-                        </groupbox>
-                        <groupbox mold="3d" closable="false" style="height:100%; ">
-                            <caption image="/images/icons/view.gif" label="Karya Ilmiah"/>
-                            <grid sclass="GridLayoutNoBorder" fixedLayout="true"
-                                  style="border:0px; padding-left:5px; padding-right:5px; ">
-                                <columns>
-                                    <column width="200px"/>
-                                    <column/>
-                                </columns>
-                                <rows>
-                                    <row>
-                                        <label value="Nama Karya Ilmiah"/>
-                                        <textbox id="txtb_b1" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Media Penerbitan"/>
-                                        <textbox id="txtb_b2" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Tahun Terbit"/>
-                                        <textbox id="txtb_b3" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Keterangan"/>
-                                        <textbox id="txtb_b4" maxlength="12" readonly="true"/>
-                                    </row>
-                                </rows>
-                            </grid>
+                            <space/>
+
+                            <groupbox mold="3d" closable="false" style="border:0px; padding-left:10px; padding-right:10px; padding-bottom:5px;">
+                                <caption image="/images/icons/view.gif" label="Kegiatan"/>
+                                <div sclass="z-toolbar" style="padding:0">
+                                    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                        <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                            <button id="btnNewKegiatan" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                            <button id="btnDeleteKegiatan" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                        </toolbar>
+                                    </hbox>
+                                </div>
+                                <borderlayout id="borderKegiatan" style="height:200px">
+                                    <north border="none" height="26px">
+                                        <paging id="pagingKegiatan" style="width:100%" pageSize="20"/>
+                                    </north>
+                                    <center border="none">
+                                        <listbox id="listKegiatan" width="100%" height="100%" multiple="false">
+                                            <listhead sizable="true">
+                                                <listheader id="cno" sort="auto" width="5%" label="No"/>
+                                                <listheader id="cnmsimposium" sort="auto" width="25%" label="Nama Simposium/Seminar"/>
+                                                <listheader id="cperanan" sort="auto" width="25%" label="Peranan"/>
+                                                <listheader id="ctahun" sort="auto" width="15%" label="Tahun Penyelenggaraan"/>
+                                                <listheader id="cinstitusi" sort="auto" width="30%" label="Institusi Penyelenggara"/>
+                                            </listhead>
+                                        </listbox>
+                                    </center>
+                                </borderlayout>
+                            </groupbox>
+
+                            <groupbox mold="3d" closable="false" style="border:0px; padding-left:10px; padding-right:10px; padding-bottom:5px;">
+                                <caption image="/images/icons/view.gif" label="Karya" />
+                                <div sclass="z-toolbar" style="padding:0">
+                                    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                        <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                            <button id="btnNewKarya" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                            <button id="btnDeleteKarya" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                        </toolbar>
+                                    </hbox>
+                                </div>
+                                <borderlayout id="borderKarya" style="height:200px">
+                                    <north border="none" height="26px">
+                                        <paging id="pagingKarya" style="width:100%" pageSize="20"/>
+                                    </north>
+                                    <center border="none">
+                                        <listbox id="listKarya" width="100%" height="100%" multiple="false">
+                                            <listhead sizable="true">
+                                                <listheader id="cnob" sort="auto" width="5%" label="No"/>
+                                                <listheader id="cnmkyrilm" sort="auto" width="30%" label="Nama Karya Ilmiah"/>
+                                                <listheader id="cmediaterbit" sort="auto" width="25%" label="Media Penerbitan"/>
+                                                <listheader id="cthnterbit" sort="auto" width="10%" label="Tahun Terbit"/>
+                                                <listheader id="cket" sort="auto" width="30%" label="Keterangan"/>
+                                            </listhead>
+                                        </listbox>
+                                    </center>
+                                </borderlayout>
+                            </groupbox>
+                            
                         </groupbox>
                     </panelchildren>
                 </panel>
