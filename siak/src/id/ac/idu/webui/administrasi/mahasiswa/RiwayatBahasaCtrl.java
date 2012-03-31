@@ -194,6 +194,8 @@ public class RiwayatBahasaCtrl extends GFCBaseCtrl implements Serializable {
         btnSave.setVisible(b);
         btnDelete.setVisible(b);
         btnCancel.setVisible(b);
+
+        if(isnew) btnDelete.setVisible(false);
     }
 
     private void doReadOnlyMode(boolean b) {

@@ -365,6 +365,8 @@
         <property name="mhistpangkatmhsService" ref="mhistpangkatmhsService"/>
         <property name="mhistkursusmhsService" ref="mhistkursusmhsService"/>
         <property name="mpbahasamhsService" ref="mpbahasamhsService"/>
+        <property name="mkgtmhsService" ref="mkgtmhsService"/>
+        <property name="mkaryamhsService" ref="mkaryamhsService"/>
         <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
         <property name="listCtrl" ref="mahasiswaListCtrl"/>
     </bean>
@@ -374,6 +376,7 @@
         <property name="khususCtrl" ref="khususDetailCtrl"/>
         <property name="pendidikanCtrl" ref="pendidikanDetailCtrl"/>
         <property name="kursusCtrl" ref="kursusDetailCtrl"/>
+        <property name="kegiatanCtrl" ref="kgtIlmiahDetailCtrl"/>
     </bean>
     <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
         <property name="plwKodepos" ref="pagedListWrapper"/>
@@ -399,6 +402,12 @@
     </bean>
     <bean id="riwayatBahasaCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatBahasaCtrl" parent="basisCtrl" scope="prototype"/>
     <bean id="riwayatKursusCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.RiwayatKursusCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="kgtIlmiahDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaKegiatanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwKegiatan" ref="pagedListWrapper"/>
+        <property name="plwKarya" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="kegiatanDtlCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.KegiatanCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="karyaDtlCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.KaryaCtrl" parent="basisCtrl" scope="prototype"/>
 
     <!-- Update Konsentrasi Mahasiswa -->
     <bean id="updateKonsentrasiMainCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiMainCtrl" parent="basisCtrl" scope="prototype">

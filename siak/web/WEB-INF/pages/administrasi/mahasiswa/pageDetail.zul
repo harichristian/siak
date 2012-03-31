@@ -17,8 +17,8 @@
                 <tab id="tabKhusus" label="Khusus" visible="false"/>
                 <tab id="tabPendidikan" label="Pendidikan"/>
                 <tab id="tabKursus" label="Kursus / Latihan"/>
-                <!--<tab id="tabKegiatan" label="Kegiatan Ilmiah"/>
-                <tab id="tabPekerjaan" label="Pekerjaan &amp; Prestasi"/>
+                <tab id="tabKegiatan" label="Kegiatan &amp; Karya Ilmiah"/>
+                <!--<tab id="tabPekerjaan" label="Pekerjaan &amp; Prestasi"/>
                 <tab id="tabStatus" label="Tanggal &amp; Status"/>-->
             </tabs>
             <tabpanels>
@@ -26,8 +26,8 @@
                 <tabpanel id="tabPanelKhusus" height="100%" style="border: none; padding: 0px; " />
                 <tabpanel id="tabPanelPendidikan" height="100%" style="border: none; padding: 0px; "/>
                 <tabpanel id="tabPanelKursus" height="100%" style="border: none; padding: 0px; "/>
-                <!--<tabpanel id="tabPanelKegiatan" height="100%" style="border: none; padding: 0px; "/>
-                <tabpanel id="tabPanelPekerjaan" height="100%" style="border: none; padding: 0px; "/>
+                <tabpanel id="tabPanelKegiatan" height="100%" style="border: none; padding: 0px; "/>
+                <!--<tabpanel id="tabPanelPekerjaan" height="100%" style="border: none; padding: 0px; "/>
                 <tabpanel id="tabPanelStatus" height="100%" style="border: none; padding: 0px; "/>-->
             </tabpanels>
         </tabbox>

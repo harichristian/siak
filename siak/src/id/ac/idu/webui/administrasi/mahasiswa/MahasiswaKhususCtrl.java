@@ -79,10 +79,20 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
     protected Paging pagingRiwayatPendidikan;
     protected Listbox listRiwayatPendidikan;
 
+    protected Listheader jenis;
+    protected Listheader tahun;
+    protected Listheader cketerangan;
+
+
     private transient PagedListWrapper<Mhistpangkatmhs> plwHisPangkat;
     private RiwayatPangkatCtrl riwayatPangkatCtrl;
     protected Paging pagingRiwayatPangkat;
     protected Listbox listRiwayatPangkat;
+
+    protected Listheader cdpangkat;
+    protected Listheader nmpangkat;
+    protected Listheader ctmt;
+    protected Listheader dketerangan;
 
     private MahasiswaDetailCtrl detailCtrl;
     private AnnotateDataBinder binder;
@@ -124,6 +134,13 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
 
     public void loadRiwayatPendidikan() {
         this.mhsid = getMahasiswa().getId();
+
+        jenis.setSortAscending(new FieldComparator("cnmbentuk",true));
+        jenis.setSortDescending(new FieldComparator("cnmbentuk",false));
+        tahun.setSortAscending(new FieldComparator("ctahun",true));
+        tahun.setSortDescending(new FieldComparator("ctahun",false));
+        cketerangan.setSortAscending(new FieldComparator("cket",true));
+        cketerangan.setSortDescending(new FieldComparator("cket",false));
         
         HibernateSearchObject<Mppumhskhusus> hisKhusus = new HibernateSearchObject<Mppumhskhusus>(Mppumhskhusus.class);
         if(getMahasiswa() != null)
@@ -152,6 +169,8 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnDeleteRiwayatPendidikan() throws Exception {
         Listitem item = listRiwayatPendidikan.getSelectedItem();
+        if(item == null) return;
+        
         getDelMppum().add((Mppumhskhusus) item.getAttribute(MahasiswaKhususCtrl.LIST_DATA));
         listRiwayatPendidikan.removeItemAt(listRiwayatPendidikan.getSelectedIndex());
     }
@@ -172,6 +191,15 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void loadRiwayatPangkat() {
+        cdpangkat.setSortAscending(new FieldComparator("mpangkatgolongan.ckdpangkatgolongan",true));
+        cdpangkat.setSortDescending(new FieldComparator("mpangkatgolongan.ckdpangkatgolongan",false));
+        nmpangkat.setSortAscending(new FieldComparator("mpangkatgolongan.cnmpangkatgolongan",true));
+        nmpangkat.setSortDescending(new FieldComparator("mpangkatgolongan.cnmpangkatgolongan",false));
+        ctmt.setSortAscending(new FieldComparator("ctmt",true));
+        ctmt.setSortDescending(new FieldComparator("ctmt",false));
+        dketerangan.setSortAscending(new FieldComparator("cket",true));
+        dketerangan.setSortDescending(new FieldComparator("cket",false));
+
         HibernateSearchObject<Mhistpangkatmhs> hisPangkat = new HibernateSearchObject<Mhistpangkatmhs>(Mhistpangkatmhs.class);
         if(getMahasiswa() != null)
             hisPangkat.addFilter(new Filter("mahasiswaId", this.mhsid, Filter.OP_EQUAL));
@@ -199,6 +227,8 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnDeleteRiwayatPangkat() throws Exception {
         Listitem item = listRiwayatPangkat.getSelectedItem();
+        if(item == null) return;
+        
         getDelHisPangkat().add((Mhistpangkatmhs) item.getAttribute(MahasiswaKhususCtrl.LIST_DATA));
         listRiwayatPangkat.removeItemAt(listRiwayatPangkat.getSelectedIndex());
     }

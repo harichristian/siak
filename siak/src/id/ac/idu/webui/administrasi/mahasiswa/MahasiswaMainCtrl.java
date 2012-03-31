@@ -30,6 +30,8 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
     private MhistpangkatmhsService mhistpangkatmhsService;
     private MhistkursusmhsService mhistkursusmhsService;
     private MpbahasamhsService mpbahasamhsService;
+    private MkgtmhsService mkgtmhsService;
+    private MkaryamhsService mkaryamhsService;
 
     /* model */
     private Mmahasiswa mahasiswa;
@@ -271,6 +273,22 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setMpbahasamhsService(MpbahasamhsService mpbahasamhsService) {
         this.mpbahasamhsService = mpbahasamhsService;
+    }
+
+    public MkgtmhsService getMkgtmhsService() {
+        return mkgtmhsService;
+    }
+
+    public void setMkgtmhsService(MkgtmhsService mkgtmhsService) {
+        this.mkgtmhsService = mkgtmhsService;
+    }
+
+    public MkaryamhsService getMkaryamhsService() {
+        return mkaryamhsService;
+    }
+
+    public void setMkaryamhsService(MkaryamhsService mkaryamhsService) {
+        this.mkaryamhsService = mkaryamhsService;
     }
 
     public Mmahasiswa getMahasiswa() {

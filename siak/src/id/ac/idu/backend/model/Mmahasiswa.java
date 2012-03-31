@@ -65,6 +65,7 @@ public class Mmahasiswa implements java.io.Serializable {
     private Set<Mhistpangkatmhs> mhistpangkatmhses = new HashSet<Mhistpangkatmhs>(0);
     private Set<Tabsenmhs> tabsenmhses = new HashSet<Tabsenmhs>(0);
     private Set<Mkgtmhs> mkgtmhses = new HashSet<Mkgtmhs>(0);
+    private Set<Mkaryamhs> mkaryamhses = new HashSet<Mkaryamhs>(0);
     private Set<Mpbahasamhs> mpbahasamhses = new HashSet<Mpbahasamhs>(0);
     private Set<Tlognilai> tlognilais = new HashSet<Tlognilai>(0);
     private Set<Malumni> malumnis = new HashSet<Malumni>(0);
@@ -94,7 +95,7 @@ public class Mmahasiswa implements java.io.Serializable {
             , String calamatsrt, MkodePos kodeposSrtId, Mstatusmhs mstatusmhs, String cthnlaporan, String cketkerja
             , String ctujuan, String cgelombang, String cstatawal, Date dcreateddate, String ccreatedby
             , Date dupdateddate, String cupdatedby, Mmhspascakhs mmhspascakhs, Set<Tabsenmhs> tabsenmhses, Set<Mkgtmhs> mkgtmhses
-            , Set<Mhistpangkatmhs> mhistpangkatmhses, Set<Mpbahasamhs> mpbahasamhses, Set<Tlognilai> tlognilais
+            , Set<Mkaryamhs> mkaryamhses, Set<Mhistpangkatmhs> mhistpangkatmhses, Set<Mpbahasamhs> mpbahasamhses, Set<Tlognilai> tlognilais
             , Set<Malumni> malumnis, Set<Mkurmhs> mkurmhses , Set<Mppumhskhusus> mppumhskhususes
             , Set<Mhistkursusmhs> mhistkursusmhses, Set<Tirspasca> tirspascas , Set<Mhistpnddkmhs> mhistpnddkmhses
             , Set<Mprestasimhs> mprestasimhses, Set<Tcutimhs> tcutimhses) {
@@ -149,6 +150,7 @@ public class Mmahasiswa implements java.io.Serializable {
         this.mmhspascakhs = mmhspascakhs;
         this.tabsenmhses = tabsenmhses;
         this.mkgtmhses = mkgtmhses;
+        this.mkaryamhses = mkaryamhses;
         this.mhistpangkatmhses = mhistpangkatmhses;
         this.mpbahasamhses = mpbahasamhses;
         this.tlognilais = tlognilais;
@@ -551,7 +553,7 @@ public class Mmahasiswa implements java.io.Serializable {
     }
 
     public void setMmhspascakhs(Mmhspascakhs mmhspascakhs) {
-        mmhspascakhs.setMahasiswaId(this.id);
+        if(mmhspascakhs!=null) mmhspascakhs.setMahasiswaId(this.id);
         this.mmhspascakhs = mmhspascakhs;
     }
 
@@ -563,12 +565,26 @@ public class Mmahasiswa implements java.io.Serializable {
         this.tabsenmhses = tabsenmhses;
     }
 
-    public Set<Mkgtmhs> getMkgtmhses() {
+    public Set<Mkgtmhs> getMkgtmhses() {        
         return this.mkgtmhses;
     }
 
     public void setMkgtmhses(Set<Mkgtmhs> mkgtmhses) {
+        for(Object anKegiatan : mkgtmhses)
+            ((Mkgtmhs) anKegiatan).setMahasiswaId(this.id);
+
         this.mkgtmhses = mkgtmhses;
+    }
+
+    public Set<Mkaryamhs> getMkaryamhses() {
+        return mkaryamhses;
+    }
+
+    public void setMkaryamhses(Set<Mkaryamhs> mkaryamhses) {
+        for(Object anKarya : mkaryamhses)
+            ((Mkaryamhs) anKarya).setMahasiswaId(this.id);
+
+        this.mkaryamhses = mkaryamhses;
     }
 
     public Set<Mpbahasamhs> getMpbahasamhses() {
