@@ -460,6 +460,7 @@
         <property name="kurikulumService" ref="kurikulumService"/>
         <property name="plwDetilKurikulum" ref="pagedListWrapper"/>
     </bean>
+    <bean id="detilKurikulumCtrl" class="id.ac.idu.webui.kurikulum.kurikulum.DetilKurikulumCtrl" parent="basisCtrl" scope="prototype"/>
     <!-- Kurikulum Mahasiswa -->
     <bean id="kurikulumMahasiswaMainCtrl"
           class="id.ac.idu.webui.kurikulum.kurikulumMahasiswa.KurikulumMahasiswaMainCtrl"

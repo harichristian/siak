@@ -125,7 +125,7 @@
                                             <listheader id="cjenis" sort="auto" width="10%" label="Jenis"/>
                                             <listheader id="cstatus" sort="auto" width="10%" label="Status"/>
                                             <listheader id="cmun" sort="auto" width="10%" label="MUN"/>
-                                            <listheader id="ctermsmt" sort="auto" width="10%" label="Term"/>
+                                            <listheader id="ctermsmt" sort="auto" width="10%" label="Term Semester"/>
                                             <listheader id="clintasprodi" sort="auto" width="30%" label="Lintas Prodi"/>
                                         </listhead>
                                     </listbox>

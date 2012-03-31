@@ -80,6 +80,7 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
     // Databinding
     protected transient AnnotateDataBinder binder;
     private KurikulumMainCtrl kurikulumMainCtrl;
+    protected DetilKurikulumCtrl detilKurikulumCtrl;
 
     // ServiceDAOs / Domain Classes
     private transient KurikulumService kurikulumService;
@@ -191,7 +192,7 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
         map.put(KurikulumDetailCtrl.ISNEW, isnew);
 
         try {
-            Executions.createComponents("/WEB-INF/pages/kurikulum/kurikulum/kurikulumDetail.zul", null, map);
+            Executions.createComponents("/WEB-INF/pages/kurikulum/kurikulum/detilKurikulum.zul", null, map);
         } catch (final Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
             ZksampleMessageUtils.showErrorMessage(e.toString());
@@ -352,5 +353,17 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setDelDetilKurikulum(Set<Mdetilkurikulum> delDetilKurikulum) {
         this.delDetilKurikulum = delDetilKurikulum;
+    }
+
+    public boolean isModeEdit() {
+        return (getKurikulumMainCtrl().btnSave.isVisible());
+    }
+
+    public DetilKurikulumCtrl getDetilKurikulumCtrl() {
+        return detilKurikulumCtrl;
+    }
+
+    public void setDetilKurikulumCtrl(DetilKurikulumCtrl detilKurikulumCtrl) {
+        this.detilKurikulumCtrl = detilKurikulumCtrl;
     }
 }
