@@ -36,31 +36,31 @@
                         <space/>
                         <checkbox id="checkbox_MfeedbackList_ShowAll"
                                   checked="true"
-                                  label="${c:l('checkbox_MfeedbackList_ShowAll.label')}"/>
+                                  label="lihat semua"/>
                         <space/>
 
-                        <label value="${c:l('common.No')}"
+                        <label value="Pertanyaan"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfeedback_No" width="60px"/>
                         <button id="button_MfeedbackList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfeedbackList_SearchNo.tooltiptext')}"/>
+                                tooltiptext="Cari Pertanyaan"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.Name1')}"
+                        <label value="Nama Sekolah"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfeedback_Name" width="100px"/>
                         <button id="button_MfeedbackList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfeedbackList_SearchName.tooltiptext')}"/>
+                                tooltiptext="Cari Nama Sekolah"/>
                         <space width="20px"/>
 
-                        <label value="${c:l('common.City')}"
+                        <label value="Prodi"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Mfeedback_City" width="100px"/>
                         <button id="button_MfeedbackList_SearchCity"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="${c:l('button_MfeedbackList_SearchCity.tooltiptext')}"/>
+                                tooltiptext="Cari Prodi"/>
 
                     </hbox>
                 </toolbar>
