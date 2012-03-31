@@ -55,7 +55,12 @@
                                         <label value="Term"/>
                                         <hbox>
                                             <textbox id="txtb_term" value="@{controller.feedbackWisudawan.cterm}"
-                                                    readonly="true" maxlength="2" width="50px" />
+                                                    readonly="true" maxlength="4" width="50px" />
+                                             <button
+                                                    id="btnSearchTermExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Term"/>
                                         </hbox>
                                     </row>
                                     <row>
@@ -98,12 +103,12 @@
                                         </hbox-->
                                     </row>
                                     <row>
-                                        <label value="jawaban"/>
+                                        <!--<label value="jawaban"/>-->
                                         <hbox pack="stretch" width="100px">
                                             <textbox
                                                     id="txtb_jawaban"
                                                     value="@{controller.feedbackWisudawan.cjawaban}"
-                                                    readonly="true" maxlength="50" width="100px"/>
+                                                    readonly="true" maxlength="50" width="100px" visible="false"/>
                                         </hbox>
                                     </row>
                                     <row>
