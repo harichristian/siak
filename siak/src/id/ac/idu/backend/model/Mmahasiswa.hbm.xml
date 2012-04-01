@@ -110,9 +110,9 @@
         <property name="cfaxkantor" type="string">
             <column name="CFAXKANTOR" length="15" />
         </property>
-        <property name="ckdposkntor" type="string">
-            <column name="CKDPOSKNTOR" length="5" />
-        </property>
+        <many-to-one name="ckdposkntor" class="id.ac.idu.backend.model.MkodePos" lazy="false" cascade="none">
+            <column name="CKDPOSKNTOR" not-null="false"/>
+        </many-to-one>
         <property name="calamatsrt" type="string">
             <column name="CALAMATSRT" length="50" />
         </property>
@@ -222,9 +222,9 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Tirspasca" />
         </set>
-        <set name="mprestasimhses" inverse="true">
+        <set name="mprestasimhses" inverse="true" cascade="all-delete-orphan">
             <key>
-                <column name="MAHASISWA_ID" not-null="true" />
+                <column name="MAHASISWA_ID" not-null="true" length="4" />
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mprestasimhs" />
         </set>

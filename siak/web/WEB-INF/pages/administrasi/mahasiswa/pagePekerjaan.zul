@@ -7,8 +7,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
-    <window id="windowPekerjaanDetail" apply="${pekerjaanDetailCtrl}" border="none" width="100%">
-        <borderlayout id="borderlayout_Pekerjaan">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowPekerjaan" ?>
+
+    <window id="windowPekerjaan" apply="${pekerjaanDetailCtrl}" border="none" width="100%">
+        <borderlayout id="borderPekerjaan">
             <center border="none" autoscroll="true">
                 <panel border="none">
                     <panelchildren>
@@ -23,30 +26,102 @@
                                 <rows>
                                     <row>
                                         <label value="Nama Kantor"/>
-                                        <textbox id="txtb_1" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcnmkntor" value="@{controller.mahasiswa.cnmkntor}"  maxlength="50" width="160px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Alamat Kantor"/>
-                                        <textbox id="txtb_2" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcalmkntor" value="@{controller.mahasiswa.calmkntor}" maxlength="50" width="160px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Telepon Kantor"/>
-                                        <textbox id="txtb_3" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbctelpkntor" value="@{controller.mahasiswa.ctelpkntor}" maxlength="15" width="120px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Fax Kantor"/>
-                                        <textbox id="txtb_4" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcfaxkantor" value="@{controller.mahasiswa.cfaxkantor}" maxlength="15" width="120px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Kode Pos Kantor"/>
-                                        <textbox id="txtb_5" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbckdposkntor" value="@{controller.mahasiswa.ckdposkntor.kodepos}" width="100px" readonly="true"/>
+                                            <bandbox id="cmbckdposkntor" sclass="mybandbox" width="0px" tooltiptext="Kodepos" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Kodepos"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelckdposkntor" value="Kodepos"/>
+                                                                        <textbox id="tbckdposkntor" width="98%"/>
+                                                                        <button id="buttonSearchCkdposkntor" image="/images/icons/search.gif" label="Search" tooltiptext="Search Kodepos"/>
+                                                                        <button id="buttonCloseCkdposkntor" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingCkdposkntor" pageSize="20"/>
+                                                                            <listbox id="listCkdposkntor" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="ckdposkntor" sort="auto" width="90%" label="KodePos"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Pekerjaan"/>
-                                        <textbox id="txtb_6" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcketkerja" value="@{controller.mahasiswa.cketkerja}" maxlength="100" rows="2" cols="40" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>
+                            <space />
+                            <groupbox mold="3d" closable="false" style="border:0px; padding-left:10px; padding-right:10px; padding-bottom:5px; ">
+                                <caption image="/images/icons/view.gif" label="Prestasi/Penghargaan"/>
+                                <div sclass="z-toolbar" style="padding:0">
+                                    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                        <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                            <hbox align="center" style="padding: 2px"></hbox>
+                                        </toolbar>
+                                        <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                            <button id="btnNewPrestasi" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                            <button id="btnDeletePrestasi" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                        </toolbar>
+                                    </hbox>
+                                </div>
+
+                                <borderlayout id="borderPrestasi" style="height:200px;">
+                                    <north border="none" height="26px">
+                                        <paging id="pagingPrestasi" style="width:100%" pageSize="20"/>
+                                    </north>
+                                    <center border="none">
+                                        <listbox id="listPrestasi" width="100%" height="100%" multiple="false" style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;">
+                                            <listhead sizable="true">
+                                                <listheader id="cno" sort="auto" width="5%" label="No"/>
+                                                <listheader id="cnmprestasi" sort="auto" width="20%" label="Prestasi/Penghargaan"/>
+                                                <listheader id="cnmberi" sort="auto" width="20%" label="Di Berikan Oleh"/>
+                                                <listheader id="cthnterima" sort="auto" width="10%" label="Tahun Terima"/>
+                                                <listheader id="cket" sort="auto" width="45%" label="Keterangan"/>
+                                            </listhead>
+                                        </listbox>
+                                    </center>
+                                </borderlayout>
+                            </groupbox>
                         </groupbox>
                     </panelchildren>
                 </panel>

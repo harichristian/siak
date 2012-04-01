@@ -47,7 +47,7 @@ public class Mmahasiswa implements java.io.Serializable {
     private String calmkntor;
     private String ctelpkntor;
     private String cfaxkantor;
-    private String ckdposkntor;
+    private MkodePos ckdposkntor;
     private String calamatsrt;
     private MkodePos kodeposSrtId;
     private Mstatusmhs mstatusmhs;
@@ -91,7 +91,7 @@ public class Mmahasiswa implements java.io.Serializable {
             , MkodePos kodeposId, String ctemplhr, Date dtglhr, Character cjenkel, Character cgoldar, String ckdagama
             , Character cstatnkh, Character cwarga, String cnosttb, Date dtglsttb, Date dtglmasuk, Date dtglwisuda
             , Date dtglyudisi, Date dtglteori, Character cflagspbm, Character cflagnilai, String cemail, String cnohp
-            , String cnmkntor, String calmkntor, String ctelpkntor, String cfaxkantor, String ckdposkntor
+            , String cnmkntor, String calmkntor, String ctelpkntor, String cfaxkantor, MkodePos ckdposkntor
             , String calamatsrt, MkodePos kodeposSrtId, Mstatusmhs mstatusmhs, String cthnlaporan, String cketkerja
             , String ctujuan, String cgelombang, String cstatawal, Date dcreateddate, String ccreatedby
             , Date dupdateddate, String cupdatedby, Mmhspascakhs mmhspascakhs, Set<Tabsenmhs> tabsenmhses, Set<Mkgtmhs> mkgtmhses
@@ -444,11 +444,11 @@ public class Mmahasiswa implements java.io.Serializable {
         this.cfaxkantor = cfaxkantor;
     }
 
-    public String getCkdposkntor() {
-        return this.ckdposkntor;
+    public MkodePos getCkdposkntor() {
+        return ckdposkntor;
     }
 
-    public void setCkdposkntor(String ckdposkntor) {
+    public void setCkdposkntor(MkodePos ckdposkntor) {
         this.ckdposkntor = ckdposkntor;
     }
 
@@ -679,6 +679,9 @@ public class Mmahasiswa implements java.io.Serializable {
     }
 
     public void setMprestasimhses(Set<Mprestasimhs> mprestasimhses) {
+        for(Object anMprestasimhs : mprestasimhses)
+            ((Mprestasimhs) anMprestasimhs).setMahasiswaId(this.id);
+
         this.mprestasimhses = mprestasimhses;
     }
 

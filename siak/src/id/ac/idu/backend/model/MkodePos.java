@@ -21,6 +21,7 @@ public class MkodePos implements java.io.Serializable {
     private Set<Mkel> mkels = new HashSet<Mkel>(0);
     private Set<Mmahasiswa> kodeposid = new HashSet<Mmahasiswa>(0);
     private Set<Mmahasiswa> kodepossrtid = new HashSet<Mmahasiswa>(0);
+    private Set<Mmahasiswa> ckdposkntor = new HashSet<Mmahasiswa>(0);
 
     public MkodePos() {
     }
@@ -32,7 +33,8 @@ public class MkodePos implements java.io.Serializable {
     }
 
     public MkodePos(String id, String kodepos, Date dcreateddate, String ccreatedby, Date dupdateddate
-            , String cupdatedby , Set<Mkel> mkels, Set<Mmahasiswa> kodeposid, Set<Mmahasiswa> kodepossrtid) {
+            , String cupdatedby , Set<Mkel> mkels, Set<Mmahasiswa> kodeposid
+            , Set<Mmahasiswa> kodepossrtid, Set<Mmahasiswa> ckdposkntor) {
         this.id = id;
         this.kodepos = kodepos;
         this.dcreateddate = dcreateddate;
@@ -42,6 +44,7 @@ public class MkodePos implements java.io.Serializable {
         this.mkels = mkels;
         this.kodeposid = kodeposid;
         this.kodepossrtid = kodepossrtid;
+        this.ckdposkntor = ckdposkntor;
     }
 
     public String getId() {
@@ -114,6 +117,14 @@ public class MkodePos implements java.io.Serializable {
 
     public void setKodepossrtid(Set<Mmahasiswa> kodepossrtid) {
         this.kodepossrtid = kodepossrtid;
+    }
+
+    public Set<Mmahasiswa> getCkdposkntor() {
+        return ckdposkntor;
+    }
+
+    public void setCkdposkntor(Set<Mmahasiswa> ckdposkntor) {
+        this.ckdposkntor = ckdposkntor;
     }
 }
 

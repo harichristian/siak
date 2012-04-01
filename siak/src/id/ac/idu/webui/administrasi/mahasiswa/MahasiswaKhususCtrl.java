@@ -94,6 +94,10 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
     protected Listheader ctmt;
     protected Listheader dketerangan;
 
+    protected Listheader code;
+    protected Listheader name;
+    protected Listheader jabatan;
+
     private MahasiswaDetailCtrl detailCtrl;
     private AnnotateDataBinder binder;
 
@@ -268,6 +272,11 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
     private void searchPangkat(Filter filter1, Filter filter2) {
         HibernateSearchObject<Mpangkatgolongan> soPangkat = new HibernateSearchObject<Mpangkatgolongan>(Mpangkatgolongan.class);
 
+        code.setSortAscending(new FieldComparator("ckdpangkatgolongan",true));
+        code.setSortDescending(new FieldComparator("ckdpangkatgolongan",false));
+        name.setSortAscending(new FieldComparator("cnmpangkatgolongan",true));
+        name.setSortDescending(new FieldComparator("cnmpangkatgolongan",false));
+
         if(filter1 != null) soPangkat.addFilter(filter1);
         if(filter2 != null) soPangkat.addFilter(filter2);
 
@@ -308,6 +317,9 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
     private void searchJabatan(Filter filter) {
         HibernateSearchObject<Mjabatan> soJabatan = new HibernateSearchObject<Mjabatan>(Mjabatan.class);
 
+        jabatan.setSortAscending(new FieldComparator("cnmjabatan",true));
+        jabatan.setSortDescending(new FieldComparator("cnmjabatan",false));
+        
         if(filter != null) soJabatan.addFilter(filter);
         
 		soJabatan.addSort("ckdjabatan", false);

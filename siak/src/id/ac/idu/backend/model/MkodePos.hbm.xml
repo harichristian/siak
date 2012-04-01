@@ -41,5 +41,11 @@
             </key>
             <one-to-many class="id.ac.idu.backend.model.Mmahasiswa"/>
         </set>
+        <set name="ckdposkntor" inverse="true">
+            <key>
+                <column name="CKDPOSKNTOR" length="32" not-null="false"/>
+            </key>
+            <one-to-many class="id.ac.idu.backend.model.Mmahasiswa"/>
+        </set>
     </class>
 </hibernate-mapping>

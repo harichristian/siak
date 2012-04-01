@@ -367,6 +367,7 @@
         <property name="mpbahasamhsService" ref="mpbahasamhsService"/>
         <property name="mkgtmhsService" ref="mkgtmhsService"/>
         <property name="mkaryamhsService" ref="mkaryamhsService"/>
+        <property name="mprestasimhsService" ref="mprestasimhsService"/>
         <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
         <property name="listCtrl" ref="mahasiswaListCtrl"/>
     </bean>
@@ -377,6 +378,7 @@
         <property name="pendidikanCtrl" ref="pendidikanDetailCtrl"/>
         <property name="kursusCtrl" ref="kursusDetailCtrl"/>
         <property name="kegiatanCtrl" ref="kgtIlmiahDetailCtrl"/>
+        <property name="pekerjaanCtrl" ref="pekerjaanDetailCtrl"/>
     </bean>
     <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
         <property name="plwKodepos" ref="pagedListWrapper"/>
@@ -408,6 +410,11 @@
     </bean>
     <bean id="kegiatanDtlCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.KegiatanCtrl" parent="basisCtrl" scope="prototype"/>
     <bean id="karyaDtlCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.KaryaCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="pekerjaanDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPekerjaanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="plwKodepos" ref="pagedListWrapper"/>
+        <property name="plwPrestasi" ref="pagedListWrapper"/>
+    </bean>
+    <bean id="prestasiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.PrestasiCtrl" parent="basisCtrl" scope="prototype"/>
 
     <!-- Update Konsentrasi Mahasiswa -->
     <bean id="updateKonsentrasiMainCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiMainCtrl" parent="basisCtrl" scope="prototype">
