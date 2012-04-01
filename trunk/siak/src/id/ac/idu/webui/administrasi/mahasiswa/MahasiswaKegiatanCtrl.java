@@ -50,6 +50,8 @@ public class MahasiswaKegiatanCtrl extends GFCBaseCtrl implements Serializable {
     public static final String CONTROL = "CONTROL";
     public static final String ISNEW = "ISNEW";
 
+    protected Textbox txtbctujuan;
+
     protected Button btnNewKegiatan;
     protected Button btnDeleteKegiatan;
     protected Button btnNewKarya;
@@ -257,6 +259,8 @@ public class MahasiswaKegiatanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void doReadOnlyMode(boolean b) {
+        txtbctujuan.setReadonly(b);
+        
         btnNewKegiatan.setDisabled(b);
         btnDeleteKegiatan.setDisabled(b);
         btnNewKarya.setDisabled(b);

@@ -196,6 +196,7 @@
     <bean id="mhistpnddkmhsDAO" class="id.ac.idu.administrasi.dao.impl.MhistpnddkmhsDAOImpl" parent="basisDAO"/>
     <bean id="mpbahasamhsDAO" class="id.ac.idu.administrasi.dao.impl.MpbahasamhsDAOImpl" parent="basisDAO"/>
     <bean id="mhistkursusmhsDAO" class="id.ac.idu.administrasi.dao.impl.MhistkursusmhsDAOImpl" parent="basisDAO"/>
+    <bean id="mprestasimhsDAO" class="id.ac.idu.administrasi.dao.impl.MprestasimhsDAOImpl" parent="basisDAO"/>
     <bean id="mkgtmhsDAO" class="id.ac.idu.administrasi.dao.impl.MkgtmhsDAOImpl" parent="basisDAO"/>
     <bean id="mkaryamhsDAO" class="id.ac.idu.administrasi.dao.impl.MkaryamhsDAOImpl" parent="basisDAO"/>
     <bean id="mpegawaiDAO" class="id.ac.idu.administrasi.dao.impl.MpegawaiDAOImpl" parent="basisDAO"/>
@@ -325,6 +326,10 @@
 
     <bean name="mkaryamhsService" class="id.ac.idu.administrasi.service.impl.MkaryamhsServiceImpl">
         <property name="mkaryamhsDAO" ref="mkaryamhsDAO"/>
+    </bean>
+
+    <bean name="mprestasimhsService" class="id.ac.idu.administrasi.service.impl.MprestasimhsServiceImpl">
+        <property name="mprestasimhsDAO" ref="mprestasimhsDAO"/>
     </bean>
     
     <bean name="feedbackAlumniService" class="id.ac.idu.administrasi.service.impl.FeedbackAlumniServiceImpl">

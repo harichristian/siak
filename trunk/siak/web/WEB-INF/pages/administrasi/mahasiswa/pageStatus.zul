@@ -7,6 +7,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowStatusDetail" ?>
+
     <window id="windowStatusDetail" apply="${statusDetailCtrl}" border="none" width="100%">
         <borderlayout id="borderlayout_Status">
             <center border="none" autoscroll="true">
@@ -23,55 +26,185 @@
                                 <rows>
                                     <row>
                                         <label value="No STTB Terakhir"/>
-                                        <textbox id="txtb_1" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcnosttb" value="@{controller.mahasiswa.cnosttb}" maxlength="21" width="120px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal STTB Terakhir"/>
-                                        <textbox id="txtb_2" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbdtglsttb" value="@{controller.mahasiswa.dtglsttb}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Masuk"/>
-                                        <textbox id="txtb_3" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbdtglmasuk" value="@{controller.mahasiswa.dtglmasuk}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Wisuda"/>
-                                        <textbox id="txtb_4" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbdtglwisuda" value="@{controller.mahasiswa.dtglwisuda}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Yudisium"/>
-                                        <textbox id="txtb_5" maxlength="12" readonly="true"/>
+                                        <datebox id="txtbdtglyudisi" value="@{controller.mahasiswa.tglyudisi}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Tanggal Teori"/>
-                                        <textbox id="txtb_6" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbdtglteori" value="@{controller.mahasiswa.dtglteori}" maxlength="12" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Flag SPBM"/>
-                                        <textbox id="txtb_7" maxlength="12" readonly="true"/>
+                                        <checkbox id="txtbcflagspbm" value="@{controller.mahasiswa.cflagspbm}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Flag Nilai"/>
-                                        <textbox id="txtb_8" maxlength="12" readonly="true"/>
+                                        <checkbox id="txtbcflagnilai" value="@{controller.mahasiswa.cflagnilai}" readonly="true"/>
                                     </row>
                                     <row>
                                         <label value="Status Awal"/>
-                                        <textbox id="txtb_9" maxlength="12" readonly="true"/>
+                                        <bandbox id="cmbcstatawal" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                            <bandpopup>
+                                                <listbox id="txtbcstatawal" mold="paging" autopaging="true" width="180px"/>
+                                            </bandpopup>
+                                        </bandbox>
                                     </row>
                                     <row>
                                         <label value="Program Studi"/>
-                                        <textbox id="txtb_10" maxlength="12" readonly="true"/>
-                                    </row>
-                                    <row>
-                                        <label value="Peminatan"/>
-                                        <textbox id="txtb_11" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbmprodi" value="@{controller.mahasiswa.mprodi.cnmprogst}" maxlength="12" readonly="true"/>
+                                            <bandbox id="cmbmprodi" sclass="mybandbox" width="0px" tooltiptext="Prodi" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Prodi"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelckdprogst" value="Prodi Code"/>
+                                                                        <textbox id="tbckdprogst" width="98%"/>
+                                                                        <button id="buttonSearchMprodi" image="/images/icons/search.gif" label="Search" tooltiptext="Search Prodi"/>
+                                                                        <button id="buttonCloseMprodi" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelcnmprogst" value="Prodi Name"/>
+                                                                        <textbox id="tbcnmprogst" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingmprodi" pageSize="20"/>
+                                                                            <listbox id="listmprodi" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="ckdprogst" sort="auto" width="30%" label="Kode Prodi"/>
+                                                                                    <listheader id="cnmprogst" sort="auto" width="70%" label="Nama Prodi"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Jenjang"/>
-                                        <textbox id="txtb_12" maxlength="12" readonly="true"/>
+                                        <hbox>
+                                            <textbox id="txtbmjenjang" value="@{controller.mahasiswa.mjenjang.cnmjen}" maxlength="12" readonly="true"/>
+                                            <bandbox id="cmbmjenjang" sclass="mybandbox" width="0px" tooltiptext="Jenjang" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Jenjang"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelckdjen" value="Jenjang Code"/>
+                                                                        <textbox id="tbckdjen" width="98%"/>
+                                                                        <button id="buttonSearchMjenjang" image="/images/icons/search.gif" label="Search" tooltiptext="Search Jenjang"/>
+                                                                        <button id="buttonCloseMjenjang" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelcnmjen" value="Jenjang Name"/>
+                                                                        <textbox id="tbcnmjen" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingmprodi" pageSize="20"/>
+                                                                            <listbox id="listmprodi" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="ckdjen" sort="auto" width="90%" label="Kode Jenjang"/>
+                                                                                    <listheader id="cnmjen" sort="auto" width="90%" label="Nama Jenjang"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label value="Peminatan"/>
+                                        <hbox>
+                                            <textbox id="txtbmpeminatan" value="@{controller.mahasiswa.mpeminatan.ckdminat}" maxlength="12" readonly="true"/>
+                                            <bandbox id="cmbmjenjang" sclass="mybandbox" width="0px" tooltiptext="Peminatan" disabled="true">
+                                                <bandpopup width="340px" height="300px">
+                                                    <panel title="LOV Peminatan"/>
+                                                    <vbox>
+                                                        <hbox width="100%">
+                                                            <grid fixedLayout="true" style="border:0px" width="100%">
+                                                                <columns>
+                                                                    <column width="60px"/>
+                                                                    <column width="150px"/>
+                                                                    <column width="90px"/>
+                                                                    <column width="40px"/>
+                                                                </columns>
+                                                                <rows>
+                                                                    <row>
+                                                                        <label id="labelckdminat" value="Peminatan Code"/>
+                                                                        <textbox id="tbckdminat" width="98%"/>
+                                                                        <button id="buttonSearchMpeminatan" image="/images/icons/search.gif" label="Search" tooltiptext="Search Peminatan"/>
+                                                                        <button id="buttonCloseMpeminatan" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
+                                                                    </row>
+                                                                    <row>
+                                                                        <label id="labelcnmminat" value="Peminatan Name"/>
+                                                                        <textbox id="tbcnmminat" width="98%"/>
+                                                                    </row>
+                                                                    <row spans="4">
+                                                                        <vbox width="100%">
+                                                                            <paging id="pagingmprodi" pageSize="20"/>
+                                                                            <listbox id="listmprodi" width="100%" height="100%" multiple="false">
+                                                                                <listhead sizable="true">
+                                                                                    <listheader id="ckdminat" sort="auto" width="90%" label="Kode Peminatan"/>
+                                                                                    <listheader id="cnmminat" sort="auto" width="90%" label="Nama Peminatan"/>
+                                                                                </listhead>
+                                                                            </listbox>
+                                                                        </vbox>
+                                                                    </row>
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                    </vbox>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label value="Tahun Lapor"/>
-                                        <textbox id="txtb_13" maxlength="12" readonly="true"/>
+                                        <textbox id="txtbcthnlaporan" value="@{controller.mahasiswa.cthnlaporan}" width="40px" maxlength="4" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>

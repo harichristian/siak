@@ -80,11 +80,13 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox listKodepos;
     protected Paging paging_kodepos_srt;
     protected Listbox listKodepos_srt;
+    protected Listheader kodepos;
 
     protected Textbox txtb_kodepos;
     protected Textbox tb_kodepos;
     protected Textbox txtb_kodepos_srt;
     protected Textbox tb_kodepos_srt;
+    protected Listheader kodepos_srt;
 
     public MahasiswaPribadiCtrl() {
         super();
@@ -143,6 +145,10 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void searchKodepos(Filter filter) {
         HibernateSearchObject<MkodePos> soKodepos = new HibernateSearchObject<MkodePos>(MkodePos.class);
+
+        kodepos.setSortAscending(new FieldComparator("kodepos",true));
+        kodepos.setSortDescending(new FieldComparator("kodepos",false));
+
         if(filter != null) soKodepos.addFilter(filter);
 		soKodepos.addSort("kodepos", false);
 
@@ -170,6 +176,10 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void searchKodeposSrt(Filter filter) {
         HibernateSearchObject<MkodePos> soKodepos = new HibernateSearchObject<MkodePos>(MkodePos.class);
+
+        kodepos_srt.setSortAscending(new FieldComparator("kodepos",true));
+        kodepos_srt.setSortDescending(new FieldComparator("kodepos",false));
+
         if(filter != null) soKodepos.addFilter(filter);
 		soKodepos.addSort("kodepos", false);
 

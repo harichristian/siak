@@ -11,7 +11,7 @@ public class Mprestasimhs  implements java.io.Serializable {
 
 
      private int id;
-     private Mmahasiswa mmahasiswa;
+     private int mahasiswaId;
      private String cno;
      private String cnmprestasi;
      private String cnmberi;
@@ -26,14 +26,15 @@ public class Mprestasimhs  implements java.io.Serializable {
     }
 
 	
-    public Mprestasimhs(int id, Mmahasiswa mmahasiswa, String cno) {
+    public Mprestasimhs(int id, int mahasiswaId, String cno) {
         this.id = id;
-        this.mmahasiswa = mmahasiswa;
+        this.mahasiswaId = mahasiswaId;
         this.cno = cno;
     }
-    public Mprestasimhs(int id, Mmahasiswa mmahasiswa, String cno, String cnmprestasi, String cnmberi, String cthnterima, String cket, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
+    public Mprestasimhs(int id, int mahasiswaId, String cno, String cnmprestasi, String cnmberi
+            , String cthnterima, String cket, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
        this.id = id;
-       this.mmahasiswa = mmahasiswa;
+       this.mahasiswaId = mahasiswaId;
        this.cno = cno;
        this.cnmprestasi = cnmprestasi;
        this.cnmberi = cnmberi;
@@ -52,13 +53,15 @@ public class Mprestasimhs  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Mmahasiswa getMmahasiswa() {
-        return this.mmahasiswa;
+
+    public int getMahasiswaId() {
+        return mahasiswaId;
     }
-    
-    public void setMmahasiswa(Mmahasiswa mmahasiswa) {
-        this.mmahasiswa = mmahasiswa;
+
+    public void setMahasiswaId(int mahasiswaId) {
+        this.mahasiswaId = mahasiswaId;
     }
+
     public String getCno() {
         return this.cno;
     }

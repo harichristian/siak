@@ -63,6 +63,9 @@ public class RiwayatPangkatCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox tbPangkat;
     protected Textbox tbName;
 
+    protected Listheader code;
+    protected Listheader name;
+
     private int pageSize;
 
     protected Textbox txtbTmt;
@@ -140,6 +143,11 @@ public class RiwayatPangkatCtrl extends GFCBaseCtrl implements Serializable {
 
     private void searchPangkat(Filter filter1, Filter filter2) {
         HibernateSearchObject<Mpangkatgolongan> soPangkat = new HibernateSearchObject<Mpangkatgolongan>(Mpangkatgolongan.class);
+
+        code.setSortAscending(new FieldComparator("ckdpangkatgolongan",true));
+        code.setSortDescending(new FieldComparator("ckdpangkatgolongan",false));
+        name.setSortAscending(new FieldComparator("cnmpangkatgolongan",true));
+        name.setSortDescending(new FieldComparator("cnmpangkatgolongan",false));
 
         if(filter1 != null) soPangkat.addFilter(filter1);
         if(filter2 != null) soPangkat.addFilter(filter2);

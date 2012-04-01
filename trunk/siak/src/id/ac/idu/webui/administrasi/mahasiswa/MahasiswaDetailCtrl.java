@@ -45,6 +45,8 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Tabpanel tabPanelKursus;
     protected Tab tabKegiatan;
     protected Tabpanel tabPanelKegiatan;
+    protected Tab tabPekerjaan;
+    protected Tabpanel tabPanelPekerjaan;
 
     private MahasiswaMainCtrl mainCtrl;
     private MahasiswaPribadiCtrl pribadiCtrl;
@@ -52,6 +54,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     private MahasiswaPendidikanCtrl pendidikanCtrl;
     private MahasiswaKursusCtrl kursusCtrl;
     private MahasiswaKegiatanCtrl kegiatanCtrl;
+    private MahasiswaPekerjaanCtrl pekerjaanCtrl;
 
     public MahasiswaDetailCtrl() {
         super();
@@ -150,6 +153,20 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         if(tabPanelKegiatan != null) {
             if(tabPanelKegiatan.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelKegiatan, this
                     , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageKegiatan.zul");
+        }
+    }
+
+    public void onSelect$tabPekerjaan(Event event) {
+        if(tabPanelPekerjaan.getFirstChild() != null) {
+            tabPekerjaan.setSelected(true);
+            getPekerjaanCtrl().reLoadPage();
+
+            return;
+        }
+
+        if(tabPanelPekerjaan != null) {
+            if(tabPanelPekerjaan.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelPekerjaan, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pagePekerjaan.zul");
         }
     }
 
@@ -268,6 +285,19 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             mkaryamhses.add(oKarya);
         }
 
+        /* Tab Prestasi */
+
+        Mprestasimhs oPrestasi;
+        Set<Mprestasimhs> mprestasimhses = new HashSet<Mprestasimhs>();
+
+        List anPrestasi = getPekerjaanCtrl().getListPrestasi().getItems();
+        for(Object prestasi : anPrestasi) {
+            item = (Listitem) prestasi;
+            oPrestasi = (Mprestasimhs) item.getAttribute(MahasiswaPekerjaanCtrl.DATA);
+            if(getMahasiswa().getId() > 0) oPrestasi.setMahasiswaId(getMahasiswa().getId());
+            mprestasimhses.add(oPrestasi);
+        }
+
         /* Save All */
         try {
             getMainCtrl().getMahasiswa().getMppumhskhususes().clear();   // Page Khusus
@@ -276,6 +306,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             getMainCtrl().getMahasiswa().getMpbahasamhses().clear();     // Page Kursus/Bahasa
             getMainCtrl().getMahasiswa().getMkgtmhses().clear();         // Page Kegiatan/Karya
             getMainCtrl().getMahasiswa().getMkaryamhses().clear();       // Page Kegiatan/Karya
+            getMainCtrl().getMahasiswa().getMprestasimhses().clear();    // Page Pekerjaan
 
             if(getMahasiswa().getId() > 0)  {
                 getMainCtrl().getMahasiswa().getMppumhskhususes().addAll(mppumhskhususes);       // Page Khusus
@@ -284,6 +315,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
                 getMainCtrl().getMahasiswa().getMpbahasamhses().addAll(mpbahasamhses);           // Kursus/Bahasa
                 getMainCtrl().getMahasiswa().getMkgtmhses().addAll(mkgtmhses);                   // Page Kegiatan/Karya
                 getMainCtrl().getMahasiswa().getMkaryamhses().addAll(mkaryamhses);               // Page Kegiatan/Karya
+                getMainCtrl().getMahasiswa().getMprestasimhses().addAll(mprestasimhses);         // Page Pekerjaan
             }
             else {
                 getMainCtrl().getMahasiswa().setMppumhskhususes(mppumhskhususes);                // Page Khusus
@@ -292,6 +324,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
                 getMainCtrl().getMahasiswa().setMpbahasamhses(mpbahasamhses);                    // Page Kursus
                 getMainCtrl().getMahasiswa().setMkgtmhses(mkgtmhses);                            // Page Kegiatan/Karya
                 getMainCtrl().getMahasiswa().setMkaryamhses(mkaryamhses);                        // Page Kegiatan/Karya
+                getMainCtrl().getMahasiswa().setMprestasimhses(mprestasimhses);                  // Page Pekerjaan
             }
             
             getMainCtrl().getMahasiswa().setMhistpnddkmhses(mhistpnddkmhses);
@@ -370,6 +403,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         getPendidikanCtrl().getBinder().saveAll();
         getKursusCtrl().getBinder().saveAll();
         getKegiatanCtrl().getBinder().saveAll();
+        getPekerjaanCtrl().getBinder().saveAll();
     }
 
     private void loadAllBind() {
@@ -387,6 +421,9 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
         if(getKegiatanCtrl().getBinder() != null)
             getKegiatanCtrl().getBinder().loadAll();
+
+        if(getPekerjaanCtrl().getBinder() != null)
+            getPekerjaanCtrl().getBinder().loadAll();
     }
 
     private void doReadOnlyMode(boolean b) {
@@ -395,6 +432,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         if(getPendidikanCtrl() != null) getPendidikanCtrl().doReadOnlyMode(b);
         if(getKursusCtrl() != null) getKursusCtrl().doReadOnlyMode(b);
         if(getKegiatanCtrl() != null) getKegiatanCtrl().doReadOnlyMode(b);
+        if(getPekerjaanCtrl() != null) getPekerjaanCtrl().doReadOnlyMode(b);
     }
 
     private void checkAllTab() {
@@ -422,6 +460,11 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             Events.sendEvent(new Event("onSelect", tabKegiatan, null));
         else if(getKegiatanCtrl().getBinder() == null)
             Events.sendEvent(new Event("onSelect", tabKegiatan, null));
+
+        if(getPekerjaanCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabPekerjaan, null));
+        else if(getPekerjaanCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabPekerjaan, null));
     }
 
     public AnnotateDataBinder getBinder() {
@@ -482,6 +525,14 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setKegiatanCtrl(MahasiswaKegiatanCtrl kegiatanCtrl) {
         this.kegiatanCtrl = kegiatanCtrl;
+    }
+
+    public MahasiswaPekerjaanCtrl getPekerjaanCtrl() {
+        return pekerjaanCtrl;
+    }
+
+    public void setPekerjaanCtrl(MahasiswaPekerjaanCtrl pekerjaanCtrl) {
+        this.pekerjaanCtrl = pekerjaanCtrl;
     }
 
     public Mmahasiswa getMahasiswa() {

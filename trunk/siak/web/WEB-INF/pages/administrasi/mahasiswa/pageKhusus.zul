@@ -81,11 +81,8 @@
                                     <row>
                                         <label value="Jabatan"/>
                                         <hbox>
-                                            <textbox id="txtbJabatan"
-                                                     value="@{controller.mahasiswa.mmhspascakhs.mjabatan.cnmjabatan}"
-                                                     width="200px" readonly="true"/>
-                                            <bandbox id="cmbJabatan" sclass="mybandbox" width="0px"
-                                                     tooltiptext="Jabatan" disabled="true">
+                                            <textbox id="txtbJabatan" value="@{controller.mahasiswa.mmhspascakhs.mjabatan.cnmjabatan}" width="200px" readonly="true"/>
+                                            <bandbox id="cmbJabatan" sclass="mybandbox" width="0px" tooltiptext="Jabatan" disabled="true">
                                                 <bandpopup width="340px" height="300px">
                                                     <panel title="LOV Jabatan"/>
                                                     <vbox>
@@ -101,23 +98,15 @@
                                                                     <row>
                                                                         <label id="labelJabatan" value="Jabatan"/>
                                                                         <textbox id="tbJabatan" width="98%"/>
-                                                                        <button id="buttonSearchJbt"
-                                                                                image="/images/icons/search.gif"
-                                                                                label="Search"
-                                                                                tooltiptext="Search Jabatan"/>
-                                                                        <button id="buttonCloseJbt"
-                                                                                image="/images/icons/stop.gif"
-                                                                                tooltiptext="Close Window"/>
+                                                                        <button id="buttonSearchJbt" image="/images/icons/search.gif" label="Search" tooltiptext="Search Jabatan"/>
+                                                                        <button id="buttonCloseJbt" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
                                                                     </row>
                                                                     <row spans="4">
                                                                         <vbox width="100%">
                                                                             <paging id="pagingJabatan" pageSize="20"/>
-                                                                            <listbox id="listJabatan" width="100%"
-                                                                                     height="100%" multiple="false">
+                                                                            <listbox id="listJabatan" width="100%" height="100%" multiple="false">
                                                                                 <listhead sizable="true">
-                                                                                    <listheader id="jabatan" sort="auto"
-                                                                                                width="90%"
-                                                                                                label="Jabatan"/>
+                                                                                    <listheader id="jabatan" sort="auto" width="90%" label="Jabatan"/>
                                                                                 </listhead>
                                                                             </listbox>
                                                                         </vbox>
