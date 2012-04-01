@@ -187,8 +187,6 @@ public class UpdateKonsentrasiMainCtrl extends GFCBaseCtrl implements Serializab
 
         if(getMahasiswa() == null) return;
 
-        getDetailCtrl().getBinder().loadAll();
-
         doStoreInitValues();
         btnCtrl.setBtnStatus_Edit();
         getDetailCtrl().doReadOnlyMode(false);
@@ -206,9 +204,7 @@ public class UpdateKonsentrasiMainCtrl extends GFCBaseCtrl implements Serializab
 
     private void doCheckRights() {
         btnHelp.setVisible(true);
-        btnNew.setVisible(false);
         btnEdit.setVisible(true);
-        btnDelete.setVisible(false);
         btnSave.setVisible(false);
     }
 

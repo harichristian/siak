@@ -186,9 +186,7 @@ public class UpdateStatusMainCtrl extends GFCBaseCtrl implements Serializable {
         else currentTab.setSelected(true);
 
         if(getMahasiswa() == null) return;
-
-        getDetailCtrl().getBinder().loadAll();
-
+        
         doStoreInitValues();
         btnCtrl.setBtnStatus_Edit();
         getDetailCtrl().doReadOnlyMode(false);
@@ -206,9 +204,7 @@ public class UpdateStatusMainCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doCheckRights() {
         btnHelp.setVisible(true);
-        btnNew.setVisible(false);
         btnEdit.setVisible(true);
-        btnDelete.setVisible(false);
         btnSave.setVisible(false);
     }
 
