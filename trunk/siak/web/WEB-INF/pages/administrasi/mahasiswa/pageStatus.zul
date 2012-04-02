@@ -50,11 +50,11 @@
                                     </row>
                                     <row>
                                         <label value="Flag SPBM"/>
-                                        <checkbox id="chkbcflagspbm" value="${controller.mahasiswa.cflagspbm}" disabled="true"/>
+                                        <checkbox id="chkbcflagspbm" disabled="true" />
                                     </row>
                                     <row>
                                         <label value="Flag Nilai"/>
-                                        <checkbox id="chkbcflagnilai" value="@{controller.mahasiswa.cflagnilai}" disabled="true"/>
+                                        <checkbox id="chkbcflagnilai" disabled="true"/>
                                     </row>
                                     <row>
                                         <label value="Status Awal"/>

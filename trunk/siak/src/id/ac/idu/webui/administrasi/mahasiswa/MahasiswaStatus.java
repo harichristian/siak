@@ -106,7 +106,9 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
                 ,txtbcstatawal, cmbcstatawal, (getMahasiswa() != null)?getMahasiswa().getCstatawal():null);
 
         binder.loadAll();
+
         doReadOnlyMode(!getDetailCtrl().getMainCtrl().btnSave.isVisible());
+        this.onCheckBox();
         this.doFitSize();
     }
 
@@ -299,6 +301,26 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         txtbcthnlaporan.setReadonly(b);
     }
 
+    public void onCheck$chkbcflagspbm(Event event) {
+        if(chkbcflagspbm.isChecked()) getMahasiswa().setCflagspbm('Y');
+        else getMahasiswa().setCflagspbm('N');
+    }
+
+    public void onCheck$chkbcflagnilai(Event event) {
+        if(chkbcflagnilai.isChecked()) getMahasiswa().setCflagnilai('Y');
+        else getMahasiswa().setCflagnilai('N');
+    }
+
+    public void onCheckBox() {
+        if(getMahasiswa().getCflagspbm() != null) chkbcflagspbm.setChecked(String.valueOf(getMahasiswa()
+                .getCflagspbm()).equalsIgnoreCase("Y"));
+        else chkbcflagspbm.setChecked(false);
+        
+        if(getMahasiswa().getCflagnilai() != null) chkbcflagnilai.setChecked(String.valueOf(getMahasiswa()
+                .getCflagnilai()).equalsIgnoreCase("Y"));
+        else chkbcflagnilai.setChecked(false);
+    }
+
     public void doFitSize() {
         final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         final int maxListBoxHeight = height - 243;
@@ -310,13 +332,11 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
     public void doReset() {
         GFCListModelCtrl.getInstance().doCheckBox(txtbcstatawal, cmbcstatawal
                 , (getMahasiswa()!=null)?String.valueOf(getMahasiswa().getCstatawal()):null);
-
-        if(chkbcflagspbm.getValue().equals("Y")) chkbcflagspbm.setChecked(true);
-        else chkbcflagspbm.setChecked(false);
     }
 
     public void reLoadPage() {
         binder.loadAll();
+        this.onCheckBox();
         this.doReset();
         this.doFitSize();
     }
