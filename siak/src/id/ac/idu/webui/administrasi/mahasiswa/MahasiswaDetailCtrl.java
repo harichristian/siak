@@ -1,6 +1,7 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
 import id.ac.idu.backend.model.*;
+import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.MultiLineMessageBox;
 import id.ac.idu.webui.util.ZksampleCommonUtils;
@@ -191,7 +192,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         final Mmhspascakhs nMmhspascakhs = getMainCtrl().getMmhspascakhsService().getNew();
         final Mmahasiswa nData = getMainCtrl().getMhsservice().getNew();
         nData.setMmhspascakhs(nMmhspascakhs);
-        
+
         this.setMahasiswa(nData);
         this.checkAllTab();
         this.loadAllBind();
@@ -313,6 +314,12 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             oPrestasi = (Mprestasimhs) item.getAttribute(MahasiswaPekerjaanCtrl.DATA);
             if(getMahasiswa().getId() > 0) oPrestasi.setMahasiswaId(getMahasiswa().getId());
             mprestasimhses.add(oPrestasi);
+        }
+
+        /* Set Status Mahasiswa Aktif */
+        if(getMainCtrl().getMahasiswa().getMstatusmhs() == null) {
+            final Mstatusmhs mstatusmhs = getMainCtrl().getStatusMahasiswaService().getStatusMahasiswaById(Integer.valueOf(Codec.JenisSurat.Status1.getValue()));
+            getMainCtrl().getMahasiswa().setMstatusmhs(mstatusmhs);
         }
 
         /* Save All */

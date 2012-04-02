@@ -137,6 +137,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         this.doLoadData();
         binder.loadAll();
         this.doFitSize();
+        this.doInitData();
     }
 
     private void doLoadData() {
@@ -187,6 +188,14 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         txtbIpkS2.setReadonly(b);
         txtbTglLulusS2.setDisabled(b);
         txtbBebanStudiS2.setReadonly(b);
+    }
+
+    public void doInitData()  {
+        if(getMhistpnddkmhsS1() == null)
+            setMhistpnddkmhsS1(getDetailCtrl().getMainCtrl().getMhistpnddkmhsService().getNew());
+
+        if(getMhistpnddkmhsS2() == null)
+            setMhistpnddkmhsS2(getDetailCtrl().getMainCtrl().getMhistpnddkmhsService().getNew());
     }
 
     /* Lov Perguruan Tinggi */
@@ -505,6 +514,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         binder.loadAll();
         
         this.doFitSize();
+        this.doInitData();
     }
 
     public MahasiswaDetailCtrl getDetailCtrl() {

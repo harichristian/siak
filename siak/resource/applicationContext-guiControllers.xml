@@ -368,6 +368,8 @@
         <property name="mkgtmhsService" ref="mkgtmhsService"/>
         <property name="mkaryamhsService" ref="mkaryamhsService"/>
         <property name="mprestasimhsService" ref="mprestasimhsService"/>
+        <property name="statusMahasiswaService" ref="statusMahasiswaService"/>
+        <property name="mhistpnddkmhsService" ref="mhistpnddkmhsService"/>
         <property name="detailCtrl" ref="mahasiswaDetailCtrl"/>
         <property name="listCtrl" ref="mahasiswaListCtrl"/>
     </bean>

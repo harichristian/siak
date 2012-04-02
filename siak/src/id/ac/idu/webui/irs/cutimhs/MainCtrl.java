@@ -17,6 +17,7 @@ import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.irs.service.CutimhsService;
 import id.ac.idu.util.Codec;
+import id.ac.idu.webui.administrasi.report.CetakPengajuanCutiDJReport;
 import id.ac.idu.webui.office.report.OfficeSimpleDJReport;
 import id.ac.idu.webui.util.*;
 import org.apache.commons.lang.StringUtils;
@@ -346,6 +347,11 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnRefresh(Event event) throws InterruptedException {
         doResizeSelectedTab(event);
+    }
+
+    public void onClick$buttonPrintList(Event event) throws InterruptedException {
+        final Window win = (Window) Path.getComponent("/outerIndexWindow");
+        new CetakPengajuanCutiDJReport(win);
     }
 
     private void doResizeSelectedTab(Event event) {
