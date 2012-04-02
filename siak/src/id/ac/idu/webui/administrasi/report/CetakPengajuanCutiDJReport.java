@@ -90,17 +90,17 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
         subtitleStyle.setFont(Font.ARIAL_MEDIUM_BOLD);
 
         // Localized column headers
-        String no = Labels.getLabel("Nomor Surat");
-        String tglsurat = Labels.getLabel("Tanggal Surat");
-        String term = Labels.getLabel("Term");
-        String nim = Labels.getLabel("Nim");
-        String nama = Labels.getLabel("Nama Mahasiswa");
+        String no = "Nomor Surat";
+        String tglsurat = "Tanggal Surat";
+        String term = "Term";
+        String nim = "Nim";
+        String nama = "Nama Mahasiswa";
 
-        drb.addColumn(no, "cnosurat", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
+        drb.addColumn(no, "cnosurat", String.class.getName(), 40, columnStyleText, columnStyleTextBold);
         drb.addColumn(tglsurat, "dtglsurat", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
         drb.addColumn(term, "cterm", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
-        drb.addColumn(nim, "mmahasiswa.cnim", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
-        drb.addColumn(nama, "mmahasiswa.cnama", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
+        drb.addColumn(nim, "cnim", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
+        drb.addColumn(nama, "cnama", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
 
         drb.setTitle("Cetak Pengajuan Cuti Mahasiswa");
         drb.setSubtitle("Daftar Pengajuan Cuti Mahasiswa: " + ZksampleDateFormat.getDateTimeFormater().format(new Date()));
@@ -120,8 +120,8 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
             map.put("cnosurat", obj.getCnosurat());
             map.put("dtglsurat", dtformat.format(obj.getDtglsurat()));
             map.put("cterm", obj.getCterm());
-            map.put("mmahasiswa.cnim", obj.getMmahasiswa().getCnim());
-            map.put("mmahasiswa.cnama", obj.getMmahasiswa().getCnama());
+            map.put("cnim", obj.getMmahasiswa().getCnim());
+            map.put("cnama", obj.getMmahasiswa().getCnama());
             data.add(map);
         }
 
