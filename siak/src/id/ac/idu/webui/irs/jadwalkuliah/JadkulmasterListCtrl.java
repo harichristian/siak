@@ -8,11 +8,14 @@ import id.ac.idu.backend.service.BrancheService;
 import id.ac.idu.backend.service.CustomerService;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.irs.service.JadkulService;
+import id.ac.idu.webui.administrasi.report.MpegawaiSimpleDJReport;
+import id.ac.idu.webui.irs.report.JadkulmasterSimpleDJReport;
 import id.ac.idu.webui.util.GFCBaseListCtrl;
 import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
@@ -99,6 +102,8 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
     protected Button button_KegiatanList_SearchNo; // aurowired
     protected Textbox txtb_Kegiatan_Name; // aurowired
     protected Button button_KegiatanList_SearchName; // aurowired
+
+    protected Button button_PrintList; // aurowired
 
     /**
      * default constructor.<br>
@@ -658,6 +663,11 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
 //        bandbox_TjadkulmasterList_CustomerSearch.close();
 
     }
+
+    public void onClick$button_PrintList(Event event) throws InterruptedException {
+		final Window win = (Window) Path.getComponent("/outerIndexWindow");
+		new JadkulmasterSimpleDJReport(win);
+	}
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//
