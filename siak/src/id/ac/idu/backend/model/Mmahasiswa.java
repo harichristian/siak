@@ -401,6 +401,11 @@ public class Mmahasiswa implements java.io.Serializable {
         this.cflagnilai = cflagnilai;
     }
 
+    public void setCflagnilai(boolean cflagnilai) {
+        if(cflagnilai) setCflagnilai('Y');
+        else setCflagnilai('N');
+    }
+
     public String getCemail() {
         return this.cemail;
     }
