@@ -18,7 +18,7 @@ public class Mcalakademik implements java.io.Serializable {
     private Date dtglawal;
     private Date dtglakhir;
     private String cjamawal;
-    private String cjamakhir;
+        private String cjamakhir;
     private String ckdkgt;
     private String cterm;
     private String cthajar;
