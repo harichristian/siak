@@ -157,6 +157,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         logger.debug(event.toString());
 
         // Check if the tabpanel is already loaded
+        doShowAll();
         if (tabPanelFeedbackAlumniList.getFirstChild() != null) {
             tabFeedbackAlumniList.setSelected(true);
 
@@ -176,7 +177,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      * @throws java.io.IOException
      */
-    public void onSelect$tabFeedbackAlumniDetail(Event event) throws IOException {
+    public void onSelect$tabFeedbackAlumniDetail(Event event) throws IOException, InterruptedException {
         // logger.debug(event.toString());
 
         // Check if the tabpanel is already loaded
@@ -184,7 +185,11 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
             tabFeedbackAlumniDetail.setSelected(true);
 
             // refresh the Binding mechanism
-            getFeedbackAlumniDetailCtrl().setFeedbackAlumni(getSelectedFeedbackAlumni());
+            try{
+                doSearchDetail(getSelectedFeedbackAlumni());
+            }catch (Exception e)  {
+               e.printStackTrace();
+            }
             getFeedbackAlumniDetailCtrl().getBinder().loadAll();
             return;
         }
@@ -194,6 +199,10 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
+    public List<Tfeedbackalumni> getList(Tfeedbackalumni feedbackAlumni){
+        return feedbackAlumniService.getFeedbackAlumniByNim(feedbackAlumni.getMmahasiswa().getCnim(),feedbackAlumni.getCterm(),feedbackAlumni.getCkelompok());
+
+    }
     /**
      * when the "print feedbackAlumnis list" button is clicked.
      *
@@ -215,8 +224,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
         // empty the text search boxes
         txtb_FeedbackAlumni_Term.setValue(""); // clear
-        txtb_FeedbackAlumni_Name.setValue(""); // clear
-        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+//        txtb_FeedbackAlumni_Name.setValue(""); // clear
+//        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
@@ -240,6 +249,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
     }
 
+
     /**
      * Filter the feedbackAlumni list with 'like feedbackAlumni number'. <br>
      */
@@ -249,8 +259,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         // if not empty
         if (!txtb_FeedbackAlumni_Term.getValue().isEmpty()) {
             checkbox_FeedbackAlumniList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackAlumni_Name.setValue(""); // clear
-            txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+//            txtb_FeedbackAlumni_Name.setValue(""); // clear
+//            txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
@@ -343,6 +353,65 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
                 }
             }
 
+        }
+    }
+
+     public void doShowAll() {
+        // logger.debug(event.toString());
+
+        // empty the text search boxes
+        txtb_FeedbackAlumni_Term.setValue(""); // clear
+//        txtb_FeedbackAlumni_Name.setValue(""); // clear
+//        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+
+        // ++ create the searchObject and init sorting ++//
+        HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
+        soFeedbackAlumni.addSort(ConstantUtil.TERM, false);
+
+        // Change the BindingListModel.
+        if (getFeedbackAlumniListCtrl().getBinder() != null) {
+            getFeedbackAlumniListCtrl().getPagedBindingListWrapper().setSearchObject(soFeedbackAlumni);
+
+            // get the current Tab for later checking if we must change it
+            Tab currentTab = tabbox_FeedbackAlumniMain.getSelectedTab();
+
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+            if (!currentTab.equals(tabFeedbackAlumniList)) {
+                tabFeedbackAlumniList.setSelected(true);
+            } else {
+                currentTab.setSelected(true);
+            }
+        }
+    }
+
+    public void doSearchDetail(Tfeedbackalumni fa) throws Exception {
+        // logger.debug(event.toString());
+
+        // if not empty
+
+            // ++ create the searchObject and init sorting ++//
+            HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
+            soFeedbackAlumni.addFilter(new Filter("mmahasiswa.cnim", fa.getMmahasiswa().getCnim() , Filter.OP_EQUAL));
+            soFeedbackAlumni.addFilter(new Filter("cterm", fa.getCterm() , Filter.OP_EQUAL));
+            soFeedbackAlumni.addSort("nnopertanyaan", false);
+
+            // Change the BindingListModel.
+        if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
+
+            getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper().clear();
+            getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper().setSearchObject(soFeedbackAlumni);
+
+            // get the current Tab for later checking if we must change it
+            Tab currentTab = tabbox_FeedbackAlumniMain.getSelectedTab();
+
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+            if (!currentTab.equals(tabFeedbackAlumniDetail)) {
+                tabFeedbackAlumniDetail.setSelected(true);
+            } else {
+                currentTab.setSelected(true);
+            }
         }
     }
 
@@ -457,7 +526,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      * @throws InterruptedException
      */
-    private void doEdit(Event event) {
+    private void doEdit(Event event)  {
         // logger.debug(event.toString());
 
         // get the current Tab for later checking if we must change it
@@ -480,6 +549,11 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
             currentTab.setSelected(true);
         }
 
+        try {
+            doSearchDetail(getSelectedFeedbackAlumni());
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         getFeedbackAlumniDetailCtrl().getBinder().loadAll();
 
         // remember the old vars
@@ -606,9 +680,11 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
                 getSelectedFeedbackAlumniList().add(fa);
             } */
             getFeedbackAlumniDetailCtrl().setSelectedFeedbackAlumni(getSelectedFeedbackAlumni());
-            if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
-                getFeedbackAlumniDetailCtrl().getBinder().loadAll();
-            }
+
+//            if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
+//                getFeedbackAlumniDetailCtrl().getBinder().loadAll();
+//            }
+
 //            for (Tfeedbackalumni tfa : getFeedbackAlumniDetailCtrl().getFeedbackAlumniList()) {
 //                tfa.setMmahasiswa(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getMmahasiswa());
 //                tfa.setCterm(getFeedbackAlumniDetailCtrl().getSelectedFeedbackAlumni().getCterm());
@@ -626,12 +702,16 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
             doStoreInitValues();
             // refresh the list
             getFeedbackAlumniListCtrl().doFillListbox();
-            // later refresh StatusBar
+//            later refresh StatusBar
+
             Events.postEvent("onSelect", getFeedbackAlumniListCtrl().getListBoxFeedbackAlumni(), getSelectedFeedbackAlumni());
 
             // show the objects data in the statusBar
             String str = getSelectedFeedbackAlumni().getCterm();
             EventQueues.lookup("selectedObjectEventQueue", EventQueues.DESKTOP, true).publish(new Event("onChangeSelectedObject", null, str));
+
+
+
 
         } catch (DataAccessException e) {
             ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString());
@@ -641,6 +721,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
             return;
 
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
             btnCtrlFeedbackAlumni.setInitEdit();
             getFeedbackAlumniDetailCtrl().doReadOnlyMode(true);
