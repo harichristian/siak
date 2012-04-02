@@ -269,6 +269,9 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
             getDetailCtrl().setSelected(getSelected());
         }
 
+        if(getMahasiswa()==null)
+            setMahasiswa(getSelected().getMmahasiswa());
+        
         getDetailCtrl().getBinder().loadAll();
 
         doStoreInitValues();
