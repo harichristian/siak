@@ -47,6 +47,8 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Tabpanel tabPanelKegiatan;
     protected Tab tabPekerjaan;
     protected Tabpanel tabPanelPekerjaan;
+    protected Tab tabStatus;
+    protected Tabpanel tabPanelStatus;
 
     private MahasiswaMainCtrl mainCtrl;
     private MahasiswaPribadiCtrl pribadiCtrl;
@@ -55,6 +57,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
     private MahasiswaKursusCtrl kursusCtrl;
     private MahasiswaKegiatanCtrl kegiatanCtrl;
     private MahasiswaPekerjaanCtrl pekerjaanCtrl;
+    private MahasiswaStatus statusCtrl;
 
     public MahasiswaDetailCtrl() {
         super();
@@ -167,6 +170,20 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         if(tabPanelPekerjaan != null) {
             if(tabPanelPekerjaan.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelPekerjaan, this
                     , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pagePekerjaan.zul");
+        }
+    }
+
+    public void onSelect$tabStatus(Event event) {
+        if(tabPanelStatus.getFirstChild() != null) {
+            tabStatus.setSelected(true);
+            getStatusCtrl().reLoadPage();
+
+            return;
+        }
+
+        if(tabPanelStatus != null) {
+            if(tabPanelStatus.getFirstChild() == null) ZksampleCommonUtils.createTabPanelContent(tabPanelStatus, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageStatus.zul");
         }
     }
 
@@ -424,6 +441,9 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
         if(getPekerjaanCtrl().getBinder() != null)
             getPekerjaanCtrl().getBinder().loadAll();
+
+        if(getStatusCtrl().getBinder() != null)
+            getStatusCtrl().getBinder().loadAll();
     }
 
     private void doReadOnlyMode(boolean b) {
@@ -433,6 +453,7 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
         if(getKursusCtrl() != null) getKursusCtrl().doReadOnlyMode(b);
         if(getKegiatanCtrl() != null) getKegiatanCtrl().doReadOnlyMode(b);
         if(getPekerjaanCtrl() != null) getPekerjaanCtrl().doReadOnlyMode(b);
+        if(getStatusCtrl() != null) getStatusCtrl().doReadOnlyMode(b);
     }
 
     private void checkAllTab() {
@@ -465,6 +486,11 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             Events.sendEvent(new Event("onSelect", tabPekerjaan, null));
         else if(getPekerjaanCtrl().getBinder() == null)
             Events.sendEvent(new Event("onSelect", tabPekerjaan, null));
+
+        if(getStatusCtrl() == null)
+            Events.sendEvent(new Event("onSelect", tabStatus, null));
+        else if(getStatusCtrl().getBinder() == null)
+            Events.sendEvent(new Event("onSelect", tabStatus, null));
     }
 
     public AnnotateDataBinder getBinder() {
@@ -533,6 +559,14 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPekerjaanCtrl(MahasiswaPekerjaanCtrl pekerjaanCtrl) {
         this.pekerjaanCtrl = pekerjaanCtrl;
+    }
+
+    public MahasiswaStatus getStatusCtrl() {
+        return statusCtrl;
+    }
+
+    public void setStatusCtrl(MahasiswaStatus statusCtrl) {
+        this.statusCtrl = statusCtrl;
     }
 
     public Mmahasiswa getMahasiswa() {

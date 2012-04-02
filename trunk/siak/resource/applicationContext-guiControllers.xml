@@ -379,6 +379,7 @@
         <property name="kursusCtrl" ref="kursusDetailCtrl"/>
         <property name="kegiatanCtrl" ref="kgtIlmiahDetailCtrl"/>
         <property name="pekerjaanCtrl" ref="pekerjaanDetailCtrl"/>
+        <property name="statusCtrl" ref="statusDetailCtrl"/>
     </bean>
     <bean id="pribadiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaPribadiCtrl" parent="basisCtrl" scope="prototype">
         <property name="plwKodepos" ref="pagedListWrapper"/>
@@ -415,6 +416,11 @@
         <property name="plwPrestasi" ref="pagedListWrapper"/>
     </bean>
     <bean id="prestasiDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.PrestasiCtrl" parent="basisCtrl" scope="prototype"/>
+    <bean id="statusDetailCtrl" class="id.ac.idu.webui.administrasi.mahasiswa.MahasiswaStatus" parent="basisCtrl" scope="prototype">
+        <property name="plwProdi" ref="pagedListWrapper"/>
+        <property name="plwJenjang" ref="pagedListWrapper"/>
+        <property name="plwPeminatan" ref="pagedListWrapper"/>
+    </bean>
 
     <!-- Update Konsentrasi Mahasiswa -->
     <bean id="updateKonsentrasiMainCtrl" class="id.ac.idu.webui.administrasi.updatekonsentrasi.UpdateKonsentrasiMainCtrl" parent="basisCtrl" scope="prototype">

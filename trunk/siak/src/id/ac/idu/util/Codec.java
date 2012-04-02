@@ -633,5 +633,30 @@ public class Codec {
             return this.name();
         }
     }
+
+    public enum StatusAwal implements CodecInterface {
+        STATB("B","Baru"),
+        STATP("P","Pindahan");
+
+        private final String value;
+        private final String label;
+
+        private StatusAwal(String _value, String _label) {
+            this.value = _value;
+            this.label = _label;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        public String getName() {
+            return this.name();
+        }
+    }
 }
 
