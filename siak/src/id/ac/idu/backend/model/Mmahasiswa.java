@@ -388,6 +388,11 @@ public class Mmahasiswa implements java.io.Serializable {
         this.cflagspbm = cflagspbm;
     }
 
+    public void setCflagspbm(boolean cflagspbm) {
+        if(cflagspbm) setCflagspbm('Y');
+        else setCflagspbm('N');
+    }
+
     public Character getCflagnilai() {
         return this.cflagnilai;
     }
