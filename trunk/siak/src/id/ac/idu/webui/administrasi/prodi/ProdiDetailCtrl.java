@@ -8,6 +8,7 @@ import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.searchdialogs.JenjangExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.PegawaiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
@@ -129,6 +130,12 @@ public class ProdiDetailCtrl extends GFCBaseCtrl implements Serializable {
         binder.loadAll();
 
         doFitSize(event);
+    }
+
+    public void doRenderCombo(){
+        ListBoxUtil.resetList(list_status);
+          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
+                list_status, cmb_status, (getProdi() != null)?getProdi().getCstatus():null);
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

@@ -3,6 +3,7 @@ package id.ac.idu.webui.kurikulum.kurikulum;
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.administrasi.service.ProdiService;
+import id.ac.idu.backend.model.Mdetilkurikulum;
 import id.ac.idu.backend.model.Mkurikulum;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
@@ -25,6 +26,9 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -184,6 +188,7 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // refresh the Binding mechanism
             getKurikulumDetailCtrl().setKurikulum(getSelectedKurikulum());
+            getKurikulumDetailCtrl().loadDetilKurikulum();
             getKurikulumDetailCtrl().getBinder().loadAll();
             return;
         }
@@ -568,15 +573,29 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     private void doSave(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-        /*if(getKurikulumDetailCtrl().getKurikulum().getMprodi() == null) {
-            final Mprodi anProdi = getProdiService().getNewProdi();
-            getKurikulumDetailCtrl().getKurikulum().setMprodi(anProdi);
-        }*/
         // save all components data in the several tabs to the bean
         getKurikulumDetailCtrl().getBinder().saveAll();
+        Listitem item;
+        /* Mdetilkurikulum */
+        Mdetilkurikulum obj;
+        Set<Mdetilkurikulum> mdetilkurikulums = new HashSet<Mdetilkurikulum>();
 
+        List listObj = getKurikulumDetailCtrl().getListDetilKurikulum().getItems();
+        for(Object dtl : listObj) {
+            item = (Listitem) dtl;
+            obj = (Mdetilkurikulum) item.getAttribute(KurikulumDetailCtrl.DATA);
+            if(getSelectedKurikulum().getId() > 0) obj.setKurikulumId(getSelectedKurikulum().getId());
+            mdetilkurikulums.add(obj);
+        }
+        /* Save All */
         try {
+            getSelectedKurikulum().getMdetilkurikulums().clear();
+            if(getSelectedKurikulum().getId() > 0)  {
+                getSelectedKurikulum().getMdetilkurikulums().addAll(mdetilkurikulums);
+            }
+            else {
+                getSelectedKurikulum().setMdetilkurikulums(mdetilkurikulums);                      // Page Kegiatan/Karya
+            }
             // save it to database
             getKurikulumService().saveOrUpdate(getKurikulumDetailCtrl().getKurikulum());
             // if saving is successfully than actualize the beans as
@@ -590,15 +609,11 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
             // show the objects data in the statusBar
             String str = getSelectedKurikulum().getCkodekur();
             EventQueues.lookup("selectedObjectEventQueue", EventQueues.DESKTOP, true).publish(new Event("onChangeSelectedObject", null, str));
-
         } catch (DataAccessException e) {
             ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString());
-
             // Reset to init values
             doResetToInitValues();
-
             return;
-
         } finally {
             btnCtrlKurikulum.setInitEdit();
             getKurikulumDetailCtrl().doReadOnlyMode(true);
@@ -613,8 +628,6 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     private void doNew(Event event) {
-        // logger.debug(event.toString());
-
         // check first, if the tabs are created
         if (getKurikulumDetailCtrl() == null) {
             Events.sendEvent(new Event("onSelect", tabKurikulumDetail, null));
@@ -631,11 +644,11 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
         // We don't create a new DomainObject() in the frontend.
         // We GET it from the backend.
         final Mkurikulum anKurikulum = getKurikulumService().getNewKurikulum();
-        //final Mprodi anProdi = getProdiService().getAllProdis().get(0);
-        //anKurikulum.setMprodi(anProdi);
         // set the beans in the related databinded controllers
         getKurikulumDetailCtrl().setKurikulum(anKurikulum);
         getKurikulumDetailCtrl().setSelectedKurikulum(anKurikulum);
+        //getKurikulumDetailCtrl().setPlwDetilKurikulum(null);
+        getKurikulumDetailCtrl().getPlwDetilKurikulum().clear();
 
         // Refresh the binding mechanism
         getKurikulumDetailCtrl().setSelectedKurikulum(getSelectedKurikulum());

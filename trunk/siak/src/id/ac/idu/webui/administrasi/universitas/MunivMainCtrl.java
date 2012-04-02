@@ -181,6 +181,8 @@ public class MunivMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getMunivDetailCtrl().setMuniv(getSelectedMuniv());
             getMunivDetailCtrl().getBinder().loadAll();
+            //refresh combo
+            getMunivDetailCtrl().doRenderCombo();
             return;
         }
 

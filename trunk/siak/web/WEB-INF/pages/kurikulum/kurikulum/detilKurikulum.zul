@@ -68,26 +68,50 @@
                                                     tooltiptext="Cari Matakuliah"/>
                                         </hbox>
                                     </row>
-                                    <!--row>
-                                        <hbox>
-                                            <label id="labelNama" value="Nama Matakuliah"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
-                                        </hbox>
-                                        <textbox id="txtbNama" value="@{controller.mdetilkurikulum.mtbmtkl.cnamamk}" constraint="no empty" maxlength="50" width="150px" readonly="true"/>
-                                    </row-->
                                     <row>
+                                        <label id="labelJenis" value="Jenis"/>
                                         <hbox>
-                                            <label id="labelJenis" value="Jenis"/>
+                                        <textbox
+                                                id="txtbJenis" value="@{controller.mdetilkurikulum.cjenis}"
+                                                  visible="false" />
+                                            <bandbox id="cmbJenis" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="listJenis" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmbJenis.value=self.selectedItem.label;
+                                                             txtbJenis.value=self.selectedItem.value; cmbJenis.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
                                         </hbox>
-                                        <textbox id="txtbJenis" value="@{controller.mdetilkurikulum.cjenis}" maxlength="1" width="40px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label id="labelStatus" value="Status"/>
-                                        <textbox id="txtbStatus" value="@{controller.mdetilkurikulum.cstatus}" maxlength="1" width="40px" readonly="true"/>
+                                        <hbox>
+                                        <textbox
+                                                id="txtbStatus" value="@{controller.mdetilkurikulum.cstatus}"
+                                                  visible="false" />
+                                            <bandbox id="cmbStatus" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="listStatus" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmbStatus.value=self.selectedItem.label;
+                                                             txtbStatus.value=self.selectedItem.value; cmbStatus.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label id="labelMun" value="MUN"/>
-                                        <textbox id="txtbMun" value="@{controller.mdetilkurikulum.cmun}" maxlength="1" width="40px" readonly="true"/>
+                                        <hbox>
+                                        <textbox
+                                                id="txtbMun" value="@{controller.mdetilkurikulum.cmun}"
+                                                  visible="false" />
+                                            <bandbox id="cmbMun" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="listMun" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmbMun.value=self.selectedItem.label;
+                                                             txtbMun.value=self.selectedItem.value; cmbMun.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                     <row>
                                         <label id="labelTerm" value="Term Semester"/>
@@ -95,7 +119,18 @@
                                     </row>
                                     <row>
                                         <label id="labelLintasProdi" value="Lintas Prodi"/>
-                                        <textbox id="txtbLintasProdi" value="@{controller.mdetilkurikulum.clintasprodi}" maxlength="1" width="40px" readonly="true"/>
+                                        <hbox>
+                                        <textbox
+                                                id="txtbLintasProdi" value="@{controller.mdetilkurikulum.clintasprodi}"
+                                                  visible="false" />
+                                            <bandbox id="cmbLintasProdi" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="listLintasProdi" mold="paging" autopaging="true" width="180px"
+                                                             onSelect="cmbLintasProdi.value=self.selectedItem.label;
+                                                             txtbLintasProdi.value=self.selectedItem.value; cmbLintasProdi.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                        </hbox>
                                     </row>
                                 </rows>
                             </grid>

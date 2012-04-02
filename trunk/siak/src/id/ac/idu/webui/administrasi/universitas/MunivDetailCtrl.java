@@ -5,6 +5,7 @@ import id.ac.idu.backend.model.Muniv;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -115,6 +116,12 @@ public class MunivDetailCtrl extends GFCBaseCtrl implements Serializable {
         binder.loadAll();
 
         doFitSize(event);
+    }
+
+    public void doRenderCombo(){
+        ListBoxUtil.resetList(list_status);
+          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusUniversitas.class)).getEnumToList(),
+                list_status, cmb_status, (getMuniv() != null)?getMuniv().getCstatus():null);
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
