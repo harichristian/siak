@@ -109,19 +109,43 @@
                                                 </row>
                                                 <row>
                                                     <label
-                                                            value="JAM AWAL"/>
-                                                    <intbox
+                                                            value="JAM AWAL (HH:SS)"/>
+                                                    <textbox
                                                             id="txtb_filJamAwal"
                                                             value="@{controller.calakademik.cjamawal}"
-                                                            readonly="true" maxlength="5" width="99%"/>
+                                                            readonly="true" maxlength="5" width="99%" xmlns:w="client">
+                                                        <attribute w:name="doKeyPress_">
+                                                            function(evt){
+                                                                if(this.getValue().length > 0 ){
+                                                                    if (!this._shallIgnore(evt, "0123456789:"))
+                                                                    this.$doKeyPress_(evt);
+                                                                } else {
+                                                                    if (!this._shallIgnore(evt, "05"))
+                                                                        this.$doKeyPress_(evt);
+                                                                   }
+                                                                }
+                                                        </attribute>
+                                                    </textbox>
                                                 </row>
                                                 <row>
                                                     <label
-                                                            value="JAM AKHIR"/>
-                                                    <intbox
+                                                            value="JAM AKHIR (HH:SS)"/>
+                                                    <textbox
                                                             id="txtb_filJamAkhir"
                                                             value="@{controller.calakademik.cjamakhir}"
-                                                            readonly="true" maxlength="5" width="99%"/>
+                                                            readonly="true" maxlength="5" width="99%" xmlns:w="client">
+                                                        <attribute w:name="doKeyPress_">
+                                                            function(evt){
+                                                                if(this.getValue().length > 0 ){
+                                                                    if (!this._shallIgnore(evt, "0123456789:"))
+                                                                    this.$doKeyPress_(evt);
+                                                                } else {
+                                                                    if (!this._shallIgnore(evt, "05"))
+                                                                        this.$doKeyPress_(evt);
+                                                                   }
+                                                                }
+                                                        </attribute>
+                                                    </textbox>
                                                 </row>
                                                 <row>
                                                     <label
