@@ -46,7 +46,6 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
     private ByteArrayOutputStream output;
     private InputStream mediais;
     private AMedia amedia;
-    private final String zksample2title = "[Zksample2] DynamicJasper Report Sample";
     
     public CetakPengajuanCutiDJReport(Component parent) throws InterruptedException {
         super();
@@ -103,7 +102,7 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
         drb.addColumn(nim, "mmahasiswa.cnim", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
         drb.addColumn(nama, "mmahasiswa.cnama", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
 
-        drb.setTitle(zksample2title);
+        drb.setTitle("Cetak Pengajuan Cuti Mahasiswa");
         drb.setSubtitle("Daftar Pengajuan Cuti Mahasiswa: " + ZksampleDateFormat.getDateTimeFormater().format(new Date()));
         drb.setSubtitleStyle(subtitleStyle);
         drb.setPrintBackgroundOnOddRows(true);

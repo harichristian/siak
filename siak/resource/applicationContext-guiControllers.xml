@@ -562,6 +562,7 @@
         <property name="service" ref="cutimhsService"/>
         <property name="service2" ref="mahasiswaService"/>
         <property name="plwMahasiswa" ref="pagedListWrapper"/>
+        <property name="plwTerm" ref="pagedListWrapper"/>
     </bean>
     <!-- Entry IRS -->
     <bean id="irsMainCtrl" class="id.ac.idu.webui.irs.irs.IrsMainCtrl"

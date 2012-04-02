@@ -105,7 +105,8 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
             tabDetail.setSelected(true);
 
             getDetailCtrl().setSelected(getSelected());
-            getDetailCtrl().getBinder().loadAll();
+            if(getDetailCtrl().getBinder() != null)
+                getDetailCtrl().getBinder().loadAll();
             return;
         }
 
