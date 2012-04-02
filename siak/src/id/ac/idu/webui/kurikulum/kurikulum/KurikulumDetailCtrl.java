@@ -170,7 +170,7 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
         this.showDetail(dk, true);
     }
 
-    public void onClick$btnDetilKurikulum(Event event) throws Exception {
+    public void onClick$btnDeleteDetilKurikulum(Event event) throws Exception {
         Listitem item = listDetilKurikulum.getSelectedItem();
         getDelDetilKurikulum().add((Mdetilkurikulum) item.getAttribute(KurikulumDetailCtrl.DATA));
         listDetilKurikulum.removeItemAt(listDetilKurikulum.getSelectedIndex());
@@ -365,5 +365,13 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setDetilKurikulumCtrl(DetilKurikulumCtrl detilKurikulumCtrl) {
         this.detilKurikulumCtrl = detilKurikulumCtrl;
+    }
+
+    public Listbox getListDetilKurikulum() {
+        return listDetilKurikulum;
+    }
+
+    public void setListDetilKurikulum(Listbox listDetilKurikulum) {
+        this.listDetilKurikulum = listDetilKurikulum;
     }
 }

@@ -125,6 +125,8 @@ public class Mkurikulum  implements java.io.Serializable {
     }
 
     public void setMdetilkurikulums(Set<Mdetilkurikulum> mdetilkurikulums) {
+        for(Object obj : mdetilkurikulums)
+            ((Mdetilkurikulum) obj).setKurikulumId(this.id);
         this.mdetilkurikulums = mdetilkurikulums;
     }
 }

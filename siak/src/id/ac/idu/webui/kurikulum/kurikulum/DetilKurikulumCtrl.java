@@ -2,9 +2,12 @@ package id.ac.idu.webui.kurikulum.kurikulum;
 
 import id.ac.idu.backend.model.Mdetilkurikulum;
 import id.ac.idu.backend.model.Mtbmtkl;
+import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.MultiLineMessageBox;
 import id.ac.idu.webui.util.searchdialogs.MatakuliahExtendedSearchListBox;
+import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
@@ -44,10 +47,18 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtbKode;
     protected Textbox txtbNama;
     protected Textbox txtbJenis;
+    protected Listbox listJenis;
+    protected Bandbox cmbJenis;
     protected Textbox txtbStatus;
+    protected Listbox listStatus;
+    protected Bandbox cmbStatus;
     protected Textbox txtbMun;
+    protected Listbox listMun;
+    protected Bandbox cmbMun;
     protected Textbox txtbTerm;
     protected Textbox txtbLintasProdi;
+    protected Listbox listLintasProdi;
+    protected Bandbox cmbLintasProdi;
 
     protected Button btnSearchMatakuliahExtended;
 
@@ -99,6 +110,18 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
 
         this.doInitButton(getKurikulumDetailCtrl().isModeEdit());
         this.doReadOnlyMode(!getKurikulumDetailCtrl().isModeEdit());
+        /*Jenis Combo*/
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisMatakuliah.class)).getEnumToList(),
+                listJenis, cmbJenis, (getMdetilkurikulum() != null)?getMdetilkurikulum().getCjenis():null);
+        /*Status Combo*/
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
+                listStatus, cmbStatus, (getMdetilkurikulum() != null)?getMdetilkurikulum().getCstatus():null);
+        /*Mun Combo*/
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Mun.class)).getEnumToList(),
+                listMun, cmbMun, (getMdetilkurikulum() != null)?getMdetilkurikulum().getCmun():null);
+        /*Lintas Prodi Combo*/
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.LintasProdi.class)).getEnumToList(),
+                listLintasProdi, cmbLintasProdi, (getMdetilkurikulum() != null)?getMdetilkurikulum().getClintasprodi():null);
 
         binder.loadAll();
         this.doShowDialog(getMdetilkurikulum());
@@ -141,12 +164,38 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
         if(lml == null) lml = new ListModelList();
         else {
             lml.clear();
-            for(Object onPendidikan : _lst) {
-                Listitem item = (Listitem) onPendidikan;
+            for(Object obj : _lst) {
+                Listitem item = (Listitem) obj;
                 lml.add((Mdetilkurikulum) item.getAttribute(KurikulumDetailCtrl.DATA));
             }
         }
-
+        Mdetilkurikulum obj = getMdetilkurikulum();
+        if (txtbJenis.getValue() == listJenis.getSelectedItem().getValue().toString()) {
+            obj.setCjenis(txtbJenis.getValue());
+        } else {
+            txtbJenis.setValue(listJenis.getSelectedItem().getValue().toString());
+            obj.setCjenis(listJenis.getSelectedItem().getValue().toString());
+        }
+        if (txtbStatus.getValue() == listStatus.getSelectedItem().getValue().toString()) {
+            obj.setCstatus(txtbStatus.getValue());
+        } else {
+            txtbStatus.setValue(listStatus.getSelectedItem().getValue().toString());
+            obj.setCstatus(listStatus.getSelectedItem().getValue().toString());
+        }
+        if (txtbMun.getValue() == listMun.getSelectedItem().getValue().toString()) {
+            obj.setCmun(txtbMun.getValue());
+        } else {
+            txtbMun.setValue(listMun.getSelectedItem().getValue().toString());
+            obj.setCmun(listMun.getSelectedItem().getValue().toString());
+        }
+        if (txtbLintasProdi.getValue() == listLintasProdi.getSelectedItem().getValue().toString()) {
+            obj.setClintasprodi(txtbLintasProdi.getValue());
+        } else {
+            txtbLintasProdi.setValue(listLintasProdi.getSelectedItem().getValue().toString());
+            obj.setClintasprodi(listLintasProdi.getSelectedItem().getValue().toString());
+        }
+        obj.setMprodi(getKurikulumDetailCtrl().getKurikulum().getMprodi());
+        setMdetilkurikulum(obj);
         if(!this.isnew) lml.set(idx, getMdetilkurikulum());
         else lml.add(listDetilKurikulum.getItems().size(), getMdetilkurikulum());
 
@@ -195,10 +244,18 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
         //txtbKode.setReadonly(b);
         //txtbNama.setReadonly(b);
         txtbJenis.setReadonly(b);
+        listJenis.setDisabled(b);
+        cmbJenis.setDisabled(b);
         txtbStatus.setReadonly(b);
+        listStatus.setDisabled(b);
+        cmbStatus.setDisabled(b);
         txtbMun.setReadonly(b);
+        listMun.setDisabled(b);
+        cmbMun.setDisabled(b);
         txtbTerm.setReadonly(b);
         txtbLintasProdi.setReadonly(b);
+        listLintasProdi.setDisabled(b);
+        cmbLintasProdi.setDisabled(b);
         btnSearchMatakuliahExtended.setDisabled(b);
     }
 

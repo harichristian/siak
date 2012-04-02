@@ -183,6 +183,7 @@ public class ProdiMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getProdiDetailCtrl().setProdi(getSelectedProdi());
             getProdiDetailCtrl().getBinder().loadAll();
+            getProdiDetailCtrl().doRenderCombo();
             return;
         }
 
