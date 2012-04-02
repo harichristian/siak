@@ -175,7 +175,7 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
      * Selects the object in the listbox and change the tab.<br>
      * Event is forwarded in the corresponding listbox.
      */
-    public void onDoubleClickedFeedbackAlumniItem(Event event) {
+    public void onDoubleClickedFeedbackAlumniItem(Event event) throws InterruptedException {
         // logger.debug(event.toString());
 
         Tfeedbackalumni anFeedbackAlumni = getSelectedFeedbackAlumni();
@@ -183,6 +183,11 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
         if (anFeedbackAlumni != null) {
             setSelectedFeedbackAlumni(anFeedbackAlumni);
             setFeedbackAlumni(anFeedbackAlumni);
+            try {
+                feedbackAlumniMainCtrl.doSearchDetail(anFeedbackAlumni);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
 
             // check first, if the tabs are created
             if (getFeedbackAlumniMainCtrl().getFeedbackAlumniDetailCtrl() == null) {

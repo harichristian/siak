@@ -157,7 +157,7 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
 
         doFitSize(event);
     }
-    public void doFillListbox() {
+    public void doFillListbox() throws Exception {
 
         doFitSize();
 
@@ -180,7 +180,9 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
         so.addSort(ConstantUtil.NO_PERTANYAAN, false);
         searchObj = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getCountRows());
         if(getSelectedFeedbackAlumni().getMmahasiswa()!=null) {
-            searchObj.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NIM, getSelectedFeedbackAlumni().getMmahasiswa().getCnim(), Filter.OP_EQUAL));
+            searchObj.addFilterAnd(new Filter(ConstantUtil.MAHASISWA_DOT_NIM, getSelectedFeedbackAlumni().getMmahasiswa().getCnim(), Filter.OP_EQUAL));
+            searchObj.addFilterAnd(new Filter("cterm", getSelectedFeedbackAlumni().getCterm(), Filter.OP_EQUAL));
+//            searchObj.addFilter(new Filter("nnopertanyaan", getSelectedFeedbackAlumni().getNnopertanyaan(), Filter.OP_EQUAL));
         }
         searchObj.addSort(ConstantUtil.NO_PERTANYAAN, false);
         // Change the BindingListModel.
@@ -189,12 +191,31 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
             /*getPagedBindingListFeedbackWrapper().init(so, getListBoxFeedbackAlumniDetail(), paging_FeedbackList);
             BindingListModelList blml = (BindingListModelList) getListBoxFeedbackAlumniDetail().getModel();
             setFeedbacks(blml);*/
+
+//            Listbox lb =  new Listbox();
             getPagedBindingListWrapper().init(searchObj, getListBoxFeedbackAlumniDetail(), paging_FeedbackAlumniDetailList);
+//              getPagedBindingListWrapper().clear();
+//                getPagedBindingListWrapper().addAll(getSelectedFeedbackAlumniList());
+//                 getPagedBindingListWrapper().addAll(getFeedbackAlumniMainCtrl().getList(getSelectedFeedbackAlumni()));
+//              lb =  getListBoxFeedbackAlumniDetail();
+//                for (int i=lb.getItemCount()-1;i>0;i--){
+//                    Tfeedbackalumni fa = (Tfeedbackalumni) lb.getItemAtIndex(i).getValue();
+//                    if (fa.getMmahasiswa().getId()!=getSelectedFeedbackAlumni().getMmahasiswa().getId()){
+//                        lb.removeItemAt(i);
+//                    }
+//
+//                }
+//            getPagedBindingListWrapper().init(searchObj, lb, paging_FeedbackAlumniDetailList);
             try{
-                getPagedBindingListWrapper().addAll(getSelectedFeedbackAlumniList());
+                getPagedBindingListWrapper().clear();
+//                getPagedBindingListWrapper().addAll(getSelectedFeedbackAlumniList());
+                 getPagedBindingListWrapper().addAll(getFeedbackAlumniMainCtrl().getList(getSelectedFeedbackAlumni()));
+//                 feedbackAlumniMainCtrl.doSearchDetail(getSelectedFeedbackAlumni());
             } catch (NullPointerException e) {}
             //pagedBindingListWrapper = new PagedBindingListWrapper<Tfeedbackalumni>();
             //pagedBindingListFeedbackWrapper.addAll(getSelectedFeedbackAlumniList());
+
+
 
             BindingListModelList lml = (BindingListModelList) getListBoxFeedbackAlumniDetail().getModel();
 
@@ -205,6 +226,8 @@ public class FeedbackAlumniDetailCtrl extends GFCBaseCtrl implements Serializabl
                     final int rowIndex = 0;
                     getListBoxFeedbackDetailAlumni().setSelectedIndex(rowIndex);
                     setSelectedFeedbackAlumni((Tfeedbackalumni) lml.get(0));
+
+//                    Events.sendEvent(new Event("onSelect", lb, getSelectedFeedbackAlumni()));
                     Events.sendEvent(new Event("onSelect", getListBoxFeedbackDetailAlumni(), getSelectedFeedbackAlumni()));
                 }
             }
