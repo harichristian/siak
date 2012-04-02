@@ -261,7 +261,7 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
     }
 
     public void onPeminatanItem(Event event) {
-        Listitem item = listmjenjang.getSelectedItem();
+        Listitem item = listmpeminatan.getSelectedItem();
 
         if (item != null) {
             Mpeminatan aPeminatan = (Mpeminatan) item.getAttribute("data");
