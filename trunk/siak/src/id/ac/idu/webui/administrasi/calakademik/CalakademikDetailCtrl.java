@@ -4,12 +4,14 @@ import id.ac.idu.administrasi.service.CalakademikService;
 import id.ac.idu.administrasi.service.KegiatanService;
 import id.ac.idu.administrasi.service.ProdiService;
 import id.ac.idu.administrasi.service.SekolahService;
-import id.ac.idu.backend.model.*;
+import id.ac.idu.backend.model.Mcalakademik;
+import id.ac.idu.backend.model.Mkegiatan;
+import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.searchdialogs.KegiatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -53,8 +55,8 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_filNr; // autowired
     protected Datebox txtb_filTanggalAwal; // autowired
     protected Datebox txtb_filTanggalAkhir; // autowired
-    protected Intbox txtb_filJamAwal; // autowired
-    protected Intbox txtb_filJamAkhir; // autowired
+    protected Textbox txtb_filJamAwal; // autowired
+    protected Textbox txtb_filJamAkhir; // autowired
     protected Textbox txtb_filTerm; // autowired
     protected Textbox txtb_filTahunAjaran; // autowired
     protected Textbox txtb_filSemester; // autowired
