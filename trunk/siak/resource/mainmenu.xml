@@ -91,7 +91,7 @@
                   iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterKurikulum"/>
         <menuItem id="menu_Item_EntriKurikulumMahasiswa" zulNavigation="/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaMain.zul"
                   iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_EntriKurikulumMahasiswa"/>
-        <menuItem id="menu_Item_UpdateKurikulumProdiMahasiswa" zulNavigation="/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaMain.zul"
+        <menuItem id="menu_Item_UpdateKurikulumProdiMahasiswa" zulNavigation="/WEB-INF/pages/kurikulum/updateKurikulumProdi/kurikulumProdiMain.zul"
                   iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_UpdateKurikulumProdiMahasiswa"/>
         <menuItem id="menu_Item_MasterPeminatan" zulNavigation="/WEB-INF/pages/administrasi/peminatan/mpeminatanMain.zul"
                   iconName="/images/icons/kurikulum.gif" rightName="menuItem_Manajemen_MasterPeminatan"/>

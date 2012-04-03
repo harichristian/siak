@@ -1,4 +1,4 @@
-package id.ac.idu.webui.kurikulum.kurikulumMahasiswa;
+package id.ac.idu.webui.kurikulum.updateKurikulumProdi;
 
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
@@ -27,15 +27,14 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Created by IntelliJ IDEA.
- * User: valeo
- * Date: 3/9/12
- * Time: 3:22 PM
- * To change this template use File | Settings | File Templates.
+ * @author <a href="valeo.gumilang@gmail.com">Valeo Gumilang</a>
+ * @Date 4/3/12
+ * Time: 10:41 AM
  */
-public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
+public class KurikulumProdiMainCtrl extends GFCBaseCtrl implements Serializable {
+
     private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(KurikulumMahasiswaMainCtrl.class);
+	private static final Logger logger = Logger.getLogger(KurikulumProdiMainCtrl.class);
 
 	/*
 	 * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -44,7 +43,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 	 * 'extends GFCBaseCtrl' GenericForwardComposer.
 	 * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 */
-	protected Window windowKurikulumMahasiswaMain; // autowired
+	protected Window windowKurikulumProdiMain; // autowired
 
 	// Tabs
 	protected Tabbox tabbox_KurikulumMahasiswaMain; // autowired
@@ -77,8 +76,8 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 	protected Button btnHelp;
 
 	// Tab-Controllers for getting the binders
-	private KurikulumMahasiswaListCtrl kurikulumMahasiswaListCtrl;
-	private KurikulumMahasiswaDetailCtrl kurikulumMahasiswaDetailCtrl;
+	private KurikulumProdiListCtrl kurikulumProdiListCtrl;
+	private KurikulumProdiDetailCtrl kurikulumProdiDetailCtrl;
 
 	// Databinding
 	private Mkurmhs selectedKurikulumMahasiswa;
@@ -95,7 +94,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 	/**
 	 * default constructor.<br>
 	 */
-	public KurikulumMahasiswaMainCtrl() {
+	public KurikulumProdiMainCtrl() {
 		super();
 	}
 
@@ -123,8 +122,8 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 	 * @param event
 	 * @throws Exception
 	 */
-	public void onCreate$windowKurikulumMahasiswaMain(Event event) throws Exception {
-		windowKurikulumMahasiswaMain.setContentStyle("padding:0px;");
+	public void onCreate$windowKurikulumProdiMain(Event event) throws Exception {
+		windowKurikulumProdiMain.setContentStyle("padding:0px;");
 
 		// create the Button Controller. Disable not used buttons during working
 		btnCtrlKurikulumMahasiswa = new ButtonStatusCtrl(getUserWorkspace(), btnCtroller_ClassPrefix, btnNew, btnEdit, btnDelete, btnSave, btnCancel);
@@ -138,7 +137,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		tabKurikulumMahasiswaList.setSelected(true);
 
 		if (tabPanelKurikulumMahasiswaList != null) {
-			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaList, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaList.zul");
+			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaList, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/updateKurikulumProdi/kurikulumProdiList.zul");
 		}
 
 		// init the buttons for editMode
@@ -163,7 +162,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		}
 
 		if (tabPanelKurikulumMahasiswaList != null) {
-			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaList, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaList.zul");
+			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaList, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/updateKurikulumProdi/kurikulumProdiList.zul");
 		}
 
 	}
@@ -183,13 +182,13 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 			tabKurikulumMahasiswaDetail.setSelected(true);
 
 			// refresh the Binding mechanism
-			getKurikulumMahasiswaDetailCtrl().setKurikulumMahasiswa(getSelectedKurikulumMahasiswa());
-			getKurikulumMahasiswaDetailCtrl().getBinder().loadAll();
+			getKurikulumProdiDetailCtrl().setKurikulumMahasiswa(getSelectedKurikulumMahasiswa());
+			getKurikulumProdiDetailCtrl().getBinder().loadAll();
 			return;
 		}
 
 		if (tabPanelKurikulumMahasiswaDetail != null) {
-			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaDetail, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/kurikulumMahasiswa/kurikulumMahasiswaDetail.zul");
+			ZksampleCommonUtils.createTabPanelContent(tabPanelKurikulumMahasiswaDetail, this, "ModuleMainController", "/WEB-INF/pages/kurikulum/updateKurikulumProdi/kurikulumProdiDetail.zul");
 		}
 	}
 
@@ -218,12 +217,12 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		//txtb_KurikulumMahasiswa_Prodi.setValue(""); // clear
 
 		// ++ create the searchObject and init sorting ++//
-		HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumMahasiswaListCtrl().getCountRows());
+		HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumProdiListCtrl().getCountRows());
 		soKurikulumMahasiswa.addSort(ConstantUtil.ID, false);
 
 		// Change the BindingListModel.
-		if (getKurikulumMahasiswaListCtrl().getBinder() != null) {
-			getKurikulumMahasiswaListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
+		if (getKurikulumProdiListCtrl().getBinder() != null) {
+			getKurikulumProdiListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
 
 			// get the current Tab for later checking if we must change it
 			Tab currentTab = tabbox_KurikulumMahasiswaMain.getSelectedTab();
@@ -252,13 +251,13 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 			//txtb_KurikulumMahasiswa_Prodi.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
-			HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumMahasiswaListCtrl().getCountRows());
+			HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumProdiListCtrl().getCountRows());
 			soKurikulumMahasiswa.addFilter(new Filter(ConstantUtil.KURIKULUM_DOT_CODE, "%" + txtb_KurikulumMahasiswa_Code.getValue() + "%", Filter.OP_ILIKE));
 			soKurikulumMahasiswa.addSort(ConstantUtil.KURIKULUM_DOT_CODE, false);
 
 			// Change the BindingListModel.
-			if (getKurikulumMahasiswaListCtrl().getBinder() != null) {
-				getKurikulumMahasiswaListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
+			if (getKurikulumProdiListCtrl().getBinder() != null) {
+				getKurikulumProdiListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
 
 				// get the current Tab for later checking if we must change it
 				Tab currentTab = tabbox_KurikulumMahasiswaMain.getSelectedTab();
@@ -287,13 +286,13 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 			txtb_KurikulumMahasiswa_Code.setValue(""); // clear
 
 			// ++ create the searchObject and init sorting ++//
-			HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumMahasiswaListCtrl().getCountRows());
+			HibernateSearchObject<Mkurmhs> soKurikulumMahasiswa = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getKurikulumProdiListCtrl().getCountRows());
 			soKurikulumMahasiswa.addFilter(new Filter(ConstantUtil.COHORT, "%" + txtb_KurikulumMahasiswa_Cohort.getValue() + "%", Filter.OP_ILIKE));
 			soKurikulumMahasiswa.addSort(ConstantUtil.COHORT, false);
 
 			// Change the BindingListModel.
-			if (getKurikulumMahasiswaListCtrl().getBinder() != null) {
-				getKurikulumMahasiswaListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
+			if (getKurikulumProdiListCtrl().getBinder() != null) {
+				getKurikulumProdiListCtrl().getPagedBindingListWrapper().setSearchObject(soKurikulumMahasiswa);
 
 				// get the current Tab for later checking if we must change it
 				Tab currentTab = tabbox_KurikulumMahasiswaMain.getSelectedTab();
@@ -436,13 +435,13 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		doResetToInitValues();
 
 		// check first, if the tabs are created
-		if (getKurikulumMahasiswaDetailCtrl().getBinder() != null) {
+		if (getKurikulumProdiDetailCtrl().getBinder() != null) {
 
 			// refresh all dataBinder related controllers/components
-			getKurikulumMahasiswaDetailCtrl().getBinder().loadAll();
+			getKurikulumProdiDetailCtrl().getBinder().loadAll();
 
 			// set editable Mode
-			getKurikulumMahasiswaDetailCtrl().doReadOnlyMode(true);
+			getKurikulumProdiDetailCtrl().doReadOnlyMode(true);
 
 			btnCtrlKurikulumMahasiswa.setInitEdit();
 		}
@@ -463,11 +462,11 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		Tab currentTab = tabbox_KurikulumMahasiswaMain.getSelectedTab();
 
 		// check first, if the tabs are created, if not than create it
-		if (getKurikulumMahasiswaDetailCtrl() == null) {
+		if (getKurikulumProdiDetailCtrl() == null) {
 			Events.sendEvent(new Event("onSelect", tabKurikulumMahasiswaDetail, null));
 			// if we work with spring beanCreation than we must check a little
 			// bit deeper, because the Controller are preCreated ?
-		} else if (getKurikulumMahasiswaDetailCtrl().getBinder() == null) {
+		} else if (getKurikulumProdiDetailCtrl().getBinder() == null) {
 			Events.sendEvent(new Event("onSelect", tabKurikulumMahasiswaDetail, null));
 		}
 
@@ -479,16 +478,16 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 			currentTab.setSelected(true);
 		}
 
-		getKurikulumMahasiswaDetailCtrl().getBinder().loadAll();
+		getKurikulumProdiDetailCtrl().getBinder().loadAll();
 
 		// remember the old vars
 		doStoreInitValues();
 
 		btnCtrlKurikulumMahasiswa.setBtnStatus_Edit();
 
-		getKurikulumMahasiswaDetailCtrl().doReadOnlyMode(false);
+		getKurikulumProdiDetailCtrl().doReadOnlyMode(false);
 		// set focus
-		getKurikulumMahasiswaDetailCtrl().txtb_code.focus();
+		getKurikulumProdiDetailCtrl().txtb_code.focus();
 	}
 
 	/**
@@ -502,12 +501,12 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		// logger.debug(event.toString());
 
 		// check first, if the tabs are created, if not than create them
-		if (getKurikulumMahasiswaDetailCtrl().getBinder() == null) {
+		if (getKurikulumProdiDetailCtrl().getBinder() == null) {
 			Events.sendEvent(new Event("onSelect", tabKurikulumMahasiswaDetail, null));
 		}
 
 		// check first, if the tabs are created
-		if (getKurikulumMahasiswaDetailCtrl().getBinder() == null) {
+		if (getKurikulumProdiDetailCtrl().getBinder() == null) {
 			return;
 		}
 
@@ -555,10 +554,10 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 
 		setSelectedKurikulumMahasiswa(null);
 		// refresh the list
-		getKurikulumMahasiswaListCtrl().doFillListbox();
+		getKurikulumProdiListCtrl().doFillListbox();
 
 		// refresh all dataBinder related controllers
-		getKurikulumMahasiswaDetailCtrl().getBinder().loadAll();
+		getKurikulumProdiDetailCtrl().getBinder().loadAll();
 	}
 
 	/**
@@ -568,20 +567,23 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 	 * @throws InterruptedException
 	 */
 	private void doSave(Event event) throws InterruptedException {
-		getKurikulumMahasiswaDetailCtrl().getKurikulumMahasiswa().setMmahasiswa(getMahasiswa());
+		//getKurikulumProdiDetailCtrl().getKurikulumMahasiswa().setMmahasiswa(getMahasiswa());
         // save all components data in the several tabs to the bean
-		getKurikulumMahasiswaDetailCtrl().getBinder().saveAll();
+		getKurikulumProdiDetailCtrl().getBinder().saveAll();
 
 		try {
             // save it to database
-			getKurikulumMahasiswaService().saveOrUpdate(getKurikulumMahasiswaDetailCtrl().getKurikulumMahasiswa());
+			//getKurikulumMahasiswaService().saveOrUpdate(getKurikulumProdiDetailCtrl().getKurikulumMahasiswa());
+            getSelectedKurikulumMahasiswa().setCterm(getKurikulumProdiDetailCtrl().txtb_termBaru.getValue());
+            getSelectedKurikulumMahasiswa().setCthajar(getKurikulumProdiDetailCtrl().txtb_thajarBaru.getValue());
+            getKurikulumMahasiswaService().saveOrUpdate(getSelectedKurikulumMahasiswa());
 			// if saving is successfully than actualize the beans as
 			// origins.
 			doStoreInitValues();
 			// refresh the list
-			getKurikulumMahasiswaListCtrl().doFillListbox();
+			getKurikulumProdiListCtrl().doFillListbox();
 			// later refresh StatusBar
-			Events.postEvent("onSelect", getKurikulumMahasiswaListCtrl().getListBoxKurikulumMahasiswa(), getSelectedKurikulumMahasiswa());
+			Events.postEvent("onSelect", getKurikulumProdiListCtrl().getListBoxKurikulumMahasiswa(), getSelectedKurikulumMahasiswa());
 
 			// show the objects data in the statusBar
 			String str = getSelectedKurikulumMahasiswa().getMmahasiswa().getCnama();
@@ -597,7 +599,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 
 		} finally {
 			btnCtrlKurikulumMahasiswa.setInitEdit();
-			getKurikulumMahasiswaDetailCtrl().doReadOnlyMode(true);
+			getKurikulumProdiDetailCtrl().doReadOnlyMode(true);
 		}
 	}
 
@@ -612,11 +614,11 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		// logger.debug(event.toString());
 
 		// check first, if the tabs are created
-		if (getKurikulumMahasiswaDetailCtrl() == null) {
+		if (getKurikulumProdiDetailCtrl() == null) {
 			Events.sendEvent(new Event("onSelect", tabKurikulumMahasiswaDetail, null));
 			// if we work with spring beanCreation than we must check a little
 			// bit deeper, because the Controller are preCreated ?
-		} else if (getKurikulumMahasiswaDetailCtrl().getBinder() == null) {
+		} else if (getKurikulumProdiDetailCtrl().getBinder() == null) {
 			Events.sendEvent(new Event("onSelect", tabKurikulumMahasiswaDetail, null));
 		}
 
@@ -630,24 +632,24 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
         //final Mprodi anProdi = getProdiService().getAllProdis().get(0);
         //anKurikulumMahasiswa.setMprodi(anProdi);
 		// set the beans in the related databinded controllers
-		getKurikulumMahasiswaDetailCtrl().setKurikulumMahasiswa(anKurikulumMahasiswa);
-		getKurikulumMahasiswaDetailCtrl().setSelectedKurikulumMahasiswa(anKurikulumMahasiswa);
+		getKurikulumProdiDetailCtrl().setKurikulumMahasiswa(anKurikulumMahasiswa);
+		getKurikulumProdiDetailCtrl().setSelectedKurikulumMahasiswa(anKurikulumMahasiswa);
 
 		// Refresh the binding mechanism
-		getKurikulumMahasiswaDetailCtrl().setSelectedKurikulumMahasiswa(getSelectedKurikulumMahasiswa());
-		if (getKurikulumMahasiswaDetailCtrl().getBinder()!=null) {
-            getKurikulumMahasiswaDetailCtrl().getBinder().loadAll();
+		getKurikulumProdiDetailCtrl().setSelectedKurikulumMahasiswa(getSelectedKurikulumMahasiswa());
+		if (getKurikulumProdiDetailCtrl().getBinder()!=null) {
+            getKurikulumProdiDetailCtrl().getBinder().loadAll();
         }
 
 		// set editable Mode
-		getKurikulumMahasiswaDetailCtrl().doReadOnlyMode(false);
+		getKurikulumProdiDetailCtrl().doReadOnlyMode(false);
 
 		// set the ButtonStatus to New-Mode
 		btnCtrlKurikulumMahasiswa.setInitNew();
 
 		tabKurikulumMahasiswaDetail.setSelected(true);
 		// set focus
-		getKurikulumMahasiswaDetailCtrl().txtb_code.focus();
+		getKurikulumProdiDetailCtrl().txtb_code.focus();
 
 	}
 
@@ -664,10 +666,10 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		// logger.debug(event.toString());
 
 		if (tabbox_KurikulumMahasiswaMain.getSelectedTab() == tabKurikulumMahasiswaDetail) {
-			getKurikulumMahasiswaDetailCtrl().doFitSize(event);
+			getKurikulumProdiDetailCtrl().doFitSize(event);
 		} else if (tabbox_KurikulumMahasiswaMain.getSelectedTab() == tabKurikulumMahasiswaList) {
 			// resize and fill Listbox new
-			getKurikulumMahasiswaListCtrl().doFillListbox();
+			getKurikulumProdiListCtrl().doFillListbox();
 		}
 	}
 
@@ -723,7 +725,7 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 			try {
 				setSelectedKurikulumMahasiswa((Mkurmhs) ZksampleBeanUtils.cloneBean(getOriginalKurikulumMahasiswa()));
 				// TODO Bug in DataBinder??
-				windowKurikulumMahasiswaMain.invalidate();
+				windowKurikulumProdiMain.invalidate();
 
 			} catch (final IllegalAccessException e) {
 				throw new RuntimeException(e);
@@ -800,20 +802,20 @@ public class KurikulumMahasiswaMainCtrl extends GFCBaseCtrl implements Serializa
 		return this.kurikulumMahasiswaService;
 	}
 
-	public void setKurikulumMahasiswaListCtrl(KurikulumMahasiswaListCtrl kurikulumMahasiswaListCtrl) {
-		this.kurikulumMahasiswaListCtrl = kurikulumMahasiswaListCtrl;
+	public void setKurikulumProdiListCtrl(KurikulumProdiListCtrl kurikulumProdiListCtrl) {
+		this.kurikulumProdiListCtrl = kurikulumProdiListCtrl;
 	}
 
-	public KurikulumMahasiswaListCtrl getKurikulumMahasiswaListCtrl() {
-		return this.kurikulumMahasiswaListCtrl;
+	public KurikulumProdiListCtrl getKurikulumProdiListCtrl() {
+		return this.kurikulumProdiListCtrl;
 	}
 
-	public void setKurikulumMahasiswaDetailCtrl(KurikulumMahasiswaDetailCtrl kurikulumMahasiswaDetailCtrl) {
-		this.kurikulumMahasiswaDetailCtrl = kurikulumMahasiswaDetailCtrl;
+	public void setKurikulumProdiDetailCtrl(KurikulumProdiDetailCtrl kurikulumProdiDetailCtrl) {
+		this.kurikulumProdiDetailCtrl = kurikulumProdiDetailCtrl;
 	}
 
-	public KurikulumMahasiswaDetailCtrl getKurikulumMahasiswaDetailCtrl() {
-		return this.kurikulumMahasiswaDetailCtrl;
+	public KurikulumProdiDetailCtrl getKurikulumProdiDetailCtrl() {
+		return this.kurikulumProdiDetailCtrl;
 	}
 
 

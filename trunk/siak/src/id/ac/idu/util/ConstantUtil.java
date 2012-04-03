@@ -24,6 +24,7 @@ public class ConstantUtil {
     public static String KURIKULUM_ID = "kurikulumId";
     public static String KURIKULUM = "mkurikulum";
     public static String KURIKULUM_CODE = "ckodekur";
+    public static String KURIKULUM_DOT_CODE = "mkurikulum.ckodekur";
     public static String MAHASISWA_CODE = "ckdstatmhs";
     public static String MAHASISWA_NAME = "cnmstatmhs";
     public static String KETERANGAN = "cketerangan";
