@@ -38,13 +38,37 @@
                                         <separator bar="true"></separator>
                                     </row>
                                     <row>
-                                        <label value="Jam Awal" />
-                                        <textbox id="txtb_cjamawal" value="@{controller.selected.cjamawal}" readonly="true" maxlength="5" width="8%" />
+                                        <label value="Jam Awal (HH:SS)" />
+                                        <textbox id="txtb_cjamawal" value="@{controller.selected.cjamawal}" readonly="true" maxlength="5" width="8%"  xmlns:w="client">
+                                            <attribute w:name="doKeyPress_">
+                                                function(evt){
+                                                    if(this.getValue().length > 0 ){
+                                                        if (!this._shallIgnore(evt, "0123456789:"))
+                                                        this.$doKeyPress_(evt);
+                                                    } else {
+                                                        if (!this._shallIgnore(evt, "05"))
+                                                            this.$doKeyPress_(evt);
+                                                       }
+                                                    }
+                                            </attribute>
+                                        </textbox>
                                     </row>
                                     <row>
                                         <label
-                                            value="Jam Akhir" />
-                                        <textbox id="txtb_cjamakhir" value="@{controller.selected.cjamakhir}" readonly="true" maxlength="5" width="8%" />
+                                            value="Jam Akhir (HH:SS)" />
+                                        <textbox id="txtb_cjamakhir" value="@{controller.selected.cjamakhir}" readonly="true" maxlength="5" width="8%"  xmlns:w="client">
+                                            <attribute w:name="doKeyPress_">
+                                                function(evt){
+                                                    if(this.getValue().length > 0 ){
+                                                        if (!this._shallIgnore(evt, "0123456789:"))
+                                                        this.$doKeyPress_(evt);
+                                                    } else {
+                                                        if (!this._shallIgnore(evt, "05"))
+                                                            this.$doKeyPress_(evt);
+                                                       }
+                                                    }
+                                            </attribute>
+                                        </textbox>
                                     </row>
                                     <row>
                                         <hbox>
