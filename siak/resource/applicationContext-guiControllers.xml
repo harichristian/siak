@@ -496,6 +496,26 @@
         <property name="popupMhsService" ref="mahasiswaService"/>
         <property name="plwMahasiswa" ref="pagedListWrapper"/>
     </bean>
+    <!-- Update Kurikulum Prodi Mahasiswa -->
+    <bean id="kurikulumProdiMainCtrl"
+          class="id.ac.idu.webui.kurikulum.updateKurikulumProdi.KurikulumProdiMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+        <property name="kurikulumProdiListCtrl" ref="kurikulumProdiListCtrl"/>
+        <property name="kurikulumProdiDetailCtrl" ref="kurikulumProdiDetailCtrl"/>
+    </bean>
+    <bean id="kurikulumProdiListCtrl"
+          class="id.ac.idu.webui.kurikulum.updateKurikulumProdi.KurikulumProdiListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+    </bean>
+    <bean id="kurikulumProdiDetailCtrl"
+          class="id.ac.idu.webui.kurikulum.updateKurikulumProdi.KurikulumProdiDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="kurikulumMahasiswaService" ref="kurikulumMahasiswaService"/>
+        <property name="popupMhsService" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
 
     <!-- ++++++ Isian Rencana Studi ++++++ -->
     <!-- Jadwal Kuliah -->
