@@ -1,10 +1,7 @@
 package id.ac.idu.webui.kurikulum.kurikulumMahasiswa;
 
 import id.ac.idu.administrasi.service.MahasiswaService;
-import id.ac.idu.backend.model.Mkurikulum;
-import id.ac.idu.backend.model.Mkurmhs;
-import id.ac.idu.backend.model.Mmahasiswa;
-import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.kurikulum.service.KurikulumMahasiswaService;
 import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
@@ -12,6 +9,7 @@ import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.KurikulumExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.TermExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -52,6 +50,7 @@ public class KurikulumMahasiswaDetailCtrl extends GFCBaseCtrl implements Seriali
     protected Button btnSearchProdiExtended;
     protected Textbox txtb_thajar;
     protected Textbox txtb_term;
+    protected Button btnSearchTermExtended;
 //    protected Textbox txtb_semester;
 	protected Button button_KurikulumMahasiswaDialog_PrintKurikulumMahasiswa; // autowired
 
@@ -173,10 +172,11 @@ public class KurikulumMahasiswaDetailCtrl extends GFCBaseCtrl implements Seriali
 		//txtb_prodi.setReadonly(b);
 		//txtb_mahasiswa.setReadonly(b);
 		txtb_thajar.setReadonly(b);
-		txtb_term.setReadonly(b);
+		//txtb_term.setReadonly(b);
         bandbox_Dialog_MahasiswaSearch.setDisabled(b);
         btnSearchCodeExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
+        btnSearchTermExtended.setDisabled(b);
 	}
 
     public void onClick$btnSearchProdiExtended(Event event) {
@@ -207,6 +207,21 @@ public class KurikulumMahasiswaDetailCtrl extends GFCBaseCtrl implements Seriali
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setMkurikulum(kurikulum);
             obj.setCcohort(kurikulum.getCcohort());
+            setKurikulumMahasiswa(obj);
+        }
+    }
+
+    public void onClick$btnSearchTermExtended(Event event) {
+        doSearchTermExtended(event);
+    }
+
+    private void doSearchTermExtended(Event event) {
+        Mterm term = TermExtendedSearchListBox.show(windowKurikulumMahasiswaDetail);
+
+        if (term != null) {
+            txtb_term.setValue(term.getKdTerm());
+            Mkurmhs obj = getKurikulumMahasiswa();
+            obj.setCterm(term.getKdTerm());
             setKurikulumMahasiswa(obj);
         }
     }

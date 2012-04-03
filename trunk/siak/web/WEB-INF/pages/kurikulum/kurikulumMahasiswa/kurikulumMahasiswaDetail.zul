@@ -153,12 +153,24 @@
                                             id="txtb_thajar" value="@{controller.kurikulumMahasiswa.cthajar}"
                                             readonly="true" maxlength="8" width="100px" />
                                     </row>
-                                    <row>
+                                    <!--row>
                                         <label
                                             value="${c:l('label_KurikulumMahasiswaDialog_term.value')}" />
                                         <textbox
                                             id="txtb_term" value="@{controller.kurikulumMahasiswa.cterm}"
                                             readonly="true" maxlength="4" width="100px" />
+                                    </row-->
+                                    <row>
+                                        <label value="Term"/>
+                                        <hbox>
+                                            <textbox id="txtb_term" value="@{controller.kurikulumMahasiswa.cterm}"
+                                                    readonly="true" maxlength="4" width="50px" />
+                                            <button
+                                                    id="btnSearchTermExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Term"/>
+                                        </hbox>
                                     </row>
                                 </rows>
                             </grid>
