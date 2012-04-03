@@ -8,6 +8,8 @@
 		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <!-- jndiName untuk deployment di unhan-->
+        <!--property name="jndiName" value="jdbc/siakuat"/-->
         <property name="jndiName" value="jdbc/siak"/>
         <property name="resourceRef" value="true"/>
         <property name="lookupOnStartup" value="false"/>
