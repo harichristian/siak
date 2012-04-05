@@ -2,7 +2,9 @@ package id.ac.idu.webui.administrasi.term;
 
 import id.ac.idu.administrasi.service.TermService;
 import id.ac.idu.backend.model.Mterm;
+import id.ac.idu.backend.model.Mthajar;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.searchdialogs.ThajarExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -37,6 +39,12 @@ public class TermDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Textbox txtb_filNr; // autowired
     protected Textbox txtb_filName1; // autowired
+    protected Textbox txtb_filThajar; // autowired
+    protected Textbox txtb_filSmt; // autowired
+    protected Datebox txtb_filTanggalMulai; // autowired
+    protected Datebox txtb_filTanggalAkhir; // autowired
+    protected Button btnSearchThajarExtended; // autowired
+    protected Row rowThajar; // autowired
     protected Button button_TermDialog_PrintTerm; // autowired
 
     // Databinding
@@ -142,6 +150,35 @@ public class TermDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void doReadOnlyMode(boolean b) {
         txtb_filNr.setReadonly(b);
         txtb_filName1.setReadonly(b);
+        txtb_filTanggalMulai.setReadonly(b);
+        txtb_filTanggalAkhir.setReadonly(b);
+        btnSearchThajarExtended.setDisabled(b);
+
+    }
+
+    /*--------------------------- TAHUN AJAR LOV ---------------------------*/
+    public void onClick$btnSearchThajarExtended(Event event) {
+        doSearchThajarExtended(event);
+    }
+
+    private void doSearchThajarExtended(Event event) {
+        Mthajar thajar = ThajarExtendedSearchListBox.show(windowTermDetail);
+
+        if (thajar != null) {
+            rowThajar.setVisible(true);
+            txtb_filThajar.setValue(thajar.getCthajar());
+            txtb_filSmt.setValue(thajar.getCsmt());
+            Mterm aTerm = getTerm();
+            aTerm.setMthajar(thajar);
+            setTerm(aTerm);
+        } else {
+            rowThajar.setVisible(false);
+            txtb_filThajar.setValue("");
+            txtb_filSmt.setValue("");
+            Mterm aTerm = getTerm();
+            aTerm.setMthajar(null);
+            setTerm(aTerm);
+        }
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

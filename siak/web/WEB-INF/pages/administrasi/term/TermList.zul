@@ -40,6 +40,22 @@
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                     label="DESKRIPSI" sort="auto"
                                     width="30%"/>
+                        <listheader id="listheader_TermList_Thajar"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TAHUN AJAR" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_TermList_Smt"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="SEMESTER" sort="auto"
+                                    width="30%"/>
+                        <listheader id="listheader_TermList_Tglmulai"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TGL MULAI" sort="auto"
+                                    width="20%"/>
+                        <listheader id="listheader_TermList_Tglakhir"
+                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                    label="TGL AKHIR" sort="auto"
+                                    width="30%"/>
                     </listhead>
 
                     <listitem self="@{each='term'}" value="@{term}"
@@ -48,6 +64,14 @@
                         <listcell label="@{term.kdTerm}"
                                   style="padding-left: 5px"/>
                         <listcell label="@{term.deskripsi}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{term.mthajar.cthajar}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{term.mthajar.csmt}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{term.dtglmulai}"
+                                  style="padding-left: 5px"/>
+                        <listcell label="@{term.dtglakhir}"
                                   style="padding-left: 5px"/>
                     </listitem>
 

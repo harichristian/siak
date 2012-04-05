@@ -43,6 +43,10 @@ public class TermListCtrl extends GFCBaseListCtrl<Mterm> implements Serializable
     protected Listbox listBoxTerm; // autowired
     protected Listheader listheader_TermList_No; // autowired
     protected Listheader listheader_TermList_Name1; // autowired
+    protected Listheader listheader_TermList_Thajar; // autowired
+    protected Listheader listheader_TermList_Smt; // autowired
+    protected Listheader listheader_TermList_Tglmulai; // autowired
+    protected Listheader listheader_TermList_Tglakhir; // autowired
 
     // NEEDED for ReUse in the SearchWindow
     private HibernateSearchObject<Mterm> searchObj;
@@ -133,6 +137,14 @@ public class TermListCtrl extends GFCBaseListCtrl<Mterm> implements Serializable
         listheader_TermList_No.setSortDescending(new FieldComparator("kdTerm", false));
         listheader_TermList_Name1.setSortAscending(new FieldComparator("deskripsi", true));
         listheader_TermList_Name1.setSortDescending(new FieldComparator("deskripsi", false));
+        listheader_TermList_Thajar.setSortAscending(new FieldComparator("mthajar.cthajar", true));
+        listheader_TermList_Thajar.setSortDescending(new FieldComparator("mthajar.cthajar", false));
+        listheader_TermList_Smt.setSortAscending(new FieldComparator("mthajar.csmt", true));
+        listheader_TermList_Smt.setSortDescending(new FieldComparator("mthajar.csmt", false));
+        listheader_TermList_Tglmulai.setSortAscending(new FieldComparator("dtglmulai", true));
+        listheader_TermList_Tglmulai.setSortDescending(new FieldComparator("dtglmulai", false));
+        listheader_TermList_Tglakhir.setSortAscending(new FieldComparator("dtglakhir", true));
+        listheader_TermList_Tglakhir.setSortDescending(new FieldComparator("dtglakhir", false));
 
         // ++ create the searchObject and init sorting ++//
         // ++ create the searchObject and init sorting ++//
