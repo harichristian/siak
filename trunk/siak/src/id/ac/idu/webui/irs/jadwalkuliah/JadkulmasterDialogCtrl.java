@@ -175,7 +175,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         Map<String, Object> args = getCreationArgsMap(event);
 
         if (args.containsKey("tjadkulmaster")) {
-            System.out.println("if (args.containsKey(tjadkulmaster))");
             Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) args.get("tjadkulmaster");
             setTjadkulmaster(anTjadkulmaster);
             // we must addionally check if there is NO customer object in
@@ -184,7 +183,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
 //                setCustomer(anTjadkulmaster.getCustomer());
 //            }
         } else {
-            System.out.println("else if (args.containsKey(tjadkulmaster))");
             setTjadkulmaster(null);
         }
 
@@ -221,9 +219,7 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
 
         // Set the ListModel for the tjadkuldetils.
         if (getTjadkulmaster() != null) {
-            System.out.println("if (getTjadkulmaster() != null)");
             if (!getTjadkulmaster().isNew()) {
-                System.out.println("if (!getTjadkulmaster().isNew())");
                 HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, pageSizeTjadkuldetil);
                 soTjadkuldetil.addFilter(new Filter("tjadkulmaster", getTjadkulmaster(), Filter.OP_EQUAL));
                 // deeper loading of the relation to prevent the lazy
@@ -233,11 +229,7 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
                 // Set the ListModel.
                 getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterTjadkuldetils, paging_ListBoxTjadkulmasterTjadkuldetils);
 
-            } else {
-                System.out.println("else if (!getTjadkulmaster().isNew())");
             }
-        } else {
-            System.out.println("else if (getTjadkulmaster() != null)");
         }
         listBoxTjadkulmasterTjadkuldetils.setItemRenderer(new JadkuldetilListItemRenderer());
 
@@ -510,13 +502,10 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         // if anTjadkulmaster == null then we opened the Dialog without
         // args for a given entity, so we get a new Obj().
         if (anTjadkulmaster == null) {
-            System.out.println("anTjadkulmaster == null");
             /** !!! DO NOT BREAK THE TIERS !!! */
             // We don't create a new DomainObject() in the frontend.
             // We GET it from the backend.
             anTjadkulmaster = getJadkulService().getNewTjadkulmaster();
-        } else {
-            System.out.println("anTjadkulmaster != null");
         }
 
         // set Readonly mode accordingly if the object is new or not.
@@ -848,26 +837,12 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         anTjadkulmaster.setNsks(txtb_filSks.getValue());
         anTjadkulmaster.setCket(txtb_filKeterangan.getValue());
         anTjadkulmaster.setClintasprodi(txtb_filLintasprodi.getValue());
-//        System.out.println("ID = " + anTjadkulmaster.getId());
-//        System.out.println("TERM = " + anTjadkulmaster.getCterm());
-//        System.out.println("PEGAWAI1 = " + anTjadkulmaster.getMpegawai1().getCnama());
-        //Customer aCustomer = getCustomer();
-
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // force validation, if on, than execute by component.getValue()
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if (!isValidationOn()) {
             doSetValidation();
         }
-
-//        kunNr.getValue();
-//        kunName1.getValue();
-        // bbox_Tjadkulmasters_CustomerSearch.getValue();
-
-        // fill the tjadkulmaster object with the components data
-//        anTjadkulmaster.setCustomer(aCustomer);
-//        anTjadkulmaster.setAufNr(aufNr.getValue());
-//        anTjadkulmaster.setAufBezeichnung(aufBezeichnung.getValue());
 
         // save it to database
         try {
