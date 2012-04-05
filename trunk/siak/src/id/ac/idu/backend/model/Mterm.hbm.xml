@@ -26,5 +26,14 @@
         <property name="dupdateddate" type="date">
             <column name="DUPDATEDDATE" length="10" />
         </property>
+        <property name="dtglmulai" type="date">
+            <column name="DTGLMULAI" length="10" />
+        </property>
+        <property name="dtglakhir" type="date">
+            <column name="DTGLAKHIR" length="10" />
+        </property>
+        <many-to-one name="mthajar" class="id.ac.idu.backend.model.Mthajar" fetch="select" lazy="false">
+            <column name="MTH_ID"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>
