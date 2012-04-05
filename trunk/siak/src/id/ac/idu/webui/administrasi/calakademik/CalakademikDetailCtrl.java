@@ -4,14 +4,12 @@ import id.ac.idu.administrasi.service.CalakademikService;
 import id.ac.idu.administrasi.service.KegiatanService;
 import id.ac.idu.administrasi.service.ProdiService;
 import id.ac.idu.administrasi.service.SekolahService;
-import id.ac.idu.backend.model.Mcalakademik;
-import id.ac.idu.backend.model.Mkegiatan;
-import id.ac.idu.backend.model.Mprodi;
-import id.ac.idu.backend.model.Msekolah;
+import id.ac.idu.backend.model.*;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.searchdialogs.KegiatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.TermExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -52,6 +50,8 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Borderlayout borderlayout_CalakademikDetail; // autowired
 
+    protected Row rowThajar;
+    protected Row rowSmt;
     protected Textbox txtb_filNr; // autowired
     protected Datebox txtb_filTanggalAwal; // autowired
     protected Datebox txtb_filTanggalAkhir; // autowired
@@ -67,6 +67,7 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Button button_CalakademikDialog_PrintCalakademik; // autowired
     protected Button btnSearchSekolahExtended; // autowired
     protected Button btnSearchProdiExtended; // autowired
+    protected Button btnSearchTermExtended; // autowired
     protected Button btnSearchKegiatanExtended; // autowired
 
     // Databinding
@@ -194,16 +195,35 @@ public class CalakademikDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filTanggalAkhir.setReadonly(b);
         txtb_filJamAwal.setReadonly(b);
         txtb_filJamAkhir.setReadonly(b);
-        txtb_filTerm.setReadonly(b);
-        txtb_filTahunAjaran.setReadonly(b);
-        txtb_filSemester.setReadonly(b);
-//        txtb_filSekolah.setReadonly(b);
-//        txtb_filKegiatan.setReadonly(b);
-//        txtb_filProdi.setReadonly(b);
-
         btnSearchSekolahExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
         btnSearchKegiatanExtended.setDisabled(b);
+        btnSearchTermExtended.setDisabled(b);
+    }
+
+    /*--------------------------- TERM LOV ---------------------------*/
+    public void onClick$btnSearchTermExtended(Event event) {
+        doSearchTermExtended(event);
+    }
+
+    private void doSearchTermExtended(Event event) {
+        Mterm term = TermExtendedSearchListBox.show(windowCalakademikDetail);
+
+        if (term != null) {
+            txtb_filTerm.setValue(term.getKdTerm());
+            if (term.getMthajar() != null) {
+                rowThajar.setVisible(true);
+                rowSmt.setVisible(true);
+                txtb_filTahunAjaran.setValue(term.getMthajar().getCthajar());
+                txtb_filSemester.setValue(term.getMthajar().getCsmt());
+            }
+        } else {
+            txtb_filTerm.setValue("");
+            rowThajar.setVisible(false);
+            rowSmt.setVisible(false);
+            txtb_filTahunAjaran.setValue("");
+            txtb_filSemester.setValue("");
+        }
     }
 
     /*--------------------------- PRODI LOV ---------------------------*/

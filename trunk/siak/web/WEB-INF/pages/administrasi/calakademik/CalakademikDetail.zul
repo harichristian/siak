@@ -140,12 +140,19 @@
                                                 <row>
                                                     <label
                                                             value="TERM"/>
-                                                    <textbox
-                                                            id="txtb_filTerm"
-                                                            value="@{controller.calakademik.cterm}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                    <hbox pack="stretch" width="100%">
+                                                        <textbox
+                                                                id="txtb_filTerm"
+                                                                value="@{controller.calakademik.cterm}"
+                                                                readonly="true" maxlength="4" width="99%"/>
+                                                        <button
+                                                                id="btnSearchTermExtended" disabled="true"
+                                                                width="28px"
+                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                tooltiptext="Cari Term"/>
+                                                    </hbox>
                                                 </row>
-                                                <row>
+                                                <row id="rowThajar" visible="false">
                                                     <label
                                                             value="TAHUN AJARAN"/>
                                                     <textbox
@@ -153,7 +160,7 @@
                                                             value="@{controller.calakademik.cthajar}"
                                                             readonly="true" maxlength="8" width="99%"/>
                                                 </row>
-                                                <row>
+                                                <row id="rowSmt" visible="false">
                                                     <label
                                                             value="SEMESTER"/>
                                                     <textbox
