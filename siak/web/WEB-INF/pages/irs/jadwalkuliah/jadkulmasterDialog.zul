@@ -66,201 +66,201 @@
 }</style>
 
 <groupbox mold="3d" closable="false">
-<caption image="/images/icons/view.gif"
-         label="Jadwal Kuliah Header"/>
+    <caption image="/images/icons/view.gif"
+             label="Jadwal Kuliah Header"/>
 
-<grid sclass="GridLayoutNoBorder"
-      fixedLayout="true"
-      style="border:0px; padding-left:5px; padding-right:5px;">
-    <columns>
-        <column width="150px"/>
-        <column width="100%"/>
-    </columns>
-    <rows>
-        <row>
-            <hbox>
-                <label
-                        id="label_TjadkulmasterDialog_kunNr"
-                        value="SEKOLAH"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <hbox>
-                <textbox id="txtb_filSekolah" readonly="true" maxlength="60" width="99%"/>
-                <button
-                        id="btnSearchSekolahExtended" disabled="true"
-                        width="28px"
-                        image="/images/icons/btn_search2_16x16.gif"
-                        tooltiptext="Cari Sekolah"/>
-            </hbox>
-        </row>
+    <grid sclass="GridLayoutNoBorder"
+          fixedLayout="true"
+          style="border:0px; padding-left:5px; padding-right:5px;">
+        <columns>
+            <column width="150px"/>
+            <column width="100%"/>
+        </columns>
+        <rows>
+            <row>
+                <hbox>
+                    <label
+                            id="label_TjadkulmasterDialog_kunNr"
+                            value="SEKOLAH"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <hbox>
+                    <textbox id="txtb_filSekolah" readonly="true" maxlength="50" width="99%"/>
+                    <button
+                            id="btnSearchSekolahExtended" disabled="true"
+                            width="28px"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="Cari Sekolah"/>
+                </hbox>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="PRODI"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <hbox pack="stretch" width="100%">
+            <row>
+                <hbox>
+                    <label
+                            value="PRODI"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <hbox pack="stretch" width="100%">
+                    <textbox
+                            id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
+                            readonly="true" maxlength="40" width="99%"/>
+                    <button
+                            id="btnSearchProdiExtended" disabled="true"
+                            width="28px"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="Cari Prodi"/>
+                </hbox>
+            </row>
+
+            <row>
+                <hbox>
+                    <label
+                            value="MATA KULIAH"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <hbox pack="stretch" width="100%">
+                    <textbox
+                            id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}"
+                            readonly="true" maxlength="50" width="99%"/>
+                    <button
+                            id="btnSearchMatakuliahExtended" disabled="true"
+                            width="28px"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="Cari Mata Kuliah"/>
+                </hbox>
+            </row>
+
+            <row>
+                <hbox>
+                    <label
+                            value="DOSEN 1"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <hbox pack="stretch" width="100%">
+                    <textbox
+                            id="txtb_filPegawai1" value=""
+                            readonly="true" maxlength="60" width="99%"/>
+                    <button
+                            id="btnSearchPegawai1Extended" disabled="true"
+                            width="28px"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="Cari Dosen 1"/>
+                </hbox>
+            </row>
+
+            <row>
+                <hbox>
+                    <label
+                            value="DOSEN 2"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <hbox pack="stretch" width="100%">
+                    <textbox
+                            id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
+                            readonly="true" maxlength="60" width="99%"/>
+                    <button
+                            id="btnSearchPegawai2Extended" disabled="true"
+                            width="28px"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="Cari Dosen 2"/>
+                </hbox>
+            </row>
+
+            <row>
+                <hbox>
+                    <label
+                            value="TERM"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
                 <textbox
-                        id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
-                        readonly="true" maxlength="60" width="99%"/>
-                <button
-                        id="btnSearchProdiExtended" disabled="true"
-                        width="28px"
-                        image="/images/icons/btn_search2_16x16.gif"
-                        tooltiptext="Cari Prodi"/>
-            </hbox>
-        </row>
+                        id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
+                        constraint="no empty"
+                        readonly="true" maxlength="4" width="99%"/>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="MATA KULIAH"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <hbox pack="stretch" width="100%">
+            <row>
+                <hbox>
+                    <label
+                            value="KELOMPOK"/>
+                    <label value="*"
+                           style="color:red;font-size:10px"/>
+                </hbox>
                 <textbox
-                        id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}"
-                        readonly="true" maxlength="60" width="99%"/>
-                <button
-                        id="btnSearchMatakuliahExtended" disabled="true"
-                        width="28px"
-                        image="/images/icons/btn_search2_16x16.gif"
-                        tooltiptext="Cari Mata Kuliah"/>
-            </hbox>
-        </row>
+                        id="txtb_filKelompok" value="@{controller.tjadkulmaster.ckelompok}"
+                        constraint="no empty"
+                        readonly="true" maxlength="2" width="99%"/>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="DOSEN 1"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <hbox pack="stretch" width="100%">
+            <row>
+                <separator bar="true"></separator>
+                <separator bar="true"></separator>
+            </row>
+            <row>
+                <hbox>
+                    <label
+                            value="TAHUN AJARAN"/>
+                    <label value=""
+                           style="color:red;font-size:10px"/>
+                </hbox>
                 <textbox
-                        id="txtb_filPegawai1" value=""
-                        readonly="true" maxlength="60" width="99%"/>
-                <button
-                        id="btnSearchPegawai1Extended" disabled="true"
-                        width="28px"
-                        image="/images/icons/btn_search2_16x16.gif"
-                        tooltiptext="Cari Dosen 1"/>
-            </hbox>
-        </row>
+                        id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}"
+                        readonly="true" maxlength="8" width="99%"/>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="DOSEN 2"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <hbox pack="stretch" width="100%">
+            <row>
+                <hbox>
+                    <label
+                            value="SEMESTER"/>
+                    <label value=""
+                           style="color:red;font-size:10px"/>
+                </hbox>
                 <textbox
-                        id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
-                        readonly="true" maxlength="60" width="99%"/>
-                <button
-                        id="btnSearchPegawai2Extended" disabled="true"
-                        width="28px"
-                        image="/images/icons/btn_search2_16x16.gif"
-                        tooltiptext="Cari Dosen 2"/>
-            </hbox>
-        </row>
+                        id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}"
+                        readonly="true" maxlength="1" width="99%"/>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="TERM"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
-                    constraint="no empty"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
+            <row>
+                <hbox>
+                    <label
+                            value="SKS"/>
+                    <label value=""
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <intbox
+                        id="txtb_filSks" value="@{controller.tjadkulmaster.nsks}"
+                        readonly="true" maxlength="5" width="99%"/>
+            </row>
+            <row>
+                <hbox>
+                    <label
+                            value="KETERANGAN"/>
+                    <label value=""
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <textbox
+                        id="txtb_filKeterangan" value="@{controller.tjadkulmaster.cket}"
+                        readonly="true" maxlength="50" width="99%"/>
+            </row>
 
-        <row>
-            <hbox>
-                <label
-                        value="KELOMPOK"/>
-                <label value="*"
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filKelompok" value="@{controller.tjadkulmaster.ckelompok}"
-                    constraint="no empty"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-
-        <row>
-            <separator bar="true"></separator>
-            <separator bar="true"></separator>
-        </row>
-        <row>
-            <hbox>
-                <label
-                        value="TAHUN AJARAN"/>
-                <label value=""
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-
-        <row>
-            <hbox>
-                <label
-                        value="SEMESTER"/>
-                <label value=""
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-
-        <row>
-            <hbox>
-                <label
-                        value="SKS"/>
-                <label value=""
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <intbox
-                    id="txtb_filSks" value="@{controller.tjadkulmaster.nsks}"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-        <row>
-            <hbox>
-                <label
-                        value="KETERANGAN"/>
-                <label value=""
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filKeterangan" value="@{controller.tjadkulmaster.cket}"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-
-        <row>
-            <hbox>
-                <label
-                        value="LINTAS PRODI"/>
-                <label value=""
-                       style="color:red;font-size:10px"/>
-            </hbox>
-            <textbox
-                    id="txtb_filLintasprodi" value="@{controller.tjadkulmaster.clintasprodi}"
-                    readonly="true" maxlength="50" width="99%"/>
-        </row>
-    </rows>
-</grid>
+            <row>
+                <hbox>
+                    <label
+                            value="LINTAS PRODI (Y/T)"/>
+                    <label value=""
+                           style="color:red;font-size:10px"/>
+                </hbox>
+                <textbox
+                        id="txtb_filLintasprodi" value="@{controller.tjadkulmaster.clintasprodi}"
+                        readonly="true" maxlength="1" width="99%"/>
+            </row>
+        </rows>
+    </grid>
 </groupbox>
 </panelchildren>
 </panel>
