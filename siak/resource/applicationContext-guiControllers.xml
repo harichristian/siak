@@ -297,6 +297,22 @@
         <property name="termService" ref="termService"/>
     </bean>
 
+    <!-- Tahun ajar -->
+    <bean id="thajarMainCtrl" class="id.ac.idu.webui.administrasi.tahunajar.ThajarMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="thajarService" ref="thajarService"/>
+        <property name="thajarListCtrl" ref="thajarListCtrl"/>
+        <property name="thajarDetailCtrl" ref="thajarDetailCtrl"/>
+    </bean>
+    <bean id="thajarListCtrl" class="id.ac.idu.webui.administrasi.tahunajar.ThajarListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="thajarService" ref="thajarService"/>
+    </bean>
+    <bean id="thajarDetailCtrl" class="id.ac.idu.webui.administrasi.tahunajar.ThajarDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="thajarService" ref="thajarService"/>
+    </bean>
+
     <!-- Sekolah -->
     <bean id="sekolahMainCtrl" class="id.ac.idu.webui.administrasi.sekolah.SekolahMainCtrl"
           parent="basisCtrl" scope="prototype">

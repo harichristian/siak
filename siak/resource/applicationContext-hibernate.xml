@@ -108,6 +108,7 @@
                 <value>id/ac/idu/backend/model/Tfeedbackalumni.hbm.xml</value>
                 <value>id/ac/idu/backend/model/Tfeedbackdosen.hbm.xml</value>
                 <value>id/ac/idu/backend/model/Tfeedbackwisudawan.hbm.xml</value>
+                <value>id/ac/idu/backend/model/Mthajar.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -183,6 +184,7 @@
     <bean id="kodePosDAO" class="id.ac.idu.administrasi.dao.impl.KodePosDAOImpl" parent="basisDAO"/>
     <bean id="gradeDAO" class="id.ac.idu.administrasi.dao.impl.GradeDAOImpl" parent="basisDAO"/>
     <bean id="termDAO" class="id.ac.idu.administrasi.dao.impl.TermDAOImpl" parent="basisDAO"/>
+    <bean id="thajarDAO" class="id.ac.idu.administrasi.dao.impl.ThajarDAOImpl" parent="basisDAO"/>
     <bean id="sekolahDAO" class="id.ac.idu.administrasi.dao.impl.SekolahDAOImpl" parent="basisDAO"/>
     <bean id="mruangDAO" class="id.ac.idu.administrasi.dao.impl.MruangDAOImpl" parent="basisDAO"/>
     <bean id="fasilitasDAO" class="id.ac.idu.administrasi.dao.impl.FasilitasDAOImpl" parent="basisDAO"/>
@@ -278,6 +280,9 @@
     </bean>
     <bean name="termService" class="id.ac.idu.administrasi.service.impl.TermServiceImpl">
         <property name="termDAO" ref="termDAO"/>
+    </bean>
+    <bean name="thajarService" class="id.ac.idu.administrasi.service.impl.ThajarServiceImpl">
+        <property name="thajarDAO" ref="thajarDAO"/>
     </bean>
     <bean name="sekolahService" class="id.ac.idu.administrasi.service.impl.SekolahServiceImpl">
         <property name="sekolahDAO" ref="sekolahDAO"/>
