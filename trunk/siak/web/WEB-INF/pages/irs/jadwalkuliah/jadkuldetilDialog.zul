@@ -88,7 +88,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filHari" readonly="true" width="99%"/>
+                                                <textbox id="txtb_filHari" readonly="true" width="99%" maxlength="10"/>
                                                 <button
                                                         id="btnSearchHariExtended" disabled="true"
                                                         width="28px"
@@ -122,7 +122,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filRuang" readonly="true" width="99%"/>
+                                                <textbox id="txtb_filRuang" readonly="true" width="99%" maxlength="40"/>
                                                 <button
                                                         id="btnSearchRuangExtended" disabled="true"
                                                         width="28px"
@@ -138,13 +138,12 @@
                                         <row>
                                             <hbox>
                                                 <label
-                                                        value="LINTAS PRODI"/>
+                                                        value="LINTAS PRODI (Y/T)"/>
                                                 <label value=""
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <textbox id="txtb_filLintasprodi" readonly="true" width="99%"
-                                                         value=""/>
+                                                <textbox id="txtb_filLintasprodi" readonly="true" width="99%" maxlength="1"/>
                                             </hbox>
                                         </row>
 
@@ -156,7 +155,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <intbox id="txtb_filJumlahsesi" readonly="true" width="99%"/>
+                                                <intbox id="txtb_filJumlahsesi" readonly="true" width="99%" maxlength="5"/>
                                             </hbox>
                                         </row>
 
@@ -168,7 +167,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <intbox id="txtb_filMaks" readonly="true" width="99%"/>
+                                                <intbox id="txtb_filMaks" readonly="true" width="99%" maxlength="5"/>
                                             </hbox>
                                         </row>
 
@@ -180,7 +179,7 @@
                                                        style="color:red;font-size:10px"/>
                                             </hbox>
                                             <hbox>
-                                                <intbox id="txtb_filIsi" readonly="true" width="99%"/>
+                                                <intbox id="txtb_filIsi" readonly="true" width="99%" maxlength="5"/>
                                             </hbox>
                                         </row>
                                     </rows>
