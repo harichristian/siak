@@ -60,6 +60,8 @@
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKegiatan"/>
         <menuItem id="menu_Item_MasterTerm" zulNavigation="/WEB-INF/pages/administrasi/term/termMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterTerm"/>
+        <menuItem id="menu_Item_MasterThajar" zulNavigation="/WEB-INF/pages/administrasi/tahunajar/thajarMain.zul"
+                  iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterThajar"/>
         <menuItem id="menu_Item_MasterKalenderKegiatanAkademik"
                   zulNavigation="/WEB-INF/pages/administrasi/calakademik/calakademikMain.zul"
                   iconName="/images/icons/index_16x16.gif" rightName="menuItem_Admin_MasterKalenderKegiatanAkademik"/>
