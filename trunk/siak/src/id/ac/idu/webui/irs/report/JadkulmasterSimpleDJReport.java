@@ -97,17 +97,25 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
 		subtitleStyle.setFont(Font.ARIAL_MEDIUM_BOLD);
 
 		// Localized column headers
-		String filNr = Labels.getLabel("common.Office.ID");
-		String filBezeichnung = Labels.getLabel("common.Description.Short");
-		String filName1 = Labels.getLabel("common.Name1");
-		String filName2 = Labels.getLabel("common.Name2");
-		String filOrt = Labels.getLabel("common.City");
+		String f1 = "Sekolah";
+		String f2 = "Prodi";
+		String f3 = "Dosen";
+		String f4 = "Mata Kuliah";
+		String f5 = "Term";
+        String f6 = "Kel";
+        String f7 = "Thn";
+        String f8 = "Smt";
+        String f9 = "Sks";
 
-		drb.addColumn(filNr, "filNr", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
-		drb.addColumn(filBezeichnung, "filBezeichnung", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
-		drb.addColumn(filName1, "filName1", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
-		drb.addColumn(filName2, "filName2", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
-		drb.addColumn(filOrt, "filOrt", String.class.getName(), 50, columnStyleText, columnStyleTextBold);
+		drb.addColumn(f1, "f1", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
+		drb.addColumn(f2, "f2", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
+		drb.addColumn(f3, "f3", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
+		drb.addColumn(f4, "f4", String.class.getName(), 20, columnStyleText, columnStyleTextBold);
+		drb.addColumn(f5, "f5", String.class.getName(), 10, columnStyleText, columnStyleTextBold);
+        drb.addColumn(f6, "f6", String.class.getName(), 10, columnStyleText, columnStyleTextBold);
+        drb.addColumn(f7, "f7", String.class.getName(), 10, columnStyleText, columnStyleTextBold);
+        drb.addColumn(f8, "f8", String.class.getName(), 10, columnStyleText, columnStyleTextBold);
+        drb.addColumn(f9, "f9", String.class.getName(), 10, columnStyleText, columnStyleTextBold);
 
 		// Sets the Report Columns, header, Title, Groups, Etc Formats
 		// DynamicJasper documentation
@@ -127,11 +135,15 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
 
 		for (Tjadkulmaster obj : resultList) {
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("filNr", obj.getMsekolah().getCnamaSekolah());
-			map.put("filBezeichnung", obj.getMprodi().getCnmprogst());
-			map.put("filName1", obj.getMpegawai1().getCnama());
-			map.put("filName2", obj.getMpegawai2().getCnama());
-			map.put("filOrt", obj.getCterm());
+			map.put("f1", obj.getMsekolah().getCnamaSekolah());
+			map.put("f2", obj.getMprodi().getCnmprogst());
+			map.put("f3", obj.getMpegawai1().getCnama());
+			map.put("f4", obj.getMtbmtkl().getCnamamk());
+			map.put("f5", obj.getCterm());
+            map.put("f6", obj.getCkelompok());
+            map.put("f7", obj.getCthajar());
+            map.put("f8", obj.getCsmt());
+            map.put("f9", String.valueOf(obj.getNsks()));
 			data.add(map);
 		}
 
