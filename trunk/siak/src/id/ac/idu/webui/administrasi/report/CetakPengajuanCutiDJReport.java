@@ -50,15 +50,9 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
     public CetakPengajuanCutiDJReport(Component parent) throws InterruptedException {
         super();
         this.setParent(parent);
-
-        try {
-            doPrint();
-        } catch (final Exception e) {
-            ZksampleMessageUtils.showErrorMessage(e.toString());
-        }
     }
 
-    public void doPrint() throws JRException, ColumnBuilderException, ClassNotFoundException, IOException {
+    public void doPrint(String _type, String _no) throws JRException, ColumnBuilderException, ClassNotFoundException, IOException {
 
         final FastReportBuilder drb = new FastReportBuilder();
         DynamicReport dr;
@@ -110,25 +104,25 @@ public class CetakPengajuanCutiDJReport extends Window implements Serializable {
         dr = drb.build();
 
         CutimhsService anData = (CutimhsService) SpringUtil.getBean("cutimhsService");
-        List<Tcutimhs> resultList = anData.getAll();
+        Tcutimhs resultList = anData.getByNo(_no);
 
-        List data = new ArrayList(resultList.size());
+        List data = new ArrayList(1);
         SimpleDateFormat dtformat = new SimpleDateFormat("dd MMM yyyy");
 
-        for (Tcutimhs obj : resultList) {
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("cnosurat", obj.getCnosurat());
-            map.put("dtglsurat", dtformat.format(obj.getDtglsurat()));
-            map.put("cterm", obj.getCterm());
-            map.put("cnim", obj.getMmahasiswa().getCnim());
-            map.put("cnama", obj.getMmahasiswa().getCnama());
-            data.add(map);
-        }
+        //for (Tcutimhs obj : resultList) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("cnosurat", resultList.getCnosurat());
+        map.put("dtglsurat", dtformat.format(resultList.getDtglsurat()));
+        map.put("cterm", resultList.getCterm());
+        map.put("cnim", resultList.getMmahasiswa().getCnim());
+        map.put("cnama", resultList.getMmahasiswa().getCnama());
+        data.add(map);
+        //}
 
         JRDataSource ds = new JRBeanCollectionDataSource(data);
         JasperPrint jp = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
-        String outputFormat = "PDF";
+        String outputFormat = _type.toUpperCase();
 
         output = new ByteArrayOutputStream();
 

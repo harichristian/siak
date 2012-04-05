@@ -153,6 +153,13 @@
                                         </hbox>
                                         <textbox id="txtb_nama" value="@{controller.selected.mmahasiswa.cnama}" readonly="true" constraint="no empty"  maxlength="25" width="200px"/>
                                     </row>
+                                    <row>
+                                        <label value="Cetak Ke"/>
+                                        <combobox id="boxPrint" width="150px" mold="rounded" >
+                                            <comboitem id="pdf" label="PDF" value="PDF"/>
+                                            <comboitem id="rtf" label="RTF" value="RTF"/>
+                                        </combobox>
+                                    </row>
                                 </rows>
                             </grid>
                         </groupbox>
