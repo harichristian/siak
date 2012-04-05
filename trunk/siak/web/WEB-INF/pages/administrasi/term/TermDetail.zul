@@ -48,6 +48,37 @@
                                     <row>
                                         <hbox>
                                             <label
+                                                    value="TAHUN AJAR"/>
+                                            <label value="*"
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                            <textbox id="txtb_filThajar"
+                                                     value="@{controller.term.mthajar.cthajar}" readonly="true"
+                                                     constraint="no empty" maxlength="8"/>
+                                            <button
+                                                    id="btnSearchThajarExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Tahun Ajar"/>
+                                        </hbox>
+                                    </row>
+
+                                    <row id="rowThajar" visible="false">
+                                        <hbox>
+                                            <label
+                                                    value="SEMESTER"/>
+                                            <label value=""
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox id="txtb_filSmt"
+                                                 value="@{controller.term.mthajar.csmt}" readonly="true" maxlength="1"
+                                                 width="100px"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label
                                                     value="DESKRIPSI"/>
                                             <label value=""
                                                    style="color:red;font-size:10px"/>
@@ -57,6 +88,22 @@
                                                 multiline="true" rows="3"
                                                 value="@{controller.term.deskripsi}"
                                                 readonly="true" maxlength="200" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="TANGGAL MULAI"/>
+                                        <datebox
+                                                id="txtb_filTanggalMulai"
+                                                value="@{controller.term.dtglmulai}"
+                                                readonly="true" maxlength="20" width="99%"/>
+                                    </row>
+                                    <row>
+                                        <label
+                                                value="TANGGAL AKHIR"/>
+                                        <datebox
+                                                id="txtb_filTanggalAkhir"
+                                                value="@{controller.term.dtglakhir}"
+                                                readonly="true" maxlength="20" width="99%"/>
                                     </row>
                                 </rows>
                             </grid>
