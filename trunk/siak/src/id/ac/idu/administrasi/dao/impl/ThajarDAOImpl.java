@@ -34,7 +34,7 @@ public class ThajarDAOImpl extends BasisDAO<Mthajar> implements ThajarDAO {
     @Override
     public Mthajar getThajarByKode(String kode) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Mthajar.class);
-        criteria.add(Restrictions.eq("kdThajar", kode));
+        criteria.add(Restrictions.eq("cthajar", kode));
 
         return (Mthajar) DataAccessUtils.uniqueResult(getHibernateTemplate().findByCriteria(criteria));
     }
@@ -55,10 +55,10 @@ public class ThajarDAOImpl extends BasisDAO<Mthajar> implements ThajarDAO {
         DetachedCriteria criteria = DetachedCriteria.forClass(Mthajar.class);
 
         if (!StringUtils.isEmpty(text)) {
-            criteria.add(Restrictions.ilike("kdThajar", text, MatchMode.ANYWHERE));
+            criteria.add(Restrictions.ilike("cthajar", text, MatchMode.ANYWHERE));
         }
 
-        criteria.addOrder(Order.asc("kdThajar"));
+        criteria.addOrder(Order.asc("cthajar"));
 
         int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
 
