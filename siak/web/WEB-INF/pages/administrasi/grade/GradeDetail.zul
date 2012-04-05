@@ -70,7 +70,7 @@
                                                             value="NILAI AWAL"/>
                                                     <intbox
                                                             id="txtb_filNilaiAwal" value="@{controller.grade.nnilawal}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                            readonly="true" maxlength="3" width="99%"/>
                                                 </row>
                                                 <row>
                                                     <label
@@ -78,7 +78,7 @@
                                                     <intbox
                                                             id="txtb_filNilaiAkhir"
                                                             value="@{controller.grade.nnilakhir}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                            readonly="true" maxlength="3" width="99%"/>
                                                 </row>
                                                 <row>
                                                     <hbox>
