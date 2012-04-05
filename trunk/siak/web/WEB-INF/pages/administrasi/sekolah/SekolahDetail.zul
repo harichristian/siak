@@ -40,7 +40,7 @@
                                             <label value="*"
                                                    style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox id="txtb_filNr"
+                                        <textbox id="txtb_filNr" style="text-transform:uppercase"
                                                  value="@{controller.sekolah.ckdsekolah}" readonly="true"
                                                  constraint="no empty" maxlength="5" width="100px"/>
                                     </row>
@@ -53,7 +53,7 @@
                                                    style="color:red;font-size:10px"/>
                                         </hbox>
                                         <textbox
-                                                id="txtb_filName1"
+                                                id="txtb_filName1" style="text-transform:uppercase"
                                                 value="@{controller.sekolah.cnamaSekolah}" constraint="no empty"
                                                 readonly="true" maxlength="50" width="99%"/>
                                     </row>
@@ -148,7 +148,8 @@
                                         </hbox>
                                         <hbox pack="stretch" width="100%">
                                             <textbox
-                                                    id="txtb_filUniversitas" value="@{controller.sekolah.muniv.cnamaUniv}"
+                                                    id="txtb_filUniversitas"
+                                                    value="@{controller.sekolah.muniv.cnamaUniv}"
                                                     readonly="true" maxlength="60" width="99%"/>
                                             <button
                                                     id="btnSearchUniversitasExtended" disabled="true"

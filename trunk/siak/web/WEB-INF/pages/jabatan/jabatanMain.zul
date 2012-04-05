@@ -41,7 +41,7 @@
 
                         <label value="Kode"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Jabatan_No" width="60px" maxlength="2"/>
+                        <textbox id="txtb_Jabatan_No" width="60px" maxlength="2" style="text-transform:uppercase"/>
                         <button id="button_JabatanList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="Cari Berdasarkan Kode"/>
@@ -49,7 +49,7 @@
 
                         <label value="Nama"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Jabatan_Name" width="100px" maxlength="50"/>
+                        <textbox id="txtb_Jabatan_Name" width="100px" maxlength="50" style="text-transform:uppercase"/>
                         <button id="button_JabatanList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="Cari Berdasarkan Nama"/>

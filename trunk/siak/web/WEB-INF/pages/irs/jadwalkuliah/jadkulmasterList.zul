@@ -8,6 +8,10 @@
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
 
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- DataBinding Initiator.                              -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tjadkulmasterListWindow" ?>
 
 <window id="tjadkulmasterListWindow" apply="${jadkulmasterListCtrl}" border="none"
         width="100%">
@@ -31,6 +35,9 @@
                     <button id="btnRefresh" height="24px"
                             image="/images/icons/refresh2_yellow_16x16.gif"
                             tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
+                    <button id="button_PrintList"
+						height="24px" image="/images/icons/btn_print2_16x16.gif"
+						tooltiptext="${c:l('btnPrint.tooltiptext')}" />
                     <separator orient="vertical"/>
                     <button id="button_TjadkulmasterList_NewTjadkulmaster"
                             height="24px" image="/images/icons/btn_new2_16x16.gif"
