@@ -110,8 +110,8 @@
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_TransaksiPembagianMataKuliahPaket"/>
 		<menuItem id="menu_Item_CetakPengajuanCutiKuliah" zulNavigation="/WEB-INF/pages/irs/cutimhs/pageMain.zul"
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakPengajuanCutiKuliah"/>
-        <!--<menuItem id="menu_Item_CetakJadwalKuliah" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
-                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakJadwalKuliah"/>-->
+        <menuItem id="menu_Item_CetakJadwalKuliah" zulNavigation="/WEB-INF/pages/irs/jadwalkuliah/jadkulmasterCetak.zul"
+                  iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakJadwalKuliah"/>
         <menuItem id="menu_Item_CetakKartuStudiTetapMahasiswa" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakKartuStudiTetapMahasiswa"/>
         <menuItem id="menu_Item_EntriAktifKembali" zulNavigation="/WEB-INF/pages/irs/aktifmhs/pageMain.zul"
