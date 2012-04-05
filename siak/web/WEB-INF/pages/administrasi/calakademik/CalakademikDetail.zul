@@ -116,14 +116,9 @@
                                                             readonly="true" maxlength="5" width="99%" xmlns:w="client">
                                                         <attribute w:name="doKeyPress_">
                                                             function(evt){
-                                                                if(this.getValue().length > 0 ){
-                                                                    if (!this._shallIgnore(evt, "0123456789:"))
-                                                                    this.$doKeyPress_(evt);
-                                                                } else {
-                                                                    if (!this._shallIgnore(evt, "05"))
-                                                                        this.$doKeyPress_(evt);
-                                                                   }
-                                                                }
+                                                            if (!this._shallIgnore(evt, "0123456789:"))
+                                                            this.$doKeyPress_(evt);
+                                                            }
                                                         </attribute>
                                                     </textbox>
                                                 </row>
@@ -136,14 +131,9 @@
                                                             readonly="true" maxlength="5" width="99%" xmlns:w="client">
                                                         <attribute w:name="doKeyPress_">
                                                             function(evt){
-                                                                if(this.getValue().length > 0 ){
-                                                                    if (!this._shallIgnore(evt, "0123456789:"))
-                                                                    this.$doKeyPress_(evt);
-                                                                } else {
-                                                                    if (!this._shallIgnore(evt, "05"))
-                                                                        this.$doKeyPress_(evt);
-                                                                   }
-                                                                }
+                                                            if (!this._shallIgnore(evt, "0123456789:"))
+                                                            this.$doKeyPress_(evt);
+                                                            }
                                                         </attribute>
                                                     </textbox>
                                                 </row>
