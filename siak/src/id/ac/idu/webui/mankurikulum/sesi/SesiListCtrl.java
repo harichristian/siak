@@ -41,7 +41,8 @@ public class SesiListCtrl extends GFCBaseListCtrl<Msesikuliah> implements Serial
     private SesiMainCtrl mainCtrl;
 
     protected Listheader listheader_Cdksesi;
-    protected Listheader listheader_Sekolah_Id;
+    protected Listheader listheader_Sekolah_Kode;
+    protected Listheader listheader_Sekolah_Name;
     protected Listheader listheader_Cjamawal;
     protected Listheader listheader_CJamakhir;
 
@@ -82,8 +83,10 @@ public class SesiListCtrl extends GFCBaseListCtrl<Msesikuliah> implements Serial
 
         listheader_Cdksesi.setSortAscending(new FieldComparator("ckdsesi", true));
         listheader_Cdksesi.setSortDescending(new FieldComparator("ckdsesi", false));
-        listheader_Sekolah_Id.setSortAscending(new FieldComparator("msekolah.id", true));
-        listheader_Sekolah_Id.setSortDescending(new FieldComparator("msekolah.id", false));
+        listheader_Sekolah_Kode.setSortAscending(new FieldComparator("msekolah.ckdsekolah", true));
+        listheader_Sekolah_Kode.setSortDescending(new FieldComparator("msekolah.ckdsekolah", false));
+        listheader_Sekolah_Name.setSortAscending(new FieldComparator("msekolah.cnamaSekolah", true));
+        listheader_Sekolah_Name.setSortDescending(new FieldComparator("msekolah.cnamaSekolah", false));
         listheader_Cjamawal.setSortAscending(new FieldComparator("cjamawal", true));
         listheader_Cjamawal.setSortDescending(new FieldComparator("cjamawal", false));
         listheader_CJamakhir.setSortAscending(new FieldComparator("cjamakhir", true));

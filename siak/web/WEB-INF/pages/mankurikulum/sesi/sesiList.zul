@@ -26,9 +26,13 @@
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Kode Sesi" sort="auto"
 							width="20%" />
-						<listheader id="listheader_Sekolah_Id"
+						<listheader id="listheader_Sekolah_Kode"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="Id Sekolah" sort="auto"
+							label="Kode Sekolah" sort="auto"
+							width="30%" />
+                        <listheader id="listheader_Sekolah_Name"
+							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+							label="Nama Sekolah" sort="auto"
 							width="30%" />
 						<listheader id="listheader_Cjamawal"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
@@ -41,14 +45,11 @@
 					</listhead>
 
 					<listitem self="@{each='sesi'}" value="@{sesi}" forward="onDoubleClick=onDoubleClickedOfficeItem">
-						<listcell label="@{sesi.ckdsesi}"
-							style="padding-left: 5px" />
-						<listcell label="@{sesi.sekolah.id}"
-							style="padding-left: 5px" />
-						<listcell label="@{sesi.cjamawal}"
-							style="padding-left: 5px" />
-						<listcell label="@{sesi.cjamakhir}"
-							style="padding-left: 5px" />
+						<listcell label="@{sesi.ckdsesi}" style="padding-left: 5px" />
+						<listcell label="@{sesi.msekolah.ckdsekolah}" style="padding-left: 5px" />
+						<listcell label="@{sesi.msekolah.cnamaSekolah}" style="padding-left: 5px" />
+						<listcell label="@{sesi.cjamawal}" style="padding-left: 5px" />
+						<listcell label="@{sesi.cjamakhir}" style="padding-left: 5px" />
 					</listitem>
 
 				</listbox>

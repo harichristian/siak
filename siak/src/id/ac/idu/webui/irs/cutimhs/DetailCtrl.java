@@ -39,11 +39,13 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Paging paging_MahasiswaSearchList;
     protected Listbox listMahasiswaSearch;
 
+    protected Textbox txtb_no;
     protected Textbox txtb_term;
     protected Textbox txtb_nim;
     protected Textbox txtb_nama;
     protected Intbox txtb_mhsid;
     protected Datebox txtb_tanggal;
+    protected Combobox boxPrint;
 
     /* Search Box */
     protected Textbox tb_Nim;
@@ -94,6 +96,7 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
 
         txtb_tanggal.setDisabled(true);
         txtb_mhsid.setVisible(false);
+        getMainCtrl().getButtonPrintList().setVisible(true);
     }
 
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
@@ -287,5 +290,21 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Combobox getBoxPrint() {
+        return boxPrint;
+    }
+
+    public void setBoxPrint(Combobox boxPrint) {
+        this.boxPrint = boxPrint;
+    }
+
+    public Textbox getTxtb_no() {
+        return txtb_no;
+    }
+
+    public void setTxtb_no(Textbox txtb_no) {
+        this.txtb_no = txtb_no;
     }
 }

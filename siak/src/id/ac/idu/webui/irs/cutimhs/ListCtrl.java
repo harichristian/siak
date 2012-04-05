@@ -73,6 +73,7 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
 
         doFillListbox();
         binder.loadAll();
+        getMainCtrl().getButtonPrintList().setVisible(false);
     }
 
     public void doFillListbox() {

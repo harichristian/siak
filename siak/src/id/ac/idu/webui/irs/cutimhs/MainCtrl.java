@@ -57,6 +57,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
 	protected Datebox txtb_search2;
 	protected Textbox txtb_search3;
 	protected Button buttonSearch;
+    protected Button buttonPrintList;
 
     private final String btnCtroller_ClassPrefix = "button_Ctrl_Main";
     private ButtonStatusCtrl btnCtrl;
@@ -272,7 +273,8 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         if(getMahasiswa()==null)
             setMahasiswa(getSelected().getMmahasiswa());
         
-        getDetailCtrl().getBinder().loadAll();
+        if(getDetailCtrl().getBinder()!=null)
+            getDetailCtrl().getBinder().loadAll();
 
         doStoreInitValues();
         btnCtrl.setBtnStatus_Edit();
@@ -353,8 +355,20 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onClick$buttonPrintList(Event event) throws InterruptedException {
+        if(getDetailCtrl() == null) return;
+
+        if(getDetailCtrl().getBoxPrint().getSelectedItem()==null) {
+            ZksampleMessageUtils.showErrorMessage("Please Select Print Type");
+            getDetailCtrl().getBoxPrint().setFocus(true);
+            return;
+        }
+
         final Window win = (Window) Path.getComponent("/outerIndexWindow");
-        new CetakPengajuanCutiDJReport(win);
+        CetakPengajuanCutiDJReport report = new CetakPengajuanCutiDJReport(win);
+        try {
+            report.doPrint((String) getDetailCtrl().getBoxPrint().getSelectedItem().getValue()
+                    , getDetailCtrl().getTxtb_no().getValue());
+        } catch (final Exception e) { ZksampleMessageUtils.showErrorMessage(e.toString()); }
     }
 
     private void doResizeSelectedTab(Event event) {
@@ -488,5 +502,13 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setMahasiswa(Mmahasiswa mahasiswa) {
         this.mahasiswa = mahasiswa;
+    }
+
+    public Button getButtonPrintList() {
+        return buttonPrintList;
+    }
+
+    public void setButtonPrintList(Button buttonPrintList) {
+        this.buttonPrintList = buttonPrintList;
     }
 }
