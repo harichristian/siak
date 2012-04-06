@@ -46,7 +46,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
       * 'extends GFCBaseCtrl' GenericForwardComposer.
       * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       */
-    protected Window tjadkulmasterDialogWindow; // autowired
+    protected Window tjadkulmasterCetakWindow; // autowired
     protected Textbox txtb_filProdi; // autowired
     protected Textbox txtb_filTerm; // autowired
     protected Textbox txtb_filTahunajaran; // autowired
@@ -80,7 +80,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      * @throws Exception
      */
-    public void onCreate$tjadkulmasterDialogWindow(Event event) throws Exception {
+    public void onCreate$tjadkulmasterCetakWindow(Event event) throws Exception {
         Tjadkulmaster anTjadkulmaster = getJadkulService().getNewTjadkulmaster();
         setTjadkulmaster(anTjadkulmaster);
 
@@ -94,7 +94,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
      */
     private void doCheckRights() {
         final UserWorkspace workspace = getUserWorkspace();
-        tjadkulmasterDialogWindow.setVisible(workspace.isAllowed("tjadkulmasterDialogWindow"));
+        tjadkulmasterCetakWindow.setVisible(workspace.isAllowed("tjadkulmasterCetakWindow"));
         button_TjadkulmasterDialog_PrintTjadkulmaster.setVisible(workspace.isAllowed("button_TjadkulmasterDialog_PrintTjadkulmaster"));
     }
 
@@ -108,7 +108,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      * @throws Exception
      */
-    public void onClose$tjadkulmasterDialogWindow(Event event) throws Exception {
+    public void onClose$tjadkulmasterCetakWindow(Event event) throws Exception {
         // logger.debug(event.toString());
 
         doClose();
@@ -140,7 +140,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
             doClose();
         } catch (final Exception e) {
             // close anyway
-            tjadkulmasterDialogWindow.onClose();
+            tjadkulmasterCetakWindow.onClose();
             // Messagebox.show(e.toString());
         }
     }
@@ -175,7 +175,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
      * the components and ask the user if saving the modifications. <br>
      */
     private void doClose() throws Exception {
-        tjadkulmasterDialogWindow.onClose();
+        tjadkulmasterCetakWindow.onClose();
     }
 
     /**
@@ -227,7 +227,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doSearchProdiExtended(Event event) {
-        Mprodi prodi = ProdiExtendedSearchListBox.show(tjadkulmasterDialogWindow);
+        Mprodi prodi = ProdiExtendedSearchListBox.show(tjadkulmasterCetakWindow);
 
         if (prodi != null) {
             txtb_filProdi.setValue(prodi.getCkdprogst() + " - " + prodi.getCnmprogst());
