@@ -6,10 +6,12 @@ import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tjadkulmaster;
 import id.ac.idu.irs.dao.JadkulmasterDAO;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,6 +26,31 @@ public class JadkulmasterDAOImpl extends BasisDAO<Tjadkulmaster> implements Jadk
     @Override
     public Tjadkulmaster getNewTjadkulmaster() {
         return new Tjadkulmaster();
+    }
+
+    @Override
+    public List<Tjadkulmaster> getTjadkulmastersForReport(Tjadkulmaster param) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tjadkulmaster.class);
+        if (param != null) {
+            System.out.println("if param != null");
+            if (param.getMprodi() != null) {
+                System.out.println("prodi = " + param.getMprodi().getCnmprogst());
+                criteria.add(Restrictions.eq("mprodi", param.getMprodi()));
+            }
+            if (StringUtils.isNotBlank(param.getCterm())) {
+                System.out.println("term = " + param.getCterm());
+                criteria.add(Restrictions.eq("cterm", param.getCterm()));
+            }
+            if (StringUtils.isNotBlank(param.getCsmt())) {
+                System.out.println("smt = " + param.getCsmt());
+                criteria.add(Restrictions.eq("csmt", param.getCsmt()));
+            }
+            if (StringUtils.isNotBlank(param.getCthajar())) {
+                System.out.println("thajar = " + param.getCthajar());
+                criteria.add(Restrictions.eq("cthajar", param.getCthajar()));
+            }
+        }
+        return getHibernateTemplate().findByCriteria(criteria);
     }
 
     @Override
@@ -102,7 +129,7 @@ public class JadkulmasterDAOImpl extends BasisDAO<Tjadkulmaster> implements Jadk
 
     @Override
     public int getCountAllTjadkulmasters() {
-        return DataAccessUtils.intResult(getHibernateTemplate().find("select count(*) from Tjadkulmaster"));
+        return DataAccessUtils.intResult(getHibernateTemplate().find("select count(*) from tjadkulmaster"));
     }
 
     /*

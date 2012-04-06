@@ -158,6 +158,9 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doPrintTjadkulmasterReport(Event event) throws InterruptedException {
         final Window win = (Window) Path.getComponent("/outerIndexWindow");
+        getTjadkulmaster().setCterm(txtb_filTerm.getValue());
+        getTjadkulmaster().setCthajar(txtb_filTahunajaran.getValue());
+        getTjadkulmaster().setCsmt(txtb_filSemester.getValue());
         new JadkulmasterSimpleDJReport(win, getTjadkulmaster());
     }
 

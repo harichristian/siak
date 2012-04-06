@@ -130,7 +130,14 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
 
         // Get information from database
         JadkulService as = (JadkulService) SpringUtil.getBean("jadkulService");
-        List<Tjadkulmaster> resultList = as.getAllTjadkulmasters();
+        List<Tjadkulmaster> resultList = null;
+        if(param == null) {
+            System.out.println("if param == null");
+            resultList = as.getAllTjadkulmasters();
+        } else {
+            System.out.println("else param == null");
+            resultList = as.getTjadkulmastersForReport(param);
+        }
 
         // Create Datasource and put it in Dynamic Jasper Format
         List data = new ArrayList(resultList.size());

@@ -5,6 +5,7 @@ import id.ac.idu.irs.dao.JadkuldetilDAO;
 import id.ac.idu.irs.dao.JadkulmasterDAO;
 import id.ac.idu.irs.service.JadkulService;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -44,6 +45,11 @@ public class JadkulServiceImpl implements JadkulService {
     @Override
     public Tjadkulmaster getNewTjadkulmaster() {
         return getJadkulmasterDAO().getNewTjadkulmaster();
+    }
+
+    @Override
+    public List<Tjadkulmaster> getTjadkulmastersForReport(Tjadkulmaster param) {
+        return getJadkulmasterDAO().getTjadkulmastersForReport(param);
     }
 
     @Override
