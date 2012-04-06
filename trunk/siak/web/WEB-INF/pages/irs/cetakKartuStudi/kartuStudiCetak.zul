@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+    <window id="kartuStudiCetakWindow"
+            title="CETAK JADWAL KULIAH" border="none" sizable="true"
+            apply="${kartuStudiCetakCtrl}" closable="true" width="800px"
+            height="800px">
+
+
+        <div sclass="z-toolbar" style="padding:0">
+            <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
+                  width="100%">
+
+                <!-- COMMON BUTTONS -->
+                <toolbar align="start"
+                         style="float:left; border-style: none;" height="28px">
+                    <button id="btnHelp" height="24px"
+                            image="/images/icons/light_16x16.gif"
+                            tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
+                    <button id="button_TjadkulmasterDialog_PrintTjadkulmaster"
+                            height="24px" image="/images/icons/btn_print2_16x16.gif"
+                            tooltiptext="Cetak Jadwal Kuliah"/>
+                </toolbar>
+                <!-- SEARCH AREA -->
+                <toolbar align="center"
+                         style="float:left; border-style: none;" height="28px">
+                    <hbox align="center" style="padding: 2px"></hbox>
+                </toolbar>
+            </hbox>
+        </div>
+
+        <borderlayout id="borderlayoutTjadkulmasterDialog">
+
+            <north border="none">
+                <panel id="panel_TjadkulmasterDialog" style="margin-bottom:10px"
+                       border="none">
+                    <panelchildren>
+
+                        <style>.z-groupbox-cnt {
+                            border: 0
+                        }</style>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption image="/images/icons/view.gif"
+                                     label="Jadwal Kuliah Header"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px"/>
+                                    <column width="100%"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="TERM"/>
+                                            <label value=""
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <textbox
+                                                id="txtb_filTerm"
+                                                maxlength="4" width="99%"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label value="NIM"/>
+                                            <label value=""
+                                                   style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                            <textbox
+                                                    id="txtb_filNimMulai"
+                                                    maxlength="12" width="99%"/>
+                                            <label value="S/D"/>
+                                            <textbox
+                                                    id="txtb_filNimAkhir"
+                                                    maxlength="12" width="99%"/>
+                                        </hbox>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </north>
+        </borderlayout>
+
+    </window>
+</zk>
+
+
+        <!-- set the Button of the bandbox, missing in grayTheme -->
+        <!--
+            <style dynamic="true">
+            .mybandbox .z-bandbox-img { background: transparent
+            url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
+            no-repeat 0 0; border: 1px solid #C0C0C0 ; vertical-align:
+            top: cursor: pointer: width: 19px; height: 19px ;}
+            </style>
+        -->

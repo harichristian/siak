@@ -565,6 +565,12 @@
         <property name="prodiService" ref="prodiService"/>
     </bean>
 
+    <bean id="kartuStudiCetakCtrl" class="id.ac.idu.webui.irs.kartustudi.KartuStudiCetakCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="jadkulService" ref="jadkulService"/>
+        <property name="prodiService" ref="prodiService"/>
+    </bean>
+
     <!-- Aktif Kembali -->
     <bean id="aktifmhsMainCtrl" class="id.ac.idu.webui.irs.aktifmhs.MainCtrl"
           parent="basisCtrl" scope="prototype">
