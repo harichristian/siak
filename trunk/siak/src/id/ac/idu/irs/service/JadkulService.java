@@ -2,6 +2,7 @@ package id.ac.idu.irs.service;
 
 import id.ac.idu.backend.model.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ public interface JadkulService {
     // ########################################################## //
 
     public Tjadkulmaster getNewTjadkulmaster();
+
+    public List<Tjadkulmaster> getTjadkulmastersForReport(Tjadkulmaster param);
 
     public List<Tjadkulmaster> getTjadkulmastersBySekolahAndProdiAndPegawai1(Msekolah sekolah, Mprodi prodi, Mpegawai pegawai1);
 

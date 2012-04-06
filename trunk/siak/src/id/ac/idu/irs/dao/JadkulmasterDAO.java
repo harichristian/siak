@@ -5,6 +5,7 @@ import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tjadkulmaster;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,6 +18,8 @@ import java.util.List;
 public interface JadkulmasterDAO {
 
     public Tjadkulmaster getNewTjadkulmaster();
+
+    public List<Tjadkulmaster> getTjadkulmastersForReport(Tjadkulmaster param);
 
     public List<Tjadkulmaster> getTjadkulmastersBySekolahAndProdiAndPegawai1(Msekolah sekolah, Mprodi prodi, Mpegawai pegawai1);
 
