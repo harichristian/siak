@@ -121,4 +121,12 @@ public interface MfeedbackDAO {
      * @return List of YoutubeLinks / Liste von YoutubeLinks
      */
     public ResultObject getAllAlumniLikeText(String text, int start, int pageSize);
+
+    /**
+     * EN: Get a paged list of all Branches.<br>
+     * DE: Gibt eine paged Liste aller Branchen zurueck.<br>
+     *
+     * @param type     Text for search / SuchText
+     */
+    public List<Mfeedback> getAllmfeedbackByType(String type);
 }

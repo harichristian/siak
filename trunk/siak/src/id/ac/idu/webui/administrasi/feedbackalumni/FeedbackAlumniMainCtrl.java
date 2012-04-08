@@ -26,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -89,6 +90,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
     // ServiceDAOs / Domain Classes
     private FeedbackAlumniService feedbackAlumniService;
+
+
 
     // always a copy from the bean before modifying. Used for reseting
     private Tfeedbackalumni originalFeedbackAlumni;
@@ -200,8 +203,13 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     public List<Tfeedbackalumni> getList(Tfeedbackalumni feedbackAlumni){
-        return feedbackAlumniService.getFeedbackAlumniByNim(feedbackAlumni.getMmahasiswa().getCnim(),feedbackAlumni.getCterm(),feedbackAlumni.getCkelompok());
+       List<Tfeedbackalumni> exlist = new ArrayList<Tfeedbackalumni>();
+       if (feedbackAlumni!=null && feedbackAlumni.getMmahasiswa()!=null) {
+           exlist =  feedbackAlumniService.getFeedbackAlumniByNim(feedbackAlumni.getMmahasiswa(),feedbackAlumni.getCterm(),feedbackAlumni.getCkelompok());
+       }
+       return exlist;
 
+//        return  (List<Tfeedbackalumni>) hsearch;
     }
     /**
      * when the "print feedbackAlumnis list" button is clicked.
@@ -391,16 +399,17 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         // if not empty
 
             // ++ create the searchObject and init sorting ++//
-            HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
-            soFeedbackAlumni.addFilter(new Filter("mmahasiswa.cnim", fa.getMmahasiswa().getCnim() , Filter.OP_EQUAL));
-            soFeedbackAlumni.addFilter(new Filter("cterm", fa.getCterm() , Filter.OP_EQUAL));
-            soFeedbackAlumni.addSort("nnopertanyaan", false);
+//            HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
+//            soFeedbackAlumni.addFilter(new Filter("mmahasiswa.cnim", fa.getMmahasiswa().getCnim() , Filter.OP_EQUAL));
+//            soFeedbackAlumni.addFilter(new Filter("cterm", fa.getCterm() , Filter.OP_EQUAL));
+//            soFeedbackAlumni.addSort("nnopertanyaan", false);
 
             // Change the BindingListModel.
         if (getFeedbackAlumniDetailCtrl().getBinder() != null) {
 
             getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper().clear();
-            getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper().setSearchObject(soFeedbackAlumni);
+//            getFeedbackAlumniDetailCtrl().getPagedBindingListWrapper().setSearchObject(soFeedbackAlumni);
+            getFeedbackAlumniDetailCtrl().setRadioOnListBox(getList(fa));
 
             // get the current Tab for later checking if we must change it
             Tab currentTab = tabbox_FeedbackAlumniMain.getSelectedTab();
@@ -696,7 +705,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
             // save it to database
             //getFeedbackAlumniService().saveOrUpdate(getFeedbackAlumniDetailCtrl().getFeedbackAlumni());
-            getFeedbackAlumniService().saveOrUpdateList(getFeedbackAlumniDetailCtrl().getFeedbackAlumniList());
+            getFeedbackAlumniService().saveOrUpdateList(getFeedbackAlumniDetailCtrl().setlbtolist(getFeedbackAlumniDetailCtrl().getFeedbackAlumniList()));
             // if saving is successfully than actualize the beans as
             // origins.
             doStoreInitValues();
@@ -785,10 +794,14 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         btnCtrlFeedbackAlumni.setInitNew();
 
         tabFeedbackAlumniDetail.setSelected(true);
+
+
         // set focus
         //getFeedbackAlumniDetailCtrl().txtb_jawaban.focus();
 
     }
+
+    // set radio simpen disini tapi mengacu ke master feedback
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ++++++++++++++++++++ Helpers ++++++++++++++++++++ //

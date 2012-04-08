@@ -219,7 +219,7 @@ public class FeedbackAlumniListCtrl extends GFCBaseListCtrl<Tfeedbackalumni> imp
         if (anFeedbackAlumni == null) {
             return;
         }
-        List<Tfeedbackalumni> ltfa = getFeedbackAlumniService().getFeedbackAlumniByNim(anFeedbackAlumni.getMmahasiswa().getCnim(),
+        List<Tfeedbackalumni> ltfa = getFeedbackAlumniService().getFeedbackAlumniByNim(anFeedbackAlumni.getMmahasiswa(),
                 anFeedbackAlumni.getCterm(), anFeedbackAlumni.getCkelompok());
 
         // check first, if the tabs are created

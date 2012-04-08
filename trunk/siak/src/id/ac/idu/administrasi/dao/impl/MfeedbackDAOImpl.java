@@ -105,5 +105,15 @@ public class MfeedbackDAOImpl extends BasisDAO<Mfeedback> implements MfeedbackDA
 
         return new ResultObject(list, totalCount);
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Mfeedback> getAllmfeedbackByType(String type) {
+
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mfeedback.class);
+        criteria.add(Restrictions.ilike("ckdfeedback", type, MatchMode.ANYWHERE));
+
+        return getHibernateTemplate().findByCriteria(criteria);
+    }
 }
 
