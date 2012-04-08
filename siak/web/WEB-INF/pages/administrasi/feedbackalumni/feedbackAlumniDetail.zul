@@ -106,9 +106,9 @@
                                         <!--<label value="jawaban"/>-->
                                         <hbox pack="stretch" width="100px">
                                             <textbox
-                                                    id="txtb_jawaban"
+                                                    id="yyy"
                                                     value="@{controller.feedbackAlumni.cjawaban}"
-                                                    readonly="true" maxlength="50" width="100px" visible="false"/>
+                                                    readonly="false" maxlength="1" width="100px" visible="false"/>
                                         </hbox>
                                     </row>
                                     <row>
@@ -124,41 +124,64 @@
             <center border="none">
             <listbox id="listBoxFeedbackAlumniDetail"
                          style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
-                         model="@{controller.feedbackAlumnis}"
-                         selectedItem="@{controller.feedbackAlumni}" vflex="true"
                          tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
-                         height="100%" multiple="false">
+                          multiple="false" >
                 <listhead sizable="true">
                     <listheader id="listheader_FeedbackAlumniDetailList_no"
                                 sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                                label="No" sort="auto"
-                                width="40px"/>
+                                label="No"
+                                width="5%"/>
                     <listheader id="listheader_FeedbackAlumniDetailList_pertanyaan"
                                 sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                                label="Pertanyaan" sort="auto"
-                                width="40%"/>
+                                label="Pertanyaan"
+                                width="48%"/>
                     <listheader id="listheader_FeedbackAlumniDetailList_1"
                                 sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                                label="Jawaban" sort="auto"
-                                width="300px"/>
+                                label="Jawaban"
+                                width="47%"/>
                 </listhead>
-                <!--radiogroup onCheck="choice.value = self.selectedItem.label"-->
-                <listitem self="@{each='feedbackAlumni'}" value="@{feedbackAlumni}">
-                    <listcell label="@{feedbackAlumni.mfeedback.nnopertanyaan}"
-                              style="padding-left: 5px"/>
-                    <listcell label="@{feedbackAlumni.mfeedback.cpertanyaan}"
-                              style="padding-left: 5px"/>
-                    <listcell style="padding-left: 5px">
-                        <label value="Buruk Sekali"/>
-                        <radiogroup onCheck="controller.feedbackAlumni.cjawaban = feedbackAlumni.cjawaban = self.selectedItem.label">
-                        <radio label="1"/>
-                        <radio label="2"/>
-                        <radio label="3"/>
-                        <radio label="4"/>
-                        <radio label="5"/>
-                        </radiogroup><label value="Baik Sekali"/>
-                    </listcell>
-                </listitem>
+                <!--&lt;!&ndash;radiogroup onCheck="choice.value = self.selectedItem.label"&ndash;&gt;-->
+                <!--<listitem id="ls" self="@{each='feedbackAlumni'}" value="@{feedbackAlumni}">-->
+                    <!--<listcell label="@{feedbackAlumni.mfeedback.nnopertanyaan}"-->
+                              <!--style="padding-left: 5px"/>-->
+                    <!--<listcell label="@{feedbackAlumni.mfeedback.cpertanyaan}"-->
+                              <!--style="padding-left: 5px"/>-->
+                    <!--<listcell id="lscell" style="padding-left: 5px">-->
+                        <!--<textbox-->
+                                                    <!--id="xsx"-->
+                                                    <!--value="@{feedbackAlumni.cjawaban}"-->
+                                                    <!--readonly="false" maxlength="1" width="10px" visible="true"/>-->
+                         <!--<textbox-->
+                                                    <!--id="idxc"-->
+                                                    <!--value="@{feedbackAlumni.id}"-->
+                                                    <!--readonly="false" maxlength="1" width="50px" visible="true"/>-->
+                        <!--<label value="Buruk Sekali"/>-->
+                        <!--<radiogroup id="rdi" name="@{feedbackAlumni.id}">-->
+                        <!--<radio id="child1" label="1"  radiogroup="rdi" />-->
+
+                        <!--<radio  id="child2" label="2"  radiogroup="rdi"  checked="true"/>-->
+
+                        <!--<radio  id="child3" label="3" radiogroup="rdi" onCheck="listBoxFeedbackAlumniDetail.selectedItem='selected'" />-->
+
+                        <!--<radio  id="child4" label="4" radiogroup="rdi" >-->
+                            <!--<attribute name="onCheck"><![CDATA[-->
+                                       <!--listBoxFeedbackAlumniDetail.onSelect ="true";-->
+                                   <!--]]>-->
+                            <!--</attribute>-->
+                        <!--</radio>-->
+                        <!--<radio  id="child5" label="5" radiogroup="rdi" value="@{feedbackAlumni.id}" checked="true">-->
+                            <!--<attribute name="onCheck"><![CDATA[-->
+                                      <!--child1.checked=false;-->
+                                      <!--child2.checked=true;-->
+                                      <!--child3.checked=false;-->
+                                      <!--child4.checked=false;-->
+                                      <!--child5.checked=true;-->
+                                   <!--]]>-->
+                            <!--</attribute>-->
+                        <!--</radio>-->
+                        <!--</radiogroup><label value="Baik Sekali"/>-->
+                    <!--</listcell>-->
+                <!--</listitem>-->
             </listbox>
             <!--listbox id="listBoxFeedbackAlumniDetail"
                          style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
@@ -199,9 +222,7 @@
                     </listitem>
                 </listbox-->
             </center>
-            <south border="none">
-                <paging id="paging_FeedbackAlumniDetailList"/>
-            </south>
+
         </borderlayout>
 
     </window>
