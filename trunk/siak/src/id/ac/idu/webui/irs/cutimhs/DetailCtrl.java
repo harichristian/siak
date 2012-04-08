@@ -96,7 +96,6 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
 
         txtb_tanggal.setDisabled(true);
         txtb_mhsid.setVisible(false);
-        getMainCtrl().getButtonPrintList().setVisible(true);
     }
 
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {

@@ -117,7 +117,6 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$checkbox_List_ShowAll(Event event) {
         txtb_Sesi_Code.setValue("");
-        txtb_Sesi_KodeSekolah.setValue("");
         txtb_Sesi_JamAwal.setValue("");
         txtb_Sesi_JamAkhir.setValue("");
         this.searchList();
@@ -131,8 +130,8 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
         if (StringUtils.isNotEmpty(txtb_Sesi_Code.getValue()))
             filter1 = new Filter("ckdsesi", "%" + txtb_Sesi_Code.getValue() + "%", Filter.OP_LIKE);
 
-        if (txtb_Sesi_JamAwal.getValue() != null)
-            filter2 = new Filter("cjamawal", txtb_Sesi_JamAwal.getValue() , Filter.OP_EQUAL);
+        if (StringUtils.isNotEmpty(txtb_Sesi_JamAwal.getValue()))
+            filter2 = new Filter("cjamawal", txtb_Sesi_JamAwal.getValue() , Filter.OP_LIKE);
 
         if (StringUtils.isNotEmpty(txtb_Sesi_JamAkhir.getValue()))
             filter3 = new Filter("cjamakhir", "%" + txtb_Sesi_JamAkhir.getValue() + "%", Filter.OP_LIKE);

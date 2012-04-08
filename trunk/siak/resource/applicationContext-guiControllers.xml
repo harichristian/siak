@@ -589,6 +589,7 @@
         <property name="service" ref="cutimhsService"/>
         <property name="service2" ref="mahasiswaService"/>
         <property name="plwMahasiswa" ref="pagedListWrapper"/>
+        <property name="plwTerm" ref="pagedListWrapper"/>
     </bean>
     <!-- Cuti Mahasiswa -->
     <bean id="cutimhsMainCtrl" class="id.ac.idu.webui.irs.cutimhs.MainCtrl"

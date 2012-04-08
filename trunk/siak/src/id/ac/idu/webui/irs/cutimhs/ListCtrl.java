@@ -44,9 +44,7 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
     protected Listheader listheader_filed2;
     protected Listheader listheader_filed3;
     protected Listheader listheader_filed4;
-    protected Listheader listheader_filed5;
-    protected Listheader listheader_filed6;
-
+    
     public ListCtrl() {
         super();
     }
@@ -73,7 +71,6 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
 
         doFillListbox();
         binder.loadAll();
-        getMainCtrl().getButtonPrintList().setVisible(false);
     }
 
     public void doFillListbox() {
@@ -90,11 +87,7 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
         listheader_filed3.setSortDescending(new FieldComparator("mmahasiswa.cnim", false));
         listheader_filed4.setSortAscending(new FieldComparator("cterm", true));
         listheader_filed4.setSortDescending(new FieldComparator("cterm", false));
-        listheader_filed5.setSortAscending(new FieldComparator("cthajar", true));
-        listheader_filed5.setSortDescending(new FieldComparator("cthajar", false));
-        listheader_filed6.setSortAscending(new FieldComparator("cket", true));
-        listheader_filed6.setSortDescending(new FieldComparator("cket", false));
-
+        
         searchObj = new HibernateSearchObject<Tcutimhs>(Tcutimhs.class, getCountRows());
         searchObj.addFilter(new com.trg.search.Filter("cjenis", Codec.JenisSurat.Status2.getValue(), com.trg.search.Filter.OP_EQUAL));
         searchObj.addSort("cnosurat", false);
