@@ -202,7 +202,9 @@ public class KodeposMainCtrl extends GFCBaseCtrl implements Serializable {
         if (!currentTab.equals(tabDetail)) tabDetail.setSelected(true);
         else currentTab.setSelected(true);
 
-        getDetailCtrl().getBinder().loadAll();
+        if(getDetailCtrl().getBinder()!=null) {
+            getDetailCtrl().getBinder().loadAll();
+        }
 
         doStoreInitValues();
         btnCtrl.setBtnStatus_Edit();

@@ -101,6 +101,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onSelect$tabList(Event event) throws IOException {
         logger.debug(event.toString());
+        getButtonPrintList().setVisible(false);
 
         if (tabPanelList.getFirstChild() != null) {
             tabList.setSelected(true);
@@ -114,6 +115,8 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onSelect$tabDetail(Event event) throws IOException {
+        getButtonPrintList().setVisible(true);
+        
         if (tabPanelDetail.getFirstChild() != null) {
             tabDetail.setSelected(true);
 
@@ -146,7 +149,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
             filter2 = new Filter("dtglsurat", txtb_search2.getValue() , Filter.OP_EQUAL);
 
         if (StringUtils.isNotEmpty(txtb_search3.getValue()))
-            filter3 = new Filter("cthajar", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
+            filter3 = new Filter("mmahasiswa.cnim", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
 
         this.searchList(filter1, filter2, filter3);
     }

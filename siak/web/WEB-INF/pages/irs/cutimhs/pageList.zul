@@ -25,27 +25,19 @@
 						<listheader id="listheader_filed1"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Nomor Surat Aktif" sort="auto"
-							width="15%" />
+							width="20%" />
 						<listheader id="listheader_filed2"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Tanggal Surat" sort="auto"
-							width="15%" />
+							width="20%" />
                         <listheader id="listheader_filed3"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Nim" sort="auto"
-							width="15%" />
+							width="25%" />
 						<listheader id="listheader_filed4"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="Trem" sort="auto"
-							width="10%" />
-						<listheader id="listheader_filed5"
-							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="Tahun Ajaran" sort="auto"
-							width="15%" />
-                        <listheader id="listheader_filed6"
-							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="Keterangan" sort="auto"
-							width="30%" />
+							width="35%" />
 					</listhead>
 
 					<listitem self="@{each='data'}" value="@{data}" forward="onDoubleClick=onDoubleClickedItem">
@@ -53,8 +45,6 @@
 						<listcell label="@{data.dtglsurat}" style="padding-left: 5px" />
 						<listcell label="@{data.mmahasiswa.cnim}" style="padding-left: 5px" />
 						<listcell label="@{data.cterm}" style="padding-left: 5px" />
-                        <listcell label="@{data.cthajar}" style="padding-left: 5px" />
-                        <listcell label="@{data.cket}" style="padding-left: 5px" />
 					</listitem>
 				</listbox>
 			</center>

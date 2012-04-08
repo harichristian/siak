@@ -3,10 +3,12 @@ package id.ac.idu.webui.irs.aktifmhs;
 import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.MahasiswaService;
 import id.ac.idu.backend.model.Mmahasiswa;
+import id.ac.idu.backend.model.Mterm;
 import id.ac.idu.backend.model.Tcutimhs;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.irs.service.CutimhsService;
 import id.ac.idu.webui.irs.aktifmhs.model.OrderSearchMahasiswaList;
+import id.ac.idu.webui.irs.cutimhs.model.CutiSearchTermList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import org.apache.commons.lang.StringUtils;
@@ -47,9 +49,17 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox tb_Nama;
     protected Textbox tb_NoKtp;
 
+    /* Lov Term */
+    protected Bandbox cmbterm;
+    protected Paging pagingterm;
+    protected Listbox listterm;
+    protected Textbox tbckdTerm;
+    protected Textbox tbdeskripsi;
+
     protected transient AnnotateDataBinder binder;
 
     private transient PagedListWrapper<Mmahasiswa> plwMahasiswa;
+    private transient PagedListWrapper<Mterm> plwTerm;
 
     private transient CutimhsService service;
     private transient MahasiswaService service2;
@@ -143,6 +153,55 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
         bandbox_Dialog_MahasiswaSearch.close();
     }
 
+    public void onOpen$cmbterm(Event event) {
+        this.searchTerm();
+    }
+
+    public void onClick$buttonSearchTerm(Event event) {
+        Filter filter1 = null;
+        Filter filter2 = null;
+
+        if (StringUtils.isNotEmpty(tbckdTerm.getValue()))
+            filter1 = new Filter("kdTerm", "%" + tbckdTerm.getValue() + "%", Filter.OP_LIKE);
+
+        if (StringUtils.isNotEmpty(tbdeskripsi.getValue()))
+            filter2 = new Filter("deskripsi", "%" + tbdeskripsi.getValue() + "%", Filter.OP_LIKE);
+
+        this.searchTerm(filter1,filter2);
+    }
+
+    public void searchTerm(Filter... filters) {
+        HibernateSearchObject<Mterm> soTerm = new HibernateSearchObject<Mterm>(Mterm.class);
+
+        if(filters != null) {
+            for(Filter anTerm : filters) {
+                if(anTerm!=null) soTerm.addFilter(anTerm);
+            }
+        }
+
+		soTerm.addSort("kdTerm", false);
+		pagingterm.setPageSize(pageSize);
+		pagingterm.setDetailed(true);
+		getPlwTerm().init(soTerm, listterm, pagingterm);
+		listterm.setItemRenderer(new CutiSearchTermList());
+    }
+
+    public void onClick$buttonCloseTerm(Event event) {
+        cmbterm.close();
+    }
+
+    public void onTermItem(Event event) {
+        Listitem item = listterm.getSelectedItem();
+
+        if (item != null) {
+
+            Mterm term = (Mterm) item.getAttribute("data");
+            txtb_term.setValue(term.getKdTerm());
+        }
+
+        cmbterm.close();
+    }
+
     public void doFitSize(Event event) {
         final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue().intValue();
         final int maxListBoxHeight = height - 148;
@@ -152,7 +211,7 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void doReadOnlyMode(boolean b) {
-        txtb_term.setReadonly(b);
+        cmbterm.setDisabled(b);
         txtb_tanggal.setDisabled(b);
         bandbox_Dialog_MahasiswaSearch.setDisabled(b);
     }
@@ -219,5 +278,13 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public PagedListWrapper<Mterm> getPlwTerm() {
+        return plwTerm;
+    }
+
+    public void setPlwTerm(PagedListWrapper<Mterm> plwTerm) {
+        this.plwTerm = plwTerm;
     }
 }

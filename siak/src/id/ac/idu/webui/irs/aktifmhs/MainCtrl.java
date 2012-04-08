@@ -151,7 +151,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
             filter2 = new Filter("dtglsurat", txtb_search2.getValue() , Filter.OP_EQUAL);
 
         if (StringUtils.isNotEmpty(txtb_search3.getValue()))
-            filter3 = new Filter("cthajar", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
+            filter3 = new Filter("mmahasiswa.cnim", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
 
         this.searchList(filter1, filter2, filter3);
     }
