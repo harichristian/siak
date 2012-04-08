@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.service;
 
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tfeedbackalumni;
 
 import java.util.List;
@@ -80,5 +81,5 @@ public interface FeedbackAlumniService {
      */
     public void saveOrUpdateList(List<Tfeedbackalumni> list);
 
-    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String string, String term, String kelompok);
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(Mmahasiswa mhs, String term, String kelompok);
 }

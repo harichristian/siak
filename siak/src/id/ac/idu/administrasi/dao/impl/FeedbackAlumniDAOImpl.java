@@ -66,18 +66,15 @@ public class FeedbackAlumniDAOImpl extends BasisDAO<Tfeedbackalumni> implements 
         }
     }
     @Override
-    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String nim, String term, String kelompok) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackalumni.class, "tfeedbackalumni");
-        DetachedCriteria subCriteria = DetachedCriteria.forClass(Mmahasiswa.class, "mmahasiswa");
-        subCriteria.setProjection(Projections.id());
-        subCriteria.createAlias("model.mmahasiswa", "mmahasiswa", CriteriaSpecification.INNER_JOIN);
-        subCriteria.createAlias("model.tfeedbackalumni", "tfeedbackalumni", CriteriaSpecification.INNER_JOIN);
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.MAHASISWA_DOT_NIM, nim));
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.TERM, term));
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.KELOMPOK, kelompok));
-        //criteria.add(Expression.eq("lang.langCode", "EN"));
-        subCriteria.add(Restrictions.eqProperty("tfeedbackalumni.mahasiswaId","mmahasiswa.mahasiswaId"));
-        //criteria.add(Subqueries.lt(0, subCriteria));
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(Mmahasiswa mhs, String term, String kelompok) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackalumni.class);
+//        criteria.add(Restrictions.ilike(ConstantUtil.MAHASISWA_DOT_NIM, nim, MatchMode.ANYWHERE));
+        criteria.add(Restrictions.eq("mmahasiswa", mhs));
+        criteria.add(Restrictions.eq(ConstantUtil.TERM, term));
+       // criteria.add(Restrictions.ilike(ConstantUtil.KELOMPOK, kelompok));
+
         return getHibernateTemplate().findByCriteria(criteria);
     }
+
+
 }

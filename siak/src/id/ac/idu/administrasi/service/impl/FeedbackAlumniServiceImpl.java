@@ -3,6 +3,7 @@ package id.ac.idu.administrasi.service.impl;
 import id.ac.idu.administrasi.dao.*;
 import id.ac.idu.administrasi.service.FeedbackAlumniService;
 import id.ac.idu.backend.model.Mfeedback;
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tfeedbackalumni;
 import id.ac.idu.util.Codec;
 
@@ -132,7 +133,7 @@ public class FeedbackAlumniServiceImpl implements FeedbackAlumniService{
         }
     }
     @Override
-    public List<Tfeedbackalumni> getFeedbackAlumniByNim(String string, String term, String kelompok) {
-        return getFeedbackAlumniDAO().getFeedbackAlumniByNim(string, term, kelompok);
+    public List<Tfeedbackalumni> getFeedbackAlumniByNim(Mmahasiswa mhs, String term, String kelompok) {
+        return getFeedbackAlumniDAO().getFeedbackAlumniByNim(mhs, term, kelompok);
     }
 }

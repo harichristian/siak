@@ -99,4 +99,6 @@ public interface MfeedbackService {
      * @return List of YoutubeLinks / Liste von YoutubeLinks
      */
     public ResultObject getAllAlumniLikeText(String text, int start, int pageSize);
+
+    public List<Mfeedback> getAllMfeedbackByType(String type);
 }

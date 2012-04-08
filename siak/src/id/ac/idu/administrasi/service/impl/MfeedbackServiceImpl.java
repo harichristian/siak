@@ -76,4 +76,8 @@ public class MfeedbackServiceImpl implements MfeedbackService {
         return getMfeedbackDAO().getAllAlumniLikeText(text, start, pageSize);
     }
 
+    @Override
+    public List<Mfeedback> getAllMfeedbackByType(String type) {
+        return getMfeedbackDAO().getAllmfeedbackByType(type);
+    }
 }

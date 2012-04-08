@@ -14,6 +14,7 @@ public class Tfeedbackalumni  implements java.io.Serializable {
     // Fields    
 
      private int id;
+     private String strId;
      private Mfeedback mfeedback;
      private String cterm;
      private Msekolah msekolah;
@@ -73,6 +74,14 @@ public class Tfeedbackalumni  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
+    }
+
+     public String getStrId() {
+        return String.valueOf(this.id);
+    }
+
+    public void setStrId(String strId) {
+        this.strId = strId;
     }
 
     public Mfeedback getMfeedback() {
