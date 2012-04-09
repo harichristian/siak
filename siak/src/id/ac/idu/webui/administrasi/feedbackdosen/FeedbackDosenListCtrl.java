@@ -214,7 +214,7 @@ public class FeedbackDosenListCtrl extends GFCBaseListCtrl<Tfeedbackdosen> imple
         if (anFeedbackDosen == null) {
             return;
         }
-        List<Tfeedbackdosen> ltfa = getFeedbackDosenService().getFeedbackDosenByNip(anFeedbackDosen.getMpegawai().getCnip(),
+        List<Tfeedbackdosen> ltfa = getFeedbackDosenService().getFeedbackDosenByNip(anFeedbackDosen.getMpegawai(),
                 anFeedbackDosen.getCterm(), anFeedbackDosen.getCkelompok());
 
         // check first, if the tabs are created

@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.dao;
 
+import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.backend.model.Tfeedbackdosen;
 
 import java.util.List;
@@ -85,5 +86,5 @@ public interface FeedbackDosenDAO {
      */
     public void save(Tfeedbackdosen entity);
 
-    public List<Tfeedbackdosen> getFeedbackDosenByNip(String nip, String term, String kelompok);
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(Mpegawai nip, String term, String kelompok);
 }

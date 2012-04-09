@@ -3,6 +3,7 @@ package id.ac.idu.administrasi.service.impl;
 import id.ac.idu.administrasi.dao.*;
 import id.ac.idu.administrasi.service.FeedbackDosenService;
 import id.ac.idu.backend.model.Mfeedback;
+import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.backend.model.Tfeedbackdosen;
 import id.ac.idu.util.Codec;
 
@@ -132,7 +133,7 @@ public class FeedbackDosenServiceImpl implements FeedbackDosenService{
         }
     }
     @Override
-    public List<Tfeedbackdosen> getFeedbackDosenByNip(String string, String term, String kelompok) {
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(Mpegawai string, String term, String kelompok) {
         return getFeedbackDosenDAO().getFeedbackDosenByNip(string, term, kelompok);
     }
 }

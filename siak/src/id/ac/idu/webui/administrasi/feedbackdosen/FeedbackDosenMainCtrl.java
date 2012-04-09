@@ -26,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -183,8 +184,11 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
         if (tabPanelFeedbackDosenDetail.getFirstChild() != null) {
             tabFeedbackDosenDetail.setSelected(true);
 
-            // refresh the Binding mechanism
-            getFeedbackDosenDetailCtrl().setFeedbackDosen(getSelectedFeedbackDosen());
+             try{
+                doSearchDetail(getSelectedFeedbackDosen());
+            }catch (Exception e)  {
+               e.printStackTrace();
+            }
             getFeedbackDosenDetailCtrl().getBinder().loadAll();
             return;
         }
@@ -192,6 +196,34 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
         if (tabPanelFeedbackDosenDetail != null) {
             ZksampleCommonUtils.createTabPanelContent(tabPanelFeedbackDosenDetail, this, "ModuleMainController", "/WEB-INF/pages/administrasi/feedbackdosen/feedbackDosenDetail.zul");
         }
+    }
+
+     public void doSearchDetail(Tfeedbackdosen fa) throws Exception {
+
+        if (getFeedbackDosenDetailCtrl().getBinder() != null) {
+
+            getFeedbackDosenDetailCtrl().getPagedBindingListWrapper().clear();
+            getFeedbackDosenDetailCtrl().setRadioOnListBox(getList(fa));
+
+            // get the current Tab for later checking if we must change it
+            Tab currentTab = tabbox_FeedbackDosenMain.getSelectedTab();
+
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+            if (!currentTab.equals(tabFeedbackDosenDetail)) {
+                tabFeedbackDosenDetail.setSelected(true);
+            } else {
+                currentTab.setSelected(true);
+            }
+        }
+    }
+
+     public List<Tfeedbackdosen> getList(Tfeedbackdosen feedbackDosen){
+       List<Tfeedbackdosen> exlist = new ArrayList<Tfeedbackdosen>();
+       if (feedbackDosen!=null && feedbackDosen.getMpegawai()!=null) {
+           exlist =  feedbackDosenService.getFeedbackDosenByNip(feedbackDosen.getMpegawai(),feedbackDosen.getCterm(),feedbackDosen.getCkelompok());
+       }
+       return exlist;
     }
 
     /**
@@ -606,9 +638,10 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
                 getSelectedFeedbackDosenList().add(fa);
             } */
             getFeedbackDosenDetailCtrl().setSelectedFeedbackDosen(getSelectedFeedbackDosen());
-            if (getFeedbackDosenDetailCtrl().getBinder() != null) {
-                getFeedbackDosenDetailCtrl().getBinder().loadAll();
-            }
+
+//            if (getFeedbackDosenDetailCtrl().getBinder() != null) {
+//                getFeedbackDosenDetailCtrl().getBinder().loadAll();
+//            }
 //            for (Tfeedbackdosen tfa : getFeedbackDosenDetailCtrl().getFeedbackDosenList()) {
 //                tfa.setMpegawai(getFeedbackDosenDetailCtrl().getFeedbackDosen().getMpegawai());
 //                tfa.setCterm(getFeedbackDosenDetailCtrl().getFeedbackDosen().getCterm());
@@ -620,7 +653,7 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // save it to database
             //getFeedbackDosenService().saveOrUpdate(getFeedbackDosenDetailCtrl().getFeedbackDosen());
-            getFeedbackDosenService().saveOrUpdateList(getFeedbackDosenDetailCtrl().getFeedbackDosenList());
+            getFeedbackDosenService().saveOrUpdateList(getFeedbackDosenDetailCtrl().setlbtolist(getFeedbackDosenDetailCtrl().getFeedbackDosenList()));
             // if saving is successfully than actualize the beans as
             // origins.
             doStoreInitValues();
