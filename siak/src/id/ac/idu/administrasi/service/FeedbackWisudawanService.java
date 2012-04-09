@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.service;
 
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tfeedbackwisudawan;
 
 import java.util.List;
@@ -80,5 +81,5 @@ public interface FeedbackWisudawanService {
      */
     public void saveOrUpdateList(List<Tfeedbackwisudawan> list);
 
-    public List<Tfeedbackwisudawan> getFeedbackWisudawanByNim(String string, String term, String kelompok);
+    public List<Tfeedbackwisudawan> getFeedbackWisudawanByNim(Mmahasiswa string, String term, String kelompok);
 }

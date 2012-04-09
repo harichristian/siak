@@ -214,7 +214,7 @@ public class FeedbackWisudawanListCtrl extends GFCBaseListCtrl<Tfeedbackwisudawa
         if (anFeedbackWisudawan == null) {
             return;
         }
-        List<Tfeedbackwisudawan> ltfa = getFeedbackWisudawanService().getFeedbackWisudawanByNim(anFeedbackWisudawan.getMmahasiswa().getCnim(),
+        List<Tfeedbackwisudawan> ltfa = getFeedbackWisudawanService().getFeedbackWisudawanByNim(anFeedbackWisudawan.getMmahasiswa(),
                 anFeedbackWisudawan.getCterm(), anFeedbackWisudawan.getCkelompok());
 
         // check first, if the tabs are created
