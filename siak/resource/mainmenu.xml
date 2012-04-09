@@ -106,7 +106,7 @@
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriIRS"/>
         <menuItem id="menu_Item_EntriPaketKuliah" zulNavigation="/WEB-INF/pages/irs/paket/paketMain.zul"
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_EntriPaketKuliah"/>
-        <menuItem id="menu_Item_TransaksiPembagianMataKuliahPaket" zulNavigation="/WEB-INF/pages/office/officeMain.zul"
+        <menuItem id="menu_Item_TransaksiPembagianMataKuliahPaket" zulNavigation="/WEB-INF/pages/irs/pembagianMatakuliah/txMain.zul"
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_TransaksiPembagianMataKuliahPaket"/>
 		<menuItem id="menu_Item_CetakPengajuanCutiKuliah" zulNavigation="/WEB-INF/pages/irs/cutimhs/pageMain.zul"
                   iconName="/images/icons/irs.gif" rightName="menuItem_IRS_CetakPengajuanCutiKuliah"/>

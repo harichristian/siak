@@ -643,6 +643,23 @@
           parent="basisCtrl" scope="prototype">
         <property name="paketService" ref="paketService"/>
     </bean>
+    <!-- Transaksi Pembagian Paket -->
+    <bean id="txMainCtrl" class="id.ac.idu.webui.irs.txPaket.TxMainCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+        <property name="txListCtrl" ref="txListCtrl"/>
+        <property name="txDetailCtrl" ref="txDetailCtrl"/>
+    </bean>
+    <bean id="txListCtrl" class="id.ac.idu.webui.irs.txPaket.TxListCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+    </bean>
+    <bean id="txDetailCtrl" class="id.ac.idu.webui.irs.txPaket.TxDetailCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="irsService" ref="irsService"/>
+        <property name="popupMhsService" ref="mahasiswaService"/>
+        <property name="plwMahasiswa" ref="pagedListWrapper"/>
+    </bean>
 
     <!-- Orders -->
     <bean id="orderListCtrl" class="id.ac.idu.webui.order.OrderListCtrl"
