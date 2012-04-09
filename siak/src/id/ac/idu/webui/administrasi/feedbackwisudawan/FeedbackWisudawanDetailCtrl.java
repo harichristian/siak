@@ -243,7 +243,7 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
      public void initJawaban() throws InterruptedException {
      ListBoxUtil.resetList(listBoxFeedbackWisudawanDetail);
 
-        List<Mfeedback> lfa =   mfeedbackService.getAllMfeedbackByType(Codec.KodeFeedback.A.getName());
+        List<Mfeedback> lfa =   mfeedbackService.getAllMfeedbackByType(Codec.KodeFeedback.W.getName());
         if (lfa.size()==0)   {
             ZksampleMessageUtils.showErrorMessage("Pertanyaan belum di buat !");
         }
@@ -379,7 +379,7 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
 
         // ++ create the searchObject and init sorting ++//
         so = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
-        so.addFilter(new Filter(ConstantUtil.JENIS_FEEDBACK, Codec.KodeFeedback.A.getValue().charAt(0), Filter.OP_EQUAL));
+        so.addFilter(new Filter(ConstantUtil.JENIS_FEEDBACK, Codec.KodeFeedback.W.getValue().charAt(0), Filter.OP_EQUAL));
         so.addSort(ConstantUtil.NO_PERTANYAAN, false);
         searchObj = new HibernateSearchObject<Tfeedbackwisudawan>(Tfeedbackwisudawan.class, getCountRows());
         if(getSelectedFeedbackWisudawan().getMmahasiswa()!=null) {
