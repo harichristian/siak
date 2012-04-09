@@ -2,11 +2,14 @@ package id.ac.idu.webui.administrasi.feedbackwisudawan;
 
 import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.FeedbackWisudawanService;
+import id.ac.idu.administrasi.service.MfeedbackService;
 import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.util.Codec;
 import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
+import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.pagging.PagedBindingListWrapper;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MahasiswaExtendedSearchListBox;
@@ -23,6 +26,7 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,6 +90,16 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
     private HibernateSearchObject<Tfeedbackwisudawan> searchObj;
     private HibernateSearchObject<Mfeedback> so;
 
+      public MfeedbackService getMfeedbackService() {
+        return mfeedbackService;
+    }
+
+    public void setMfeedbackService(MfeedbackService mfeedbackService) {
+        this.mfeedbackService = mfeedbackService;
+    }
+
+    private MfeedbackService mfeedbackService;
+
     /**
      * default constructor.<br>
      */
@@ -136,7 +150,196 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
         }
 
     }
+      public  void setRadioOnListBox(List<Tfeedbackwisudawan> lfa){
 
+        ListBoxUtil.resetList(listBoxFeedbackWisudawanDetail);
+
+        if (lfa.size()==0)  {
+            try {
+                initJawaban();
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+        for (int i=0; i < lfa.size();i++){
+            //get a list item
+
+            Tfeedbackwisudawan fa = new Tfeedbackwisudawan();
+            fa = (Tfeedbackwisudawan) lfa.get(i);
+            Listitem ltm = new Listitem();
+
+            ltm.setParent(listBoxFeedbackWisudawanDetail);
+            Listcell listcell = new Listcell();
+            listcell.setLabel(String.valueOf(fa.getMfeedback().getNnopertanyaan()));
+			listcell.setParent(ltm);
+			listcell = new Listcell(fa.getMfeedback().getCpertanyaan());
+			listcell.setParent(ltm);
+            listcell = new Listcell();
+            Radiogroup radiogroup = new Radiogroup();
+            radiogroup.setId(String.valueOf(fa.getMfeedback().getId()));
+            Radio radio1 = new Radio();
+            radio1.setId(String.valueOf(fa.getId())+"1");
+            radio1.setRadiogroup(radiogroup);
+            radio1.setParent(radiogroup);
+            radio1.setValue("1");
+            radio1.setLabel("1");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("1")) {
+                         radio1.setChecked(true);
+                }
+            //radio1.setParent(listcell);
+            Radio radio2 = new Radio();
+            radio2.setId(String.valueOf(fa.getId())+"2");
+            radio2.setRadiogroup(radiogroup);
+            radio2.setParent(radiogroup);
+            radio2.setValue("2");
+            radio2.setLabel("2");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("2")) {
+                         radio2.setChecked(true);
+                }
+            //radio2.setParent(listcell);
+             Radio radio3 = new Radio();
+            radio3.setId(String.valueOf(fa.getId())+"3");
+            radio3.setRadiogroup(radiogroup);
+            radio3.setParent(radiogroup);
+            radio3.setValue("3");
+            radio3.setLabel("3");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("3")) {
+                         radio3.setChecked(true);
+                }
+            //radio3.setParent(listcell);
+            Radio radio4 = new Radio();
+            radio4.setId(String.valueOf(fa.getId())+"4");
+            radio4.setRadiogroup(radiogroup);
+            radio4.setParent(radiogroup);
+            radio4.setValue("4");
+            radio4.setLabel("4");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("4")) {
+                         radio4.setChecked(true);
+                }
+            //radio4.setParent(listcell);
+            Radio radio5 = new Radio();
+            radio5.setId(String.valueOf(fa.getId())+"5");
+            radio5.setRadiogroup(radiogroup);
+            radio5.setParent(radiogroup);
+            radio5.setValue("5");
+            radio5.setLabel("5");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("5")) {
+                         radio5.setChecked(true);
+                }
+           // radio5.setParent(listcell);
+            radiogroup.setParent(listcell);
+			listcell.setParent(ltm);
+        }
+            setListBoxFeedbackWisudawan(null);
+            setListBoxFeedbackWisudawan(listBoxFeedbackWisudawanDetail);
+
+    }
+
+     public void initJawaban() throws InterruptedException {
+     ListBoxUtil.resetList(listBoxFeedbackWisudawanDetail);
+
+        List<Mfeedback> lfa =   mfeedbackService.getAllMfeedbackByType(Codec.KodeFeedback.A.getName());
+        if (lfa.size()==0)   {
+            ZksampleMessageUtils.showErrorMessage("Pertanyaan belum di buat !");
+        }
+
+        for (int i=0; i < lfa.size();i++){
+            //get a list item
+
+            Mfeedback fa = new Mfeedback();
+            fa = (Mfeedback) lfa.get(i);
+
+            Listitem ltm = new Listitem();
+
+            ltm.setParent(listBoxFeedbackWisudawanDetail);
+            Listcell listcell = new Listcell();
+            listcell.setLabel(String.valueOf(fa.getNnopertanyaan()));
+			listcell.setParent(ltm);
+			listcell = new Listcell(fa.getCpertanyaan());
+			listcell.setParent(ltm);
+            listcell = new Listcell();
+            Radiogroup radiogroup = new Radiogroup();
+            radiogroup.setId(String.valueOf(fa.getId()));
+            Radio radio1 = new Radio();
+            radio1.setId(String.valueOf(fa.getId())+"1");
+            radio1.setRadiogroup(radiogroup);
+            radio1.setParent(radiogroup);
+            radio1.setValue("1");
+            radio1.setLabel("1");
+
+            //radio1.setParent(listcell);
+            Radio radio2 = new Radio();
+            radio2.setId(String.valueOf(fa.getId())+"2");
+            radio2.setRadiogroup(radiogroup);
+            radio2.setParent(radiogroup);
+            radio2.setValue("2");
+            radio2.setLabel("2");
+
+            //radio2.setParent(listcell);
+            Radio radio3 = new Radio();
+            radio3.setId(String.valueOf(fa.getId())+"3");
+            radio3.setRadiogroup(radiogroup);
+            radio3.setParent(radiogroup);
+            radio3.setValue("3");
+            radio3.setLabel("3");
+
+           // radio3.setParent(listcell);
+            Radio radio4 = new Radio();
+            radio4.setId(String.valueOf(fa.getId())+"4");
+            radio4.setRadiogroup(radiogroup);
+            radio4.setParent(radiogroup);
+            radio4.setValue("4");
+            radio4.setLabel("4");
+
+            //radio4.setParent(listcell);
+            Radio radio5 = new Radio();
+            radio5.setId(String.valueOf(fa.getId())+"5");
+            radio5.setRadiogroup(radiogroup);
+            radio5.setParent(radiogroup);
+            radio5.setValue("5");
+            radio5.setLabel("5");
+
+            //radio5.setParent(listcell);
+            radiogroup.setParent(listcell);
+			listcell.setParent(ltm);
+        }
+           setListBoxFeedbackWisudawan(null);
+           setListBoxFeedbackWisudawan(listBoxFeedbackWisudawanDetail);
+    }
+
+    public List<Tfeedbackwisudawan> setlbtolist(List<Tfeedbackwisudawan> getList)  {
+        List<Tfeedbackwisudawan> lfa =  new ArrayList<Tfeedbackwisudawan>();
+        lfa = getList;
+        for (int i=0;i < lfa.size();i++){
+             ((Tfeedbackwisudawan)  lfa.get(i)).setCjawaban(getJawabanfromlb(((Tfeedbackwisudawan)  lfa.get(i)).getMfeedback().getId()));
+        }
+        return lfa;
+    }
+
+    public String getJawabanfromlb(int id)   {
+        String jawaban="";
+        String strId=String.valueOf(id);
+        for (int i=0;i < listBoxFeedbackWisudawanDetail.getItems().size();i++){
+            Listitem li = listBoxFeedbackWisudawanDetail.getItemAtIndex(i);
+            Listcell lc = (Listcell) li.getChildren().get(2);
+            Radiogroup rg = (Radiogroup) lc.getChildren().get(0);
+            if (rg.getId().equals(strId)){
+               for (int j=0;j < rg.getChildren().size();j++){
+                   Radio rad = (Radio) rg.getChildren().get(j);
+                   if (rad.isSelected()) {
+                       jawaban = ""+ (j + 1);
+                   }
+               }
+            }
+
+        }
+        return jawaban;
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++ Component Events ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -162,17 +365,17 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
         doFitSize();
 
         // set the paging params
-        paging_FeedbackWisudawanDetailList.setPageSize(getCountRows());
-        paging_FeedbackWisudawanDetailList.setDetailed(true);
+//        paging_FeedbackWisudawanDetailList.setPageSize(getCountRows());
+//        paging_FeedbackWisudawanDetailList.setDetailed(true);
 
         // not used listheaders must be declared like ->
         // lh.setSortAscending(""); lh.setSortDescending("")
-        listheader_FeedbackWisudawanDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
-        listheader_FeedbackWisudawanDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
-        listheader_FeedbackWisudawanDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
-        listheader_FeedbackWisudawanDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
-        listheader_FeedbackWisudawanDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
-        listheader_FeedbackWisudawanDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
+//        listheader_FeedbackWisudawanDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
+//        listheader_FeedbackWisudawanDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
+//        listheader_FeedbackWisudawanDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
+//        listheader_FeedbackWisudawanDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
+//        listheader_FeedbackWisudawanDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
+//        listheader_FeedbackWisudawanDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
 
         // ++ create the searchObject and init sorting ++//
         so = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
@@ -186,15 +389,12 @@ public class FeedbackWisudawanDetailCtrl extends GFCBaseCtrl implements Serializ
         // Change the BindingListModel.
         if (getBinder() != null) {
 
-            /*getPagedBindingListFeedbackWrapper().init(so, getListBoxFeedbackWisudawanDetail(), paging_FeedbackList);
-            BindingListModelList blml = (BindingListModelList) getListBoxFeedbackWisudawanDetail().getModel();
-            setFeedbacks(blml);*/
-            getPagedBindingListWrapper().init(searchObj, getListBoxFeedbackWisudawanDetail(), paging_FeedbackWisudawanDetailList);
+             setRadioOnListBox(getFeedbackWisudawanMainCtrl().getList(getSelectedFeedbackWisudawan()));
+
             try{
-                getPagedBindingListWrapper().addAll(getSelectedFeedbackWisudawanList());
+                getPagedBindingListWrapper().clear();
+                 getPagedBindingListWrapper().addAll(getFeedbackWisudawanMainCtrl().getList(getSelectedFeedbackWisudawan()));
             } catch (NullPointerException e) {}
-            //pagedBindingListWrapper = new PagedBindingListWrapper<Tfeedbackwisudawan>();
-            //pagedBindingListFeedbackWrapper.addAll(getSelectedFeedbackWisudawanList());
 
             BindingListModelList lml = (BindingListModelList) getListBoxFeedbackWisudawanDetail().getModel();
 

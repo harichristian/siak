@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.dao;
 
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tfeedbackwisudawan;
 
 import java.util.List;
@@ -85,5 +86,5 @@ public interface FeedbackWisudawanDAO {
      */
     public void save(Tfeedbackwisudawan entity);
 
-    public List<Tfeedbackwisudawan> getFeedbackWisudawanByNim(String nim, String term, String kelompok);
+    public List<Tfeedbackwisudawan> getFeedbackWisudawanByNim(Mmahasiswa mhs, String term, String kelompok);
 }

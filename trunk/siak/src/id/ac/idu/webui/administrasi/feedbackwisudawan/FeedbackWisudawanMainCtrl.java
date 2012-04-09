@@ -26,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -184,7 +185,11 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
             tabFeedbackWisudawanDetail.setSelected(true);
 
             // refresh the Binding mechanism
-            getFeedbackWisudawanDetailCtrl().setFeedbackWisudawan(getSelectedFeedbackWisudawan());
+            try{
+                doSearchDetail(getSelectedFeedbackWisudawan());
+            }catch (Exception e)  {
+               e.printStackTrace();
+            }
             getFeedbackWisudawanDetailCtrl().getBinder().loadAll();
             return;
         }
@@ -192,6 +197,34 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
         if (tabPanelFeedbackWisudawanDetail != null) {
             ZksampleCommonUtils.createTabPanelContent(tabPanelFeedbackWisudawanDetail, this, "ModuleMainController", "/WEB-INF/pages/administrasi/feedbackwisudawan/feedbackWisudawanDetail.zul");
         }
+    }
+
+     public void doSearchDetail(Tfeedbackwisudawan fa) throws Exception {
+
+        if (getFeedbackWisudawanDetailCtrl().getBinder() != null) {
+
+            getFeedbackWisudawanDetailCtrl().getPagedBindingListWrapper().clear();
+            getFeedbackWisudawanDetailCtrl().setRadioOnListBox(getList(fa));
+
+            // get the current Tab for later checking if we must change it
+            Tab currentTab = tabbox_FeedbackWisudawanMain.getSelectedTab();
+
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+            if (!currentTab.equals(tabFeedbackWisudawanDetail)) {
+                tabFeedbackWisudawanDetail.setSelected(true);
+            } else {
+                currentTab.setSelected(true);
+            }
+        }
+    }
+
+     public List<Tfeedbackwisudawan> getList(Tfeedbackwisudawan feedbackWisudawan){
+       List<Tfeedbackwisudawan> exlist = new ArrayList<Tfeedbackwisudawan>();
+       if (feedbackWisudawan!=null && feedbackWisudawan.getMmahasiswa()!=null) {
+           exlist =  feedbackWisudawanService.getFeedbackWisudawanByNim(feedbackWisudawan.getMmahasiswa(),feedbackWisudawan.getCterm(),feedbackWisudawan.getCkelompok());
+       }
+       return exlist;
     }
 
     /**
@@ -606,9 +639,9 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
                 getSelectedFeedbackWisudawanList().add(fa);
             } */
             getFeedbackWisudawanDetailCtrl().setSelectedFeedbackWisudawan(getSelectedFeedbackWisudawan());
-            if (getFeedbackWisudawanDetailCtrl().getBinder() != null) {
-                getFeedbackWisudawanDetailCtrl().getBinder().loadAll();
-            }
+//            if (getFeedbackWisudawanDetailCtrl().getBinder() != null) {
+//                getFeedbackWisudawanDetailCtrl().getBinder().loadAll();
+//            }
 //            for (Tfeedbackwisudawan tfa : getFeedbackWisudawanDetailCtrl().getFeedbackWisudawanList()) {
 //                tfa.setMmahasiswa(getFeedbackWisudawanDetailCtrl().getSelectedFeedbackWisudawan().getMmahasiswa());
 //                tfa.setCterm(getFeedbackWisudawanDetailCtrl().getSelectedFeedbackWisudawan().getCterm());
@@ -620,7 +653,7 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
 
             // save it to database
             //getFeedbackWisudawanService().saveOrUpdate(getFeedbackWisudawanDetailCtrl().getFeedbackWisudawan());
-            getFeedbackWisudawanService().saveOrUpdateList(getFeedbackWisudawanDetailCtrl().getFeedbackWisudawanList());
+            getFeedbackWisudawanService().saveOrUpdateList(getFeedbackWisudawanDetailCtrl().setlbtolist(getFeedbackWisudawanDetailCtrl().getFeedbackWisudawanList()));
             // if saving is successfully than actualize the beans as
             // origins.
             doStoreInitValues();
