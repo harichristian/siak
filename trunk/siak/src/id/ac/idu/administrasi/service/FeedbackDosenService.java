@@ -1,5 +1,6 @@
 package id.ac.idu.administrasi.service;
 
+import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.backend.model.Tfeedbackdosen;
 
 import java.util.List;
@@ -80,5 +81,5 @@ public interface FeedbackDosenService {
      */
     public void saveOrUpdateList(List<Tfeedbackdosen> list);
 
-    public List<Tfeedbackdosen> getFeedbackDosenByNip(String string, String term, String kelompok);
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(Mpegawai string, String term, String kelompok);
 }

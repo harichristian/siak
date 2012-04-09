@@ -4,6 +4,7 @@ import id.ac.idu.administrasi.dao.FeedbackDosenDAO;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.backend.model.Tfeedbackdosen;
+import id.ac.idu.backend.model.Tfeedbackwisudawan;
 import id.ac.idu.util.ConstantUtil;
 import org.hibernate.criterion.*;
 import org.springframework.dao.support.DataAccessUtils;
@@ -66,18 +67,12 @@ public class FeedbackDosenDAOImpl extends BasisDAO<Tfeedbackdosen> implements Fe
         }
     }
     @Override
-    public List<Tfeedbackdosen> getFeedbackDosenByNip(String nip, String term, String kelompok) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackdosen.class, "tfeedbackdosen");
-        DetachedCriteria subCriteria = DetachedCriteria.forClass(Mpegawai.class, "tfeedbackdosen.mpegawai");
-        subCriteria.setProjection(Projections.id());
-        subCriteria.createAlias("model.tfeedbackdosen.mpegawai", "tfeedbackdosen.mpegawai", CriteriaSpecification.INNER_JOIN);
-        subCriteria.createAlias("model.tfeedbackdosen", "tfeedbackdosen", CriteriaSpecification.INNER_JOIN);
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.PEGAWAI_DOT_NIP, nip));
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.TERM, term));
-        subCriteria.add(Restrictions.eqProperty(ConstantUtil.KELOMPOK, kelompok));
-        //criteria.add(Expression.eq("lang.langCode", "EN"));
-        subCriteria.add(Restrictions.eqProperty("tfeedbackdosen.pegawaiId","mpegawai.pegawaiId"));
-        //criteria.add(Subqueries.lt(0, subCriteria));
+    public List<Tfeedbackdosen> getFeedbackDosenByNip(Mpegawai nip, String term, String kelompok) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tfeedbackdosen.class);
+        criteria.add(Restrictions.eq("mpegawai", nip));
+        criteria.add(Restrictions.eq(ConstantUtil.TERM, term));
+       // criteria.add(Restrictions.ilike(ConstantUtil.KELOMPOK, kelompok));
+
         return getHibernateTemplate().findByCriteria(criteria);
     }
 }

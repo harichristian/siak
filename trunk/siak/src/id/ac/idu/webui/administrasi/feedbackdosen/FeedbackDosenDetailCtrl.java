@@ -2,11 +2,14 @@ package id.ac.idu.webui.administrasi.feedbackdosen;
 
 import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.FeedbackDosenService;
+import id.ac.idu.administrasi.service.MfeedbackService;
 import id.ac.idu.backend.model.*;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.util.Codec;
 import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
+import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.pagging.PagedBindingListWrapper;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.PegawaiExtendedSearchListBox;
@@ -23,6 +26,7 @@ import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,6 +89,16 @@ public class FeedbackDosenDetailCtrl extends GFCBaseCtrl implements Serializable
     // NEEDED for ReUse in the SearchWindow
     private HibernateSearchObject<Tfeedbackdosen> searchObj;
     private HibernateSearchObject<Mfeedback> so;
+
+      public MfeedbackService getMfeedbackService() {
+        return mfeedbackService;
+    }
+
+    public void setMfeedbackService(MfeedbackService mfeedbackService) {
+        this.mfeedbackService = mfeedbackService;
+    }
+
+    private MfeedbackService mfeedbackService;
 
     /**
      * default constructor.<br>
@@ -162,21 +176,21 @@ public class FeedbackDosenDetailCtrl extends GFCBaseCtrl implements Serializable
         doFitSize();
 
         // set the paging params
-        paging_FeedbackDosenDetailList.setPageSize(getCountRows());
-        paging_FeedbackDosenDetailList.setDetailed(true);
+//        paging_FeedbackDosenDetailList.setPageSize(getCountRows());
+//        paging_FeedbackDosenDetailList.setDetailed(true);
 
         // not used listheaders must be declared like ->
         // lh.setSortAscending(""); lh.setSortDescending("")
-        listheader_FeedbackDosenDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
-        listheader_FeedbackDosenDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
-        listheader_FeedbackDosenDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
-        listheader_FeedbackDosenDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
-        listheader_FeedbackDosenDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
-        listheader_FeedbackDosenDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
+//        listheader_FeedbackDosenDetailList_no.setSortAscending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, true));
+//        listheader_FeedbackDosenDetailList_no.setSortDescending(new FieldComparator(ConstantUtil.NO_PERTANYAAN, false));
+//        listheader_FeedbackDosenDetailList_pertanyaan.setSortAscending(new FieldComparator(ConstantUtil.PERTANYAAN, true));
+//        listheader_FeedbackDosenDetailList_pertanyaan.setSortDescending(new FieldComparator(ConstantUtil.PERTANYAAN, false));
+//        listheader_FeedbackDosenDetailList_1.setSortAscending(new FieldComparator(ConstantUtil.JAWABAN, true));
+//        listheader_FeedbackDosenDetailList_1.setSortDescending(new FieldComparator(ConstantUtil.JAWABAN, false));
 
         // ++ create the searchObject and init sorting ++//
         so = new HibernateSearchObject<Mfeedback>(Mfeedback.class, getCountRows());
-        so.addFilter(new Filter(ConstantUtil.JENIS_FEEDBACK, Codec.KodeFeedback.A.getValue().charAt(0), Filter.OP_EQUAL));
+        so.addFilter(new Filter(ConstantUtil.JENIS_FEEDBACK, Codec.KodeFeedback.D.getValue().charAt(0), Filter.OP_EQUAL));
         so.addSort(ConstantUtil.NO_PERTANYAAN, false);
         searchObj = new HibernateSearchObject<Tfeedbackdosen>(Tfeedbackdosen.class, getCountRows());
         if(getSelectedFeedbackDosen().getMpegawai()!=null) {
@@ -186,15 +200,13 @@ public class FeedbackDosenDetailCtrl extends GFCBaseCtrl implements Serializable
         // Change the BindingListModel.
         if (getBinder() != null) {
 
-            /*getPagedBindingListFeedbackWrapper().init(so, getListBoxFeedbackDosenDetail(), paging_FeedbackList);
-            BindingListModelList blml = (BindingListModelList) getListBoxFeedbackDosenDetail().getModel();
-            setFeedbacks(blml);*/
-            getPagedBindingListWrapper().init(searchObj, getListBoxFeedbackDosenDetail(), paging_FeedbackDosenDetailList);
+
+            setRadioOnListBox(getFeedbackDosenMainCtrl().getList(getSelectedFeedbackDosen()));
+
             try{
-                getPagedBindingListWrapper().addAll(getSelectedFeedbackDosenList());
+                getPagedBindingListWrapper().clear();
+                 getPagedBindingListWrapper().addAll(getFeedbackDosenMainCtrl().getList(getSelectedFeedbackDosen()));
             } catch (NullPointerException e) {}
-            //pagedBindingListWrapper = new PagedBindingListWrapper<Tfeedbackdosen>();
-            //pagedBindingListFeedbackWrapper.addAll(getSelectedFeedbackDosenList());
 
             BindingListModelList lml = (BindingListModelList) getListBoxFeedbackDosenDetail().getModel();
 
@@ -211,6 +223,196 @@ public class FeedbackDosenDetailCtrl extends GFCBaseCtrl implements Serializable
         }
 
     }
+
+     public  void setRadioOnListBox(List<Tfeedbackdosen> lfa){
+
+        ListBoxUtil.resetList(listBoxFeedbackDosenDetail);
+
+        if (lfa.size()==0)  {
+            try {
+                initJawaban();
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+        for (int i=0; i < lfa.size();i++){
+            //get a list item
+
+            Tfeedbackdosen fa = new Tfeedbackdosen();
+            fa = (Tfeedbackdosen) lfa.get(i);
+              Listitem ltm = new Listitem();
+
+            ltm.setParent(listBoxFeedbackDosenDetail);
+            Listcell listcell = new Listcell();
+            listcell.setLabel(String.valueOf(fa.getMfeedback().getNnopertanyaan()));
+			listcell.setParent(ltm);
+			listcell = new Listcell(fa.getMfeedback().getCpertanyaan());
+			listcell.setParent(ltm);
+            listcell = new Listcell();
+            Radiogroup radiogroup = new Radiogroup();
+            radiogroup.setId(String.valueOf(fa.getMfeedback().getId()));
+            Radio radio1 = new Radio();
+            radio1.setId(String.valueOf(fa.getId())+"1");
+            radio1.setRadiogroup(radiogroup);
+            radio1.setParent(radiogroup);
+            radio1.setValue("1");
+            radio1.setLabel("1");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("1")) {
+                         radio1.setChecked(true);
+                }
+            //radio1.setParent(listcell);
+            Radio radio2 = new Radio();
+            radio2.setId(String.valueOf(fa.getId())+"2");
+            radio2.setRadiogroup(radiogroup);
+            radio2.setParent(radiogroup);
+            radio2.setValue("2");
+            radio2.setLabel("2");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("2")) {
+                         radio2.setChecked(true);
+                }
+            //radio2.setParent(listcell);
+             Radio radio3 = new Radio();
+            radio3.setId(String.valueOf(fa.getId())+"3");
+            radio3.setRadiogroup(radiogroup);
+            radio3.setParent(radiogroup);
+            radio3.setValue("3");
+            radio3.setLabel("3");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("3")) {
+                         radio3.setChecked(true);
+                }
+            //radio3.setParent(listcell);
+            Radio radio4 = new Radio();
+            radio4.setId(String.valueOf(fa.getId())+"4");
+            radio4.setRadiogroup(radiogroup);
+            radio4.setParent(radiogroup);
+            radio4.setValue("4");
+            radio4.setLabel("4");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("4")) {
+                         radio4.setChecked(true);
+                }
+            //radio4.setParent(listcell);
+            Radio radio5 = new Radio();
+            radio5.setId(String.valueOf(fa.getId())+"5");
+            radio5.setRadiogroup(radiogroup);
+            radio5.setParent(radiogroup);
+            radio5.setValue("5");
+            radio5.setLabel("5");
+            if (fa.getCjawaban()!=null)
+                if (fa.getCjawaban().equals("5")) {
+                         radio5.setChecked(true);
+                }
+            radiogroup.setParent(listcell);
+			listcell.setParent(ltm);
+        }
+            setListBoxFeedbackDosen(null);
+            setListBoxFeedbackDosen(listBoxFeedbackDosenDetail);
+    }
+
+     public void initJawaban() throws InterruptedException {
+     ListBoxUtil.resetList(listBoxFeedbackDosenDetail);
+
+        List<Mfeedback> lfa =   mfeedbackService.getAllMfeedbackByType(Codec.KodeFeedback.D.getName());
+        if (lfa.size()==0)   {
+            ZksampleMessageUtils.showErrorMessage("Pertanyaan belum di buat !");
+        }
+
+        for (int i=0; i < lfa.size();i++){
+            //get a list item
+
+            Mfeedback fa = new Mfeedback();
+            fa = (Mfeedback) lfa.get(i);
+
+            Listitem ltm = new Listitem();
+
+            ltm.setParent(listBoxFeedbackDosenDetail);
+            Listcell listcell = new Listcell();
+            listcell.setLabel(String.valueOf(fa.getNnopertanyaan()));
+			listcell.setParent(ltm);
+			listcell = new Listcell(fa.getCpertanyaan());
+			listcell.setParent(ltm);
+            listcell = new Listcell();
+            Radiogroup radiogroup = new Radiogroup();
+            radiogroup.setId(String.valueOf(fa.getId()));
+            Radio radio1 = new Radio();
+            radio1.setId(String.valueOf(fa.getId())+"1");
+            radio1.setRadiogroup(radiogroup);
+            radio1.setParent(radiogroup);
+            radio1.setValue("1");
+            radio1.setLabel("1");
+
+            //radio1.setParent(listcell);
+            Radio radio2 = new Radio();
+            radio2.setId(String.valueOf(fa.getId())+"2");
+            radio2.setRadiogroup(radiogroup);
+            radio2.setParent(radiogroup);
+            radio2.setValue("2");
+            radio2.setLabel("2");
+
+            //radio2.setParent(listcell);
+            Radio radio3 = new Radio();
+            radio3.setId(String.valueOf(fa.getId())+"3");
+            radio3.setRadiogroup(radiogroup);
+            radio3.setParent(radiogroup);
+            radio3.setValue("3");
+            radio3.setLabel("3");
+
+           // radio3.setParent(listcell);
+            Radio radio4 = new Radio();
+            radio4.setId(String.valueOf(fa.getId())+"4");
+            radio4.setRadiogroup(radiogroup);
+            radio4.setParent(radiogroup);
+            radio4.setValue("4");
+            radio4.setLabel("4");
+
+            //radio4.setParent(listcell);
+            Radio radio5 = new Radio();
+            radio5.setId(String.valueOf(fa.getId())+"5");
+            radio5.setRadiogroup(radiogroup);
+            radio5.setParent(radiogroup);
+            radio5.setValue("5");
+            radio5.setLabel("5");
+
+            //radio5.setParent(listcell);
+            radiogroup.setParent(listcell);
+			listcell.setParent(ltm);
+        }
+           setListBoxFeedbackDosen(null);
+           setListBoxFeedbackDosen(listBoxFeedbackDosenDetail);
+    }
+
+    public List<Tfeedbackdosen> setlbtolist(List<Tfeedbackdosen> getList)  {
+        List<Tfeedbackdosen> lfa =  new ArrayList<Tfeedbackdosen>();
+        lfa = getList;
+        for (int i=0;i < lfa.size();i++){
+             ((Tfeedbackdosen)  lfa.get(i)).setCjawaban(getJawabanfromlb(((Tfeedbackdosen)  lfa.get(i)).getMfeedback().getId()));
+        }
+        return lfa;
+    }
+
+    public String getJawabanfromlb(int id)   {
+        String jawaban="";
+        String strId=String.valueOf(id);;
+        for (int i=0;i < listBoxFeedbackDosenDetail.getItems().size();i++){
+            Listitem li = listBoxFeedbackDosenDetail.getItemAtIndex(i);
+            Listcell lc = (Listcell) li.getChildren().get(2);
+            Radiogroup rg = (Radiogroup) lc.getChildren().get(0);
+            if (rg.getId().equals(strId)){
+               for (int j=0;j < rg.getChildren().size();j++){
+                   Radio rad = (Radio) rg.getChildren().get(j);
+                   if (rad.isSelected()) {
+                       jawaban = ""+ (j + 1);
+                   }
+               }
+            }
+
+        }
+        return jawaban;
+    }
+
     public void doFitSize() {
         // normally 0 ! Or we have a i.e. a toolBar on top of the listBox.
         final int specialSize = 5;
