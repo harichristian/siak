@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- DataBinding Initiator.                              -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowTxDetail" ?>
+
+	<window id="windowTxDetail" apply="${txDetailCtrl}"
+		border="none" width="100%">
+
+		<borderlayout id="borderlayout_TxDetail">
+			<center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                image="/images/icons/view.gif"
+                                label="${c:l('common.Details')}" />
+
+                            <grid sclass="GridLayoutNoBorder"
+                                fixedLayout="true"
+                                style="border:0px; padding-left:5px; padding-right:5px;">
+                                <columns>
+                                    <column width="150px" />
+                                    <column />
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                value="${c:l('label_Dialog_nim.value')}" />
+                                            <label value="*"
+                                                style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox id="txtb_nim"
+                                            value="@{controller.irs.mmahasiswa.cnim}" readonly="true"
+                                            maxlength="20" width="100px" />
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                value="${c:l('label_Dialog_nama.value')}" />
+                                            <label value="*"
+                                                style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <hbox>
+                                        <textbox id="txtb_nama"
+                                            value="@{controller.irs.mmahasiswa.cnama}" readonly="true"
+                                            constraint="no empty" maxlength="50" width="90%" />
+                                        <bandbox id="bandbox_Dialog_MahasiswaSearch" sclass="mybandbox" disabled="true" width="0px" tooltiptext="LOV - Data Mahasiswa">
+                                            <bandpopup id="bpop_MahasiswaSearch" width="540px" height="490px">
+                                                <panel id="panel_MahasiswaSearch2" title="LOV - Mahasiswa"/>
+                                                <vbox>
+                                                    <hbox width="100%">
+                                                        <grid fixedLayout="true" style="border:0px" width="100%">
+                                                            <columns>
+                                                                <column width="150px"/>
+                                                                <column width="250px"/>
+                                                                <column width="100px"/>
+                                                                <column width="40px"/>
+                                                            </columns>
+                                                            <rows>
+                                                                <row>
+                                                                    <label id="label_bbox_Nim" value="Nim"/>
+                                                                    <textbox id="tb_Nim" width="99%"/>
+                                                                    <button id="button_bbox_Search" image="/images/icons/search.gif" label="Search"
+                                                                            tooltiptext="Search data mahasiswa"/>
+                                                                    <button id="button_bbox_Close" image="/images/icons/stop.gif"
+                                                                            tooltiptext="Close Window"/>
+                                                                </row>
+                                                                <row>
+                                                                    <label id="label_bbox_Nama" value="Nama Mahsiswa"/>
+                                                                    <textbox id="tb_Nama" width="99%"/>
+                                                                </row>
+                                                                <row>
+                                                                    <label id="label_bbox_NoKtp" value="No KTP"/>
+                                                                    <textbox id="tb_NoKtp" width="99%"/>
+                                                                </row>
+                                                                <row spans="4">
+                                                                    <vbox width="100%">
+                                                                        <paging id="paging_MahasiswaSearchList" pageSize="20"/>
+                                                                        <listbox id="listMahasiswaSearch" width="100%" height="100%" multiple="false">
+                                                                            <listhead sizable="true">
+                                                                                <listheader id="header_ID" sort="auto" width="15%" label="ID"/>
+                                                                                <listheader id="header_Nim" sort="auto" width="15%" label="Nim"/>
+                                                                                <listheader id="header_Nama" sort="auto" width="25%" label="Nama"/>
+                                                                                <listheader id="header_NoKtp" sort="auto" width="30%" label="No Ktp"/>
+                                                                                <listheader id="header_Alamat" sort="auto" width="30%" label="Alamat"/>
+                                                                            </listhead>
+                                                                        </listbox>
+                                                                    </vbox>
+                                                                </row>
+                                                            </rows>
+                                                        </grid>
+                                                    </hbox>
+                                                </vbox>
+                                            </bandpopup>
+                                        </bandbox>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Program Studi"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="50%">
+                                            <textbox
+                                                    id="txtb_prodi"
+                                                    value="@{controller.irs.mprodi.cnmprogst}"
+                                                    readonly="true" maxlength="50" width="99%"/>
+                                            <button
+                                                    id="btnSearchProdiExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Prodi"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Sekolah"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="50%">
+                                            <textbox
+                                                    id="txtb_sekolah"
+                                                    value="@{controller.irs.msekolah.cnamaSekolah}"
+                                                    readonly="true" maxlength="50" width="99%"/>
+                                            <button
+                                                    id="btnSearchSekolahExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Sekolah"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                        <label
+                                            value="${c:l('label_Dialog_term.value')}" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_term" value="@{controller.irs.cterm}"
+                                            constraint="no empty" readonly="true" maxlength="4" width="50px" />
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                        <label
+                                            value="${c:l('label_Dialog_thajar.value')}" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_thajar" value="@{controller.irs.cthajar}"
+                                            constraint="no empty" readonly="true" maxlength="8" width="50px" />
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                        <label
+                                            value="Semester" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_semester" value="@{controller.irs.csmt}"
+                                            constraint="no empty" readonly="true" maxlength="1" width="50px" />
+                                    </row>
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                        <label
+                                            value="${c:l('label_Dialog_kelompok.value')}" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_kelompok" value="@{controller.irs.ckelompok}"
+                                            constraint="no empty" readonly="true" maxlength="2" width="50px" />
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Matakuliah"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="50%">
+                                            <textbox
+                                                    id="txtb_matakuliah"
+                                                    value="@{controller.irs.mtbmtkl.cnamamk}"
+                                                    readonly="true" maxlength="50" width="99%"/>
+                                            <button
+                                                    id="btnSearchMatakuliahExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Matakuliah"/>
+                                        </hbox>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+			</center>
+		</borderlayout>
+	</window>
+</zk>
