@@ -89,6 +89,7 @@ public class TxMainCtrl  extends GFCBaseCtrl implements Serializable {
 	// always a copy from the bean before modifying. Used for reseting
 	private Tirspasca originalIrs;
     private Mmahasiswa mahasiswa;
+    private Mmahasiswa mahasiswaTo;
 
 	/**
 	 * default constructor.<br>
@@ -574,7 +575,8 @@ public class TxMainCtrl  extends GFCBaseCtrl implements Serializable {
 
 		try {
             // save it to database
-			getIrsService().saveOrUpdate(getTxDetailCtrl().getIrs());
+			//getIrsService().saveOrUpdate(getTxDetailCtrl().getIrs());
+            getIrsService().saveOrUpdatePaket(getTxDetailCtrl().getIrs(), getTxDetailCtrl().getMahasiswaTo());
 			// if saving is successfully than actualize the beans as
 			// origins.
 			doStoreInitValues();
@@ -632,6 +634,7 @@ public class TxMainCtrl  extends GFCBaseCtrl implements Serializable {
 		// set the beans in the related databinded controllers
 		getTxDetailCtrl().setIrs(anIrs);
 		getTxDetailCtrl().setSelectedIrs(anIrs);
+		getTxDetailCtrl().setMahasiswaTo(null);
 
 		// Refresh the binding mechanism
 		getTxDetailCtrl().setSelectedIrs(getSelectedIrs());
@@ -832,5 +835,13 @@ public class TxMainCtrl  extends GFCBaseCtrl implements Serializable {
 
     public void setMahasiswa(Mmahasiswa mahasiswa) {
         this.mahasiswa = mahasiswa;
+    }
+
+    public Mmahasiswa getMahasiswaTo() {
+        return mahasiswaTo;
+    }
+
+    public void setMahasiswaTo(Mmahasiswa mahasiswaTo) {
+        this.mahasiswaTo = mahasiswaTo;
     }
 }

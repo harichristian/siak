@@ -45,4 +45,6 @@ public interface MahasiswaDAO {
      * @return List of YoutubeLinks / Liste von YoutubeLinks
      */
     public ResultObject getAllMmahasiswaLikeText(String text, int start, int pageSize);
+
+    public List<Mmahasiswa> getForPaket(Mmahasiswa mhsFrom, Mmahasiswa mhsTo);
 }

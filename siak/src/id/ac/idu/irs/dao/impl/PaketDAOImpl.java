@@ -1,6 +1,7 @@
 package id.ac.idu.irs.dao.impl;
 
 import id.ac.idu.backend.dao.impl.BasisDAO;
+import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.backend.model.Tpaketkuliah;
 import id.ac.idu.irs.dao.PaketDAO;
 import id.ac.idu.util.ConstantUtil;
@@ -57,6 +58,14 @@ public class PaketDAOImpl extends BasisDAO<Tpaketkuliah> implements PaketDAO {
     public List<Tpaketkuliah> getPaketLikeProdi(String string) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Tpaketkuliah.class);
         criteria.add(Restrictions.ilike(ConstantUtil.PRODI, string, MatchMode.ANYWHERE));
+        return getHibernateTemplate().findByCriteria(criteria);
+    }
+
+    public List<Tpaketkuliah> getPaketForTransaction(Mprodi prodi, String term, String thajar) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tpaketkuliah.class);
+        criteria.add(Restrictions.eq(ConstantUtil.PRODI, prodi));
+        criteria.add(Restrictions.eq(ConstantUtil.TERM, term));
+        criteria.add(Restrictions.eq(ConstantUtil.THAJAR, thajar));
         return getHibernateTemplate().findByCriteria(criteria);
     }
 

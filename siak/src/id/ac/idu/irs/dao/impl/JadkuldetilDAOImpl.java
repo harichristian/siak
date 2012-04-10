@@ -1,12 +1,10 @@
 package id.ac.idu.irs.dao.impl;
 
+import id.ac.idu.backend.model.*;
 import id.ac.idu.irs.dao.JadkuldetilDAO;
 import id.ac.idu.backend.dao.impl.BasisDAO;
-import id.ac.idu.backend.model.Tjadkuldetil;
-import id.ac.idu.backend.model.Tjadkulmaster;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import id.ac.idu.util.ConstantUtil;
+import org.hibernate.criterion.*;
 import org.springframework.dao.support.DataAccessUtils;
 
 import java.util.List;
@@ -68,4 +66,14 @@ public class JadkuldetilDAOImpl extends BasisDAO<Tjadkuldetil> implements Jadkul
         return DataAccessUtils.intResult(getHibernateTemplate().find("select count(*) from Tjadkuldetil"));
     }
 
+    @Override
+    public List<Tjadkuldetil> getForPaket(Msekolah sekolah, Mprodi prodi, String term, Mtbmtkl matakuliah) {
+        //List<Tjadkuldetil> result;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tjadkuldetil.class);
+        criteria.add(Restrictions.eq(ConstantUtil.SEKOLAH, sekolah));
+        criteria.add(Restrictions.eq(ConstantUtil.PRODI, prodi));
+        criteria.add(Restrictions.eq(ConstantUtil.TERM, term));
+        criteria.add(Restrictions.eq(ConstantUtil.MATAKULIAH, matakuliah));
+        return getHibernateTemplate().findByCriteria(criteria);
+    }
 }

@@ -1,5 +1,6 @@
 package id.ac.idu.irs.dao;
 
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tirspasca;
 
 import java.util.List;
@@ -76,6 +77,11 @@ public interface IrsDAO {
      * EN: Saves new or updates an Tirspasca.<br>
      */
     public void saveOrUpdate(Tirspasca entity);
+
+    /**
+     * EN: Saves new or updates an Tirspasca.<br>
+     */
+    public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa);
 
     /**
      * EN: Deletes an Tirspasca.<br>
