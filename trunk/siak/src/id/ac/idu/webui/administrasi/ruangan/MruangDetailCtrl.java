@@ -23,6 +23,7 @@ import id.ac.idu.backend.model.Mruang;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -139,15 +140,16 @@ public class MruangDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void onCreate$windowMruangDetail(Event event) throws Exception {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusRuangan.class)).getEnumToList(),
-                list_status, cmb_status, (getMruang() != null)?getMruang().getCstatus():null);
-
-
         binder.loadAll();
 
         doFitSize(event);
     }
 
+    public void doResetCombo(){
+        ListBoxUtil.resetList(list_status);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusRuangan.class)).getEnumToList(),
+                list_status, cmb_status, (getMruang() != null)?getMruang().getCstatus():null);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++++ Business Logic ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
