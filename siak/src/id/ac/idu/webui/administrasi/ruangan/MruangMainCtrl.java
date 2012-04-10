@@ -194,6 +194,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getMruangDetailCtrl().setMruang(getSelectedMruang());
             getMruangDetailCtrl().getBinder().loadAll();
+            getMruangDetailCtrl().doResetCombo();
             return;
         }
 
@@ -674,6 +675,7 @@ public class MruangMainCtrl extends GFCBaseCtrl implements Serializable {
             getMruangDetailCtrl().getBinder().loadAll();
         }
 
+       getMruangDetailCtrl().doResetCombo();
         // set editable Mode
         getMruangDetailCtrl().doReadOnlyMode(false);
 
