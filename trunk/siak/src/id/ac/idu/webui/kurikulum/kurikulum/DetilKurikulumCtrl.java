@@ -195,6 +195,7 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
             obj.setClintasprodi(listLintasProdi.getSelectedItem().getValue().toString());
         }
         obj.setMprodi(getKurikulumDetailCtrl().getKurikulum().getMprodi());
+        obj.setCcohort(getKurikulumDetailCtrl().getKurikulum().getCcohort());
         setMdetilkurikulum(obj);
         if(!this.isnew) lml.set(idx, getMdetilkurikulum());
         else lml.add(listDetilKurikulum.getItems().size(), getMdetilkurikulum());
