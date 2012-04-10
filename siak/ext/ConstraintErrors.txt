@@ -1,0 +1,32 @@
+
+
+ALTER TABLE MKURIKULUM ALTER COLUMN MATAKULIAH_ID SET NOT NULL
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0205N  Column or attribute "MATAKULIAH_ID" is not defined in 
+"SIAK.MKURIKULUM".  SQLSTATE=42703
+
+
+ALTER TABLE MALUMNI ADD CONSTRAINT MALUMNI_UK1 UNIQUE (SEKOLAH_ID, PRODI_ID, CTERM, MAHASISWA_ID)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0542N  The column named "SEKOLAH_ID" cannot be a column of a primary key or 
+unique key constraint because it can contain null values.  SQLSTATE=42831
+
+ALTER TABLE MKOMPONENNILAI DROP CONSTRAINT MKOMPONENNILAI_UK1
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0204N  "SIAK.MKOMPONENNILAI" is an undefined name.  SQLSTATE=42704
+
+ALTER TABLE MKOMPONENNILAI ADD CONSTRAINT MKOMPONENNILAI_UK1 UNIQUE ( CKDKOMPONEN)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0204N  "SIAK.MKOMPONENNILAI" is an undefined name.  SQLSTATE=42704
+
+
+ALTER TABLE MMHSPASCAKHS ADD CONSTRAINT MMHSPASCAKHS_UK1 UNIQUE (MAHASISWA_ID,PANGKATGOLONGAN_ID)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0542N  The column named "PANGKATGOLONGAN_ID" cannot be a column of a 
+primary key or unique key constraint because it can contain null values.  
+SQLSTATE=42831
