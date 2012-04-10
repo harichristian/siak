@@ -28,6 +28,7 @@ import id.ac.idu.webui.administrasi.mahasiswa.model.PribadiSearchKodeposList;
 import id.ac.idu.webui.irs.cutimhs.model.OrderSearchMahasiswaList;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.*;
 import id.ac.idu.webui.util.test.EnumConverter;
@@ -205,20 +206,26 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         setPageSize(20);
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
-                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
-                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
-
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
-                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
 
         binder.loadAll();
 
         doFitSize(event);
     }
 
+    public void doResetCombo(){
+         ListBoxUtil.resetList(txtb_ckdbekerja);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
+                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
+
+         ListBoxUtil.resetList(txtb_ckdagama);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
+                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
+
+         ListBoxUtil.resetList(txtb_cstatnkh);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
+    }
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
         HibernateSearchObject<Mmahasiswa> soCustomer = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
 		soCustomer.addSort("cnim", false);

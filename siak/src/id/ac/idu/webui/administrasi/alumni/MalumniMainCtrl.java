@@ -196,6 +196,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getMalumniDetailCtrl().setMalumni(getSelectedMalumni());
             getMalumniDetailCtrl().getBinder().loadAll();
+            getMalumniDetailCtrl().doResetCombo();
             return;
         }
 
@@ -636,6 +637,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
             getMalumniDetailCtrl().getBinder().loadAll();
         }
 
+        getMalumniDetailCtrl().doResetCombo();
         // set editable Mode
         getMalumniDetailCtrl().doReadOnlyMode(false);
 

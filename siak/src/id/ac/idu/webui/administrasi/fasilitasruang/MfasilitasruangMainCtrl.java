@@ -194,6 +194,7 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
             // refresh the Binding mechanism
             getMfasilitasruangDetailCtrl().setMfasilitasruang(getSelectedMfasilitasruang());
             getMfasilitasruangDetailCtrl().getBinder().loadAll();
+            getMfasilitasruangDetailCtrl().doResetCombo();
             return;
         }
 
@@ -674,6 +675,7 @@ public class MfasilitasruangMainCtrl extends GFCBaseCtrl implements Serializable
             getMfasilitasruangDetailCtrl().getBinder().loadAll();
         }
 
+        getMfasilitasruangDetailCtrl().doResetCombo();
         // set editable Mode
         getMfasilitasruangDetailCtrl().doReadOnlyMode(false);
 
