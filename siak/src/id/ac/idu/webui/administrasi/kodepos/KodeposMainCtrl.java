@@ -302,7 +302,7 @@ public class KodeposMainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doCheckRights() {
-        btnHelp.setVisible(true);
+//        btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
         btnDelete.setVisible(true);

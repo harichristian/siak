@@ -142,11 +142,11 @@ public class MatakuliahMainCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights() {
         final UserWorkspace workspace = getUserWorkspace();
 
-        button_List_PrintList.setVisible(true);
+//        button_List_PrintList.setVisible(true);
         button_MtkList_SearchCode.setVisible(true);
         button_MtkList_SearchNama.setVisible(true);
         button_MtkList_SearchSks.setVisible(true);
-        btnHelp.setVisible(true);
+//        btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
         btnDelete.setVisible(true);
