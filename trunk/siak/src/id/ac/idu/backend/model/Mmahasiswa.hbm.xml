@@ -18,7 +18,7 @@
             <column name="JENJANG_ID" />
         </many-to-one>
         <property name="cnim" type="string">
-            <column name="CNIM" length="12" not-null="true" />
+            <column name="CNIM" length="12" not-null="true" unique="true"/>
         </property>
         <property name="cnama" type="string">
             <column name="CNAMA" length="50" />

@@ -15,7 +15,7 @@
             <column name="UNIV_ID" not-null="true" />
         </many-to-one>
         <property name="ckdsekolah" type="string">
-            <column name="CKDSEKOLAH" length="5" not-null="true" />
+            <column name="CKDSEKOLAH" length="5" not-null="true" unique="true"/>
         </property>
         <property name="cnamaSekolah" type="string">
             <column name="CNAMA_SEKOLAH" length="50" not-null="true" />

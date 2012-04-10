@@ -11,7 +11,7 @@
             </generator>
         </id>
         <property name="ckdkgt" type="string">
-            <column name="CKDKGT" length="2" not-null="true"/>
+            <column name="CKDKGT" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmkgt" type="string">
             <column name="CNMKGT" length="50" not-null="true"/>

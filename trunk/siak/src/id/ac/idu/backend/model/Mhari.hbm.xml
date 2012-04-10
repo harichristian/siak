@@ -9,7 +9,7 @@
             <generator class="sequence"><param name="sequence">MHARI_SEQ</param></generator>
         </id>
         <property name="ckdhari" type="string">
-            <column name="CKDHARI" length="1" not-null="true" />
+            <column name="CKDHARI" length="1" not-null="true" unique="true"/>
         </property>
         <property name="cnmhari" type="string">
             <column name="CNMHARI" length="10" />

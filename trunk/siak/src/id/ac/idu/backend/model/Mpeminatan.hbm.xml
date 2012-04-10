@@ -12,7 +12,7 @@
             <column name="PRODI_ID" not-null="true" />
         </many-to-one>
         <property name="ckdminat" type="string">
-            <column name="CKDMINAT" length="2" not-null="true" />
+            <column name="CKDMINAT" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmminat" type="string">
             <column name="CNMMINAT" length="50" not-null="true" />

@@ -15,7 +15,7 @@
             <column name="JENJANG_ID" not-null="true" />
         </many-to-one>
         <property name="ckdprogst" type="string">
-            <column name="CKDPROGST" length="2" not-null="true" />
+            <column name="CKDPROGST" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmprogst" type="string">
             <column name="CNMPROGST" length="40" not-null="true" />
