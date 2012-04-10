@@ -257,6 +257,9 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             if(mhistpnddkmhsS2.getMjenjang()!= null && mhistpnddkmhsS2.getMprodi()!=null && mhistpnddkmhsS2.getMuniv()!=null) mhistpnddkmhses.add(mhistpnddkmhsS2);
         }
 
+        for(Mhistpnddkmhs mhspddk : mhistpnddkmhses)
+            if(getMahasiswa().getId() > 0) mhspddk.setMahasiswaId(getMahasiswa().getId());
+
         /* Tab Kursus/Bahasa */
         Mhistkursusmhs oKursus;
         Set<Mhistkursusmhs> mhistkursusmhses = new HashSet<Mhistkursusmhs>();
@@ -331,33 +334,36 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             getMainCtrl().getMahasiswa().getMkgtmhses().clear();         // Page Kegiatan/Karya
             getMainCtrl().getMahasiswa().getMkaryamhses().clear();       // Page Kegiatan/Karya
             getMainCtrl().getMahasiswa().getMprestasimhses().clear();    // Page Pekerjaan
+            getMainCtrl().getMahasiswa().getMhistpnddkmhses().clear();
 
             if(getMahasiswa().getId() > 0)  {
-                getMainCtrl().getMahasiswa().getMppumhskhususes().addAll(mppumhskhususes);       // Page Khusus
-                getMainCtrl().getMahasiswa().getMhistpangkatmhses().addAll(mhistpangkatmhses);   // Page Khusus
-                getMainCtrl().getMahasiswa().getMhistkursusmhses().addAll(mhistkursusmhses);     // Kursus/Bahasa
-                getMainCtrl().getMahasiswa().getMpbahasamhses().addAll(mpbahasamhses);           // Kursus/Bahasa
-                getMainCtrl().getMahasiswa().getMkgtmhses().addAll(mkgtmhses);                   // Page Kegiatan/Karya
-                getMainCtrl().getMahasiswa().getMkaryamhses().addAll(mkaryamhses);               // Page Kegiatan/Karya
-                getMainCtrl().getMahasiswa().getMprestasimhses().addAll(mprestasimhses);         // Page Pekerjaan
+                if(mppumhskhususes.size() > 0) getMainCtrl().getMahasiswa().getMppumhskhususes().addAll(mppumhskhususes);       // Page Khusus
+                if(mhistpangkatmhses.size() > 0) getMainCtrl().getMahasiswa().getMhistpangkatmhses().addAll(mhistpangkatmhses);   // Page Khusus
+                if(mhistkursusmhses.size() > 0) getMainCtrl().getMahasiswa().getMhistkursusmhses().addAll(mhistkursusmhses);     // Kursus/Bahasa
+                if(mpbahasamhses.size() > 0) getMainCtrl().getMahasiswa().getMpbahasamhses().addAll(mpbahasamhses);           // Kursus/Bahasa
+                if(mkgtmhses.size() > 0) getMainCtrl().getMahasiswa().getMkgtmhses().addAll(mkgtmhses);                   // Page Kegiatan/Karya
+                if(mkaryamhses.size() > 0) getMainCtrl().getMahasiswa().getMkaryamhses().addAll(mkaryamhses);               // Page Kegiatan/Karya
+                if(mprestasimhses.size() > 0) getMainCtrl().getMahasiswa().getMprestasimhses().addAll(mprestasimhses);         // Page Pekerjaan
+                if(mhistpnddkmhses.size() > 0) getMainCtrl().getMahasiswa().getMhistpnddkmhses().addAll(mhistpnddkmhses);
             }
             else {
-                getMainCtrl().getMahasiswa().setMppumhskhususes(mppumhskhususes);                // Page Khusus
-                getMainCtrl().getMahasiswa().setMhistpangkatmhses(mhistpangkatmhses);            // Page Khusus
-                getMainCtrl().getMahasiswa().setMhistkursusmhses(mhistkursusmhses);              // Page Kursus
-                getMainCtrl().getMahasiswa().setMpbahasamhses(mpbahasamhses);                    // Page Kursus
-                getMainCtrl().getMahasiswa().setMkgtmhses(mkgtmhses);                            // Page Kegiatan/Karya
-                getMainCtrl().getMahasiswa().setMkaryamhses(mkaryamhses);                        // Page Kegiatan/Karya
-                getMainCtrl().getMahasiswa().setMprestasimhses(mprestasimhses);                  // Page Pekerjaan
+                if(mppumhskhususes.size() > 0) getMainCtrl().getMahasiswa().setMppumhskhususes(mppumhskhususes);                // Page Khusus
+                if(mhistpangkatmhses.size() > 0) getMainCtrl().getMahasiswa().setMhistpangkatmhses(mhistpangkatmhses);            // Page Khusus
+                if(mhistkursusmhses.size() > 0) getMainCtrl().getMahasiswa().setMhistkursusmhses(mhistkursusmhses);              // Page Kursus
+                if(mpbahasamhses.size() > 0) getMainCtrl().getMahasiswa().setMpbahasamhses(mpbahasamhses);                    // Page Kursus
+                if(mkgtmhses.size() > 0) getMainCtrl().getMahasiswa().setMkgtmhses(mkgtmhses);                            // Page Kegiatan/Karya
+                if(mkaryamhses.size() > 0) getMainCtrl().getMahasiswa().setMkaryamhses(mkaryamhses);                        // Page Kegiatan/Karya
+                if(mprestasimhses.size() > 0) getMainCtrl().getMahasiswa().setMprestasimhses(mprestasimhses);                  // Page Pekerjaan
+                if(mhistpnddkmhses.size() > 0) getMainCtrl().getMahasiswa().setMhistpnddkmhses(mhistpnddkmhses);
             }
             
-            getMainCtrl().getMahasiswa().setMhistpnddkmhses(mhistpnddkmhses);
-            
             getMainCtrl().getMhsservice().saveOrUpdate(getMainCtrl().getMahasiswa());
-            getMainCtrl().getListCtrl().loadListData();
         }
         catch (DataAccessException e) { ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString()); }
-        finally { this.doReadOnlyMode(true); }
+        finally {
+            getMainCtrl().getListCtrl().loadListData();
+            this.doReadOnlyMode(true);
+        }
     }
 
     public void doDelete(Event event) throws InterruptedException {
