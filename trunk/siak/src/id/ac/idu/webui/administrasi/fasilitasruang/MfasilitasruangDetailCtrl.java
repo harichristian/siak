@@ -25,6 +25,7 @@ import id.ac.idu.backend.model.Mruang;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.searchdialogs.MfasilitasExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MruangExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
@@ -145,12 +146,17 @@ public class MfasilitasruangDetailCtrl extends GFCBaseCtrl implements Serializab
     public void onCreate$windowMfasilitasruangDetail(Event event) throws Exception {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusRuangan.class)).getEnumToList(),
-                list_status, cmb_status, (getMfasilitasruang() != null)?getMfasilitasruang().getCstatus():null);
+
 
         binder.loadAll();
 
         doFitSize(event);
+    }
+
+    public void doResetCombo(){
+        ListBoxUtil.resetList(list_status);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusRuangan.class)).getEnumToList(),
+                list_status, cmb_status, (getMfasilitasruang() != null)?getMfasilitasruang().getCstatus():null);
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
