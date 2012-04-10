@@ -12,7 +12,7 @@
             <column name="PRODI_ID" not-null="true" />
         </many-to-one>
         <property name="ckodekur" type="string">
-            <column name="CKODEKUR" length="8" not-null="true" />
+            <column name="CKODEKUR" length="8" not-null="true" unique="true"/>
         </property>
         <property name="ccohort" type="string">
             <column name="CCOHORT" length="6" />

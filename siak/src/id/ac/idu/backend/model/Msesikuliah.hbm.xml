@@ -12,7 +12,7 @@
             <column name="SEKOLAH_ID" not-null="true" />
         </many-to-one>
         <property name="ckdsesi" type="string">
-            <column name="CKDSESI" length="2" not-null="true" />
+            <column name="CKDSESI" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cjamawal" type="string">
             <column name="CJAMAWAL" length="5" />

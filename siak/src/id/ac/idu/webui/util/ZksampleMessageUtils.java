@@ -1,5 +1,6 @@
 package id.ac.idu.webui.util;
 
+import org.apache.commons.lang.StringUtils;
 import org.zkoss.util.resource.Labels;
 
 import java.io.Serializable;
@@ -92,9 +93,17 @@ public class ZksampleMessageUtils implements Serializable {
      * @throws InterruptedException
      */
     public static void showErrorMessage(String e) throws InterruptedException {
+        String errorMsg = "";
+        System.out.println("e = " + e);
+        if (StringUtils.containsIgnoreCase(e, "SqlIntegrityConstraintViolationException") && StringUtils.containsIgnoreCase(e, "SQLCODE=-803")) {
+            System.out.println("UNIQUE");
+            errorMsg = "Terjadi Duplikasi Data";
+        } else {
+            errorMsg = e;
+        }
         final String title = Labels.getLabel("message.Error");
         MultiLineMessageBox.doSetTemplate();
-        MultiLineMessageBox.show(e, title, MultiLineMessageBox.OK, "ERROR", true);
+        MultiLineMessageBox.show(errorMsg, title, MultiLineMessageBox.OK, "ERROR", true);
     }
 
 }

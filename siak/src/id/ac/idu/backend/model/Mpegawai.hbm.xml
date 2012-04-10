@@ -12,7 +12,7 @@
             <column name="JABATAN_ID" />
         </many-to-one>
         <property name="cnip" type="string">
-            <column name="CNIP" length="6" not-null="true" />
+            <column name="CNIP" length="6" not-null="true" unique="true" />
         </property>
         <property name="cnama" type="string">
             <column name="CNAMA" length="60" />
