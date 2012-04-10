@@ -12,7 +12,7 @@
             <column name="SEKOLAH_ID" />
         </many-to-one>
         <many-to-one name="mjenjang" class="id.ac.idu.backend.model.Mjenjang" fetch="select" lazy="false">
-            <column name="JENJANG_ID" not-null="true" />
+            <column name="JENJANG_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="ckdprogst" type="string">
             <column name="CKDPROGST" length="2" not-null="true" unique="true"/>

@@ -9,25 +9,25 @@
             <generator class="sequence"><param name="sequence">TFEEDBACKWISUDAWAN_SEQ</param></generator>
         </id>
         <property name="cterm" type="string">
-            <column name="CTERM" length="2" not-null="true" />
+            <column name="CTERM" length="2" not-null="true" unique="true"/>
         </property>
         <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="join"  lazy="false">
-            <column name="SEKOLAH_ID" not-null="true" />
+            <column name="SEKOLAH_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="join"  lazy="false">
-            <column name="PRODI_ID" not-null="true" />
+            <column name="PRODI_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="ckelompok" type="string">
-            <column name="CKELOMPOK" length="2" not-null="true" />
+            <column name="CKELOMPOK" length="2" not-null="true" unique="true"/>
         </property>
         <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="join"  lazy="false">
-            <column name="MAHASISWA_ID" not-null="true" />
+            <column name="MAHASISWA_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mfeedback" class="id.ac.idu.backend.model.Mfeedback" fetch="join"  lazy="false">
-            <column name="FEEDBACK_ID" not-null="true" />
+            <column name="FEEDBACK_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="nnopertanyaan" type="int">
-            <column name="NNOPERTANYAAN" not-null="true" />
+            <column name="NNOPERTANYAAN" not-null="true" unique="true"/>
         </property>
         <property name="cjawaban" type="string">
             <column name="CJAWABAN" length="1" />

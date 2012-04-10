@@ -9,16 +9,16 @@
             <generator class="sequence"><param name="sequence">MDETILKURIKULUM_SEQ</param></generator>
         </id>
         <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
-            <column name="PRODI_ID" not-null="true" />
+            <column name="PRODI_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mtbmtkl" class="id.ac.idu.backend.model.Mtbmtkl" fetch="select" lazy="false">
-            <column name="MATAKULIAH_ID" />
+            <column name="MATAKULIAH_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="kurikulumId" type="int">
-            <column name="KURIKULUM_ID" length="4" not-null="true" />
+            <column name="KURIKULUM_ID" length="4" not-null="true" unique="true"/>
         </property>
         <property name="ccohort" type="string">
-            <column name="CCOHORT" length="6" />
+            <column name="CCOHORT" length="6" not-null="true" unique="true"/>
         </property>
         <property name="cjenis" type="string">
             <column name="CJENIS" length="1" />

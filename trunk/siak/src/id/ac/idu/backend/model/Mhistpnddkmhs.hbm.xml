@@ -9,16 +9,16 @@
             <generator class="sequence"><param name="sequence">MHISTPNDDKMHS_SEQ</param></generator>
         </id>
         <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false" cascade="none">
-            <column name="PRODI_ID" not-null="true" />
+            <column name="PRODI_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="mahasiswaId" type="int">
-            <column name="MAHASISWA_ID" length="4" not-null="true" />
+            <column name="MAHASISWA_ID" length="4" not-null="true" unique="true"/>
         </property>
         <many-to-one name="muniv" class="id.ac.idu.backend.model.Muniv" fetch="select" lazy="false" cascade="none">
             <column name="UNIV_ID" />
         </many-to-one>
         <many-to-one name="mjenjang" class="id.ac.idu.backend.model.Mjenjang" fetch="select" lazy="false" cascade="none">
-            <column name="JENJANG_ID" not-null="true" />
+            <column name="JENJANG_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="nhistipk" type="big_decimal">
             <column name="NHISTIPK" precision="5" />

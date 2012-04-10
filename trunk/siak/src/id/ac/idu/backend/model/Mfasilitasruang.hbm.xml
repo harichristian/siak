@@ -9,10 +9,10 @@
             <generator class="sequence"><param name="sequence">MFASILITASRUANG_SEQ</param></generator>
         </id>
         <many-to-one name="mruang" class="id.ac.idu.backend.model.Mruang" fetch="select" lazy="false">
-            <column name="RUANG_ID" not-null="true" />
+            <column name="RUANG_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mfasilitas" class="id.ac.idu.backend.model.Mfasilitas" fetch="select" lazy="false">
-            <column name="FASILITAS_ID" not-null="true" />
+            <column name="FASILITAS_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="njml" type="int">
             <column name="NJML" not-null="true" />

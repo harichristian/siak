@@ -14,13 +14,13 @@
             <column name="CKDKGT"/>
         </many-to-one>
         <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
-            <column name="SEKOLAH_ID" not-null="true"/>
+            <column name="SEKOLAH_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
-            <column name="PRODI_ID" not-null="true"/>
+            <column name="PRODI_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="cno" type="string">
-            <column name="CNO" length="2" not-null="true"/>
+            <column name="CNO" length="2" not-null="true" unique="true"/>
         </property>
         <property name="dtglawal" type="date">
             <column name="DTGLAWAL" length="10"/>
