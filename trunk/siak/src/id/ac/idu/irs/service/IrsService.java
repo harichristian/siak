@@ -1,5 +1,6 @@
 package id.ac.idu.irs.service;
 
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tirspasca;
 
 import java.util.List;
@@ -74,4 +75,6 @@ public interface IrsService {
      * EN: Deletes an Tirspasca.<br>
      */
     public void delete(Tirspasca entity);
+
+    public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa);
 }

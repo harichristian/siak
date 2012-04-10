@@ -5,6 +5,9 @@ import id.ac.idu.administrasi.dao.ProdiDAO;
 import id.ac.idu.administrasi.dao.SekolahDAO;
 import id.ac.idu.backend.model.*;
 import id.ac.idu.irs.dao.IrsDAO;
+import id.ac.idu.irs.dao.JadkuldetilDAO;
+import id.ac.idu.irs.dao.JadkulmasterDAO;
+import id.ac.idu.irs.dao.PaketDAO;
 import id.ac.idu.irs.service.IrsService;
 import id.ac.idu.mankurikulum.dao.MatakuliahDAO;
 
@@ -23,6 +26,9 @@ public class IrsServiceImpl implements IrsService{
     private SekolahDAO sekolahDAO;
     private ProdiDAO prodiDAO;
     private MatakuliahDAO matakuliahDAO;
+    private PaketDAO paketDAO;
+    private JadkulmasterDAO jadkulmasterDAO;
+    private JadkuldetilDAO jadkuldetilDAO;
 
     public IrsDAO getIrsDAO() {
         return irsDAO;
@@ -64,6 +70,29 @@ public class IrsServiceImpl implements IrsService{
         this.matakuliahDAO = matakuliahDAO;
     }
 
+    public PaketDAO getPaketDAO() {
+        return paketDAO;
+    }
+
+    public void setPaketDAO(PaketDAO paketDAO) {
+        this.paketDAO = paketDAO;
+    }
+
+    public JadkulmasterDAO getJadkulmasterDAO() {
+        return jadkulmasterDAO;
+    }
+
+    public void setJadkulmasterDAO(JadkulmasterDAO jadkulmasterDAO) {
+        this.jadkulmasterDAO = jadkulmasterDAO;
+    }
+
+    public JadkuldetilDAO getJadkuldetilDAO() {
+        return jadkuldetilDAO;
+    }
+
+    public void setJadkuldetilDAO(JadkuldetilDAO jadkuldetilDAO) {
+        this.jadkuldetilDAO = jadkuldetilDAO;
+    }
     @Override
     public Tirspasca getNewIrs() {
         return getIrsDAO().getNewIrs();
@@ -107,5 +136,57 @@ public class IrsServiceImpl implements IrsService{
     @Override
     public void delete(Tirspasca entity) {
         getIrsDAO().delete(entity);
+    }
+
+    @Override
+    public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa) {
+        List<Tpaketkuliah> paketList = getPaketDAO().getPaketForTransaction(entity.getMprodi(), entity.getCterm(), entity.getCthajar());
+        String error = "";
+        List<Tirspasca> irsList;
+        //get mahasiswa list;
+        List<Mmahasiswa> mahasiswaList = getMahasiswaDAO().getForPaket(entity.getMmahasiswa(), mahasiswa);
+        if(mahasiswaList.size() > 0) {
+            for(Mmahasiswa mhs : mahasiswaList){
+                if(paketList.size() > 0) {
+                    for(Tpaketkuliah paket : paketList) {
+                        Tirspasca irs = getNewIrs();
+                        //set mahasiswa
+                        irs.setMmahasiswa(mhs);
+                        irs.setMprodi(entity.getMprodi());
+                        irs.setMsekolah(entity.getMsekolah());
+                        irs.setCterm(entity.getCterm());
+                        irs.setCthajar(entity.getCthajar());
+                        irs.setCsmt(entity.getCsmt());
+                        //cek tjadkulmaster term, ckdsekolah, ckdprogst
+                        List<Tjadkuldetil> jadkulDetil = getJadkuldetilDAO().getForPaket(entity.getMsekolah(), entity.getMprodi(), entity.getCterm(), paket.getMtbmtkl());
+                        if (jadkulDetil.size() > 0) {
+                            //cek bentrok kelompok
+                            //cek nmaks, nisi tjadkuldetil
+                            for(Tjadkuldetil detil : jadkulDetil) {
+                                int tempIsi = (detil.getNisi() == null)?0:detil.getNisi();
+                                if(tempIsi <= detil.getNmaks()) {
+                                    //update tjadkul nisi = nisi + 1
+                                    int isi = tempIsi + 1;
+                                    detil.setNisi(isi);
+                                    getJadkuldetilDAO().saveOrUpdate(detil);
+                                    //save tirspasca
+                                    irs.setCkelompok(detil.getCkelompok());
+                                    irs.setMtbmtkl(detil.getMtbmtkl());
+                                    getIrsDAO().saveOrUpdate(irs);
+                                } else {
+                                    error += "\n Matakuliah: "+detil.getMtbmtkl().getCnamamk()+" Kelompok: "+detil.getCkelompok()+" penuh.";
+                                }
+                            }
+                        } else {
+                            error += "\n" + paket.getMtbmtkl().getCnamamk() + " tidak ada jadwal. ";
+                        }
+                    }
+                } else {
+                    error += "\n Tidak ada paket untuk prodi, term dan tahun ajaran yang dipilih";
+                }
+            }
+        } else {
+            error = "Daftar mahasiswa tidak ditemukan";
+        }
     }
 }

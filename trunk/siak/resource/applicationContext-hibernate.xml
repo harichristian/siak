@@ -383,6 +383,8 @@
         <property name="sekolahDAO" ref="sekolahDAO"/>
         <property name="prodiDAO" ref="prodiDAO"/>
         <property name="matakuliahDAO" ref="matakuliahDAO"/>
+        <property name="paketDAO" ref="paketDAO"/>
+        <property name="jadkuldetilDAO" ref="jadkuldetilDAO"/>
     </bean>
 
     <bean name="paketService" class="id.ac.idu.irs.service.impl.PaketServiceImpl">

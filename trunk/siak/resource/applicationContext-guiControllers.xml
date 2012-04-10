@@ -659,6 +659,7 @@
         <property name="irsService" ref="irsService"/>
         <property name="popupMhsService" ref="mahasiswaService"/>
         <property name="plwMahasiswa" ref="pagedListWrapper"/>
+        <property name="plwMahasiswaTo" ref="pagedListWrapper"/>
     </bean>
 
     <!-- Orders -->

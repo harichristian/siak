@@ -5,6 +5,7 @@ import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Branche;
 import id.ac.idu.backend.model.Mmahasiswa;
+import id.ac.idu.util.ConstantUtil;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
@@ -83,5 +84,12 @@ public class MahasiswaDAOImpl extends BasisDAO<Mmahasiswa> implements MahasiswaD
         List<Branche> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
 
         return new ResultObject(list, totalCount);
+    }
+    @Override
+    public List<Mmahasiswa> getForPaket(Mmahasiswa mhsFrom, Mmahasiswa mhsTo) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mmahasiswa.class);
+        //criteria.add(Restrictions.ilike("cnim", _nim, MatchMode.ANYWHERE));
+        criteria.add(Restrictions.between(ConstantUtil.NIM, mhsFrom.getCnim(), mhsTo.getCnim()));
+        return getHibernateTemplate().findByCriteria(criteria);
     }
 }

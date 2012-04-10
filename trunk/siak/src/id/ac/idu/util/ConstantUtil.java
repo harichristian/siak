@@ -15,6 +15,7 @@ public class ConstantUtil {
     public static String MAHASISWA = "mmahasiswa";
     public static String MATAKULIAH = "mtbmtkl";
     public static String GRADE = "mgrade";
+    public static String NIM = "cnim";
     public static String SINGKATAN = "csingkatan";
     public static String THAJAR = "cthajar";
     public static String TERM = "cterm";

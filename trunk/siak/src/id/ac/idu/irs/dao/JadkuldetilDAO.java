@@ -1,7 +1,6 @@
 package id.ac.idu.irs.dao;
 
-import id.ac.idu.backend.model.Tjadkulmaster;
-import id.ac.idu.backend.model.Tjadkuldetil;
+import id.ac.idu.backend.model.*;
 
 import java.util.List;
 
@@ -30,4 +29,6 @@ public interface JadkuldetilDAO {
     public void delete(Tjadkuldetil entity);
 
     public void save(Tjadkuldetil entity);
+
+    public List<Tjadkuldetil> getForPaket(Msekolah sekolah, Mprodi prodi, String term, Mtbmtkl matakuliah);
 }

@@ -1,5 +1,6 @@
 package id.ac.idu.irs.dao;
 
+import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.backend.model.Tpaketkuliah;
 
 import java.util.List;
@@ -64,6 +65,8 @@ public interface PaketDAO {
      * @return List of Tirspasca
      */
     public List<Tpaketkuliah> getPaketLikeProdi(String string);
+
+    public List<Tpaketkuliah> getPaketForTransaction(Mprodi prodi, String term, String thajar);
 
     /**
      * EN: Deletes an Tpaketkuliah by its Id.<br>

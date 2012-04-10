@@ -59,12 +59,18 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
 
         // POPUP variables
         protected Textbox txtb_nim;
+        protected Textbox txtb_nimTo;
         protected Textbox txtb_nama;
+        protected Textbox txtb_namaTo;
         protected Intbox txtb_mhsid;
         protected Bandbox bandbox_Dialog_MahasiswaSearch;
+        protected Bandbox bandbox_Dialog_MahasiswaSearchTo;
         protected Paging paging_MahasiswaSearchList;
+        protected Paging paging_MahasiswaSearchListTo;
         private transient PagedListWrapper<Mmahasiswa> plwMahasiswa;
+        private transient PagedListWrapper<Mmahasiswa> plwMahasiswaTo;
         protected Listbox listMahasiswaSearch;
+        protected Listbox listMahasiswaSearchTo;
         private int pageSize;
 
         // Databinding
@@ -176,12 +182,13 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
             //txtb_prodi.setReadonly(b);
             txtb_thajar.setReadonly(b);
             txtb_term.setReadonly(b);
-            txtb_kelompok.setReadonly(b);
+            //txtb_kelompok.setReadonly(b);
             txtb_semester.setReadonly(b);
             bandbox_Dialog_MahasiswaSearch.setDisabled(b);
+            bandbox_Dialog_MahasiswaSearchTo.setDisabled(b);
             btnSearchSekolahExtended.setDisabled(b);
             btnSearchProdiExtended.setDisabled(b);
-            btnSearchMatakuliahExtended.setDisabled(b);
+            //btnSearchMatakuliahExtended.setDisabled(b);
         }
 
         public void onClick$btnSearchProdiExtended(Event event) {
@@ -298,6 +305,10 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
             return plwMahasiswa;
         }
 
+        public PagedListWrapper<Mmahasiswa> getPlwMahasiswaTo() {
+            return plwMahasiswaTo;
+        }
+
         public MahasiswaService getPopupMhsService() {
             return popupMhsService;
         }
@@ -310,6 +321,10 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
             this.plwMahasiswa = plwMahasiswa;
         }
 
+        public void setPlwMahasiswaTo(PagedListWrapper<Mmahasiswa> plwMahasiswaTo) {
+            this.plwMahasiswaTo = plwMahasiswaTo;
+        }
+
         public int getPageSize() {
             return pageSize;
         }
@@ -317,7 +332,6 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
         public void setPageSize(int pageSize) {
             this.pageSize = pageSize;
         }
-
 
         public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
             HibernateSearchObject<Mmahasiswa> soCustomer = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
@@ -348,6 +362,62 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
                 }
             }
             bandbox_Dialog_MahasiswaSearch.close();
+            Listitem itemTo = listMahasiswaSearchTo.getSelectedItem();
+            if (itemTo != null) {
+                Mmahasiswa aMahasiswa = (Mmahasiswa) itemTo.getAttribute("data");
+                //getTxMainCtrl().setMahasiswa(aMahasiswa);
+                getTxMainCtrl().setMahasiswaTo(aMahasiswa);
+                if (aMahasiswa != null) {
+                txtb_nimTo.setValue(aMahasiswa.getCnim());
+                txtb_namaTo.setValue(aMahasiswa.getCnama());
+                Tirspasca obj = getIrs();
+                //obj.setMmahasiswa(aMahasiswa);
+                setIrs(obj);
+                bandbox_Dialog_MahasiswaSearchTo.setValue(getTxMainCtrl().getMahasiswaTo().getCnim());
+                }
+            }
+            bandbox_Dialog_MahasiswaSearchTo.close();
         }
 
+        public void onOpen$bandbox_Dialog_MahasiswaSearchTo(Event event) {
+            HibernateSearchObject<Mmahasiswa> soCustomer = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
+            soCustomer.addSort("cnim", false);
+
+            paging_MahasiswaSearchListTo.setPageSize(pageSize);
+            paging_MahasiswaSearchListTo.setDetailed(true);
+            getPlwMahasiswaTo().init(soCustomer, listMahasiswaSearchTo, paging_MahasiswaSearchListTo);
+            listMahasiswaSearchTo.setItemRenderer(new OrderSearchMahasiswaList());
+        }
+
+        public void onClick$button_bbox_CloseTo(Event event) {
+            bandbox_Dialog_MahasiswaSearchTo.close();
+        }
+
+        public void onMahasiswaItemTo(Event event) {
+            Listitem item = listMahasiswaSearchTo.getSelectedItem();
+            if (item != null) {
+                Mmahasiswa aMahasiswa = (Mmahasiswa) item.getAttribute("data");
+                //getTxMainCtrl().setMahasiswa(aMahasiswa);
+                getTxMainCtrl().setMahasiswaTo(aMahasiswa);
+                if (aMahasiswa != null) {
+                txtb_nimTo.setValue(aMahasiswa.getCnim());
+                txtb_namaTo.setValue(aMahasiswa.getCnama());
+                Tirspasca obj = getIrs();
+                //obj.setMmahasiswa(aMahasiswa);
+                setIrs(obj);
+                bandbox_Dialog_MahasiswaSearchTo.setValue(getTxMainCtrl().getMahasiswaTo().getCnim());
+                }
+            }
+            bandbox_Dialog_MahasiswaSearchTo.close();
+        }
+
+        public Mmahasiswa getMahasiswaTo() {
+            // STORED IN THE module's MainController
+            return getTxMainCtrl().getMahasiswaTo();
+        }
+
+        public void setMahasiswaTo(Mmahasiswa mhs) {
+            // STORED IN THE module's MainController
+            getTxMainCtrl().setMahasiswaTo(mhs);
+        }
 }

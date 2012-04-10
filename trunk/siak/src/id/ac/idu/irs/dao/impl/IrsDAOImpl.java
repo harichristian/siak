@@ -1,6 +1,7 @@
 package id.ac.idu.irs.dao.impl;
 
 import id.ac.idu.backend.dao.impl.BasisDAO;
+import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tirspasca;
 import id.ac.idu.irs.dao.IrsDAO;
 import id.ac.idu.util.ConstantUtil;
@@ -66,5 +67,10 @@ public class IrsDAOImpl extends BasisDAO<Tirspasca> implements IrsDAO{
         if (obj != null) {
             delete(obj);
         }
+    }
+
+    @Override
+    public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa) {
+
     }
 }
