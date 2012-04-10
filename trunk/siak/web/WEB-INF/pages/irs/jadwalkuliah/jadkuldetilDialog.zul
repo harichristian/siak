@@ -23,9 +23,9 @@
                         <!-- COMMON BUTTONS -->
                         <toolbar align="start"
                                  style="float:left; border-style: none;" height="28px">
-                            <button id="btnHelp" height="24px"
+                            <!--<button id="btnHelp" height="24px"
                                     image="/images/icons/light_16x16.gif"
-                                    tooltiptext="${c:l('btnHelp.tooltiptext')}"/>
+                                    tooltiptext="${c:l('btnHelp.tooltiptext')}"/>-->
                         </toolbar>
 
                         <!-- SEARCH AREA -->

@@ -180,7 +180,7 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         final UserWorkspace workspace = getUserWorkspace();
 
         buttonSearch.setVisible(true);
-        btnHelp.setVisible(true);
+//        btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
         btnDelete.setVisible(true);

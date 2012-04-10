@@ -203,7 +203,7 @@ public class UpdateKonsentrasiMainCtrl extends GFCBaseCtrl implements Serializab
     }
 
     private void doCheckRights() {
-        btnHelp.setVisible(true);
+//        btnHelp.setVisible(true);
         btnEdit.setVisible(true);
         btnSave.setVisible(false);
     }

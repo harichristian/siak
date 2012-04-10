@@ -163,7 +163,7 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
         final UserWorkspace workspace = getUserWorkspace();
 
         buttonSesiList.setVisible(true);
-        btnHelp.setVisible(true);
+//        btnHelp.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
         btnDelete.setVisible(true);
