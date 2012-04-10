@@ -194,7 +194,9 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// refresh the Binding mechanism
 			getMpegawaiDetailCtrl().setMpegawai(getSelectedMpegawai());
+
 			getMpegawaiDetailCtrl().getBinder().loadAll();
+            getMpegawaiDetailCtrl().doResetCombo();
 			return;
 		}
 
@@ -674,6 +676,8 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
         if  ( getMpegawaiDetailCtrl().getBinder() !=null)  {
 		        getMpegawaiDetailCtrl().getBinder().loadAll();
         }
+
+         getMpegawaiDetailCtrl().doResetCombo();
 
 		// set editable Mode
 		getMpegawaiDetailCtrl().doReadOnlyMode(false);

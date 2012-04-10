@@ -25,6 +25,7 @@ import id.ac.idu.backend.model.Mpegawai;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.searchdialogs.JabatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.KodePosExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
@@ -183,28 +184,36 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 	public void onCreate$windowMpegawaiDetail(Event event) throws Exception {
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
 
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList(),
-                txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null) ? getMpegawai().getCjenklmn() : null);
-
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
-                txtb_listagama, cmb_agama, (getMpegawai() != null)?getMpegawai().getCkdagama():null);
-
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
-                 txtb_liststatusnikah, cmb_statusnikah, (getMpegawai() != null) ? getMpegawai().getCstatus() : null);
-
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
-                txtb_listaktif, cmb_aktif, (getMpegawai() != null)?getMpegawai().getCflagaktif():null);
-
-        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList(),
-                txtb_listgoldarah, cmb_goldarah, (getMpegawai() != null)?getMpegawai().getCgldarah():null);
-
-          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.PendidikanTerakhir.class)).getEnumToList(),
-                txtb_listpendidikan, cmb_pendidikan, (getMpegawai() != null)?getMpegawai().getCpendakhir():null);
-
         binder.loadAll();
 
 		doFitSize(event);
 	}
+
+    public void doResetCombo(){
+        ListBoxUtil.resetList(txtb_listjeniskelamin);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList(),
+                txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null) ? getMpegawai().getCjenklmn() : null);
+
+        ListBoxUtil.resetList(txtb_listagama);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
+                txtb_listagama, cmb_agama, (getMpegawai() != null)?getMpegawai().getCkdagama():null);
+
+        ListBoxUtil.resetList(txtb_liststatusnikah);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
+                 txtb_liststatusnikah, cmb_statusnikah, (getMpegawai() != null) ? getMpegawai().getCstatus() : null);
+
+        ListBoxUtil.resetList(txtb_listaktif);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
+                txtb_listaktif, cmb_aktif, (getMpegawai() != null)?getMpegawai().getCflagaktif():null);
+
+        ListBoxUtil.resetList(txtb_listgoldarah);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList(),
+                txtb_listgoldarah, cmb_goldarah, (getMpegawai() != null)?getMpegawai().getCgldarah():null);
+
+        ListBoxUtil.resetList(txtb_listpendidikan);
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.PendidikanTerakhir.class)).getEnumToList(),
+                txtb_listpendidikan, cmb_pendidikan, (getMpegawai() != null)?getMpegawai().getCpendakhir():null);
+    }
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
 	// +++++++++++++++++ Business Logic ++++++++++++++++ //
