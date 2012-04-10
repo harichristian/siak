@@ -9,10 +9,10 @@
             <generator class="sequence"><param name="sequence">MHISTPANGKATMHS_SEQ</param></generator>
         </id>
         <many-to-one name="mpangkatgolongan" class="id.ac.idu.backend.model.Mpangkatgolongan" fetch="select" lazy="false">
-            <column name="PANGKATGOLONGAN_ID" not-null="true" />
+            <column name="PANGKATGOLONGAN_ID" not-null="true" unique="true"/>
         </many-to-one>
         <property name="mahasiswaId" type="int">
-            <column name="MAHASISWA_ID" length="4" not-null="true" />
+            <column name="MAHASISWA_ID" length="4" not-null="true" unique="true"/>
         </property>
         <property name="ctmt" type="string">
             <column name="CTMT" length="30" />

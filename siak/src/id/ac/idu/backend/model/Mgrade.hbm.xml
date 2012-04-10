@@ -15,7 +15,7 @@
             <column name="JENJANG_ID" />
         </many-to-one>
         <property name="ckdgrade" type="string">
-            <column name="CKDGRADE" length="2" unique="true"/>
+            <column name="CKDGRADE" length="2" unique="true" not-null="true"/>
         </property>
         <property name="cgrade" type="string">
             <column name="CGRADE" length="2" />

@@ -9,10 +9,10 @@
             <generator class="sequence"><param name="sequence">MPPUMHSKHUSUS_SEQ</param></generator>
         </id>
         <property name="mahasiswaId" type="int">
-            <column name="MAHASISWA_ID" length="4" not-null="true" />
+            <column name="MAHASISWA_ID" length="4" not-null="true" unique="true"/>
         </property>
         <property name="cno" type="string">
-            <column name="CNO" length="2" not-null="true" />
+            <column name="CNO" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmbentuk" type="string">
             <column name="CNMBENTUK" length="50" />

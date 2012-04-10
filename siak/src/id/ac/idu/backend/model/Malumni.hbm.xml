@@ -12,16 +12,16 @@
             <column name="PROP_ID"/>
         </many-to-one>
         <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
-            <column name="SEKOLAH_ID"/>
+            <column name="SEKOLAH_ID" unique="true"/>
         </many-to-one>
         <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
-            <column name="PRODI_ID"/>
+            <column name="PRODI_ID" unique="true"/>
         </many-to-one>
         <many-to-one name="mkab" class="id.ac.idu.backend.model.Mkab" fetch="select" lazy="false">
             <column name="KAB_ID"/>
         </many-to-one>
         <many-to-one name="mmahasiswa" class="id.ac.idu.backend.model.Mmahasiswa" fetch="select" lazy="false">
-            <column name="MAHASISWA_ID" not-null="true" />
+            <column name="MAHASISWA_ID" not-null="true" unique="true"/>
         </many-to-one>
         <many-to-one name="mkel" class="id.ac.idu.backend.model.Mkel" fetch="select" lazy="false">
             <column name="KEL_ID"/>
@@ -30,7 +30,7 @@
             <column name="KEC_ID"/>
         </many-to-one>
         <property name="cterm" type="string">
-            <column name="CTERM" length="4"/>
+            <column name="CTERM" length="4" unique="true"/>
         </property>
         <property name="calamat" type="string">
             <column name="CALAMAT" length="100"/>
