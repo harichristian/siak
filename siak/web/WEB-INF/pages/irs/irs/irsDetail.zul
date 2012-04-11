@@ -111,23 +111,6 @@
                                     </row>
                                     <row>
                                         <hbox>
-                                            <label value="Program Studi"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
-                                        </hbox>
-                                        <hbox pack="stretch" width="50%">
-                                            <textbox
-                                                    id="txtb_prodi"
-                                                    value="@{controller.irs.mprodi.cnmprogst}"
-                                                    readonly="true" maxlength="50" width="99%"/>
-                                            <button
-                                                    id="btnSearchProdiExtended" disabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Prodi"/>
-                                        </hbox>
-                                    </row>
-                                    <row>
-                                        <hbox>
                                             <label value="Sekolah"/>
                                             <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
@@ -141,6 +124,23 @@
                                                     width="28px"
                                                     image="/images/icons/btn_search2_16x16.gif"
                                                     tooltiptext="Cari Sekolah"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Program Studi"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="50%">
+                                            <textbox
+                                                    id="txtb_prodi"
+                                                    value="@{controller.irs.mprodi.cnmprogst}"
+                                                    readonly="true" maxlength="50" width="99%"/>
+                                            <button
+                                                    id="btnSearchProdiExtended" disabled="true"
+                                                    width="28px"
+                                                    image="/images/icons/btn_search2_16x16.gif"
+                                                    tooltiptext="Cari Prodi"/>
                                         </hbox>
                                     </row>
                                     <row>
