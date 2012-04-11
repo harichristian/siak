@@ -18,6 +18,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JExcelApiExporter;
 import net.sf.jasperreports.engine.export.JExcelApiExporterParameter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
+import org.apache.commons.lang.StringUtils;
 import org.zkoss.spring.SpringUtil;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Component;
@@ -47,12 +48,14 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
     private final String zksample2title = "Laporan Jadwal Kuliah";
 
     private Tjadkulmaster param;
+    private String formatType;
 
-    public JadkulmasterSimpleDJReport(Component parent, Tjadkulmaster obj) throws InterruptedException {
+    public JadkulmasterSimpleDJReport(Component parent, Tjadkulmaster obj, String formatType) throws InterruptedException {
         super();
         this.setParent(parent);
         if (obj != null) {
             this.param = obj;
+            this.formatType = formatType;
         }
 
         try {
@@ -131,7 +134,7 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
         // Get information from database
         JadkulService as = (JadkulService) SpringUtil.getBean("jadkulService");
         List<Tjadkulmaster> resultList = null;
-        if(param == null) {
+        if (param == null) {
             System.out.println("if param == null");
             resultList = as.getAllTjadkulmasters();
         } else {
@@ -160,7 +163,12 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
         JRDataSource ds = new JRBeanCollectionDataSource(data);
         JasperPrint jp = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
-        String outputFormat = "PDF";
+        String outputFormat = "";
+        if (StringUtils.isNotBlank(formatType)) {
+            outputFormat = formatType;
+        } else {
+            outputFormat = "PDF";
+        }
 
         output = new ByteArrayOutputStream();
 

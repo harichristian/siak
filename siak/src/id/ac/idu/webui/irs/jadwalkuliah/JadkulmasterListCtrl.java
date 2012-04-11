@@ -665,8 +665,8 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
     }
 
     public void onClick$button_PrintList(Event event) throws InterruptedException {
-		final Window win = (Window) Path.getComponent("/outerIndexWindow");
-		new JadkulmasterSimpleDJReport(win, getTjadkulmaster());
+//		final Window win = (Window) Path.getComponent("/outerIndexWindow");
+//		new JadkulmasterSimpleDJReport(win, getTjadkulmaster());
 	}
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
