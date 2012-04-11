@@ -69,14 +69,14 @@
                                         <textbox
                                                 id="txtb_maxkuliah"
                                                 value="@{controller.mruang.nmaxIsi}" readonly="true"
-                                                constraint="no empty" maxlength="4" width="200px"/>
+                                                constraint="no empty" maxlength="3" width="200px"/>
                                     </row>
                                     <row>
                                         <label
                                                 value="Max Kapasitas Ujian"/>
                                         <textbox
                                                 id="txtb_maxujian" value="@{controller.mruang.nmaxUji}"
-                                                readonly="true" maxlength="4" width="200px"/>
+                                                readonly="true" maxlength="3" width="200px"/>
                                     </row>
                                     <row>
                                         <label

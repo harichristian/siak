@@ -245,8 +245,8 @@ public class Codec {
     }
 
     public enum StatusRuangan implements CodecInterface {
-        SR1("A","Available"),
-        SR12("O","Out of Order");
+        SR1("A","Aktif"),
+        SR12("O","Tidak Aktif");
 
 
         private final String value;
@@ -324,7 +324,7 @@ public class Codec {
     }
 
      public enum KodeFeedback implements CodecInterface {
-        I("I","Feedback Instansi"),
+        //I("I","Feedback Instansi"),
         A("A","Feedback Alumni"),
         D("D","Feedback Dosen"),
         K("K","Feedback Kuliah"),
