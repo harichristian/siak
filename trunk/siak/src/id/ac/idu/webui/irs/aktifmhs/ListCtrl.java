@@ -45,6 +45,7 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
     protected Listheader listheader_filed2;
     protected Listheader listheader_filed3;
     protected Listheader listheader_filed4;
+    protected Listheader listheader_filed5;
 
     public ListCtrl() {
         super();
@@ -88,6 +89,8 @@ public class ListCtrl extends GFCBaseListCtrl<Tcutimhs> implements Serializable 
         listheader_filed3.setSortDescending(new FieldComparator("mmahasiswa.cnim", false));
         listheader_filed4.setSortAscending(new FieldComparator("cterm", true));
         listheader_filed4.setSortDescending(new FieldComparator("cterm", false));
+        listheader_filed5.setSortAscending(new FieldComparator("cthajar", true));
+        listheader_filed5.setSortDescending(new FieldComparator("cthajar", false));
         
         searchObj = new HibernateSearchObject<Tcutimhs>(Tcutimhs.class, getCountRows());
         searchObj.addFilter(new com.trg.search.Filter("cjenis", Codec.JenisSurat.Status1.getValue(), com.trg.search.Filter.OP_EQUAL));

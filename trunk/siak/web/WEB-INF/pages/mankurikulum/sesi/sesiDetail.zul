@@ -38,15 +38,6 @@
                                         <separator bar="true"></separator>
                                     </row>
                                     <row>
-                                        <label value="Jam Awal" />
-                                        <textbox id="txtb_cjamawal" constraint="/[0-9]+:.+[0-9]/: Please enter HH:MM Format" value="@{controller.selected.cjamawal}" readonly="true" maxlength="5" width="8%" />
-                                    </row>
-                                    <row>
-                                        <label
-                                            value="Jam Akhir" />
-                                        <textbox id="txtb_cjamakhir" constraint="/[0-9]+:.+[0-9]/: Please enter HH:MM Format" value="@{controller.selected.cjamakhir}" readonly="true" maxlength="5" width="8%" />
-                                    </row>
-                                    <row>
                                         <hbox>
                                             <label value="Code Sekolah" />
                                             <label value="*" style="color:red;font-size:10px" />
@@ -98,6 +89,15 @@
                                     <row>
                                         <label value="Nama Sekolah" />
                                         <textbox id="txtb_sekolah_name" value="@{controller.selected.msekolah.cnamaSekolah}" readonly="true" width="250px" />
+                                    </row>
+                                    <row>
+                                        <label value="Jam Awal" />
+                                        <textbox id="txtb_cjamawal" constraint="/[0-9]+:.+[0-9]/: Please enter HH:MM Format" value="@{controller.selected.cjamawal}" readonly="true" maxlength="5" width="8%" />
+                                    </row>
+                                    <row>
+                                        <label
+                                            value="Jam Akhir" />
+                                        <textbox id="txtb_cjamakhir" constraint="/[0-9]+:.+[0-9]/: Please enter HH:MM Format" value="@{controller.selected.cjamakhir}" readonly="true" maxlength="5" width="8%" />
                                     </row>
                                 </rows>
                             </grid>

@@ -41,6 +41,10 @@
                                         <datebox id="txtb_tanggal" width="150px" value="@{controller.selected.dtglsurat}" readonly="true" constraint="no empty" />
                                     </row>
                                     <row>
+                                        <label value="Tahun Ajaran"/>
+                                        <textbox id="txtb_cthajar" value="@{controller.selected.cthajar}" readonly="true" width="80px"/>
+                                    </row>
+                                    <row>
                                         <hbox>
                                             <label value="Term"/>
                                             <label value="*" style="color:red;font-size:10px"/>
@@ -75,8 +79,9 @@
                                                                             <paging id="pagingterm" pageSize="20"/>
                                                                             <listbox id="listterm" width="100%" height="100%" multiple="false">
                                                                                 <listhead sizable="true">
-                                                                                    <listheader id="kdTerm" sort="auto" width="90%" label="Kode Term"/>
-                                                                                    <listheader id="deskripsi" sort="auto" width="90%" label="Deskripsi"/>
+                                                                                    <listheader id="kdTerm" sort="auto" width="20%" label="Kode Term"/>
+                                                                                    <listheader id="deskripsi" sort="auto" width="60%" label="Deskripsi"/>
+                                                                                    <listheader id="cthajar" sort="auto" width="20%" label="Tahun Ajaran"/>
                                                                                 </listhead>
                                                                             </listbox>
                                                                         </vbox>
