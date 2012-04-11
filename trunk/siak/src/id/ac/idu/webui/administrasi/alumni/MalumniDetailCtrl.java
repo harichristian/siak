@@ -205,26 +205,35 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void onCreate$windowMalumniDetail(Event event) throws Exception {
         setPageSize(20);
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
+        //ListBoxUtil.resetList(txtb_cstatnkh);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
 
+         //ListBoxUtil.resetList(txtb_ckdagama);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
+                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
 
+         //ListBoxUtil.resetList(txtb_ckdbekerja);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
+                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
 
         binder.loadAll();
-
         doFitSize(event);
     }
 
     public void doResetCombo(){
-         ListBoxUtil.resetList(txtb_ckdbekerja);
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
-                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
+         ListBoxUtil.resetList(txtb_cstatnkh);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
 
          ListBoxUtil.resetList(txtb_ckdagama);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
                 txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
 
-         ListBoxUtil.resetList(txtb_cstatnkh);
-         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
-                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
+         ListBoxUtil.resetList(txtb_ckdbekerja);
+         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
+                 txtb_ckdbekerja, cmb_ckdbekerja, (getMalumni() != null) ? getMalumni().getCsudahkerja() : null);
+
     }
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
         HibernateSearchObject<Mmahasiswa> soCustomer = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
@@ -318,12 +327,22 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         //txtb_nmkel.setReadonly(b);
         txtb_telp.setReadonly(b);
         txtb_hp.setReadonly(b);
-        txtb_statusnikah.setReadonly(b);
+        txtb_alamat.setReadonly(b);
+
         txtb_agama.setReadonly(b);
+        //cmb_ckdagama.setReadonly(b);
+        cmb_ckdagama.setDisabled(b);
+        txtb_ckdagama.setDisabled(b);
+
+        txtb_statusnikah.setReadonly(b);
+        //cmb_cstatnkh.setReadonly(b);
+        cmb_cstatnkh.setDisabled(b);
+        txtb_cstatnkh.setDisabled(b);
+
         txtb_bekerja.setReadonly(b);
-        cmb_cstatnkh.setReadonly(b);
-        cmb_ckdagama.setReadonly(b);
-        cmb_ckdbekerja.setReadonly(b);
+        //cmb_ckdbekerja.setReadonly(b);
+        txtb_ckdbekerja.setDisabled(b);
+        cmb_ckdbekerja.setDisabled(b);
 
         btnSearchProvExtended.setDisabled(b);
         btnSearchKabExtended.setDisabled(b);
@@ -331,13 +350,6 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         btnSearchKelExtended.setDisabled(b);
         btnSearchKodePosExtended.setDisabled(b);
         btnSearchMahasiswaExtended.setDisabled(b);
-        txtb_ckdbekerja.setDisabled(b);
-        cmb_ckdbekerja.setDisabled(b);
-        cmb_ckdagama.setDisabled(b);
-        cmb_cstatnkh.setDisabled(b);
-        txtb_ckdagama.setDisabled(b);
-        txtb_cstatnkh.setDisabled(b);
-        txtb_alamat.setReadonly(b);
     }
 
       /**
