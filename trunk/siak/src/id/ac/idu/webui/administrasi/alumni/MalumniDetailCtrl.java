@@ -207,11 +207,11 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
         //ListBoxUtil.resetList(txtb_cstatnkh);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
-                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCstatnkh() : null);
 
          //ListBoxUtil.resetList(txtb_ckdagama);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
-                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
+                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCkdagama():null);
 
          //ListBoxUtil.resetList(txtb_ckdbekerja);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
@@ -224,11 +224,11 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void doResetCombo(){
          ListBoxUtil.resetList(txtb_cstatnkh);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StsNikahAlumni.class)).getEnumToList(),
-                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCkdagama() : null);
+                 txtb_cstatnkh, cmb_cstatnkh, (getMalumni() != null) ? getMalumni().getCstatnkh() : null);
 
          ListBoxUtil.resetList(txtb_ckdagama);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.AgamaAlumni.class)).getEnumToList(),
-                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCstatnkh():null);
+                txtb_ckdagama, cmb_ckdagama, (getMalumni() != null)?getMalumni().getCkdagama():null);
 
          ListBoxUtil.resetList(txtb_ckdbekerja);
          GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.SudahBekerja.class)).getEnumToList(),
