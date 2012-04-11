@@ -150,6 +150,10 @@ public class MpeminatanDetailCtrl extends GFCBaseCtrl implements Serializable {
         doFitSize(event);
     }
 
+    public void refreshCombo() {
+        GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.FlagPeminatan.class)).getEnumToList(),
+                list_jenis, cmb_jenis, (getMpeminatan() != null)?getMpeminatan().getCaktif():null);
+    }
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
     // +++++++++++++++++ Business Logic ++++++++++++++++ //
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

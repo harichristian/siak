@@ -140,7 +140,7 @@
                                                     <listbox id="txtb_listpendidikan" mold="paging" autopaging="true"
                                                              width="180px"
                                                              onSelect="cmb_pendidikan.value=self.selectedItem.label;
-                                                             txtb_statusnikah.value=self.selectedItem.value; cmb_pendidikan.close();"/>
+                                                             txtb_pendidikan.value=self.selectedItem.value; cmb_pendidikan.close();"/>
                                                 </bandpopup>
                                             </bandbox>
                                         </hbox>

@@ -170,29 +170,37 @@ public class DetilKurikulumCtrl extends GFCBaseCtrl implements Serializable {
             }
         }
         Mdetilkurikulum obj = getMdetilkurikulum();
-        if (txtbJenis.getValue() == listJenis.getSelectedItem().getValue().toString()) {
-            obj.setCjenis(txtbJenis.getValue());
-        } else {
-            txtbJenis.setValue(listJenis.getSelectedItem().getValue().toString());
-            obj.setCjenis(listJenis.getSelectedItem().getValue().toString());
+        if(listJenis.getSelectedItem() != null){
+            if (txtbJenis.getValue() == listJenis.getSelectedItem().getValue().toString()) {
+                obj.setCjenis(txtbJenis.getValue());
+            } else {
+                txtbJenis.setValue(listJenis.getSelectedItem().getValue().toString());
+                obj.setCjenis(listJenis.getSelectedItem().getValue().toString());
+            }
         }
-        if (txtbStatus.getValue() == listStatus.getSelectedItem().getValue().toString()) {
-            obj.setCstatus(txtbStatus.getValue());
-        } else {
-            txtbStatus.setValue(listStatus.getSelectedItem().getValue().toString());
-            obj.setCstatus(listStatus.getSelectedItem().getValue().toString());
+        if(listStatus.getSelectedItem() != null) {
+            if (txtbStatus.getValue() == listStatus.getSelectedItem().getValue().toString()) {
+                obj.setCstatus(txtbStatus.getValue());
+            } else {
+                txtbStatus.setValue(listStatus.getSelectedItem().getValue().toString());
+                obj.setCstatus(listStatus.getSelectedItem().getValue().toString());
+            }
         }
-        if (txtbMun.getValue() == listMun.getSelectedItem().getValue().toString()) {
-            obj.setCmun(txtbMun.getValue());
-        } else {
-            txtbMun.setValue(listMun.getSelectedItem().getValue().toString());
-            obj.setCmun(listMun.getSelectedItem().getValue().toString());
+        if(listMun.getSelectedItem() != null) {
+            if (txtbMun.getValue() == listMun.getSelectedItem().getValue().toString()) {
+                obj.setCmun(txtbMun.getValue());
+            } else {
+                txtbMun.setValue(listMun.getSelectedItem().getValue().toString());
+                obj.setCmun(listMun.getSelectedItem().getValue().toString());
+            }
         }
-        if (txtbLintasProdi.getValue() == listLintasProdi.getSelectedItem().getValue().toString()) {
-            obj.setClintasprodi(txtbLintasProdi.getValue());
-        } else {
-            txtbLintasProdi.setValue(listLintasProdi.getSelectedItem().getValue().toString());
-            obj.setClintasprodi(listLintasProdi.getSelectedItem().getValue().toString());
+        if(listLintasProdi.getSelectedItem() != null) {
+            if (txtbLintasProdi.getValue() == listLintasProdi.getSelectedItem().getValue().toString()) {
+                obj.setClintasprodi(txtbLintasProdi.getValue());
+            } else {
+                txtbLintasProdi.setValue(listLintasProdi.getSelectedItem().getValue().toString());
+                obj.setClintasprodi(listLintasProdi.getSelectedItem().getValue().toString());
+            }
         }
         obj.setMprodi(getKurikulumDetailCtrl().getKurikulum().getMprodi());
         obj.setCcohort(getKurikulumDetailCtrl().getKurikulum().getCcohort());

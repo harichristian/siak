@@ -194,6 +194,7 @@ public class MpeminatanMainCtrl extends GFCBaseCtrl implements Serializable {
             // refresh the Binding mechanism
             getMpeminatanDetailCtrl().setMpeminatan(getSelectedMpeminatan());
             getMpeminatanDetailCtrl().getBinder().loadAll();
+            getMpeminatanDetailCtrl().refreshCombo();
             return;
         }
 
