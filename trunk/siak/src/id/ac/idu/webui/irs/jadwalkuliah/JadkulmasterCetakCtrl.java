@@ -16,13 +16,9 @@ import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -52,6 +48,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_filTahunajaran; // autowired
     protected Textbox txtb_filSemester; // autowired
     protected Button btnSearchProdiExtended;  // autowired
+    protected Combobox boxPrint;
 
     // not wired vars
     private transient Tjadkulmaster tjadkulmaster; // overhanded per param
@@ -161,7 +158,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
         getTjadkulmaster().setCterm(txtb_filTerm.getValue());
         getTjadkulmaster().setCthajar(txtb_filTahunajaran.getValue());
         getTjadkulmaster().setCsmt(txtb_filSemester.getValue());
-        new JadkulmasterSimpleDJReport(win, getTjadkulmaster());
+        new JadkulmasterSimpleDJReport(win, getTjadkulmaster(), (String) boxPrint.getSelectedItem().getValue());
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
