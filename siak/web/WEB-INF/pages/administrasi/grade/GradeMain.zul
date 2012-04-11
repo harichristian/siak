@@ -47,7 +47,7 @@
                                 tooltiptext="${c:l('button_GradeList_SearchNo.tooltiptext')}"/>
                         <space width="20px"/>
 
-                        <label value="NAMA"
+                        <label value="GRADE"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Grade_Name" width="100px" maxlength="2" style="text-transform:uppercase"/>
                         <button id="button_GradeList_SearchName"

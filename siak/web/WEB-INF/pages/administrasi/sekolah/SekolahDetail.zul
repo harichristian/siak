@@ -42,7 +42,7 @@
                                         </hbox>
                                         <textbox id="txtb_filNr" style="text-transform:uppercase"
                                                  value="@{controller.sekolah.ckdsekolah}" readonly="true"
-                                                 constraint="no empty" maxlength="5" width="100px"/>
+                                                 constraint="no empty" maxlength="3" width="100px"/>
                                     </row>
 
                                     <row>
@@ -68,7 +68,7 @@
                                         <textbox
                                                 id="txtb_filSingkatan"
                                                 value="@{controller.sekolah.csingkatan}" constraint="no empty"
-                                                readonly="true" maxlength="10" width="99%"/>
+                                                readonly="true" maxlength="5" width="99%"/>
                                     </row>
 
                                     <row>
@@ -81,7 +81,7 @@
                                         <textbox
                                                 id="txtb_filNamaInggris"
                                                 value="@{controller.sekolah.cnamaIng}" constraint="no empty"
-                                                readonly="true" maxlength="50" width="99%"/>
+                                                readonly="true" maxlength="40" width="99%"/>
                                     </row>
                                     <row>
                                         <hbox>

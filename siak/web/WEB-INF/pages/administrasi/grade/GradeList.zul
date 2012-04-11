@@ -38,7 +38,7 @@
                                     width="20%"/>
                         <listheader id="listheader_GradeList_Name1"
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                                    label="NAMA" sort="auto"
+                                    label="GRADE" sort="auto"
                                     width="30%"/>
                         <listheader id="listheader_GradeList_Bobot"
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
