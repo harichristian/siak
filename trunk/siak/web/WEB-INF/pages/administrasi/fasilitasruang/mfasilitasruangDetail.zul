@@ -97,7 +97,7 @@
                                                 value="Jumlah"/>
                                         <textbox
                                                 id="txtb_jumlah" value="@{controller.mfasilitasruang.njml}"
-                                                readonly="true" maxlength="4" width="40px"  constraint="no empty" />
+                                                readonly="true" maxlength="3" width="40px"  constraint="no empty" />
                                     </row>
                                     <row>
                                         <label
