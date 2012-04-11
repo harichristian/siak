@@ -57,7 +57,7 @@
                                         <textbox
                                                 id="txtb_nmfasilitas"
                                                 value="@{controller.fasilitas.cnamaFasilitas}" readonly="true"
-                                                constraint="no empty" maxlength="35" width="300px"/>
+                                                constraint="no empty" maxlength="50" width="300px"/>
                                     </row>
                                 </rows>
                             </grid>
