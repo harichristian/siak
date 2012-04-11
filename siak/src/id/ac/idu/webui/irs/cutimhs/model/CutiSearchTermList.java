@@ -29,6 +29,8 @@ public class CutiSearchTermList implements ListitemRenderer, Serializable {
 		lc.setParent(item);
 		lc = new Listcell(term.getDeskripsi());
 		lc.setParent(item);
+        lc = new Listcell((term.getMthajar()!=null)?term.getMthajar().getCthajar():"");
+        lc.setParent(item);
 
 		item.setAttribute("data", data);
 		ComponentsCtrl.applyForward(item, "onDoubleClick=onTermItem");

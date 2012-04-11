@@ -40,6 +40,7 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox listMahasiswaSearch;
 
     protected Textbox txtb_no;
+    protected Textbox txtb_cthajar;
     protected Textbox txtb_term;
     protected Textbox txtb_nim;
     protected Textbox txtb_nama;
@@ -200,6 +201,7 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
 
             Mterm term = (Mterm) item.getAttribute("data");
             txtb_term.setValue(term.getKdTerm());
+            txtb_cthajar.setValue((term.getMthajar()!=null)?term.getMthajar().getCthajar():"");
         }
 
         cmbterm.close();
