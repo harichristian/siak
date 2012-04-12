@@ -33,7 +33,7 @@
                                         </hbox>
                                         <textbox id="txtb_ckdmtk"
                                             value="@{controller.selected.ckdmtk}" readonly="true"
-                                            constraint="no empty" maxlength="4" width="100px" />
+                                            constraint="no empty" maxlength="7" width="100px" />
                                     </row>
                                     <row>
                                         <separator bar="true"></separator>
