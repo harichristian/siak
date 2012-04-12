@@ -3,7 +3,9 @@ package id.ac.idu.webui.administrasi.pegawai;
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.administrasi.service.MpegawaiService;
+import id.ac.idu.administrasi.service.MprovService;
 import id.ac.idu.backend.model.Mpegawai;
+import id.ac.idu.backend.model.Mprov;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.webui.administrasi.report.MpegawaiSimpleDJReport;
@@ -102,6 +104,16 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 	// always a copy from the bean before modifying. Used for reseting
 	private Mpegawai originalMpegawai;
 
+    public MprovService getMprovService() {
+        return mprovService;
+    }
+
+    public void setMprovService(MprovService mprovService) {
+        this.mprovService = mprovService;
+    }
+
+    private MprovService mprovService;
+
 	/**
 	 * default constructor.<br>
 	 */
@@ -197,6 +209,17 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			getMpegawaiDetailCtrl().getBinder().loadAll();
             getMpegawaiDetailCtrl().doResetCombo();
+            if (getSelectedMpegawai()!=null)     {
+                getMpegawaiDetailCtrl().txtb_kdpostg.setValue(getSelectedMpegawai().getCkdpostg().toString());
+                getMpegawaiDetailCtrl().txtb_kdpos.setValue(getSelectedMpegawai().getCkdposrm().toString());
+                if (getSelectedMpegawai().getCproprm()!=null) {
+                    getMpegawaiDetailCtrl().txtb_proprm.setValue(((Mprov)mprovService.getMprovByID(Long.parseLong(getSelectedMpegawai().getCproprm()))).getCnamaProv());
+                }
+
+                if (getSelectedMpegawai().getCproprm()!=null) {
+                    getMpegawaiDetailCtrl().txtb_proptg.setValue(((Mprov)mprovService.getMprovByID(Long.parseLong(getSelectedMpegawai().getCproptg()))).getCnamaProv());
+                }
+            }
 			return;
 		}
 
@@ -678,6 +701,10 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
         }
 
          getMpegawaiDetailCtrl().doResetCombo();
+         getMpegawaiDetailCtrl().txtb_kdpostg.setValue("");
+         getMpegawaiDetailCtrl().txtb_kdpos.setValue("");
+         getMpegawaiDetailCtrl().txtb_proprm.setValue("");
+         getMpegawaiDetailCtrl().txtb_proptg.setValue("");
 
 		// set editable Mode
 		getMpegawaiDetailCtrl().doReadOnlyMode(false);
