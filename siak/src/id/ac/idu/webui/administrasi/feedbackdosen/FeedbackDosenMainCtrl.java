@@ -738,7 +738,10 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
         tabFeedbackDosenDetail.setSelected(true);
         // set focus
         //getFeedbackDosenDetailCtrl().txtb_jawaban.focus();
-
+        try {
+        doResizeSelectedTab(null);
+        getFeedbackDosenDetailCtrl().doFillListbox();
+        } catch (Exception e) {}
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //

@@ -798,7 +798,10 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
         // set focus
         //getFeedbackAlumniDetailCtrl().txtb_jawaban.focus();
-
+        try {
+        doResizeSelectedTab(null);
+        getFeedbackAlumniDetailCtrl().doFillListbox();
+        } catch (Exception e) {}
     }
 
     // set radio simpen disini tapi mengacu ke master feedback
