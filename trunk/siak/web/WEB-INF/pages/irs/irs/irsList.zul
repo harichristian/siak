@@ -58,7 +58,7 @@
 							width="10%" />
 						<listheader id="listheader_IrsList_Semester"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_Dialog_semester.value')}" sort="auto"
+							label="Matakuliah" sort="auto"
 							width="10%" />
 					</listhead>
 
@@ -76,7 +76,7 @@
 							style="padding-left: 5px" />
 						<listcell label="@{irs.cthajar}"
 							style="padding-left: 5px" />
-						<listcell label="@{irs.csmt}"
+						<listcell label="@{irs.mtbmtkl.cnamamk}"
 							style="padding-left: 5px" />
 					</listitem>
 

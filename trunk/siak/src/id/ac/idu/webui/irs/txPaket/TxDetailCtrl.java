@@ -44,6 +44,7 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
         //protected Textbox txtb_nama;        //lookup
         protected Textbox txtb_sekolah;     //lookup
         protected Button btnSearchSekolahExtended;
+        protected Textbox txtb_kodeprodi;
         protected Textbox txtb_prodi;
         protected Button btnSearchProdiExtended;       //lookup
         protected Textbox txtb_jenjang;     //lookup
@@ -183,7 +184,7 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_thajar.setReadonly(b);
             txtb_term.setReadonly(b);
             //txtb_kelompok.setReadonly(b);
-            txtb_semester.setReadonly(b);
+            //txtb_semester.setReadonly(b);
             bandbox_Dialog_MahasiswaSearch.setDisabled(b);
             bandbox_Dialog_MahasiswaSearchTo.setDisabled(b);
             btnSearchSekolahExtended.setDisabled(b);
@@ -199,6 +200,7 @@ public class TxDetailCtrl extends GFCBaseCtrl implements Serializable {
             Mprodi prodi = ProdiExtendedSearchListBox.show(windowTxDetail);
 
             if (prodi != null) {
+                txtb_kodeprodi.setValue(prodi.getCkdprogst());
                 txtb_prodi.setValue(prodi.getCnmprogst());
                 Tirspasca obj = getIrs();
                 obj.setMprodi(prodi);
