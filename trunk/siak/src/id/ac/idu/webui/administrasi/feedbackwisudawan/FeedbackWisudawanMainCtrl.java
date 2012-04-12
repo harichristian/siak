@@ -738,7 +738,10 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
         tabFeedbackWisudawanDetail.setSelected(true);
         // set focus
         //getFeedbackWisudawanDetailCtrl().txtb_jawaban.focus();
-
+        try {
+        doResizeSelectedTab(null);
+        getFeedbackWisudawanDetailCtrl().doFillListbox();
+        } catch (Exception e) {}
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++ //
