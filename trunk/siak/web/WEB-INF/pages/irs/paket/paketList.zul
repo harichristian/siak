@@ -48,6 +48,10 @@
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
 							label="${c:l('label_Dialog_thajar.value')}" sort="auto"
 							width="10%" />
+						<listheader id="listheader_PaketList_Matakuliah"
+							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+							label="Matakuliah" sort="auto"
+							width="10%" />
 					</listhead>
 
 					<listitem self="@{each='paket'}" value="@{paket}"
@@ -59,6 +63,8 @@
 						<listcell label="@{paket.cterm}"
 							style="padding-left: 5px" />
 						<listcell label="@{paket.cthajar}"
+							style="padding-left: 5px" />
+						<listcell label="@{paket.mtbmtkl.cnamamk}"
 							style="padding-left: 5px" />
 					</listitem>
 
