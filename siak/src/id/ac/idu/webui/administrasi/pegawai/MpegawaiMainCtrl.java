@@ -476,6 +476,19 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 			// refresh all dataBinder related controllers/components
 			getMpegawaiDetailCtrl().getBinder().loadAll();
 
+            getMpegawaiDetailCtrl().doResetCombo();
+            if (getSelectedMpegawai()!=null)     {
+                getMpegawaiDetailCtrl().txtb_kdpostg.setValue(getSelectedMpegawai().getCkdpostg().toString());
+                getMpegawaiDetailCtrl().txtb_kdpos.setValue(getSelectedMpegawai().getCkdposrm().toString());
+                if (getSelectedMpegawai().getCproprm()!=null) {
+                    getMpegawaiDetailCtrl().txtb_proprm.setValue(((Mprov)mprovService.getMprovByID(Long.parseLong(getSelectedMpegawai().getCproprm()))).getCnamaProv());
+                }
+
+                if (getSelectedMpegawai().getCproprm()!=null) {
+                    getMpegawaiDetailCtrl().txtb_proptg.setValue(((Mprov)mprovService.getMprovByID(Long.parseLong(getSelectedMpegawai().getCproptg()))).getCnamaProv());
+                }
+            }
+
 			// set editable Mode
 			getMpegawaiDetailCtrl().doReadOnlyMode(true);
 
