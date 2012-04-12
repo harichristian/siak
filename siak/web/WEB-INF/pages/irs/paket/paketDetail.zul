@@ -34,6 +34,32 @@
                                 <rows>
                                     <row>
                                         <hbox>
+                                        <label
+                                            value="${c:l('label_Dialog_term.value')}" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_term" value="@{controller.paket.cterm}"
+                                            constraint="no empty" readonly="true" maxlength="4" width="50px" />
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                        <label
+                                            value="${c:l('label_Dialog_thajar.value')}" />
+                                        <label value="*"
+                                            style="color:red;font-size:10px" />
+                                        </hbox>
+                                        <textbox
+                                            id="txtb_thajar" value="@{controller.paket.cthajar}"
+                                            constraint="no empty" readonly="true" maxlength="8" width="50px" />
+                                    </row>
+                                    <row>
+                                        <separator bar="true"></separator>
+                                        <separator bar="true"></separator>
+                                    </row>
+                                    <row>
+                                        <hbox>
                                             <label value="Sekolah"/>
                                             <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
@@ -56,6 +82,18 @@
                                         </hbox>
                                         <hbox pack="stretch" width="50%">
                                             <textbox
+                                                    id="txtb_kodeprodi"
+                                                    value="@{controller.paket.mprodi.ckdprogst}"
+                                                    readonly="true" maxlength="50" width="100px"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <hbox>
+                                            <label value="Nama Program Studi"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox pack="stretch" width="50%">
+                                            <textbox
                                                     id="txtb_prodi"
                                                     value="@{controller.paket.mprodi.cnmprogst}"
                                                     readonly="true" maxlength="50" width="99%"/>
@@ -65,32 +103,6 @@
                                                     image="/images/icons/btn_search2_16x16.gif"
                                                     tooltiptext="Cari Prodi"/>
                                         </hbox>
-                                    </row>
-                                    <row>
-                                        <separator bar="true"></separator>
-                                        <separator bar="true"></separator>
-                                    </row>
-                                    <row>
-                                        <hbox>
-                                        <label
-                                            value="${c:l('label_Dialog_term.value')}" />
-                                        <label value="*"
-                                            style="color:red;font-size:10px" />
-                                        </hbox>
-                                        <textbox
-                                            id="txtb_term" value="@{controller.paket.cterm}"
-                                            constraint="no empty" readonly="true" maxlength="4" width="50px" />
-                                    </row>
-                                    <row>
-                                        <hbox>
-                                        <label
-                                            value="${c:l('label_Dialog_thajar.value')}" />
-                                        <label value="*"
-                                            style="color:red;font-size:10px" />
-                                        </hbox>
-                                        <textbox
-                                            id="txtb_thajar" value="@{controller.paket.cthajar}"
-                                            constraint="no empty" readonly="true" maxlength="8" width="50px" />
                                     </row>
                                     <row>
                                         <separator bar="true"></separator>

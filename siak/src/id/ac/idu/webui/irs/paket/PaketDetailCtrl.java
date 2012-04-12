@@ -45,6 +45,7 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_nama;        //lookup
     protected Textbox txtb_sekolah;     //lookup
     protected Button btnSearchSekolahExtended;
+    protected Textbox txtb_kodeprodi;
 	protected Textbox txtb_prodi;       //lookup
     protected Button btnSearchProdiExtended;
 	protected Textbox txtb_jenjang;     //lookup
@@ -178,6 +179,7 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
         Mprodi prodi = ProdiExtendedSearchListBox.show(windowPaketDetail);
 
         if (prodi != null) {
+            txtb_kodeprodi.setValue(prodi.getCkdprogst());
             txtb_prodi.setValue(prodi.getCnmprogst());
             Tpaketkuliah obj = getPaket();
             obj.setMprodi(prodi);
