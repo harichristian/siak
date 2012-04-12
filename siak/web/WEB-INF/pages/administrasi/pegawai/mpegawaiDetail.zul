@@ -68,7 +68,7 @@
                                             value="Tanggal Lahir" />
                                         <datebox
                                             id="txtb_tglahir"  value="@{controller.mpegawai.dtglahir}"
-                                            readonly="true" maxlength="20" width="20%" constraint="no empty" />
+                                            readonly="true" maxlength="20" width="20%" constraint="no empty"  disabled="true" />
                                     </row>
                                     <row>
                                         <label
@@ -172,16 +172,146 @@
 
                                          <hbox>
                                               <textbox
-                                            id="txtb_kdpos" value="@{controller.mpegawai.ckdposrm}"
+                                            id="txtb_kdpos" value=""
                                             readonly="true" maxlength="5" width="40px"  />
                                               <button
                                                                                 id="btnSearchKodePosExtended" disabled="true"
                                                                                 width="28px"
                                                                                 image="/images/icons/btn_search2_16x16.gif"
                                                                                 tooltiptext="Cari Kode Pos"/>
+                                               <label
+                                                    value="Propinsi" />
+                                                  <textbox
+                                            id="txtb_proprm" value=""
+                                            readonly="true" maxlength="50" width="200px"  />
+                                              <button
+                                                                                id="btnSearchPropRMExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
                                         </hbox>
                                     </row>
+                                    <row>
+                                        <label
+                                            value="Telp" />
+                                        <hbox>
+                                             <textbox
+                                            id="txtb_telp1" value="@{controller.mpegawai.ctelprma}"
+                                            readonly="true" maxlength="4" width="70px"  />
+                                             <label
+                                            value="  --  " />
+                                            <textbox
+                                                id="txtb_telp2" value="@{controller.mpegawai.ctelprm}"
+                                                readonly="true" maxlength="13" width="130px"  />
+                                            <label
+                                                value="No HP" />
+                                            <textbox
+                                                id="txtb_hp" value="@{controller.mpegawai.cnohp}"
+                                                readonly="true" maxlength="13" width="130px"  />
+                                        </hbox>
+
+                                    </row>
                                      <row>
+                                        <label
+                                            value="Alamat Tinggal 1" />
+                                        <textbox
+                                            id="txtb_tg1" value="@{controller.mpegawai.calamattg}"
+                                            readonly="true" maxlength="100" width="80%"  />
+                                    </row>
+                                     <row>
+                                        <label
+                                            value="Alamat Tinggal 2" />
+                                        <textbox
+                                            id="txtb_tg2" value="@{controller.mpegawai.calamattg1}"
+                                            readonly="true" maxlength="100" width="80%"  />
+                                    </row>
+                                    <row>
+                                        <label
+                                            value="Kode Pos Tinggal" />
+
+                                         <hbox>
+                                              <textbox
+                                            id="txtb_kdpostg" value=""
+                                            readonly="true" maxlength="5" width="40px"  />
+                                              <button
+                                                                                id="btnSearchKodePosTGExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
+                                               <label
+                                                    value="Propinsi" />
+                                                  <textbox
+                                            id="txtb_proptg" value=""
+                                            readonly="true" maxlength="50" width="200px"  />
+                                              <button
+                                                                                id="btnSearchPropTGExtended" disabled="true"
+                                                                                width="28px"
+                                                                                image="/images/icons/btn_search2_16x16.gif"
+                                                                                tooltiptext="Cari Kode Pos"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label
+                                            value="Email" />
+                                        <textbox
+                                            id="txtb_email" value="@{controller.mpegawai.cemail}"
+                                            readonly="true" maxlength="30" width="333px"  />
+                                    </row>
+                                    <row>
+                                        <label
+                                            value="Tgl Masuk Kerja" />
+                                         <hbox>
+                                        <datebox
+                                            id="txtb_tglmasukkerja" value="@{controller.mpegawai.ctgmkerja}"
+                                            readonly="true" width="120px"  disabled="true"/>
+                                          <label
+                                            value="No SK Kerja" />
+                                            <textbox
+                                                id="txtb_noskkerja" value="@{controller.mpegawai.cnoskmkerja}"
+                                                readonly="true" maxlength="30" width="200px"  />
+                                            <label
+                                            value="Tgl SK Kerja" />
+                                            <datebox
+                                                id="txtb_tglskkerja" value="@{controller.mpegawai.dtgskmkerja}"
+                                                readonly="true" maxlength="30" width="200px"   disabled="true" />
+                                        </hbox>
+                                    </row>
+
+                                     <row>
+                                        <label
+                                            value="Status Keaktifan" />
+                                         <hbox>
+                                            <textbox id="txtb_aktif" value="@{controller.mpegawai.cflagaktif}" visible="false"/>
+                                            <bandbox id="cmb_aktif" mold="rounded" autodrop="true" readonly="true" disabled="true">
+                                                <bandpopup>
+                                                    <listbox id="txtb_listaktif" mold="paging" autopaging="true"
+                                                             width="180px"
+                                                             onSelect="cmb_aktif.value=self.selectedItem.label;
+                                                             txtb_aktif.value=self.selectedItem.value; cmb_aktif.close();"/>
+                                                </bandpopup>
+                                            </bandbox>
+                                            <label
+                                            value="Golongan" />
+                                            <textbox
+                                                id="txtb_cgol" value="@{controller.mpegawai.cgol}"
+                                                readonly="true" maxlength="4" width="40px"  />
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                         <label
+                                            value="NIP PNS" />
+                                            <textbox
+                                                id="txtb_nippns" value="@{controller.mpegawai.cpnsnip}"
+                                                readonly="true" maxlength="10" width="100px"  />
+                                    </row>
+                                     <row>
+                                         <label
+                                            value="No KTP" />
+                                            <textbox
+                                                id="txtb_ktp" value="@{controller.mpegawai.cnoktp}"
+                                                readonly="true" maxlength="30" width="300px"  />
+                                    </row>
+                                    <row>
                                         <label
                                             value="Jabatan" />
 
@@ -198,21 +328,33 @@
                                         </hbox>
                                     </row>
                                      <row>
-                                        <label
-                                            value="Aktif" />
+                                         <label
+                                            value="Gelar Depan" />
                                          <hbox>
-                                            <textbox id="txtb_aktif" value="@{controller.mpegawai.cflagaktif}" visible="false"/>
-                                            <bandbox id="cmb_aktif" mold="rounded" autodrop="true" readonly="true" disabled="true">
-                                                <bandpopup>
-                                                    <listbox id="txtb_listaktif" mold="paging" autopaging="true"
-                                                             width="180px"
-                                                             onSelect="cmb_aktif.value=self.selectedItem.label;
-                                                             txtb_aktif.value=self.selectedItem.value; cmb_aktif.close();"/>
-                                                </bandpopup>
-                                            </bandbox>
-                                        </hbox>
+                                            <textbox
+                                                id="txtb_depan" value="@{controller.mpegawai.cgelardp}"
+                                                readonly="true" maxlength="10" width="100px"  />
+                                             <label
+                                            value="Gelar Belakang" />
+                                            <textbox
+                                                id="txtb_belakang" value="@{controller.mpegawai.cgelarbk}"
+                                                readonly="true" maxlength="10" width="100px"  />
+                                         </hbox>
                                     </row>
-
+                                     <row>
+                                         <label
+                                            value="NPWP" />
+                                            <textbox
+                                                id="txtb_npwp" value="@{controller.mpegawai.cnpwp}"
+                                                readonly="true" maxlength="20" width="200px"  />
+                                    </row>
+                                     <row>
+                                         <label
+                                            value="No TGM Tenaga Kerja" />
+                                            <textbox
+                                                id="txtb_tk" value="@{controller.mpegawai.cnomortgmkerja}"
+                                                readonly="true" maxlength="30" width="300px"  />
+                                    </row>
                                 </rows>
                             </grid>
                         </groupbox>
