@@ -29,7 +29,7 @@ public class MprovDAOImpl extends BasisDAO<Mprov> implements MprovDAO {
 
     @Override
     public Mprov getMprovById(Long fil_Id) {
-        return get(Mprov.class, fil_Id);
+        return get(Mprov.class, fil_Id.intValue());
     }
 
     @SuppressWarnings("unchecked")

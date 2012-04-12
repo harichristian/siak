@@ -22,12 +22,14 @@ import id.ac.idu.administrasi.service.MpegawaiService;
 import id.ac.idu.backend.model.Mjabatan;
 import id.ac.idu.backend.model.MkodePos;
 import id.ac.idu.backend.model.Mpegawai;
+import id.ac.idu.backend.model.Mprov;
 import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.searchdialogs.JabatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.KodePosExtendedSearchListBox;
+import id.ac.idu.webui.util.searchdialogs.MprovExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -116,6 +118,28 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSearchKodePosExtended;
     protected Button btnSearchJabatanExtended;
     protected Textbox txtb_jabatan;
+    protected Textbox txtb_telp1;
+    protected Textbox txtb_telp2;
+    protected Textbox txtb_tg1;
+    protected Textbox txtb_tg2;
+    protected Textbox txtb_kdpostg;
+    protected Datebox txtb_tglmasukkerja;
+    protected Textbox txtb_noskkerja;
+    protected Datebox txtb_tglskkerja;
+    protected Textbox txtb_cgol;
+    protected Textbox txtb_nippns;
+    protected Textbox txtb_ktp;
+    protected Textbox txtb_depan;
+    protected Textbox txtb_belakang;
+    protected Textbox txtb_npwp;
+    protected Textbox txtb_tk;
+    protected Button btnSearchPropRMExtended;
+    protected Textbox txtb_proprm;
+    protected Button btnSearchKodePosTGExtended;
+    protected Button btnSearchPropTGExtended;
+    protected Textbox txtb_proptg;
+
+
 
 
 	protected Button button_MpegawaiDialog_PrintMpegawai; // autowired
@@ -250,11 +274,12 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 		txtb_nip.setReadonly(b);
 		txtb_nama.setReadonly(b);
 		txtb_tempatlahir.setReadonly(b);
-		txtb_tglahir.setReadonly(b);
+		txtb_tglahir.setDisabled(b);
         txtb_aktif.setReadonly(b);
         txtb_jeniskelamin.setReadonly(b);
-        txtb_kdpos.setReadonly(b);
+//        txtb_kdpos.setReadonly(b);
         txtb_goldarah.setReadonly(b);
+
 
        cmb_jeniskelamin.setDisabled(b);
        txtb_listjeniskelamin.setDisabled(b);
@@ -271,11 +296,65 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_kdnegara.setReadonly(b);
         txtb_rumah1.setReadonly(b);
         txtb_rumah2.setReadonly(b);
+        txtb_telp1.setReadonly(b);
+        txtb_telp2.setReadonly(b);
+        txtb_hp.setReadonly(b);
+        txtb_tg1.setReadonly(b);
+        txtb_tg2.setReadonly(b);
+       // txtb_kdpostg.setReadonly(b);
+        txtb_email.setReadonly(b);
+        txtb_tglmasukkerja.setDisabled(b);
+        txtb_noskkerja.setReadonly(b);
+        txtb_tglskkerja.setDisabled(b);
+        txtb_cgol.setReadonly(b);
+        txtb_nippns.setReadonly(b);
+        txtb_ktp.setReadonly(b);
+        txtb_depan.setReadonly(b);
+        txtb_belakang.setReadonly(b);
+        txtb_npwp.setReadonly(b);
+        txtb_tk.setReadonly(b);
+
+
 
         btnSearchKodePosExtended.setDisabled(b);
         btnSearchJabatanExtended.setDisabled(b);
+        btnSearchPropRMExtended.setDisabled(b);
+        btnSearchKodePosTGExtended.setDisabled(b);
+        btnSearchPropTGExtended.setDisabled(b);
 	}
 
+     public void onClick$btnSearchPropTGExtended(Event event){
+         Mprov prop =  MprovExtendedSearchListBox.show(windowMpegawaiDetail);
+
+        if (prop != null) {
+            txtb_proptg.setValue(prop.getCnamaProv());
+            Mpegawai pegawai = getMpegawai();
+            pegawai.setCproptg(String.valueOf(prop.getId()));
+            setMpegawai(pegawai);
+        }
+    }
+
+    public void onClick$btnSearchKodePosTGExtended(Event event){
+        MkodePos pos =  KodePosExtendedSearchListBox.show(windowMpegawaiDetail);
+
+        if (pos != null) {
+            txtb_kdpostg.setValue(pos.getKodepos());
+            Mpegawai pegawai = getMpegawai();
+            pegawai.setCkdpostg(Integer.parseInt(pos.getKodepos()));
+            setMpegawai(pegawai);
+        }
+    }
+
+    public void onClick$btnSearchPropRMExtended(Event event){
+        Mprov prop =  MprovExtendedSearchListBox.show(windowMpegawaiDetail);
+
+        if (prop != null) {
+            txtb_proprm.setValue(prop.getCnamaProv());
+            Mpegawai pegawai = getMpegawai();
+            pegawai.setCproprm(String.valueOf(prop.getId()));
+            setMpegawai(pegawai);
+        }
+    }
       /**
      * If the Button 'Search Branch ExtendedSearch' is clicked.<br>
      *
@@ -322,6 +401,9 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 
         if (pos != null) {
             txtb_kdpos.setValue(pos.getKodepos());
+            Mpegawai pegawai = getMpegawai();
+            pegawai.setCkdposrm(Integer.parseInt(pos.getKodepos()));
+            setMpegawai(pegawai);
         }
     }
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
