@@ -47,13 +47,16 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
 	protected Textbox txtb_cohort;
 	protected Textbox txtb_cohortBaru;
     protected Textbox txtb_prodi;
+    protected Textbox txtb_kodeprodiBaru;
     protected Textbox txtb_prodiBaru;
     protected Button btnSearchProdiExtended;
+    protected Textbox txtb_namasekolahbaru;
     protected Textbox txtb_thajar;
     protected Textbox txtb_thajarBaru;
     protected Textbox txtb_term;
     protected Textbox txtb_termBaru;
     protected Button btnSearchTermExtended;
+    protected Textbox txtb_namakonsentrasibaru;
 //    protected Textbox txtb_semester;
 	protected Button button_KurikulumMahasiswaDialog_PrintKurikulumMahasiswa; // autowired
 
@@ -186,8 +189,9 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
         Mprodi prodi = ProdiExtendedSearchListBox.show(windowKurikulumProdiDetail);
 
         if (prodi != null) {
-            //txtb_prodi.setValue(prodi.getCnmprogst());
+            txtb_kodeprodiBaru.setValue(prodi.getCkdprogst());
             txtb_prodiBaru.setValue(prodi.getCnmprogst());
+            txtb_namasekolahbaru.setValue(prodi.getMsekolah().getCnamaSekolah());
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setMprodi(prodi);
             setKurikulumMahasiswa(obj);
@@ -206,6 +210,7 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
             //txtb_cohort.setValue(kurikulum.getCcohort());
             txtb_codeBaru.setValue(kurikulum.getCkodekur());
             txtb_cohortBaru.setValue(kurikulum.getCcohort());
+            txtb_namakonsentrasibaru.setValue(kurikulum.getMpeminatan().getCnmminat());
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setMkurikulum(kurikulum);
             obj.setCcohort(kurikulum.getCcohort());
@@ -223,6 +228,7 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
         if (term != null) {
             //txtb_term.setValue(term.getKdTerm());
             txtb_termBaru.setValue(term.getKdTerm());
+            txtb_thajarBaru.setValue(term.getMthajar().getCthajar());
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setCterm(term.getKdTerm());
             setKurikulumMahasiswa(obj);
