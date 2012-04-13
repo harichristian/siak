@@ -210,8 +210,12 @@ public class MpegawaiMainCtrl extends GFCBaseCtrl implements Serializable {
 			getMpegawaiDetailCtrl().getBinder().loadAll();
             getMpegawaiDetailCtrl().doResetCombo();
             if (getSelectedMpegawai()!=null)     {
-                getMpegawaiDetailCtrl().txtb_kdpostg.setValue(getSelectedMpegawai().getCkdpostg().toString());
-                getMpegawaiDetailCtrl().txtb_kdpos.setValue(getSelectedMpegawai().getCkdposrm().toString());
+                if(getSelectedMpegawai().getCkdpostg()!=null) {
+                    getMpegawaiDetailCtrl().txtb_kdpostg.setValue(getSelectedMpegawai().getCkdpostg().toString());
+                }
+                if(getSelectedMpegawai().getCkdposrm()!=null) {
+                    getMpegawaiDetailCtrl().txtb_kdpos.setValue(getSelectedMpegawai().getCkdposrm().toString());
+                }
                 if (getSelectedMpegawai().getCproprm()!=null) {
                     getMpegawaiDetailCtrl().txtb_proprm.setValue(((Mprov)mprovService.getMprovByID(Long.parseLong(getSelectedMpegawai().getCproprm()))).getCnamaProv());
                 }
