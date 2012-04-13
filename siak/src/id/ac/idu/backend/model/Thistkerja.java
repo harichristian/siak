@@ -16,6 +16,7 @@ public class Thistkerja  implements java.io.Serializable {
      private Mprodi mprodi;
      private String cterm;
      private String cnim;
+     private Malumni malumni;
      private int nnourut;
      private char cjnsinstansi;
      private String cnminstansi;
@@ -104,6 +105,15 @@ public class Thistkerja  implements java.io.Serializable {
     public void setCnim(String cnim) {
         this.cnim = cnim;
     }
+
+    public Malumni getMalumni() {
+        return malumni;
+    }
+
+    public void setMalumni(Malumni malumni) {
+        this.malumni = malumni;
+    }
+
     public int getNnourut() {
         return this.nnourut;
     }

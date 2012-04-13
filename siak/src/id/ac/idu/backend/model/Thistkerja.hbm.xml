@@ -6,23 +6,26 @@
     <class name="id.ac.idu.backend.model.Thistkerja" table="THISTKERJA" >
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="sequence"><param name="sequence">_SEQ</param></generator>
+            <generator class="sequence"><param name="sequence">THISTKERJA_SEQ</param></generator>
         </id>
         <many-to-one name="mbidangusaha" class="id.ac.idu.backend.model.Mbidangusaha" fetch="select" lazy="false">
             <column name="BID_USH_INS_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
-            <column name="SEKOLAH_ID" not-null="true" />
-        </many-to-one>
-        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
-            <column name="PRODI_ID" not-null="true" />
-        </many-to-one>
+        <property name="msekolah" type="int">
+            <column name="SEKOLAH_ID"  />
+        </property>
+        <property name="mprodi" type="int">
+            <column name="PRODI_ID"  />
+        </property>
         <property name="cterm" type="string">
-            <column name="CTERM" length="4" not-null="true" />
+            <column name="CTERM" length="4"  />
         </property>
         <property name="cnim" type="string">
-            <column name="CNIM" length="12" not-null="true" />
+            <column name="CNIM" length="12"  />
         </property>
+         <many-to-one name="malumni" class="id.ac.idu.backend.model.Malumni" fetch="select" lazy="false">
+            <column name="ALUMNI_ID" not-null="true" />
+        </many-to-one>
         <property name="nnourut" type="int">
             <column name="NNOURUT" not-null="true" />
         </property>
