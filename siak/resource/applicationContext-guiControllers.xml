@@ -899,6 +899,10 @@
         <property name="kodePosService" ref="kodePosService"/>
         <property name="plwKodepos" ref="pagedListWrapper"/>
     </bean>
+     <bean id="malumniPekerjaanCtrl" class="id.ac.idu.webui.administrasi.alumni.MalumniPekerjaanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="malumniService" ref="malumniService"/>
+    </bean>
 
      <!-- Fasilitas Ruang -->
     <bean id="mfasilitasruangMainCtrl" class="id.ac.idu.webui.administrasi.fasilitasruang.MfasilitasruangMainCtrl"
