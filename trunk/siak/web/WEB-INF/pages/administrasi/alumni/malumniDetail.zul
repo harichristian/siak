@@ -23,7 +23,7 @@
                         <groupbox mold="3d" closable="false">
                             <caption
                                     image="/images/icons/view.gif"
-                                    label="${c:l('common.Details')}"/>
+                                    label="Data Pribadi"/>
 
                             <grid sclass="GridLayoutNoBorder"
                                   fixedLayout="true"

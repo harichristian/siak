@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- DataBinding Initiator.                              -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowMalumniPekerjaan" ?>
+
+    <window id="windowMalumniPekerjaan" apply="${malumniPekerjaanCtrl}"
+            border="none" width="100%">
+
+        <borderlayout id="borderlayout_MalumniPekerjaan">
+            <center border="none" autoscroll="true">
+                <panel border="none">
+                    <panelchildren>
+
+                        <groupbox mold="3d" closable="false">
+                            <caption
+                                    image="/images/icons/view.gif"
+                                    label="Pengalaman Kerja"/>
+
+                            <grid sclass="GridLayoutNoBorder"
+                                  fixedLayout="true"
+                                  style="border:0px; padding-left:5px; padding-right:5px;">
+
+
+
+                            </grid>
+                            <listbox id="listBoxAlumniPekerjaan"
+                                     style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;"
+                                     tooltiptext="${c:l('listbox.tooltiptext')}" width="100%"
+                                      multiple="false" >
+                                    <listhead sizable="true">
+                                         <listheader id="listheader_FeedbackAlumniDetailList"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="  "
+                                                    width="5%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_no"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="No"
+                                                    width="5%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_0"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Jenis Instansi"
+                                                    width="10%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_1"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Nama Instansi"
+                                                    width="15%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_2"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Alamat Instansi"
+                                                    width="25%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_3"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Bidang Usaha"
+                                                    width="15%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_4"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Jabatan"
+                                                    width="12%"/>
+                                        <listheader id="listheader_FeedbackAlumniDetailList_5"
+                                                    sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                                    label="Range Gaji"
+                                                    width="13%"/>
+
+                                    </listhead>
+
+                                 </listbox>
+                        </groupbox>
+                    </panelchildren>
+                </panel>
+            </center>
+        </borderlayout>
+
+    </window>
+</zk>
