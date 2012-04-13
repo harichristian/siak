@@ -3,7 +3,6 @@ package id.ac.idu.backend.model;
 
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,23 +13,23 @@ public class Mbidangusaha  implements java.io.Serializable {
 
      private int id;
      private String cbidushins;
-     private byte[] cnmbidusaha;
+     private String cnmbidusaha;
      private String ccreatedby;
      private Date dcreateddate;
      private String cupdatedby;
      private Date cupdateddate;
-     private Set<Thistkerja> thistkerjas = new HashSet<Thistkerja>(0);
+
 
     public Mbidangusaha() {
     }
 
 	
-    public Mbidangusaha(int id, String cbidushins, byte[] cnmbidusaha) {
+    public Mbidangusaha(int id, String cbidushins, String cnmbidusaha) {
         this.id = id;
         this.cbidushins = cbidushins;
         this.cnmbidusaha = cnmbidusaha;
     }
-    public Mbidangusaha(int id, String cbidushins, byte[] cnmbidusaha, String ccreatedby, Date dcreateddate, String cupdatedby, Date cupdateddate, Set<Thistkerja> thistkerjas) {
+    public Mbidangusaha(int id, String cbidushins, String cnmbidusaha, String ccreatedby, Date dcreateddate, String cupdatedby, Date cupdateddate, Set<Thistkerja> thistkerjas) {
        this.id = id;
        this.cbidushins = cbidushins;
        this.cnmbidusaha = cnmbidusaha;
@@ -38,7 +37,6 @@ public class Mbidangusaha  implements java.io.Serializable {
        this.dcreateddate = dcreateddate;
        this.cupdatedby = cupdatedby;
        this.cupdateddate = cupdateddate;
-       this.thistkerjas = thistkerjas;
     }
    
     public int getId() {
@@ -55,11 +53,11 @@ public class Mbidangusaha  implements java.io.Serializable {
     public void setCbidushins(String cbidushins) {
         this.cbidushins = cbidushins;
     }
-    public byte[] getCnmbidusaha() {
+    public String getCnmbidusaha() {
         return this.cnmbidusaha;
     }
     
-    public void setCnmbidusaha(byte[] cnmbidusaha) {
+    public void setCnmbidusaha(String cnmbidusaha) {
         this.cnmbidusaha = cnmbidusaha;
     }
     public String getCcreatedby() {
@@ -90,16 +88,6 @@ public class Mbidangusaha  implements java.io.Serializable {
     public void setCupdateddate(Date cupdateddate) {
         this.cupdateddate = cupdateddate;
     }
-    public Set<Thistkerja> getThistkerjas() {
-        return this.thistkerjas;
-    }
-    
-    public void setThistkerjas(Set<Thistkerja> thistkerjas) {
-        this.thistkerjas = thistkerjas;
-    }
-
-
-
 
 }
 

@@ -2,9 +2,11 @@ package id.ac.idu.webui.administrasi.alumni;
 
 import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
+import id.ac.idu.administrasi.service.HistKerjaService;
 import id.ac.idu.administrasi.service.MalumniService;
 import id.ac.idu.backend.model.Malumni;
 import id.ac.idu.backend.model.Mmahasiswa;
+import id.ac.idu.backend.model.Thistkerja;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.webui.administrasi.report.MalumniSimpleDJReport;
@@ -24,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
@@ -64,6 +67,8 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Tab tabMalumniDetail; // autowired
     protected Tabpanel tabPanelMalumniList; // autowired
     protected Tabpanel tabPanelMalumniDetail; // autowired
+    protected Tab  tabMalumniPekerjaan;
+    protected Tabpanel tabPanelMalumniPekerjaan;
 
     // filter components
     protected Checkbox checkbox_MalumniList_ShowAll; // autowired
@@ -91,6 +96,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     // Tab-Controllers for getting the binders
     private MalumniListCtrl malumniListCtrl;
     private MalumniDetailCtrl malumniDetailCtrl;
+    private MalumniPekerjaanCtrl malumniPekerjaanCtrl;
 
     // Databinding
     private Malumni selectedMalumni;
@@ -98,6 +104,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
     // ServiceDAOs / Domain Classes
     private MalumniService malumniService;
+    private HistKerjaService histKerjaService;
 
     // always a copy from the bean before modifying. Used for reseting
     private Malumni originalMalumni;
@@ -202,6 +209,33 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
         if (tabPanelMalumniDetail != null) {
             ZksampleCommonUtils.createTabPanelContent(tabPanelMalumniDetail, this, "ModuleMainController", "/WEB-INF/pages/administrasi/alumni/malumniDetail.zul");
+        }
+    }
+
+     /**
+     * When the tab 'tabPanelMalumniDetail' is selected.<br>
+     * Loads the zul-file into the tab.
+     *
+     * @param event
+     * @throws java.io.IOException
+     */
+    public void onSelect$tabMalumniPekerjaan(Event event) throws IOException {
+        // logger.debug(event.toString());
+
+        // Check if the tabpanel is already loaded
+        if (tabPanelMalumniPekerjaan.getFirstChild() != null) {
+            tabMalumniPekerjaan.setSelected(true);
+
+            // refresh the Binding mechanism
+
+                getMalumniPekerjaanCtrl().setMalumni(getSelectedMalumni());
+                getMalumniPekerjaanCtrl().getBinder().loadAll();
+
+            return;
+        }
+
+        if (tabPanelMalumniPekerjaan != null) {
+            ZksampleCommonUtils.createTabPanelContent(tabPanelMalumniPekerjaan, this, "ModuleMainController", "/WEB-INF/pages/administrasi/alumni/malumniPekerjaan.zul");
         }
     }
 
@@ -581,7 +615,13 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 //        getMalumniDetailCtrl().getMalumni().setMmahasiswa(getMahasiswa());
         getMalumniDetailCtrl().getBinder().saveAll();
         try {
+
             getMalumniService().saveOrUpdate(getMalumniDetailCtrl().getMalumni());
+            List<Thistkerja> hisList = getMalumniPekerjaanCtrl().getThistKerjaList(getMalumniDetailCtrl().getMalumni());
+              for (int i=0; i < hisList.size();i++) {
+                      getHistKerjaService().save((Thistkerja) hisList.get(i));
+                }
+
             doStoreInitValues();
             getMalumniListCtrl().doFillListbox();
             Events.postEvent("onSelect", getMalumniListCtrl().getListBoxMalumni(), getSelectedMalumni());
@@ -611,20 +651,18 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         // logger.debug(event.toString());
 
         // check first, if the tabs are created
-        if (getMalumniDetailCtrl() == null) {
-            Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
-            // if we work with spring beanCreation than we must check a little
-            // bit deeper, because the Controller are preCreated ?
-        } else if (getMalumniDetailCtrl().getBinder() == null) {
-            Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
-        }
+        // get the current Tab for later checking if we must change it
+         Tab currentTab = tabbox_MalumniMain.getSelectedTab();
 
-        // remember the current object
-        doStoreInitValues();
+         if (!currentTab.equals(tabMalumniPekerjaan)) {
 
-        /** !!! DO NOT BREAK THE TIERS !!! */
-        // We don't create a new DomainObject() in the frontend.
-        // We GET it from the backend.
+                if (getMalumniDetailCtrl() == null) {
+                    Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
+                    // if we work with spring beanCreation than we must check a little
+                    // bit deeper, because the Controller are preCreated ?
+                } else if (getMalumniDetailCtrl().getBinder() == null) {
+                    Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
+                }
         final Malumni anMalumni = getMalumniService().getNewMalumni();
 
         // set the beans in the related databinded controllers
@@ -647,6 +685,48 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         tabMalumniDetail.setSelected(true);
         // set focus
         getMalumniDetailCtrl().txtb_nim.focus();
+         }  else {
+                if (getMalumniPekerjaanCtrl() == null) {
+                    Events.sendEvent(new Event("onSelect", tabMalumniPekerjaan, getMalumniDetailCtrl().getSelectedMalumni()));
+                    // if we work with spring beanCreation than we must check a little
+                    // bit deeper, because the Controller are preCreated ?
+                } else if (getMalumniPekerjaanCtrl().getBinder() == null) {
+                    Events.sendEvent(new Event("onSelect", tabMalumniPekerjaan, getMalumniDetailCtrl().getSelectedMalumni()));
+                }
+
+        final Malumni anMalumni = getMalumniService().getNewMalumni();
+
+        // set the beans in the related databinded controllers
+        getMalumniPekerjaanCtrl().setMalumni(anMalumni);
+        getMalumniPekerjaanCtrl().setSelectedMalumni(anMalumni);
+
+        // Refresh the binding mechanism
+        getMalumniPekerjaanCtrl().setSelectedMalumni(getSelectedMalumni());
+        if (getMalumniPekerjaanCtrl().getBinder() != null) {
+            getMalumniPekerjaanCtrl().getBinder().loadAll();
+        }
+
+
+        // set editable Mode
+//        getMalumniPekerjaanCtrl().doReadOnlyMode(false);
+
+        // set the ButtonStatus to New-Mode
+        btnCtrlMalumni.setInitNew();
+
+       getMalumniPekerjaanCtrl().doNew();
+
+
+       tabMalumniPekerjaan.setSelected(true);
+
+         }
+
+        // remember the current object
+        doStoreInitValues();
+
+        /** !!! DO NOT BREAK THE TIERS !!! */
+        // We don't create a new DomainObject() in the frontend.
+        // We GET it from the backend.
+
 
     }
 
@@ -800,6 +880,14 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         return this.malumniService;
     }
 
+    public HistKerjaService getHistKerjaService() {
+        return histKerjaService;
+    }
+
+    public void setHistKerjaService(HistKerjaService histKerjaService) {
+        this.histKerjaService = histKerjaService;
+    }
+
     public void setMalumniListCtrl(MalumniListCtrl malumniListCtrl) {
         this.malumniListCtrl = malumniListCtrl;
     }
@@ -814,6 +902,14 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public MalumniDetailCtrl getMalumniDetailCtrl() {
         return this.malumniDetailCtrl;
+    }
+
+    public MalumniPekerjaanCtrl getMalumniPekerjaanCtrl() {
+        return malumniPekerjaanCtrl;
+    }
+
+    public void setMalumniPekerjaanCtrl(MalumniPekerjaanCtrl malumniPekerjaanCtrl) {
+        this.malumniPekerjaanCtrl = malumniPekerjaanCtrl;
     }
 
     public Mmahasiswa getMahasiswa() {
