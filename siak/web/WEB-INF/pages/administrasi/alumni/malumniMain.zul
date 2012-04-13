@@ -88,7 +88,9 @@
                 <tab id="tabMalumniList" label="${c:l('common.List')}"
                      image="/images/icons/properties.gif"/>
                 <tab id="tabMalumniDetail"
-                     label="${c:l('common.Details')}" image="/images/icons/table.gif"/>
+                     label="Data Pribadi" image="/images/icons/table.gif"/>
+                 <tab id="tabMalumniPekerjaan"
+                     label="Pengalaman Kerja" image="/images/icons/table.gif"/>
             </tabs>
 
             <tabpanels>
@@ -98,6 +100,9 @@
 
                 <!-- TabPanel DETAILS / DETAILS -->
                 <tabpanel id="tabPanelMalumniDetail" height="100%"
+                          style="border: none; padding: 0px; "/>
+                 <!-- TabPanel Pekerjaan -->
+                 <tabpanel id="tabPanelMalumniPekerjaan" height="100%"
                           style="border: none; padding: 0px; "/>
             </tabpanels>
         </tabbox>
