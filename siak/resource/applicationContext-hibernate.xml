@@ -217,7 +217,7 @@
     <bean id="feedbackDosenDAO" class="id.ac.idu.administrasi.dao.impl.FeedbackDosenDAOImpl" parent="basisDAO"/>
     <bean id="feedbackWisudawanDAO" class="id.ac.idu.administrasi.dao.impl.FeedbackWisudawanDAOImpl" parent="basisDAO"/>
     <bean id="bidangUsahaDAO" class="id.ac.idu.administrasi.dao.impl.BidangUsahaDAOImpl" parent="basisDAO"/>
-
+    <bean id="histKerjaDAO" class="id.ac.idu.administrasi.dao.impl.HistKerjaDAOImpl" parent="basisDAO"/>
 
     <!--  Manajemen Kurikulum -->
     <bean id="sesiDAO" class="id.ac.idu.mankurikulum.dao.impl.SesiDAOImpl" parent="basisDAO"/>
@@ -580,5 +580,8 @@
         <property name="bidangUsahaDAO" ref="bidangUsahaDAO"/>
     </bean>
 
+    <bean name="histKerjaService" class="id.ac.idu.administrasi.service.impl.HistKerjaServiceImpl">
+        <property name="histKerjaDAO" ref="histKerjaDAO"/>
+    </bean>
 
 </beans>
