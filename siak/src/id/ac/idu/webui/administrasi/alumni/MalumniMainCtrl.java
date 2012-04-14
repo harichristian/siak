@@ -619,7 +619,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
             getMalumniService().saveOrUpdate(getMalumniDetailCtrl().getMalumni());
             List<Thistkerja> hisList = getMalumniPekerjaanCtrl().getThistKerjaList(getMalumniDetailCtrl().getMalumni());
               for (int i=0; i < hisList.size();i++) {
-                      getHistKerjaService().save((Thistkerja) hisList.get(i));
+                      getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
                 }
 
             doStoreInitValues();
