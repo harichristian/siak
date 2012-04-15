@@ -39,4 +39,6 @@ public interface JabatanService {
      * @return List of YoutubeLinks / Liste von YoutubeLinks
      */
     public ResultObject getAllJabatanLikeText(String text, int start, int pageSize);
+
+    public Mjabatan getJabatanByCode(String code);
 }

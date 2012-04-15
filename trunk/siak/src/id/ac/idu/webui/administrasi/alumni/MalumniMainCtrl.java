@@ -110,6 +110,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     // always a copy from the bean before modifying. Used for reseting
     private Malumni originalMalumni;
     private Mmahasiswa mahasiswa;
+    public boolean  isEditablePekerjaan = false;
 
     /**
      * default constructor.<br>

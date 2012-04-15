@@ -83,4 +83,6 @@ public interface JabatanDAO {
      */
     public ResultObject getAllJabatanLikeText(String text, int start, int pageSize);
 
+    public Mjabatan getJabatanByCode(String code);
+
 }

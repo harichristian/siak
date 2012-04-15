@@ -64,4 +64,9 @@ public class JabatanServiceImpl implements JabatanService {
     public ResultObject getAllJabatanLikeText(String text, int start, int pageSize) {
         return getJabatanDAO().getAllJabatanLikeText(text, start, pageSize);
     }
+
+    @Override
+    public Mjabatan getJabatanByCode(String code) {
+        return getJabatanDAO().getJabatanByCode(code);
+    }
 }
