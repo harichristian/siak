@@ -124,12 +124,8 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
             // than the selectedXXXBean should be null
             if (getMalumniMainCtrl().getSelectedMalumni() != null) {
                 setSelectedMalumni(getMalumniMainCtrl().getSelectedMalumni());
-            } else
-                setSelectedMalumni(null);
-        } else {
-            setSelectedMalumni(null);
+            }
         }
-
     }
 
 

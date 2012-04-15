@@ -91,6 +91,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSave; // autowired
     protected Button btnCancel; // autowired
 
+
     protected Button btnHelp;
 
     // Tab-Controllers for getting the binders
@@ -173,6 +174,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     public void onSelect$tabMalumniList(Event event) throws IOException {
         logger.debug(event.toString());
 
+        btnSave.setVisible(!btnNew.isVisible());
         // Check if the tabpanel is already loaded
         if (tabPanelMalumniList.getFirstChild() != null) {
             tabMalumniList.setSelected(true);
@@ -197,6 +199,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         // logger.debug(event.toString());
 
         // Check if the tabpanel is already loaded
+         btnSave.setVisible(!btnNew.isVisible());
         if (tabPanelMalumniDetail.getFirstChild() != null) {
             tabMalumniDetail.setSelected(true);
 
@@ -223,6 +226,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         // logger.debug(event.toString());
 
         // Check if the tabpanel is already loaded
+         btnSave.setVisible(true);
         if (tabPanelMalumniPekerjaan.getFirstChild() != null) {
             tabMalumniPekerjaan.setSelected(true);
 
@@ -408,7 +412,12 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnNew(Event event) throws InterruptedException {
-        doNew(event);
+        Tab currentTab = tabbox_MalumniMain.getSelectedTab();
+        if (currentTab.equals(tabMalumniPekerjaan)) {
+            doNewPekerjaan(event);
+        }else {
+            doNew(event);
+        }
     }
 
     /**
@@ -418,8 +427,16 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnSave(Event event) throws InterruptedException {
-        doSave(event);
+
+        Tab currentTab = tabbox_MalumniMain.getSelectedTab();
+        if (currentTab.equals(tabMalumniPekerjaan)) {
+            doSavePekerjaan(event);
+        }else {
+            doSave(event);
+        }
     }
+
+
 
     /**
      * When the "cancel" button is clicked.
@@ -604,6 +621,34 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         // refresh all dataBinder related controllers
         getMalumniDetailCtrl().getBinder().loadAll();
     }
+     /**
+     * Saves all involved Beans to the DB.
+     *
+     * @param event
+     * @throws InterruptedException
+     */
+    private void doSavePekerjaan(Event event) throws InterruptedException {
+
+        getMalumniPekerjaanCtrl().getBinder().saveAll();
+        try {
+
+            List<Thistkerja> hisList = getMalumniPekerjaanCtrl().getThistKerjaList(getMalumniDetailCtrl().getMalumni());
+                          for (int i=0; i < hisList.size();i++) {
+                                  getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
+                            }
+                  }
+        catch (DataAccessException e) {
+            ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString());
+            doResetToInitValues();
+
+            return;
+        }
+        finally {
+
+//            btnCtrlMalumni.setInitEdit();
+//            getMalumniDetailCtrl().doReadOnlyMode(true);
+        }
+    }
 
     /**
      * Saves all involved Beans to the DB.
@@ -617,10 +662,6 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         try {
 
             getMalumniService().saveOrUpdate(getMalumniDetailCtrl().getMalumni());
-            List<Thistkerja> hisList = getMalumniPekerjaanCtrl().getThistKerjaList(getMalumniDetailCtrl().getMalumni());
-              for (int i=0; i < hisList.size();i++) {
-                      getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
-                }
 
             doStoreInitValues();
             getMalumniListCtrl().doFillListbox();
@@ -640,6 +681,12 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
+    private void doNewPekerjaan(Event event){
+       Events.sendEvent(new Event("onSelect", tabMalumniDetail, getMalumniDetailCtrl().getSelectedMalumni()));
+       getMalumniPekerjaanCtrl().doNew();
+       btnSave.setVisible(true);
+       tabMalumniPekerjaan.setSelected(true);
+    }
     /**
      * Sets all UI-components to writable-mode. Stores the current Beans as
      * originBeans and get new Objects from the backend.
@@ -652,17 +699,14 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // check first, if the tabs are created
         // get the current Tab for later checking if we must change it
-         Tab currentTab = tabbox_MalumniMain.getSelectedTab();
 
-         if (!currentTab.equals(tabMalumniPekerjaan)) {
-
-                if (getMalumniDetailCtrl() == null) {
-                    Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
+         if (getMalumniDetailCtrl() == null) {
+             Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
                     // if we work with spring beanCreation than we must check a little
                     // bit deeper, because the Controller are preCreated ?
-                } else if (getMalumniDetailCtrl().getBinder() == null) {
+         } else if (getMalumniDetailCtrl().getBinder() == null) {
                     Events.sendEvent(new Event("onSelect", tabMalumniDetail, null));
-                }
+         }
         final Malumni anMalumni = getMalumniService().getNewMalumni();
 
         // set the beans in the related databinded controllers
@@ -685,40 +729,6 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         tabMalumniDetail.setSelected(true);
         // set focus
         getMalumniDetailCtrl().txtb_nim.focus();
-         }  else {
-                if (getMalumniPekerjaanCtrl() == null) {
-                    Events.sendEvent(new Event("onSelect", tabMalumniPekerjaan, getMalumniDetailCtrl().getSelectedMalumni()));
-                    // if we work with spring beanCreation than we must check a little
-                    // bit deeper, because the Controller are preCreated ?
-                } else if (getMalumniPekerjaanCtrl().getBinder() == null) {
-                    Events.sendEvent(new Event("onSelect", tabMalumniPekerjaan, getMalumniDetailCtrl().getSelectedMalumni()));
-                }
-
-        final Malumni anMalumni = getMalumniService().getNewMalumni();
-
-        // set the beans in the related databinded controllers
-        getMalumniPekerjaanCtrl().setMalumni(anMalumni);
-        getMalumniPekerjaanCtrl().setSelectedMalumni(anMalumni);
-
-        // Refresh the binding mechanism
-        getMalumniPekerjaanCtrl().setSelectedMalumni(getSelectedMalumni());
-        if (getMalumniPekerjaanCtrl().getBinder() != null) {
-            getMalumniPekerjaanCtrl().getBinder().loadAll();
-        }
-
-
-        // set editable Mode
-//        getMalumniPekerjaanCtrl().doReadOnlyMode(false);
-
-        // set the ButtonStatus to New-Mode
-        btnCtrlMalumni.setInitNew();
-
-       getMalumniPekerjaanCtrl().doNew();
-
-
-       tabMalumniPekerjaan.setSelected(true);
-
-         }
 
         // remember the current object
         doStoreInitValues();
