@@ -903,6 +903,8 @@
      <bean id="malumniPekerjaanCtrl" class="id.ac.idu.webui.administrasi.alumni.MalumniPekerjaanCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="malumniService" ref="malumniService"/>
+        <property name="histKerjaService" ref="histKerjaService"/>
+        <property name="jabatanService"  ref="jabatanService"/>
 
     </bean>
 
