@@ -1,6 +1,7 @@
 package id.ac.idu.administrasi.service;
 
 import id.ac.idu.backend.bean.ResultObject;
+import id.ac.idu.backend.model.Malumni;
 import id.ac.idu.backend.model.Thistkerja;
 
 import java.util.List;
@@ -40,4 +41,6 @@ public interface HistKerjaService {
      * @return List of YoutubeLinks / Liste von YoutubeLinks
      */
     public ResultObject getAllHistKerjaLikeText(String text, int start, int pageSize);
+
+    public List<Thistkerja> getAllHIstkerjaByAlumni(Malumni alumni);
 }

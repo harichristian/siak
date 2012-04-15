@@ -75,4 +75,11 @@ public class JabatanDAOImpl extends BasisDAO<Mjabatan> implements JabatanDAO {
 
         return new ResultObject(list, totalCount);
     }
+
+    @Override
+    public Mjabatan getJabatanByCode(String code) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mjabatan.class);
+        criteria.add(Restrictions.eq("ckdjabatan", code));
+        return (Mjabatan) DataAccessUtils.uniqueResult(getHibernateTemplate().findByCriteria(criteria));
+    }
 }

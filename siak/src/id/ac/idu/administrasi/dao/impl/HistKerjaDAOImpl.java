@@ -4,6 +4,7 @@ import id.ac.idu.administrasi.dao.HistKerjaDAO;
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Branche;
+import id.ac.idu.backend.model.Malumni;
 import id.ac.idu.backend.model.Thistkerja;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -74,5 +75,12 @@ public class HistKerjaDAOImpl  extends BasisDAO<Thistkerja> implements HistKerja
         List<Branche> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
 
         return new ResultObject(list, totalCount);
+    }
+
+    @Override
+    public List<Thistkerja> getAllHIstkerjaByAlumni(Malumni alumni) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Thistkerja.class);
+        criteria.add(Restrictions.eq("malumni", alumni));
+        return getHibernateTemplate().findByCriteria(criteria);
     }
 }

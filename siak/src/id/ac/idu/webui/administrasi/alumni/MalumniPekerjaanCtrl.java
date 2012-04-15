@@ -19,6 +19,7 @@
 package id.ac.idu.webui.administrasi.alumni;
 
 import id.ac.idu.administrasi.service.BidangUsahaService;
+import id.ac.idu.administrasi.service.HistKerjaService;
 import id.ac.idu.administrasi.service.JabatanService;
 import id.ac.idu.administrasi.service.MalumniService;
 import id.ac.idu.backend.model.Malumni;
@@ -36,7 +37,6 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
-import org.zkoss.zul.Listbox;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -86,6 +86,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Listbox listBoxAlumniPekerjaan;
     private transient BidangUsahaService bidangUsahaService;
     private transient JabatanService jabatanService;
+    private transient HistKerjaService histKerjaService;
 
 
     /**
@@ -142,7 +143,153 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
     public void onCreate$windowMalumniPekerjaan(Event event) throws Exception {
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
         binder.loadAll();
+        doRenderList();
         doFitSize(event);
+    }
+
+    public void doRenderList(){
+        List<Thistkerja> listHist = getHistKerjaService().getAllHIstkerjaByAlumni(getMalumni());
+        for (int i=0;listHist.size() > i;i++){
+            createRow(listHist.get(i));
+        }
+
+    }
+
+    public void createRow(Thistkerja histkerja){
+
+       Listitem ltm = new Listitem();
+       ltm.setParent(listBoxAlumniPekerjaan);
+       Listcell listcell = new Listcell();
+       Textbox hisId  =  new Textbox();
+       hisId.setVisible(false);
+       hisId.setParent(listcell);
+       hisId.setValue(Integer.valueOf(histkerja.getId()).toString());
+       Checkbox checkbox = new Checkbox();
+       checkbox.setId("c"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       checkbox.setParent(listcell);
+       checkbox.setChecked(false);
+       listcell.setParent(ltm);
+
+
+       listcell = new Listcell();
+       Textbox noUrut =  new Textbox();
+       noUrut.setValue(""+histkerja.getNnourut());
+       noUrut.setId("u"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       noUrut.setWidth("50px");
+       noUrut.setParent(listcell);
+       listcell.setParent(ltm);
+
+       listcell = new Listcell();
+       Combobox jenis = new Combobox();
+       jenis.setId("j"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       jenis.setWidth("100px");
+//       jenis.setMold("rounded");
+       Comboitem  negeri = new Comboitem();
+       negeri.setId("N"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       negeri.setLabel("Negeri");
+       negeri.setParent(jenis);
+//       jenis.appendItem("Negeri");
+       Comboitem  swasta = new Comboitem();
+       swasta.setId("S"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       swasta.setParent(jenis);
+       swasta.setLabel("Swasta");
+//       jenis.appendItem("Swasta");
+       if (String.valueOf(histkerja.getCjnsinstansi()).equals("1")) {
+            jenis.setSelectedIndex(1);
+        } else {
+            jenis.setSelectedIndex(0);
+        }
+       jenis.setParent(listcell);
+       listcell.setParent(ltm);
+
+        listcell = new Listcell();
+       Textbox nama =  new Textbox();
+       nama.setId("n"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       nama.setWidth("150px");
+       nama.setParent(listcell);
+       nama.setMaxlength(50);
+       nama.setValue(histkerja.getCnminstansi());
+       listcell.setParent(ltm);
+
+       listcell = new Listcell();
+       Textbox alamat =  new Textbox();
+       alamat.setId("a"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       alamat.setWidth("250px");
+       alamat.setMaxlength(100);
+       alamat.setValue(histkerja.getCalinstansi());
+       alamat.setParent(listcell);
+       listcell.setParent(ltm);
+
+       listcell = new Listcell();
+       final Textbox usaha =  new Textbox();
+       final Textbox usahaId =  new Textbox();
+       usaha.setId("us"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       usahaId.setId("usid"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       usahaId.setVisible(false);
+       usahaId.setValue(Integer.valueOf(histkerja.getMbidangusaha().getId()).toString());
+       usahaId.setParent(listcell);
+       usaha.setWidth("135px");
+       usaha.setValue(histkerja.getMbidangusaha().getCnmbidusaha());
+       usaha.setParent(listcell);
+       usaha.setReadonly(true);
+       listcell.setParent(ltm);
+       Button btnUsaha = new Button();
+       btnUsaha.setId("bu"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       btnUsaha.setLabel("...");
+       btnUsaha.setWidth("15px");
+       btnUsaha.addEventListener("onClick",new org.zkoss.zk.ui.event.EventListener() {
+           	  public void onEvent(Event event) throws Exception {
+                     Mbidangusaha ush = BidangUsahaExtendedSearchListBox.show(windowMalumniPekerjaan);
+                     if (ush!=null) {
+                         usaha.setValue(ush.getCnmbidusaha());
+                         usahaId.setValue(""+ush.getId());
+                     }
+         	   }
+      	  });
+       btnUsaha.setParent(listcell);
+
+       listcell = new Listcell();
+       final Textbox jabatan =  new Textbox();
+       final Textbox jabatanId =  new Textbox();
+       jabatan.setId("jb"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       jabatan.setValue(getJabatanService().getJabatanByCode(histkerja.getCkdkerja()).getCnmjabatan());
+       jabatanId.setId("jbid"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       jabatanId.setVisible(false);
+       jabatanId.setValue(""+getJabatanService().getJabatanByCode(histkerja.getCkdkerja()).getId());
+       jabatanId.setParent(listcell);
+       jabatan.setWidth("105px");
+       jabatan.setParent(listcell);
+       jabatan.setReadonly(true);
+       listcell.setParent(ltm);
+       Button btnJabatan = new Button();
+       btnJabatan.setId("bj"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       btnJabatan.setLabel("...");
+       btnJabatan.setWidth("15px");
+       btnJabatan.addEventListener("onClick",new org.zkoss.zk.ui.event.EventListener() {
+           	  public void onEvent(Event event) throws Exception {
+                     Mjabatan jbt = JabatanExtendedSearchListBox.show(windowMalumniPekerjaan);
+                     if (jbt!=null) {
+                         jabatan.setValue(jbt.getCnmjabatan());
+                         jabatanId.setValue(jbt.getCkdjabatan());
+                     }
+         	   }
+      	  });
+       btnJabatan.setParent(listcell);
+
+        listcell = new Listcell();
+       Combobox range = new Combobox();
+       range.setId("rg"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       range.setWidth("130px");
+       range.appendItem(" < Rp. 2jt");
+       range.appendItem("Rp. 2jt s/d 5jt");
+       range.appendItem("Rp. 5jt s/d 10jt");
+       range.appendItem("Rp. 10jt s/d 15 jt");
+       range.appendItem(" > Rp. 15jt");
+       range.setSelectedIndex(Integer.valueOf(histkerja.getCkdgaji().trim()));
+       range.setParent(listcell);
+       listcell.setParent(ltm);
+
+
     }
 
     public void doNew(){
@@ -416,6 +563,14 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setJabatanService(JabatanService jabatanService) {
         this.jabatanService = jabatanService;
+    }
+
+    public HistKerjaService getHistKerjaService() {
+        return histKerjaService;
+    }
+
+    public void setHistKerjaService(HistKerjaService histKerjaService) {
+        this.histKerjaService = histKerjaService;
     }
 
     public void setMalumniMainCtrl(MalumniMainCtrl malumniMainCtrl) {
