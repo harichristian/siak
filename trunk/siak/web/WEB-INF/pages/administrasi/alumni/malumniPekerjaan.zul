@@ -28,7 +28,34 @@
                             <grid sclass="GridLayoutNoBorder"
                                   fixedLayout="true"
                                   style="border:0px; padding-left:5px; padding-right:5px;">
+                                   <columns>
+                                    <column width="150px"/>
+                                    <column/>
+                                </columns>
+                                <rows>
 
+                                    <row>
+                                        <hbox>
+                                            <label
+                                                    value="NIM"/>
+                                            <label  style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                        <textbox
+                                                id="txtb_nim"
+                                                value="@{controller.malumni.mmahasiswa.cnim}" readonly="true" constraint="no empty"
+                                                maxlength="15" width="100px"/>
+                                        </hbox>
+                                    </row>
+                                    <row>
+                                        <label
+                                                    value="Nama"/>
+                                           <textbox
+                                                id="txtb_nama"
+                                                value="@{controller.malumni.mmahasiswa.cnama}" readonly="true" constraint="no empty"
+                                                maxlength="50" width="300px"/>
+                                    </row>
+                                </rows>
 
 
                             </grid>
