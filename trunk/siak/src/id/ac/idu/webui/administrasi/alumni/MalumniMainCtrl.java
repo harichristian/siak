@@ -456,7 +456,25 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
    public void doEditPekerjaan(Event event){
+          for (int i=0;i < getMalumniPekerjaanCtrl().listBoxAlumniPekerjaan.getItemCount();i++){
+            Listitem ltm = new Listitem();
+            ltm = (Listitem) getMalumniPekerjaanCtrl().listBoxAlumniPekerjaan.getItemAtIndex(i);
+            Listcell lc1 = (Listcell) ltm.getChildren().get(0);
+            Textbox histId = (Textbox) lc1.getChildren().get(0);
 
+            Checkbox check = (Checkbox) lc1.getChildren().get(1);
+            if (check.isChecked()) {
+               //isi disini;
+                Listcell lc2 = (Listcell) ltm.getChildren().get(1);
+                ((Textbox) lc2.getChildren().get(0)).setReadonly(false);
+                ((Combobox) ((Listcell) ltm.getChildren().get(2)).getChildren().get(0)).setDisabled(false);
+                ((Textbox) ((Listcell) ltm.getChildren().get(3)).getChildren().get(0)).setReadonly(false);
+                ((Textbox) ((Listcell) ltm.getChildren().get(4)).getChildren().get(0)).setReadonly(false);
+                ((Button) ((Listcell) ltm.getChildren().get(5)).getChildren().get(2)).setDisabled(false);
+                ((Button) ((Listcell) ltm.getChildren().get(6)).getChildren().get(2)).setDisabled(false);
+                ((Combobox) ((Listcell) ltm.getChildren().get(7)).getChildren().get(0)).setDisabled(false);
+            }
+       }
    }
 
 
