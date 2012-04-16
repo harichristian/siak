@@ -177,6 +177,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        noUrut.setId("u"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
        noUrut.setWidth("50px");
        noUrut.setParent(listcell);
+       noUrut.setReadonly(true);
        listcell.setParent(ltm);
 
        listcell = new Listcell();
@@ -200,6 +201,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
             jenis.setSelectedIndex(0);
         }
        jenis.setParent(listcell);
+       jenis.setDisabled(true);
        listcell.setParent(ltm);
 
         listcell = new Listcell();
@@ -209,6 +211,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        nama.setParent(listcell);
        nama.setMaxlength(50);
        nama.setValue(histkerja.getCnminstansi());
+       nama.setReadonly(true);
        listcell.setParent(ltm);
 
        listcell = new Listcell();
@@ -218,6 +221,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        alamat.setMaxlength(100);
        alamat.setValue(histkerja.getCalinstansi());
        alamat.setParent(listcell);
+       alamat.setReadonly(true);
        listcell.setParent(ltm);
 
        listcell = new Listcell();
@@ -246,6 +250,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
                      }
          	   }
       	  });
+       btnUsaha.setDisabled(true);
        btnUsaha.setParent(listcell);
 
        listcell = new Listcell();
@@ -274,6 +279,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
                      }
          	   }
       	  });
+       btnJabatan.setDisabled(true);
        btnJabatan.setParent(listcell);
 
         listcell = new Listcell();
@@ -286,11 +292,14 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        range.appendItem("Rp. 10jt s/d 15 jt");
        range.appendItem(" > Rp. 15jt");
        range.setSelectedIndex(Integer.valueOf(histkerja.getCkdgaji().trim()));
+       range.setDisabled(true);
        range.setParent(listcell);
        listcell.setParent(ltm);
 
 
     }
+
+
 
     public void doNew(){
 
