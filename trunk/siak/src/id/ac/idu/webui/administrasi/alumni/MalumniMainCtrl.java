@@ -501,7 +501,17 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnCancel(Event event) throws InterruptedException {
-        doCancel(event);
+
+        Tab currentTab = tabbox_MalumniMain.getSelectedTab();
+        if (currentTab.equals(tabMalumniPekerjaan)) {
+            doCancelPekerjaan(event);
+        }else {
+            doCancel(event);
+        }
+    }
+
+    public void doCancelPekerjaan(Event event){
+        getMalumniPekerjaanCtrl().doRenderList();
     }
 
     /**
@@ -697,8 +707,23 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
             List<Thistkerja> hisList = getMalumniPekerjaanCtrl().getThistKerjaList(getMalumniDetailCtrl().getMalumni());
                           for (int i=0; i < hisList.size();i++) {
-                                  getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
-                            }
+                              int j = ((Thistkerja) hisList.get(i)).getId();
+                              if  ( j == 0) {
+                                 getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
+                              } else {
+                                 Thistkerja syncHist = getHistKerjaService().getHistKerjaByID(j);
+                                 Thistkerja  tmpHist =   new Thistkerja();
+                                 tmpHist = (Thistkerja) hisList.get(i);
+                                 syncHist.setCjnsinstansi(tmpHist.getCjnsinstansi());
+                                 syncHist.setCnminstansi(tmpHist.getCnminstansi());
+                                 syncHist.setCalinstansi(tmpHist.getCalinstansi());
+                                 syncHist.setCkdgaji(tmpHist.getCkdgaji());
+                                 syncHist.setMbidangusaha(tmpHist.getMbidangusaha());
+                                 syncHist.setCkdkerja(tmpHist.getCkdkerja());
+                                 syncHist =  (Thistkerja) hisList.get(i);
+                                 getHistKerjaService().saveOrUpdate(syncHist);
+                              }
+                          }
 
              getMalumniPekerjaanCtrl().doRenderList();
              }
