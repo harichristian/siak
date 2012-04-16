@@ -27,6 +27,7 @@ import id.ac.idu.backend.model.Mbidangusaha;
 import id.ac.idu.backend.model.Mjabatan;
 import id.ac.idu.backend.model.Thistkerja;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
 import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.searchdialogs.BidangUsahaExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.JabatanExtendedSearchListBox;
@@ -148,6 +149,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void doRenderList(){
+        ListBoxUtil.resetList(listBoxAlumniPekerjaan);
         List<Thistkerja> listHist = getHistKerjaService().getAllHIstkerjaByAlumni(getMalumni());
         for (int i=0;listHist.size() > i;i++){
             createRow(listHist.get(i));
@@ -174,7 +176,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        listcell = new Listcell();
        Textbox noUrut =  new Textbox();
        noUrut.setValue(""+histkerja.getNnourut());
-       noUrut.setId("u"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
+       noUrut.setId("u" + String.valueOf(listBoxAlumniPekerjaan.getItemCount()) + "1");
        noUrut.setWidth("50px");
        noUrut.setParent(listcell);
        noUrut.setReadonly(true);
@@ -241,15 +243,15 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        btnUsaha.setId("bu"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
        btnUsaha.setLabel("...");
        btnUsaha.setWidth("15px");
-       btnUsaha.addEventListener("onClick",new org.zkoss.zk.ui.event.EventListener() {
-           	  public void onEvent(Event event) throws Exception {
-                     Mbidangusaha ush = BidangUsahaExtendedSearchListBox.show(windowMalumniPekerjaan);
-                     if (ush!=null) {
-                         usaha.setValue(ush.getCnmbidusaha());
-                         usahaId.setValue(""+ush.getId());
-                     }
-         	   }
-      	  });
+       btnUsaha.addEventListener("onClick", new org.zkoss.zk.ui.event.EventListener() {
+           public void onEvent(Event event) throws Exception {
+               Mbidangusaha ush = BidangUsahaExtendedSearchListBox.show(windowMalumniPekerjaan);
+               if (ush != null) {
+                   usaha.setValue(ush.getCnmbidusaha());
+                   usahaId.setValue("" + ush.getId());
+               }
+           }
+       });
        btnUsaha.setDisabled(true);
        btnUsaha.setParent(listcell);
 
@@ -270,15 +272,15 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        btnJabatan.setId("bj"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
        btnJabatan.setLabel("...");
        btnJabatan.setWidth("15px");
-       btnJabatan.addEventListener("onClick",new org.zkoss.zk.ui.event.EventListener() {
-           	  public void onEvent(Event event) throws Exception {
-                     Mjabatan jbt = JabatanExtendedSearchListBox.show(windowMalumniPekerjaan);
-                     if (jbt!=null) {
-                         jabatan.setValue(jbt.getCnmjabatan());
-                         jabatanId.setValue(jbt.getCkdjabatan());
-                     }
-         	   }
-      	  });
+       btnJabatan.addEventListener("onClick", new org.zkoss.zk.ui.event.EventListener() {
+           public void onEvent(Event event) throws Exception {
+               Mjabatan jbt = JabatanExtendedSearchListBox.show(windowMalumniPekerjaan);
+               if (jbt != null) {
+                   jabatan.setValue(jbt.getCnmjabatan());
+                   jabatanId.setValue(jbt.getCkdjabatan());
+               }
+           }
+       });
        btnJabatan.setDisabled(true);
        btnJabatan.setParent(listcell);
 

@@ -637,7 +637,9 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
                           for (int i=0; i < hisList.size();i++) {
                                   getHistKerjaService().saveOrUpdate((Thistkerja) hisList.get(i));
                             }
-                  }
+
+             getMalumniPekerjaanCtrl().doRenderList();
+             }
         catch (DataAccessException e) {
             ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString());
             doResetToInitValues();
