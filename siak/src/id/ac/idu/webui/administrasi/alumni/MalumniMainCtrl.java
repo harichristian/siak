@@ -456,7 +456,13 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnDelete(Event event) throws InterruptedException {
-        doDelete(event);
+
+        Tab currentTab = tabbox_MalumniMain.getSelectedTab();
+        if (currentTab.equals(tabMalumniPekerjaan)) {
+            doDeletePekerjaan(event);
+        }else {
+            doDelete(event);
+        }
     }
 
     /**
@@ -555,6 +561,33 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
         getMalumniDetailCtrl().txtb_nim.focus();
     }
 
+    /**
+     * Deletes the selected Bean from the DB.
+     *
+     * @param event
+     * @throws InterruptedException
+     * @throws InterruptedException
+     */
+    private void doDeletePekerjaan(Event event) throws InterruptedException {
+        // logger.debug(event.toString());
+       for (int i=0;i < getMalumniPekerjaanCtrl().listBoxAlumniPekerjaan.getItemCount();i++){
+            Listitem ltm = new Listitem();
+            ltm = (Listitem) getMalumniPekerjaanCtrl().listBoxAlumniPekerjaan.getItemAtIndex(i);
+            Listcell lc1 = (Listcell) ltm.getChildren().get(0);
+            Textbox histId = (Textbox) lc1.getChildren().get(0);
+
+            Checkbox check = (Checkbox) lc1.getChildren().get(1);
+            if (check.isChecked()) {
+                if (histId.getValue()!=null && (!histId.getValue().equals("")) && histId.getValue().length()>0 ){
+                     Thistkerja histkerja = histKerjaService.getHistKerjaByID(Integer.valueOf(histId.getValue()).intValue());
+                     histKerjaService.delete(histkerja);
+                }
+            }
+       }
+
+       getMalumniPekerjaanCtrl().doRenderList();
+
+    }
     /**
      * Deletes the selected Bean from the DB.
      *
