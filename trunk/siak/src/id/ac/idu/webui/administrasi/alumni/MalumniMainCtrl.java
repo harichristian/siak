@@ -446,8 +446,19 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnEdit(Event event) throws InterruptedException {
-        doEdit(event);
+
+        Tab currentTab = tabbox_MalumniMain.getSelectedTab();
+        if (currentTab.equals(tabMalumniPekerjaan)) {
+           doEditPekerjaan(event);
+        }else {
+            doEdit(event);
+        }
     }
+
+   public void doEditPekerjaan(Event event){
+
+   }
+
 
     /**
      * When the "delete" button is clicked.
