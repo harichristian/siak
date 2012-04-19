@@ -231,7 +231,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
 
         if (prodi != null) {
             txtb_filProdi.setValue(prodi.getCnmprogst());
-            txtb_code.setValue(prodi.getCnmprogst());
+            txtb_code.setValue(prodi.getCkdprogst());
             Tjadkulmaster tjadkulmaster = getTjadkulmaster();
             tjadkulmaster.setMprodi(prodi);
             setTjadkulmaster(tjadkulmaster);
