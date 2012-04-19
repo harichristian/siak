@@ -43,6 +43,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
       * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       */
     protected Window tjadkulmasterCetakWindow; // autowired
+    protected Textbox txtb_code; // autowired
     protected Textbox txtb_filProdi; // autowired
     protected Textbox txtb_filTerm; // autowired
     protected Textbox txtb_filTahunajaran; // autowired
@@ -198,6 +199,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
         // fill the components with the data
         if (anTjadkulmaster.getMprodi() != null) {
             txtb_filProdi.setValue(anTjadkulmaster.getMprodi().getCnmprogst());
+            txtb_code.setValue(anTjadkulmaster.getMprodi().getCkdprogst());
         }
         txtb_filTerm.setValue(anTjadkulmaster.getCterm());
         txtb_filTahunajaran.setValue(anTjadkulmaster.getCthajar());
@@ -213,6 +215,7 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
      */
     private void doSetFieldProperties() {
         txtb_filProdi.setValue("");
+        txtb_code.setValue("");
         txtb_filSemester.setValue("");
         txtb_filTahunajaran.setValue("");
         txtb_filTerm.setValue("");
@@ -227,7 +230,8 @@ public class JadkulmasterCetakCtrl extends GFCBaseCtrl implements Serializable {
         Mprodi prodi = ProdiExtendedSearchListBox.show(tjadkulmasterCetakWindow);
 
         if (prodi != null) {
-            txtb_filProdi.setValue(prodi.getCkdprogst() + " - " + prodi.getCnmprogst());
+            txtb_filProdi.setValue(prodi.getCnmprogst());
+            txtb_code.setValue(prodi.getCnmprogst());
             Tjadkulmaster tjadkulmaster = getTjadkulmaster();
             tjadkulmaster.setMprodi(prodi);
             setTjadkulmaster(tjadkulmaster);

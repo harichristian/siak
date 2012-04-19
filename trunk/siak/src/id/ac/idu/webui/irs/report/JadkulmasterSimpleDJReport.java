@@ -212,8 +212,8 @@ public class JadkulmasterSimpleDJReport extends Window implements Serializable {
         setMinimizable(true);
         setSizable(true);
         setClosable(true);
-        setHeight("100%");
-        setWidth("80%");
+        setHeight("40%");
+        setWidth("40%");
         addEventListener("onClose", new OnCloseReportEventListener());
 
         iFrame = new Iframe();

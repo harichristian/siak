@@ -61,58 +61,42 @@
                                 <rows>
                                     <row>
                                         <hbox>
-                                            <label
-                                                    value="PRODI"/>
-                                            <label value=""
-                                                   style="color:red;font-size:10px"/>
+                                            <label value="TERM"/>
+                                            <label value="" style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <hbox pack="stretch" width="100%">
-                                            <textbox
-                                                    id="txtb_filProdi"
-                                                    value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
-                                                    readonly="true" maxlength="40" width="99%"/>
-                                            <button
-                                                    id="btnSearchProdiExtended"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Prodi"/>
+                                        <textbox id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}" maxlength="4" width="40%"/>
+                                    </row>
+
+                                    <row>
+                                        <hbox>
+                                            <label value="TAHUN AJARAN"/>
+                                            <label value="" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                            <textbox id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}" maxlength="8" width="98%"/>
+                                            <label value="SEMESTER"/>
+                                            <label value="" style="color:red;font-size:10px"/>
+                                            <textbox id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}" maxlength="1" width="50%"/>
                                         </hbox>
                                     </row>
 
                                     <row>
                                         <hbox>
-                                            <label
-                                                    value="TERM"/>
-                                            <label value=""
-                                                   style="color:red;font-size:10px"/>
+                                            <label value="PROGRAM STUDI"/>
+                                            <label value="" style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox
-                                                id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
-                                                maxlength="4" width="99%"/>
+                                        <hbox>
+                                            <textbox id="txtb_code" readonly="true" maxlength="40" width="99%"/>
+                                            <button id="btnSearchProdiExtended" width="28px" image="/images/icons/btn_search2_16x16.gif" tooltiptext="Cari Prodi"/>
+                                        </hbox>
                                     </row>
 
                                     <row>
                                         <hbox>
-                                            <label
-                                                    value="TAHUN AJARAN"/>
-                                            <label value=""
-                                                   style="color:red;font-size:10px"/>
+                                            <label value="NAMA PROGRAM STUDI"/>
+                                            <label value="" style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox
-                                                id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}"
-                                                maxlength="8" width="99%"/>
-                                    </row>
-
-                                    <row>
-                                        <hbox>
-                                            <label
-                                                    value="SEMESTER"/>
-                                            <label value=""
-                                                   style="color:red;font-size:10px"/>
-                                        </hbox>
-                                        <textbox
-                                                id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}"
-                                                maxlength="1" width="99%"/>
+                                        <textbox id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}" readonly="true" maxlength="40" width="60%"/>
                                     </row>
 
                                     <row>
