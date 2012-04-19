@@ -55,7 +55,7 @@
                                         <label value="Term"/>
                                         <hbox>
                                             <textbox id="txtb_term" value="@{controller.feedbackDosen.cterm}"
-                                                    readonly="true" maxlength="4" width="50px" />
+                                                    readonly="true" maxlength="4" width="50px"  constraint="no empty" />
                                              <button
                                                     id="btnSearchTermExtended" disabled="true"
                                                     width="28px"
@@ -67,7 +67,7 @@
                                         <label value="Kelompok"/>
                                         <hbox>
                                             <textbox id="txtb_kelompok" value="@{controller.feedbackDosen.ckelompok}"
-                                                    readonly="true" maxlength="2" width="50px" />
+                                                    readonly="true" maxlength="2" width="50px"  constraint="no empty" />
                                         </hbox>
                                     </row>
                                     <row>
@@ -76,7 +76,7 @@
                                             <textbox
                                                     id="txtb_prodi"
                                                     value="@{controller.feedbackDosen.mprodi.cnmprogst}"
-                                                    readonly="true" maxlength="40" width="100px"/>
+                                                    readonly="true" maxlength="40" width="100px"  constraint="no empty"/>
                                             <button
                                                     id="btnSearchProdiExtended" disabled="true"
                                                     width="28px"
@@ -90,7 +90,7 @@
                                             <textbox
                                                     id="txtb_sekolah"
                                                     value="@{controller.feedbackDosen.msekolah.cnamaSekolah}"
-                                                    readonly="true" maxlength="50" width="100px"/>
+                                                    readonly="true" maxlength="50" width="100px"  constraint="no empty"/>
                                             <button
                                                     id="btnSearchSekolahExtended" disabled="true"
                                                     width="28px"
