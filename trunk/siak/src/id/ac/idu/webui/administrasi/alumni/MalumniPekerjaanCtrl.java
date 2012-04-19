@@ -262,7 +262,7 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
        jabatan.setValue(getJabatanService().getJabatanByCode(histkerja.getCkdkerja()).getCnmjabatan());
        jabatanId.setId("jbid"+String.valueOf(listBoxAlumniPekerjaan.getItemCount())+"1");
        jabatanId.setVisible(false);
-       jabatanId.setValue(""+getJabatanService().getJabatanByCode(histkerja.getCkdkerja()).getId());
+       jabatanId.setValue(""+getJabatanService().getJabatanByCode(histkerja.getCkdkerja()).getCkdjabatan());
        jabatanId.setParent(listcell);
        jabatan.setWidth("105px");
        jabatan.setParent(listcell);
