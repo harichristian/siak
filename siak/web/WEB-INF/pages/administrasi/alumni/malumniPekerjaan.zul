@@ -83,19 +83,19 @@
                                         <listheader id="listheader_FeedbackAlumniDetailList_2"
                                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                                     label="Alamat Instansi"
-                                                    width="25%"/>
+                                                    width="15%"/>
                                         <listheader id="listheader_FeedbackAlumniDetailList_3"
                                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                                     label="Bidang Usaha"
-                                                    width="15%"/>
+                                                    width="20%"/>
                                         <listheader id="listheader_FeedbackAlumniDetailList_4"
                                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                                     label="Jabatan"
-                                                    width="12%"/>
+                                                    width="15%"/>
                                         <listheader id="listheader_FeedbackAlumniDetailList_5"
                                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
                                                     label="Range Gaji"
-                                                    width="13%"/>
+                                                    width="15%"/>
 
                                     </listhead>
 

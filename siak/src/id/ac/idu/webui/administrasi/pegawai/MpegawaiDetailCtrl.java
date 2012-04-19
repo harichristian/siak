@@ -138,7 +138,8 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSearchKodePosTGExtended;
     protected Button btnSearchPropTGExtended;
     protected Textbox txtb_proptg;
-
+    protected Image image;
+    protected Textbox txtb_foto;
 
 
 
@@ -237,6 +238,12 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         ListBoxUtil.resetList(txtb_listpendidikan);
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.PendidikanTerakhir.class)).getEnumToList(),
                 txtb_listpendidikan, cmb_pendidikan, (getMpegawai() != null)?getMpegawai().getCpendakhir():null);
+
+        try {
+            image.setContent(new org.zkoss.image.AImage(new java.net.URL(txtb_foto.getValue())));
+        } catch(Exception e) {
+            image.setSrc("/emp.jpg");
+        }
     }
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
