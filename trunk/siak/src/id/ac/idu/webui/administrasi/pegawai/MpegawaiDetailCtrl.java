@@ -320,7 +320,7 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
         txtb_belakang.setReadonly(b);
         txtb_npwp.setReadonly(b);
         txtb_tk.setReadonly(b);
-
+        txtb_foto.setReadonly(b);
 
 
         btnSearchKodePosExtended.setDisabled(b);
