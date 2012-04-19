@@ -276,6 +276,16 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
             txtb_statusnikah.setValue(getMalumniMainCtrl().getMahasiswa().getCstatnkh().toString());
             txtb_agama.setValue(getMalumniMainCtrl().getMahasiswa().getCkdagama());
             txtb_bekerja.setValue(getMalumniMainCtrl().getMahasiswa().getCketkerja());
+            Malumni amalumni = getMalumni();
+            amalumni.setCalamat(txtb_alamat.getValue());
+            amalumni.setCkdpos(txtb_kodepos.getValue());
+            amalumni.setCnotelp(txtb_telp.getValue());
+            amalumni.setCnohp(txtb_hp.getValue());
+            amalumni.setCstatnkh(getMalumniMainCtrl().getMahasiswa().getCstatnkh());
+            amalumni.setCkdagama(getMalumniMainCtrl().getMahasiswa().getCkdagama().charAt(0));
+            amalumni.setCsudahkerja(getMalumniMainCtrl().getMahasiswa().getCketkerja().charAt(0));
+            setMalumni(amalumni);
+            doResetCombo();
         }
 
     }

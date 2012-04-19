@@ -235,6 +235,7 @@ public class MalumniMainCtrl extends GFCBaseCtrl implements Serializable {
 
                 getMalumniPekerjaanCtrl().setMalumni(getSelectedMalumni());
                 getMalumniPekerjaanCtrl().getBinder().loadAll();
+                getMalumniPekerjaanCtrl().doRenderList();
 
             return;
         }

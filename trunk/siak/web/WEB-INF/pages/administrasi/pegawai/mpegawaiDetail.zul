@@ -34,6 +34,9 @@
                                 </columns>
                                 <rows>
                                     <row>
+                                        <image id="image" height="100px" src="/emp.jpg"/>
+                                    </row>
+                                    <row>
                                         <hbox>
                                             <label
                                                 value="NIP" />
@@ -199,7 +202,7 @@
                                             id="txtb_telp1" value="@{controller.mpegawai.ctelprma}"
                                             readonly="true" maxlength="4" width="70px"  />
                                              <label
-                                            value="  --  " />
+                                            value="  -  " />
                                             <textbox
                                                 id="txtb_telp2" value="@{controller.mpegawai.ctelprm}"
                                                 readonly="true" maxlength="13" width="130px"  />
@@ -354,6 +357,21 @@
                                             <textbox
                                                 id="txtb_tk" value="@{controller.mpegawai.cnomortgmkerja}"
                                                 readonly="true" maxlength="30" width="300px"  />
+                                    </row>
+                                     <row>
+                                        <label value="Link URL Foto" />
+                                        <hbox>
+                                        <textbox id="txtb_foto" value="@{controller.mpegawai.cfoto}"
+                                            readonly="true" maxlength="50" width="300px"  />
+                                        <button label="Muat Ulang Foto">
+                                            <!--attribute name="onClick">
+                                                image.setContent(new org.zkoss.image.AImage("t", desktop.webApp.getResourceAsStream((odd = !odd) ? "/img/msn2.gif" : "/img/msn1.gif")));
+                                            </attribute-->
+                                            <attribute name="onClick">
+                                                image.setContent(new org.zkoss.image.AImage(new java.net.URL(txtb_foto.getValue())));
+                                            </attribute>
+                                        </button>
+                                        </hbox>
                                     </row>
                                 </rows>
                             </grid>
