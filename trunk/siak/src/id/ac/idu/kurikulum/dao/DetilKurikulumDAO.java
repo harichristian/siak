@@ -87,4 +87,6 @@ public interface DetilKurikulumDAO {
     public void save(Mdetilkurikulum entity);
 
     public ResultObject getAllLikeText(String text, int start, int pageSize);
+
+    public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize);
 }

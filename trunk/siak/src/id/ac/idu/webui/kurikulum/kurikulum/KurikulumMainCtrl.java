@@ -188,7 +188,11 @@ public class KurikulumMainCtrl extends GFCBaseCtrl implements Serializable {
 
             // refresh the Binding mechanism
             getKurikulumDetailCtrl().setKurikulum(getSelectedKurikulum());
-            getKurikulumDetailCtrl().loadDetilKurikulum();
+            if(getSelectedKurikulum() != null) {
+                getKurikulumDetailCtrl().loadDetilKurikulum();
+            } else {
+                getKurikulumDetailCtrl().getPlwDetilKurikulum().clear();
+            }
             getKurikulumDetailCtrl().getBinder().loadAll();
             return;
         }

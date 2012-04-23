@@ -84,4 +84,24 @@ public class DetilKurikulumDAOImpl extends BasisDAO<Mdetilkurikulum> implements 
 
         return new ResultObject(list, totalCount);
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mdetilkurikulum.class);
+        criteria.createAlias(ConstantUtil.MATAKULIAH,ConstantUtil.MATAKULIAH);
+
+        if (!StringUtils.isEmpty(text)) {
+            //criteria.createAlias(ConstantUtil.MATAKULIAH_NAME,ConstantUtil.MATAKULIAH_NAME);
+            criteria.add(Restrictions.ilike(ConstantUtil.MATAKULIAH_DOT_NAMA, text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc(ConstantUtil.MATAKULIAH_DOT_NAMA));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Mdetilkurikulum> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
+    }
 }

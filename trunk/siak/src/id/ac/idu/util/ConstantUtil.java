@@ -14,6 +14,7 @@ public class ConstantUtil {
     public static String SEKOLAH = "msekolah";
     public static String MAHASISWA = "mmahasiswa";
     public static String MATAKULIAH = "mtbmtkl";
+    public static String MATAKULIAH_NAME = "cnamamk";
     public static String GRADE = "mgrade";
     public static String NIM = "cnim";
     public static String SINGKATAN = "csingkatan";
@@ -39,6 +40,7 @@ public class ConstantUtil {
     public static String MAHASISWA_DOT_NAME = "mmahasiswa.cnmstatmhs";
     public static String MAHASISWA_DOT_NAMA = "mmahasiswa.cnama";
     public static String MAHASISWA_DOT_NIM = "mmahasiswa.cnim";
+    public static String MAHASISWA_DOT_ID = "mmahasiswa.id";
     public static String FEEDBACK_CODE = "ckdfeedback";
     public static String PRODI_DOT_NAME = "mprodi.ckdprogst";
     public static String SEKOLAH_DOT_NAME = "msekolah.cnamaSekolah";
@@ -49,4 +51,6 @@ public class ConstantUtil {
     public static String PEGAWAI_DOT_NAMA = "mpegawai.cnama";
     public static String PEGAWAI_DOT_NIP = "mpegawai.cnip";
     public static String PEMINATAN_NAME = "cnmminat";
+    public static String MATAKULIAH_DOT_NAMA = "mtbmtkl.cnamamk";
+    public static String STATUS_MAHASISWA_DOT_CODE = "mstatusmhs.ckdstatmhs";
 }

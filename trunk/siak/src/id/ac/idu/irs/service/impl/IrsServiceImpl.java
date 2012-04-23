@@ -10,8 +10,10 @@ import id.ac.idu.irs.dao.JadkulmasterDAO;
 import id.ac.idu.irs.dao.PaketDAO;
 import id.ac.idu.irs.service.IrsService;
 import id.ac.idu.mankurikulum.dao.MatakuliahDAO;
+import id.ac.idu.util.Codec;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -139,6 +141,20 @@ public class IrsServiceImpl implements IrsService{
     }
 
     @Override
+    public void deleteList(Set<Tirspasca> list) {
+        for(Tirspasca entity : list) {
+            if(entity.getId() != 0) getIrsDAO().delete(entity);
+        }
+    }
+
+    @Override
+    public void saveOrUpdateList(Set<Tirspasca> list) {
+        for(Tirspasca entity : list) {
+            getIrsDAO().saveOrUpdate(entity);
+        }
+    }
+
+    @Override
     public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa) {
         List<Tpaketkuliah> paketList = getPaketDAO().getPaketForTransaction(entity.getMprodi(), entity.getCterm(), entity.getCthajar());
         String error = "";
@@ -148,38 +164,43 @@ public class IrsServiceImpl implements IrsService{
         if(mahasiswaList.size() > 0) {
             for(Mmahasiswa mhs : mahasiswaList){
                 if(paketList.size() > 0) {
-                    for(Tpaketkuliah paket : paketList) {
-                        Tirspasca irs = getNewIrs();
-                        //set mahasiswa
-                        irs.setMmahasiswa(mhs);
-                        irs.setMprodi(entity.getMprodi());
-                        irs.setMsekolah(entity.getMsekolah());
-                        irs.setCterm(entity.getCterm());
-                        irs.setCthajar(entity.getCthajar());
-                        irs.setCsmt(entity.getCsmt());
-                        //cek tjadkulmaster term, ckdsekolah, ckdprogst
-                        List<Tjadkuldetil> jadkulDetil = getJadkuldetilDAO().getForPaket(entity.getMsekolah(), entity.getMprodi(), entity.getCterm(), paket.getMtbmtkl());
-                        if (jadkulDetil.size() > 0) {
-                            //cek bentrok kelompok
-                            //cek nmaks, nisi tjadkuldetil
-                            for(Tjadkuldetil detil : jadkulDetil) {
-                                int tempIsi = (detil.getNisi() == null)?0:detil.getNisi();
-                                if(tempIsi <= detil.getNmaks()) {
-                                    //update tjadkul nisi = nisi + 1
-                                    int isi = tempIsi + 1;
-                                    detil.setNisi(isi);
-                                    getJadkuldetilDAO().saveOrUpdate(detil);
-                                    //save tirspasca
-                                    irs.setCkelompok(detil.getCkelompok());
-                                    irs.setMtbmtkl(detil.getMtbmtkl());
-                                    getIrsDAO().saveOrUpdate(irs);
-                                } else {
-                                    error += "\n Matakuliah: "+detil.getMtbmtkl().getCnamamk()+" Kelompok: "+detil.getCkelompok()+" penuh.";
+                    if(mhs.getMstatusmhs().getCkdstatmhs().equals(Codec.StatusMahasiswa.Status1.getValue())) {
+                        for(Tpaketkuliah paket : paketList) {
+                            Tirspasca irs = getNewIrs();
+                            //set mahasiswa
+                            irs.setMmahasiswa(mhs);
+                            irs.setMprodi(entity.getMprodi());
+                            irs.setMsekolah(entity.getMsekolah());
+                            irs.setCterm(entity.getCterm());
+                            irs.setCthajar(entity.getCthajar());
+                            irs.setCsmt(entity.getCsmt());
+                            //cek tjadkulmaster term, ckdsekolah, ckdprogst
+                            List<Tjadkuldetil> jadkulDetil = getJadkuldetilDAO().getForPaket(entity.getMsekolah(), entity.getMprodi(), entity.getCterm(), paket.getMtbmtkl());
+                            if (jadkulDetil.size() > 0) {
+                                //cek bentrok kelompok
+                                //cek nmaks, nisi tjadkuldetil
+                                for(Tjadkuldetil detil : jadkulDetil) {
+                                    int tempIsi = (detil.getNisi() == null)?0:detil.getNisi();
+                                    if(tempIsi < detil.getNmaks()) {
+                                        //update tjadkul nisi = nisi + 1
+                                        int isi = tempIsi + 1;
+                                        detil.setNisi(isi);
+                                        getJadkuldetilDAO().saveOrUpdate(detil);
+                                        //save tirspasca
+                                        irs.setCkelompok(detil.getCkelompok());
+                                        irs.setMtbmtkl(detil.getMtbmtkl());
+                                        irs.setNsks(detil.getMtbmtkl().getNsks());
+                                        getIrsDAO().saveOrUpdate(irs);
+                                    } else {
+                                        error += "\n NIM: "+mhs.getCnim()+" Matakuliah: "+detil.getMtbmtkl().getCnamamk()+" Kelompok: "+detil.getCkelompok()+" penuh.";
+                                    }
                                 }
+                            } else {
+                                error += "\n NIM: "+mhs.getCnim()+" " + paket.getMtbmtkl().getCnamamk() + " tidak ada jadwal. ";
                             }
-                        } else {
-                            error += "\n" + paket.getMtbmtkl().getCnamamk() + " tidak ada jadwal. ";
                         }
+                    } else {
+                        error += "\n NIM: "+mhs.getCnim()+" tidak aktif.";
                     }
                 } else {
                     error += "\n Tidak ada paket untuk prodi, term dan tahun ajaran yang dipilih";
@@ -187,6 +208,9 @@ public class IrsServiceImpl implements IrsService{
             }
         } else {
             error = "Daftar mahasiswa tidak ditemukan";
+        }
+        if(!error.isEmpty()){
+            getIrsDAO().throwError(error);
         }
     }
 }

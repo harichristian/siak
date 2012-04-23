@@ -627,7 +627,9 @@
         <property name="irsService" ref="irsService"/>
         <property name="popupMhsService" ref="mahasiswaService"/>
         <property name="plwMahasiswa" ref="pagedListWrapper"/>
+        <property name="plwDetilMatakuliah" ref="pagedListWrapper"/>
     </bean>
+    <bean id="detilMatakuliahCtrl" class="id.ac.idu.webui.irs.irs.DetilMatakuliahCtrl" parent="basisCtrl" scope="prototype"/>
     <!-- Entry Paket kuliah -->
     <bean id="paketMainCtrl" class="id.ac.idu.webui.irs.paket.PaketMainCtrl"
           parent="basisCtrl" scope="prototype">
