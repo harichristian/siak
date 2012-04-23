@@ -67,4 +67,6 @@ public interface DetilKurikulumService {
     public void delete(Mdetilkurikulum entity);
 
     public ResultObject getAllLikeText(String text, int start, int pageSize);
+
+    public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize);
 }

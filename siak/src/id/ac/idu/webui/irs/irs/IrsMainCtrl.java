@@ -25,6 +25,9 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -83,6 +86,7 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 	// Databinding
 	private Tirspasca selectedIrs;
 	private BindingListModelList irss;
+	private String totalSks;
 
 	// ServiceDAOs / Domain Classes
 	private IrsService irsService;
@@ -177,13 +181,20 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 	 */
 	public void onSelect$tabIrsDetail(Event event) throws IOException {
 		// logger.debug(event.toString());
-
+        Listitem item;
+        Tirspasca obj;
+        int total = 0;
 		// Check if the tabpanel is already loaded
 		if (tabPanelIrsDetail.getFirstChild() != null) {
 			tabIrsDetail.setSelected(true);
 
 			// refresh the Binding mechanism
 			getIrsDetailCtrl().setIrs(getSelectedIrs());
+            if(getSelectedIrs() != null) {
+                getIrsDetailCtrl().loadDetilMatakuliah();
+            } else {
+                getIrsDetailCtrl().getPlwDetilMatakuliah().clear();
+            }
 			getIrsDetailCtrl().getBinder().loadAll();
 			return;
 		}
@@ -486,7 +497,7 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 
 		getIrsDetailCtrl().doReadOnlyMode(false);
 		// set focus
-		getIrsDetailCtrl().txtb_term.focus();
+		//getIrsDetailCtrl().txtb_term.focus();
 	}
 
 	/**
@@ -566,13 +577,34 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 	 * @throws InterruptedException
 	 */
 	private void doSave(Event event) throws InterruptedException {
-        getIrsDetailCtrl().getIrs().setMmahasiswa(getMahasiswa());
+        if(getMahasiswa() != null){
+            getIrsDetailCtrl().getIrs().setMmahasiswa(getMahasiswa());
+        }
         // save all components data in the several tabs to the bean
 		getIrsDetailCtrl().getBinder().saveAll();
+        Listitem item;
+        /* List */
+        Tirspasca obj;
+        Set<Tirspasca> sets = new HashSet<Tirspasca>();
 
+        List listObj = getIrsDetailCtrl().getListDetilMatakuliah().getItems();
+        for(Object dtl : listObj) {
+            item = (Listitem) dtl;
+            obj = (Tirspasca) item.getAttribute(IrsDetailCtrl.DATA);
+            if(getSelectedIrs().getId() > 0) {
+                obj.setMmahasiswa(getSelectedIrs().getMmahasiswa());
+                obj.setMsekolah(getSelectedIrs().getMsekolah());
+                obj.setMprodi(getSelectedIrs().getMprodi());
+                obj.setCterm(getSelectedIrs().getCterm());
+                obj.setCthajar(getSelectedIrs().getCthajar());
+                obj.setCsmt(getSelectedIrs().getCsmt());
+            }
+            sets.add(obj);
+        }
 		try {
             // save it to database
-			getIrsService().saveOrUpdate(getIrsDetailCtrl().getIrs());
+			getIrsService().deleteList(getIrsDetailCtrl().getDelDetilMatakuliah());
+            getIrsService().saveOrUpdateList(sets);
 			// if saving is successfully than actualize the beans as
 			// origins.
 			doStoreInitValues();
@@ -630,6 +662,7 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 		// set the beans in the related databinded controllers
 		getIrsDetailCtrl().setIrs(anIrs);
 		getIrsDetailCtrl().setSelectedIrs(anIrs);
+        getIrsDetailCtrl().getPlwDetilMatakuliah().clear();
 
 		// Refresh the binding mechanism
 		getIrsDetailCtrl().setSelectedIrs(getSelectedIrs());
@@ -645,7 +678,7 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 
 		tabIrsDetail.setSelected(true);
 		// set focus
-		getIrsDetailCtrl().txtb_term.focus();
+		//getIrsDetailCtrl().txtb_term.focus();
 
 	}
 
@@ -831,4 +864,12 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
     public void setMahasiswa(Mmahasiswa mahasiswa) {
         this.mahasiswa = mahasiswa;
     }
+
+    public void setTotalSks(String totalSks) {
+		this.totalSks = totalSks;
+	}
+
+	public String getTotalSks() {
+		return this.totalSks;
+	}
 }

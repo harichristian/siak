@@ -177,39 +177,69 @@
                                             constraint="no empty" readonly="true" maxlength="1" width="50px" />
                                     </row>
                                     <row>
-                                        <separator bar="true"></separator>
-                                        <separator bar="true"></separator>
-                                    </row>
-                                    <row>
                                         <hbox>
                                         <label
-                                            value="${c:l('label_Dialog_kelompok.value')}" />
-                                        <label value="*"
-                                            style="color:red;font-size:10px" />
+                                            value="Jenjang" />
                                         </hbox>
                                         <textbox
-                                            id="txtb_kelompok" value="@{controller.irs.ckelompok}"
-                                            constraint="no empty" readonly="true" maxlength="2" width="50px" />
-                                    </row>
-                                    <row>
-                                        <hbox>
-                                            <label value="Matakuliah"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
-                                        </hbox>
-                                        <hbox pack="stretch" width="50%">
-                                            <textbox
-                                                    id="txtb_matakuliah"
-                                                    value="@{controller.irs.mtbmtkl.cnamamk}"
-                                                    readonly="true" maxlength="50" width="99%"/>
-                                            <button
-                                                    id="btnSearchMatakuliahExtended" disabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Matakuliah"/>
-                                        </hbox>
+                                            id="txtb_jenjang" value="@{controller.irs.mprodi.mjenjang.cnmjen}"
+                                            readonly="true" maxlength="50" width="100px" />
                                     </row>
                                 </rows>
                             </grid>
+                        </groupbox>
+                        <groupbox mold="3d" closable="false" style="height:100%; ">
+                            <caption image="/images/icons/view.gif" label="Matakuliah"/>
+                            <div sclass="z-toolbar" style="padding:0">
+                                <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
+                                    <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="center" style="float:left; border-style: none;" height="28px">
+                                        <hbox align="center" style="padding: 2px"></hbox>
+                                    </toolbar>
+                                    <toolbar align="end" style="float:right; border-style: none;" height="28px">
+                                        <button id="btnNewDetilMatakuliah" height="24px" image="/images/icons/btn_new2_16x16.gif"/>
+                                        <button id="btnDeleteDetilMatakuliah" height="24px" image="/images/icons/btn_delete2_16x16.gif"/>
+                                    </toolbar>
+                                </hbox>
+                            </div>
+                            <borderlayout id="borderDetilMatakuliah" style="height:200px">
+                                <north border="none" height="26px">
+                                    <paging id="pagingDetilMatakuliah" style="width:100%" pageSize="20"/>
+                                </north>
+                                <center border="none">
+                                    <listbox id="listDetilMatakuliah" width="100%" height="100%" multiple="false">
+                                        <listhead sizable="true">
+                                            <!--listheader id="cno" sort="auto" width="5%" label="No"/-->
+                                            <listheader id="mtbmtkl.ckdmtk" sort="auto" width="10%" label="Kode"/>
+                                            <listheader id="mtbmtkl.cnamamk" sort="auto" width="20%" label="Nama Matakuliah"/>
+                                            <listheader id="ckelompok" sort="auto" width="10%" label="Kelompok"/>
+                                            <!--listheader id="cmun" sort="auto" width="10%" label="MUN"/-->
+                                            <listheader id="nsks" sort="auto" width="10%" label="SKS"/>
+                                        </listhead>
+                                    </listbox>
+                                </center>
+                                <south>
+                                    <grid sclass="GridLayoutNoBorder"
+                                        fixedLayout="true"
+                                        style="border:0px; padding-left:5px; padding-right:5px;">
+                                        <columns>
+                                            <column width="150px" />
+                                            <column />
+                                        </columns>
+                                        <rows>
+                                            <row>
+                                                <hbox>
+                                                    <label value="Total SKS" />
+                                                </hbox>
+                                                <textbox id="txtb_totalsks" value="@{controller.totalsks}" readonly="true"
+                                                    maxlength="20" width="50px" />
+                                            </row>
+                                        </rows>
+                                    </grid>
+                                </south>
+                            </borderlayout>
                         </groupbox>
                     </panelchildren>
                 </panel>

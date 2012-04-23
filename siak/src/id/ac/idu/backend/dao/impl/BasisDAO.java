@@ -93,4 +93,8 @@ public abstract class BasisDAO<T> {
     protected T get(Class<T> entityClass, Serializable id) throws DataAccessException {
         return (T) hibernateTemplate.get(entityClass, id);
     }
+
+    public void throwError(String error) throws DataAccessException {
+        throw new RuntimeException(error);
+    }
 }

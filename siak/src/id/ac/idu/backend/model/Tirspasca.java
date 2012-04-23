@@ -27,7 +27,7 @@ public class Tirspasca  implements java.io.Serializable {
      private Mgrade mgrade;
      private String cterm;
      private String ckelompok;
-     private Boolean nsks;
+     private Integer nsks;
      private Integer nnilabs;
      private Integer nniltgs;
      private Integer nniluts;
@@ -59,7 +59,7 @@ public class Tirspasca  implements java.io.Serializable {
         this.cterm = cterm;
         this.ckelompok = ckelompok;
     }
-    public Tirspasca(int id, Mruang mruang, Msekolah msekolah, Mprodi mprodi, Mmahasiswa mmahasiswa, Mtbmtkl mtbmtkl, Mgrade mgrade, String cterm, String ckelompok, Boolean nsks, Integer nnilabs, Integer nniltgs, Integer nniluts, Integer nniluas, Integer nnilakh, String cflagver, String cflaggab, String cthajar, String csmt, Integer nhadir, Integer nizin, Integer nsakit, Integer nalpa, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
+    public Tirspasca(int id, Mruang mruang, Msekolah msekolah, Mprodi mprodi, Mmahasiswa mmahasiswa, Mtbmtkl mtbmtkl, Mgrade mgrade, String cterm, String ckelompok, Integer nsks, Integer nnilabs, Integer nniltgs, Integer nniluts, Integer nniluas, Integer nnilakh, String cflagver, String cflaggab, String cthajar, String csmt, Integer nhadir, Integer nizin, Integer nsakit, Integer nalpa, Date dcreateddate, String ccreatedby, Date dupdateddate, String cupdatedby) {
        this.id = id;
        this.mruang = mruang;
        this.msekolah = msekolah;
@@ -152,11 +152,11 @@ public class Tirspasca  implements java.io.Serializable {
     public void setCkelompok(String ckelompok) {
         this.ckelompok = ckelompok;
     }
-    public Boolean getNsks() {
+    public Integer getNsks() {
         return this.nsks;
     }
     
-    public void setNsks(Boolean nsks) {
+    public void setNsks(Integer nsks) {
         this.nsks = nsks;
     }
     public Integer getNnilabs() {

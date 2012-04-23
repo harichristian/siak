@@ -4,6 +4,7 @@ import id.ac.idu.backend.model.Mmahasiswa;
 import id.ac.idu.backend.model.Tirspasca;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -75,6 +76,10 @@ public interface IrsService {
      * EN: Deletes an Tirspasca.<br>
      */
     public void delete(Tirspasca entity);
+
+    public void deleteList(Set<Tirspasca> list);
+
+    public void saveOrUpdateList(Set<Tirspasca> list);
 
     public void saveOrUpdatePaket(Tirspasca entity, Mmahasiswa mahasiswa);
 }

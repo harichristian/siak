@@ -92,4 +92,6 @@ public interface IrsDAO {
      * EN: Saves an Tirspasca.<br>
      */
     public void save(Tirspasca entity);
+
+    public void throwError(String error);
 }

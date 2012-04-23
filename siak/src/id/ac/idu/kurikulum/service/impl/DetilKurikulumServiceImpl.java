@@ -77,4 +77,9 @@ public class DetilKurikulumServiceImpl implements DetilKurikulumService{
     public ResultObject getAllLikeText(String text, int start, int pageSize) {
         return getDetilKurikulumDAO().getAllLikeText(text, start, pageSize);
     }
+
+    @Override
+    public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize) {
+        return getDetilKurikulumDAO().getAllLikeMatakuliah(text, start, pageSize);
+    }
 }
