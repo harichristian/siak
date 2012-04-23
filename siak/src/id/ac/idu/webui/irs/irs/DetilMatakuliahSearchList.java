@@ -33,11 +33,11 @@ public class DetilMatakuliahSearchList  implements ListitemRenderer, Serializabl
         String sks = "";
         if(detilMatakuliah.getNsks() != null) {
             sks = detilMatakuliah.getNsks().toString();
-        } else {
+        } /*else {
             if(detilMatakuliah.getMtbmtkl().getNsks() != null) {
                 sks = detilMatakuliah.getMtbmtkl().getNsks().toString();
             }
-        }
+        } */
         lc = new Listcell(sks);
 		lc.setParent(item);
 

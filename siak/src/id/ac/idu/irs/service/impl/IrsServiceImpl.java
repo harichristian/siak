@@ -142,15 +142,19 @@ public class IrsServiceImpl implements IrsService{
 
     @Override
     public void deleteList(Set<Tirspasca> list) {
-        for(Tirspasca entity : list) {
-            if(entity.getId() != 0) getIrsDAO().delete(entity);
+        if(list.size() > 0) {
+            for(Tirspasca entity : list) {
+                if(entity.getId() != 0) getIrsDAO().delete(entity);
+            }
         }
     }
 
     @Override
     public void saveOrUpdateList(Set<Tirspasca> list) {
-        for(Tirspasca entity : list) {
-            getIrsDAO().saveOrUpdate(entity);
+        if(list.size() > 0) {
+            for(Tirspasca entity : list) {
+                getIrsDAO().saveOrUpdate(entity);
+            }
         }
     }
 
