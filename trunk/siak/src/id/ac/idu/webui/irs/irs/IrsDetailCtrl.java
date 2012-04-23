@@ -100,6 +100,7 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 	protected transient AnnotateDataBinder binder;
 	private IrsMainCtrl irsMainCtrl;
     protected DetilMatakuliahCtrl detilMatakuliahCtrl;
+    private String totalSks;
 
 	// ServiceDAOs / Domain Classes
 	private transient IrsService irsService;
@@ -195,8 +196,12 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
     public void calcTotalSks() {
         int total = 0;
         List listObj = getPlwDetilMatakuliah().getInnerList();
+        //List listObj = listDetilMatakuliah.getItems();
         for(Object dtl : listObj) {
+            //Listitem item = (Listitem) dtl;
+            //Tirspasca irs = (Tirspasca) item.getAttribute(IrsDetailCtrl.DATA);
             total += (((Tirspasca)dtl).getNsks() != null)?((Tirspasca)dtl).getNsks():0;
+            //total += (irs.getNsks() != null)?irs.getNsks():0;
         }
         setTotalsks(String.valueOf(total));
         txtb_totalsks.setValue(String.valueOf(total));
@@ -212,10 +217,12 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
         getDelDetilMatakuliah().add((Tirspasca) item.getAttribute(IrsDetailCtrl.DATA));
         Tirspasca irs = (Tirspasca) item.getAttribute(IrsDetailCtrl.DATA);
         int temp = Integer.valueOf(getTotalsks());
-        setTotalsks(String.valueOf(temp - irs.getNsks()));
+        int rowSks = (irs.getNsks()!=null)?irs.getNsks():0;
+        setTotalsks(String.valueOf(temp - rowSks));
         listDetilMatakuliah.removeItemAt(listDetilMatakuliah.getSelectedIndex());
-        calcTotalSks();
-		this.txtb_totalsks.setValue(getTotalsks());
+        //calcTotalSks();
+		this.txtb_totalsks.setValue(String.valueOf(temp - rowSks));
+        getBinder().loadAll();
     }
 
     public void onDetilMatakuliahItem(Event event) throws Exception {
@@ -497,11 +504,11 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public String getTotalsks() {
 		// STORED IN THE module's MainController
-		return getIrsMainCtrl().getTotalSks();
+		return this.totalSks;
 	}
 
-	public void setTotalsks(String total) {
+	public void setTotalsks(String totalSks) {
 		// STORED IN THE module's MainController
-		getIrsMainCtrl().setTotalSks(total);
+		this.totalSks = totalSks;
 	}
 }
