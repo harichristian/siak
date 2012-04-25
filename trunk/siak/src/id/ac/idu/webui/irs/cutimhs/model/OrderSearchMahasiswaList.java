@@ -25,11 +25,11 @@ public class OrderSearchMahasiswaList implements ListitemRenderer, Serializable 
 	public void render(Listitem item, Object data) throws Exception {
 		final Mmahasiswa mahasiswa = (Mmahasiswa) data;
 
-		Listcell lc = new Listcell(String.valueOf(mahasiswa.getId()));
-		lc.setParent(item);
-		lc = new Listcell(mahasiswa.getCnim());
+		Listcell lc = new Listcell(mahasiswa.getCnim());
 		lc.setParent(item);
 		lc = new Listcell(mahasiswa.getCnama());
+		lc.setParent(item);
+        lc = new Listcell(mahasiswa.getNoktp());
 		lc.setParent(item);
 
 		item.setAttribute("data", data);
