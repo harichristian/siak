@@ -212,7 +212,9 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
             //txtb_cohort.setValue(kurikulum.getCcohort());
             txtb_codeBaru.setValue(kurikulum.getCkodekur());
             txtb_cohortBaru.setValue(kurikulum.getCcohort());
-            txtb_namakonsentrasibaru.setValue(kurikulum.getMpeminatan().getCnmminat());
+            if(kurikulum.getMpeminatan()!= null) {
+                txtb_namakonsentrasibaru.setValue(kurikulum.getMpeminatan().getCnmminat());
+            }
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setMkurikulum(kurikulum);
             obj.setCcohort(kurikulum.getCcohort());
@@ -230,7 +232,9 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
         if (term != null) {
             //txtb_term.setValue(term.getKdTerm());
             txtb_termBaru.setValue(term.getKdTerm());
-            txtb_thajarBaru.setValue(term.getMthajar().getCthajar());
+            if(term.getMthajar() != null){
+                txtb_thajarBaru.setValue(term.getMthajar().getCthajar());
+            }
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setCterm(term.getKdTerm());
             setKurikulumMahasiswa(obj);

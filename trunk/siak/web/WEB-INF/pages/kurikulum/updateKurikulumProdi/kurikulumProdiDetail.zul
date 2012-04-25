@@ -41,56 +41,6 @@
                                         </hbox>
                                         <hbox>
                                             <textbox id="txtb_nim" value="@{controller.kurikulumMahasiswa.mmahasiswa.cnim}" readonly="true"  maxlength="25" width="120px%"/>
-                                            <!--bandbox id="bandbox_Dialog_MahasiswaSearch" sclass="mybandbox" disabled="true" width="0px" tooltiptext="LOV - Data Mahasiswa">
-                                                <bandpopup id="bpop_MahasiswaSearch" width="540px" height="490px">
-                                                    <panel id="panel_MahasiswaSearch2" title="LOV - Mahasiswa"/>
-                                                    <vbox>
-                                                        <hbox width="100%">
-                                                            <grid fixedLayout="true" style="border:0px" width="100%">
-                                                                <columns>
-                                                                    <column width="150px"/>
-                                                                    <column width="250px"/>
-                                                                    <column width="100px"/>
-                                                                    <column width="40px"/>
-                                                                </columns>
-                                                                <rows>
-                                                                    <row>
-                                                                        <label id="label_bbox_Nim" value="Nim"/>
-                                                                        <textbox id="tb_Nim" width="99%"/>
-                                                                        <button id="button_bbox_Search" image="/images/icons/search.gif" label="Search"
-                                                                                tooltiptext="Search data mahasiswa"/>
-                                                                        <button id="button_bbox_Close" image="/images/icons/stop.gif"
-                                                                                tooltiptext="Close Window"/>
-                                                                    </row>
-                                                                    <row>
-                                                                        <label id="label_bbox_Nama" value="Nama Mahsiswa"/>
-                                                                        <textbox id="tb_Nama" width="99%"/>
-                                                                    </row>
-                                                                    <row>
-                                                                        <label id="label_bbox_NoKtp" value="No KTP"/>
-                                                                        <textbox id="tb_NoKtp" width="99%"/>
-                                                                    </row>
-                                                                    <row spans="4">
-                                                                        <vbox width="100%">
-                                                                            <paging id="paging_MahasiswaSearchList" pageSize="20"/>
-                                                                            <listbox id="listMahasiswaSearch" width="100%" height="100%" multiple="false">
-                                                                                <listhead sizable="true">
-                                                                                    <listheader id="header_ID" sort="auto" width="15%" label="ID"/>
-                                                                                    <listheader id="header_Nim" sort="auto" width="15%" label="Nim"/>
-                                                                                    <listheader id="header_Nama" sort="auto" width="25%" label="Nama"/>
-                                                                                    <listheader id="header_NoKtp" sort="auto" width="30%" label="No Ktp"/>
-                                                                                    <listheader id="header_Alamat" sort="auto" width="30%" label="Alamat"/>
-                                                                                </listhead>
-                                                                            </listbox>
-                                                                        </vbox>
-                                                                    </row>
-                                                                </rows>
-                                                            </grid>
-                                                        </hbox>
-                                                    </vbox>
-                                                </bandpopup>
-                                            </bandbox-->
-                                            <!--intbox id="txtb_mhsid" value="@{controller.kurikulumMahasiswa.mmahasiswa.id}" width="0px"/-->
                                         </hbox>
                                     </row>
                                     <row>
@@ -118,11 +68,6 @@
                                                     id="txtb_prodi"
                                                     value="@{controller.kurikulumMahasiswa.mprodi.ckdprogst}"
                                                     readonly="true" maxlength="50" width="99%"/>
-                                            <!--button
-                                                    id="btnSearchProdiExtended" disabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Prodi"/-->
                                         </hbox>
                                     </row>
                                     <row>
@@ -140,7 +85,6 @@
                                     <row>
                                         <hbox>
                                             <label value="Nama Sekolah Lama"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
                                         <hbox pack="stretch" width="50%">
                                             <textbox
@@ -159,23 +103,6 @@
                                                     id="txtb_code"
                                                     value="@{controller.kurikulumMahasiswa.mkurikulum.ckodekur}"
                                                     readonly="true" maxlength="20" width="100px"/>
-                                            <!--button
-                                                    id="btnSearchCodeExtended" di
-                                    <row>
-                                        <hbox>
-                                            <label value="Nama Konsentrasi"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
-                                        </hbox>
-                                        <hbox pack="stretch" width="50%">
-                                            <textbox
-                                                    id="txtb_namakonsentrasi"
-                                                    value="@{controller.kurikulumMahasiswa.mkurikulum.mpeminatan.cnmminat}"
-                                                    readonly="true" maxlength="50" width="99%"/>
-                                        </hbox>
-                                    </row>sabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Kode Kurikulum"/-->
                                         </hbox>
                                     </row>
                                     <row>
@@ -183,11 +110,6 @@
                                         <hbox>
                                             <textbox id="txtb_term" value="@{controller.kurikulumMahasiswa.cterm}"
                                                     readonly="true" maxlength="4" width="50px" />
-                                            <!--button
-                                                    id="btnSearchTermExtended" disabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Term"/-->
                                         </hbox>
                                     </row>
                                     <row>
@@ -200,7 +122,7 @@
                                         <textbox
                                             id="txtb_cohort"
                                             value="@{controller.kurikulumMahasiswa.ccohort}" readonly="true"
-                                            constraint="no empty" maxlength="50" width="100px" />
+                                            maxlength="50" width="100px" />
                                     </row>
                                     <row>
                                         <label
@@ -222,11 +144,6 @@
                                             <textbox
                                                     id="txtb_kodeprodiBaru"
                                                     readonly="true" maxlength="50" width="100px"/>
-                                            <!--button
-                                                    id="btnSearchProdiExtended" disabled="true"
-                                                    width="28px"
-                                                    image="/images/icons/btn_search2_16x16.gif"
-                                                    tooltiptext="Cari Prodi"/-->
                                         </hbox>
                                     </row>
                                     <row>
@@ -236,7 +153,7 @@
                                         </hbox>
                                         <hbox pack="stretch" width="50%">
                                             <textbox
-                                                    id="txtb_prodiBaru"
+                                                    id="txtb_prodiBaru" constraint="no empty"
                                                     readonly="true" maxlength="50" width="99%"/>
                                             <button
                                                     id="btnSearchProdiExtended" disabled="true"
@@ -248,7 +165,6 @@
                                     <row>
                                         <hbox>
                                             <label value="Nama Sekolah Baru"/>
-                                            <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
                                         <hbox pack="stretch" width="50%">
                                             <textbox
@@ -311,7 +227,7 @@
                                         </hbox>
                                         <textbox
                                             id="txtb_cohortBaru" readonly="true"
-                                            constraint="no empty" maxlength="50" width="100px" />
+                                            maxlength="50" width="100px" />
                                     </row>
                                 </rows>
                             </grid>
