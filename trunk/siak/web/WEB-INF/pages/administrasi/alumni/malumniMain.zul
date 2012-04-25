@@ -41,7 +41,7 @@
 
                         <label value="NIM"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Malumni_No" width="60px"/>
+                        <textbox id="txtb_Malumni_No" width="160px"/>
                         <button id="button_MalumniList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="cari berdasarkan NIM"/>
