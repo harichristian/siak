@@ -107,7 +107,7 @@
                                             </attribute>
                                             <comboitem id="pdf" label="PDF" value="PDF"/>
                                             <comboitem id="rtf" label="RTF" value="RTF"/>
-                                            <comboitem id="xls" label="EXCEL" value="XLS"/>
+                                            <!--<comboitem id="xls" label="EXCEL" value="XLS"/>-->
                                         </combobox>
                                     </row>
 
