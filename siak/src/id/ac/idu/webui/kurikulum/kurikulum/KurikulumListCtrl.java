@@ -135,8 +135,8 @@ public class KurikulumListCtrl extends GFCBaseListCtrl<Mkurikulum> implements Se
         listheader_KurikulumList_Code.setSortDescending(new FieldComparator(ConstantUtil.KURIKULUM_CODE, false));
         listheader_KurikulumList_Cohort.setSortAscending(new FieldComparator(ConstantUtil.COHORT, true));
         listheader_KurikulumList_Cohort.setSortDescending(new FieldComparator(ConstantUtil.COHORT, false));
-        listheader_KurikulumList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI, true));
-        listheader_KurikulumList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI, false));
+        listheader_KurikulumList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAMA, true));
+        listheader_KurikulumList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAMA, false));
 
         // ++ create the searchObject and init sorting ++//
         // ++ create the searchObject and init sorting ++//

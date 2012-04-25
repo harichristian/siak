@@ -43,6 +43,7 @@ public class IrsListCtrl extends GFCBaseListCtrl<Tirspasca> implements Serializa
 	protected Paging paging_IrsList; // autowired
 	protected Listbox listBoxIrs; // autowired
 	protected Listheader listheader_IrsList_Nim; // autowired
+    protected Listheader listheader_IrsList_Nama;
 	protected Listheader listheader_IrsList_Sekolah; // autowired
 	protected Listheader listheader_IrsList_Prodi; // autowired
 	protected Listheader listheader_IrsList_Term;
@@ -134,9 +135,11 @@ public class IrsListCtrl extends GFCBaseListCtrl<Tirspasca> implements Serializa
 
 		// not used listheaders must be declared like ->
 		// lh.setSortAscending(""); lh.setSortDescending("")
-		listheader_IrsList_Nim.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, true));
-		listheader_IrsList_Nim.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, false));
-		listheader_IrsList_Sekolah.setSortAscending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, true));
+		listheader_IrsList_Nim.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NIM, true));
+		listheader_IrsList_Nim.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NIM, false));
+		listheader_IrsList_Nama.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, true));
+        listheader_IrsList_Nama.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, false));
+        listheader_IrsList_Sekolah.setSortAscending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, true));
 		listheader_IrsList_Sekolah.setSortDescending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, false));
 		listheader_IrsList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
 		listheader_IrsList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
