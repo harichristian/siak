@@ -33,7 +33,7 @@
                         <space width="20px" />
 
                         <label value="Nim" style="padding-right: 3px" />
-                        <textbox id="txtb_search3" width="40px" />
+                        <textbox id="txtb_search3" width="120px" />
                         <space width="20px" />
                         
                         <button id="buttonSearch" height="24px" image="/images/icons/search.gif" tooltiptext="Search List" />
