@@ -46,7 +46,7 @@
 
 
                 <!-- SEARCH AREA -->
-                <toolbar align="center"
+                <!--<toolbar align="center"
                          style="float:left; border-style: none;">
                     <hbox align="center" style="padding: 2px">
                         <space/>
@@ -72,7 +72,7 @@
                         <space width="20px"/>
 
                     </hbox>
-                </toolbar>
+                </toolbar>-->
 
                 <!-- CRUD BUTTONS -->
                 <toolbar align="end"
