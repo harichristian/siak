@@ -333,8 +333,8 @@ public class IrsMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Tirspasca> soIrs = new HibernateSearchObject<Tirspasca>(Tirspasca.class, getIrsListCtrl().getCountRows());
-			soIrs.addFilter(new Filter(ConstantUtil.PRODI_DOT_NAME, "%" + txtb_Irs_Prodi.getValue() + "%", Filter.OP_ILIKE));
-			soIrs.addSort(ConstantUtil.PRODI_DOT_NAME, false);
+			soIrs.addFilter(new Filter(ConstantUtil.PRODI_DOT_NAMA, "%" + txtb_Irs_Prodi.getValue() + "%", Filter.OP_ILIKE));
+			soIrs.addSort(ConstantUtil.PRODI_DOT_NAMA, false);
 
 			// Change the BindingListModel.
 			if (getIrsListCtrl().getBinder() != null) {

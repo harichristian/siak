@@ -14,6 +14,7 @@ import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MatakuliahExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
@@ -81,6 +82,10 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     private int pageSizeMatakuliah;
     private int mahasiswaId;
+
+    protected Textbox tb_Nim;
+    protected Textbox tb_Nama;
+    protected Textbox tb_NoKtp;
 
     public static final String DATA = "data";
     public static final String LIST = "LIST";
@@ -464,6 +469,40 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 		getPlwMahasiswa().init(so, listMahasiswaSearch, paging_MahasiswaSearchList);
 		listMahasiswaSearch.setItemRenderer(new OrderSearchMahasiswaList());
     }
+    public void onClick$button_bbox_Search(Event event) {
+            Filter filter1 = null;
+            Filter filter2 = null;
+            Filter filter3 = null;
+
+            if (StringUtils.isNotEmpty(tb_Nim.getValue()))
+                filter1 = new Filter("cnim", "%" + tb_Nim.getValue() + "%", Filter.OP_LIKE);
+
+            if (StringUtils.isNotEmpty(tb_Nama.getValue()))
+                filter2 = new Filter("cnama", "%" + tb_Nama.getValue() + "%", Filter.OP_LIKE);
+
+            if (StringUtils.isNotEmpty(tb_NoKtp.getValue()))
+                filter3 = new Filter("noktp", "%" + tb_NoKtp.getValue() + "%", Filter.OP_LIKE);
+
+            this.searchMahasiswa(filter1, filter2, filter3);
+        }
+
+        public void searchMahasiswa(Filter... filters) {
+
+            HibernateSearchObject<Mmahasiswa> so = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class);
+            so.addFilter(new Filter("mstatusmhs.ckdstatmhs", Codec.StatusMahasiswa.Status1.getValue(), com.trg.search.Filter.OP_EQUAL));
+            if(filters != null) {
+                for(Filter anFilter : filters) {
+                    if(anFilter != null) so.addFilter(anFilter);
+                }
+            }
+
+            so.addSort("cnim", false);
+
+            paging_MahasiswaSearchList.setPageSize(pageSize);
+            paging_MahasiswaSearchList.setDetailed(true);
+            getPlwMahasiswa().init(so, listMahasiswaSearch, paging_MahasiswaSearchList);
+            listMahasiswaSearch.setItemRenderer(new OrderSearchMahasiswaList());
+        }
 
     public void onClick$button_bbox_Close(Event event) {
         bandbox_Dialog_MahasiswaSearch.close();
