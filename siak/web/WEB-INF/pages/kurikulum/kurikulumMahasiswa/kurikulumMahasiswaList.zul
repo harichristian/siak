@@ -34,31 +34,31 @@
 					<listhead sizable="true">
 						<listheader id="listheader_KurikulumMahasiswaList_Nim"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_mahasiswa.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_mahasiswa.value')}"
 							width="10%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Nama"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('listheader_KurikulumMahasiswaList_Nama.label')}" sort="auto"
+							label="${c:l('listheader_KurikulumMahasiswaList_Nama.label')}"
 							width="20%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Code"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_code.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_code.value')}"
 							width="20%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Prodi"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_prodi.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_prodi.value')}"
 							width="20%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Cohort"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_cohort.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_cohort.value')}"
 							width="10%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Thajar"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_thajar.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_thajar.value')}"
 							width="10%" />
 						<listheader id="listheader_KurikulumMahasiswaList_Term"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="${c:l('label_KurikulumMahasiswaDialog_term.value')}" sort="auto"
+							label="${c:l('label_KurikulumMahasiswaDialog_term.value')}"
 							width="10%" />
 					</listhead>
 
