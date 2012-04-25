@@ -36,7 +36,7 @@
 							width="20%" />
 						<listheader id="listheader_filed4"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-							label="Trem" sort="auto"
+							label="Term" sort="auto"
 							width="20%" />
                         <listheader id="listheader_filed5"
 							sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
