@@ -49,7 +49,7 @@
 
                         <label value="Sekolah"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Calakademik_Name" width="100px" maxlength="2"/>
+                        <textbox id="txtb_Calakademik_Name" width="100px" maxlength="40"/>
                         <button id="button_CalakademikList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="${c:l('button_CalakademikList_SearchName.tooltiptext')}"/>
