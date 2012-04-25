@@ -487,7 +487,7 @@ public class KurikulumProdiMainCtrl extends GFCBaseCtrl implements Serializable 
 
 		getKurikulumProdiDetailCtrl().doReadOnlyMode(false);
 		// set focus
-		getKurikulumProdiDetailCtrl().txtb_code.focus();
+		getKurikulumProdiDetailCtrl().txtb_nim.focus();
 	}
 
 	/**
@@ -576,6 +576,7 @@ public class KurikulumProdiMainCtrl extends GFCBaseCtrl implements Serializable 
 			//getKurikulumMahasiswaService().saveOrUpdate(getKurikulumProdiDetailCtrl().getKurikulumMahasiswa());
             getSelectedKurikulumMahasiswa().setCterm(getKurikulumProdiDetailCtrl().txtb_termBaru.getValue());
             getSelectedKurikulumMahasiswa().setCthajar(getKurikulumProdiDetailCtrl().txtb_thajarBaru.getValue());
+            getSelectedKurikulumMahasiswa().setCcohort(getKurikulumProdiDetailCtrl().txtb_cohortBaru.getValue());
             getKurikulumMahasiswaService().saveOrUpdate(getSelectedKurikulumMahasiswa());
 			// if saving is successfully than actualize the beans as
 			// origins.
@@ -649,7 +650,7 @@ public class KurikulumProdiMainCtrl extends GFCBaseCtrl implements Serializable 
 
 		tabKurikulumMahasiswaDetail.setSelected(true);
 		// set focus
-		getKurikulumProdiDetailCtrl().txtb_code.focus();
+		getKurikulumProdiDetailCtrl().txtb_nim.focus();
 
 	}
 
@@ -701,6 +702,14 @@ public class KurikulumProdiMainCtrl extends GFCBaseCtrl implements Serializable 
 
 			try {
 				setOriginalKurikulumMahasiswa((Mkurmhs) ZksampleBeanUtils.cloneBean(getSelectedKurikulumMahasiswa()));
+                getKurikulumProdiDetailCtrl().txtb_kodeprodiBaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_kodeprodiBaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_namasekolahbaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_namakonsentrasibaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_codeBaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_termBaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_thajarBaru.setValue("");
+                getKurikulumProdiDetailCtrl().txtb_cohortBaru.setValue("");
 			} catch (final IllegalAccessException e) {
 				throw new RuntimeException(e);
 			} catch (final InstantiationException e) {
