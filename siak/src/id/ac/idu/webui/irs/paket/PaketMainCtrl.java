@@ -320,8 +320,8 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 
 			// ++ create the searchObject and init sorting ++//
 			HibernateSearchObject<Tpaketkuliah> soPaket = new HibernateSearchObject<Tpaketkuliah>(Tpaketkuliah.class, getPaketListCtrl().getCountRows());
-			soPaket.addFilter(new Filter(ConstantUtil.PRODI_DOT_NAME, "%" + txtb_Paket_Prodi.getValue() + "%", Filter.OP_ILIKE));
-			soPaket.addSort(ConstantUtil.PRODI_DOT_NAME, false);
+			soPaket.addFilter(new Filter(ConstantUtil.PRODI_DOT_NAMA, "%" + txtb_Paket_Prodi.getValue() + "%", Filter.OP_ILIKE));
+			soPaket.addSort(ConstantUtil.PRODI_DOT_NAMA, false);
 
 			// Change the BindingListModel.
 			if (getPaketListCtrl().getBinder() != null) {

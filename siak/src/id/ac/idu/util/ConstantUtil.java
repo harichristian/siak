@@ -43,6 +43,7 @@ public class ConstantUtil {
     public static String MAHASISWA_DOT_ID = "mmahasiswa.id";
     public static String FEEDBACK_CODE = "ckdfeedback";
     public static String PRODI_DOT_NAME = "mprodi.ckdprogst";
+    public static String PRODI_DOT_NAMA = "mprodi.cnmprogst";
     public static String SEKOLAH_DOT_NAME = "msekolah.cnamaSekolah";
     public static String NO_PERTANYAAN = "nnopertanyaan";
     public static String PERTANYAAN = "cpertanyaan";
