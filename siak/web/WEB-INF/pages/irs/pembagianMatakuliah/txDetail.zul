@@ -100,17 +100,6 @@
                                                     tooltiptext="Cari Prodi"/>
                                         </hbox>
                                     </row>
-                                    <!--row>
-                                        <hbox>
-                                        <label
-                                            value="Semester" />
-                                        <label value="*"
-                                            style="color:red;font-size:10px" />
-                                        </hbox>
-                                        <textbox
-                                            id="txtb_semester" value="@{controller.irs.csmt}"
-                                            constraint="no empty" readonly="true" maxlength="1" width="50px" />
-                                    </row-->
                                     <row>
                                         <separator bar="true"></separator>
                                         <separator bar="true"></separator>
@@ -171,11 +160,9 @@
                                                                         <paging id="paging_MahasiswaSearchList" pageSize="20"/>
                                                                         <listbox id="listMahasiswaSearch" width="100%" height="100%" multiple="false">
                                                                             <listhead sizable="true">
-                                                                                <listheader id="header_ID" sort="auto" width="15%" label="ID"/>
                                                                                 <listheader id="header_Nim" sort="auto" width="15%" label="Nim"/>
                                                                                 <listheader id="header_Nama" sort="auto" width="25%" label="Nama"/>
                                                                                 <listheader id="header_NoKtp" sort="auto" width="30%" label="No Ktp"/>
-                                                                                <listheader id="header_Alamat" sort="auto" width="30%" label="Alamat"/>
                                                                             </listhead>
                                                                         </listbox>
                                                                     </vbox>
@@ -244,11 +231,9 @@
                                                                         <paging id="paging_MahasiswaSearchListTo" pageSize="20"/>
                                                                         <listbox id="listMahasiswaSearchTo" width="100%" height="100%" multiple="false">
                                                                             <listhead sizable="true">
-                                                                                <listheader id="header_IDTo" sort="auto" width="15%" label="ID"/>
                                                                                 <listheader id="header_NimTo" sort="auto" width="15%" label="Nim"/>
                                                                                 <listheader id="header_NamaTo" sort="auto" width="25%" label="Nama"/>
                                                                                 <listheader id="header_NoKtpTo" sort="auto" width="30%" label="No Ktp"/>
-                                                                                <listheader id="header_AlamatTo" sort="auto" width="30%" label="Alamat"/>
                                                                             </listhead>
                                                                         </listbox>
                                                                     </vbox>
