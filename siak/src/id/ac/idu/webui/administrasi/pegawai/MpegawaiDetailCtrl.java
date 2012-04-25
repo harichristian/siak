@@ -27,10 +27,12 @@ import id.ac.idu.util.Codec;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.GFCListModelCtrl;
 import id.ac.idu.webui.util.ListBoxUtil;
+import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.searchdialogs.JabatanExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.KodePosExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MprovExtendedSearchListBox;
 import id.ac.idu.webui.util.test.EnumConverter;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
@@ -39,7 +41,10 @@ import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
@@ -411,6 +416,22 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
             Mpegawai pegawai = getMpegawai();
             pegawai.setCkdposrm(Integer.parseInt(pos.getKodepos()));
             setMpegawai(pegawai);
+        }
+    }
+
+    public void onClick$btnFoto(Event event) throws InterruptedException  {
+        try {
+            image.setContent(new org.zkoss.image.AImage(new URL(txtb_foto.getValue())));
+        } catch (MalformedURLException e) {
+            ZksampleMessageUtils.showErrorMessage("Harap masukkan protokol, contoh: Http://");
+		} catch (IOException e) {
+            ZksampleMessageUtils.showErrorMessage("Gambar tidak bisa dibaca atau ditemukan");
+        } catch (IllegalArgumentException e) {
+            if(StringUtils.containsIgnoreCase(e.toString(), "host = null")) {
+                ZksampleMessageUtils.showErrorMessage("Harap masukkan host, contoh: Http://host.com");
+            }
+        } catch (NullPointerException e) {
+            ZksampleMessageUtils.showErrorMessage("URL yang anda masukkan salah");
         }
     }
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //

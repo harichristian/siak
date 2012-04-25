@@ -363,13 +363,13 @@
                                         <hbox>
                                         <textbox id="txtb_foto" value="@{controller.mpegawai.cfoto}"
                                             readonly="true" maxlength="50" width="300px"  />
-                                        <button label="Muat Ulang Foto">
+                                        <button id="btnFoto" label="Muat Ulang Foto">
                                             <!--attribute name="onClick">
                                                 image.setContent(new org.zkoss.image.AImage("t", desktop.webApp.getResourceAsStream((odd = !odd) ? "/img/msn2.gif" : "/img/msn1.gif")));
                                             </attribute-->
-                                            <attribute name="onClick">
+                                            <!--attribute name="onClick">
                                                 image.setContent(new org.zkoss.image.AImage(new java.net.URL(txtb_foto.getValue())));
-                                            </attribute>
+                                            </attribute-->
                                         </button>
                                         </hbox>
                                     </row>
