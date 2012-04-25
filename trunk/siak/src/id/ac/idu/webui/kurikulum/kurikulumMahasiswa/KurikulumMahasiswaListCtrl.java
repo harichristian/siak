@@ -45,7 +45,10 @@ public class KurikulumMahasiswaListCtrl extends GFCBaseListCtrl<Mkurmhs> impleme
 	protected Listheader listheader_KurikulumMahasiswaList_Code; // autowired
 	protected Listheader listheader_KurikulumMahasiswaList_Cohort; // autowired
 	protected Listheader listheader_KurikulumMahasiswaList_Prodi; // autowired
-
+    protected Listheader listheader_KurikulumMahasiswaList_Nim;
+    protected Listheader listheader_KurikulumMahasiswaList_Nama;
+    protected Listheader listheader_KurikulumMahasiswaList_Thajar;
+    protected Listheader listheader_KurikulumMahasiswaList_Term;
 	// NEEDED for ReUse in the SearchWindow
 	private HibernateSearchObject<Mkurmhs> searchObj;
 
@@ -131,13 +134,20 @@ public class KurikulumMahasiswaListCtrl extends GFCBaseListCtrl<Mkurmhs> impleme
 
 		// not used listheaders must be declared like ->
 		// lh.setSortAscending(""); lh.setSortDescending("")
-		listheader_KurikulumMahasiswaList_Code.setSortAscending(new FieldComparator(ConstantUtil.KURIKULUM, true));
-		listheader_KurikulumMahasiswaList_Code.setSortDescending(new FieldComparator(ConstantUtil.KURIKULUM, false));
+        listheader_KurikulumMahasiswaList_Nim.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NIM, true));
+        listheader_KurikulumMahasiswaList_Nim.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NIM, false));
+        listheader_KurikulumMahasiswaList_Nama.setSortAscending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, true));
+        listheader_KurikulumMahasiswaList_Nama.setSortDescending(new FieldComparator(ConstantUtil.MAHASISWA_DOT_NAMA, false));
+		listheader_KurikulumMahasiswaList_Code.setSortAscending(new FieldComparator(ConstantUtil.KURIKULUM_DOT_CODE, true));
+		listheader_KurikulumMahasiswaList_Code.setSortDescending(new FieldComparator(ConstantUtil.KURIKULUM_DOT_CODE, false));
 		listheader_KurikulumMahasiswaList_Cohort.setSortAscending(new FieldComparator(ConstantUtil.COHORT, true));
 		listheader_KurikulumMahasiswaList_Cohort.setSortDescending(new FieldComparator(ConstantUtil.COHORT, false));
-		listheader_KurikulumMahasiswaList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI, true));
-		listheader_KurikulumMahasiswaList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI, false));
-
+		listheader_KurikulumMahasiswaList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, true));
+		listheader_KurikulumMahasiswaList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAME, false));
+        listheader_KurikulumMahasiswaList_Thajar.setSortAscending(new FieldComparator(ConstantUtil.THAJAR, true));
+        listheader_KurikulumMahasiswaList_Thajar.setSortDescending(new FieldComparator(ConstantUtil.THAJAR, false));
+        listheader_KurikulumMahasiswaList_Term.setSortAscending(new FieldComparator(ConstantUtil.TERM, true));
+        listheader_KurikulumMahasiswaList_Term.setSortDescending(new FieldComparator(ConstantUtil.TERM, false));
 		// ++ create the searchObject and init sorting ++//
 		// ++ create the searchObject and init sorting ++//
 		searchObj = new HibernateSearchObject<Mkurmhs>(Mkurmhs.class, getCountRows());

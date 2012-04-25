@@ -191,7 +191,9 @@ public class KurikulumProdiDetailCtrl extends GFCBaseCtrl implements Serializabl
         if (prodi != null) {
             txtb_kodeprodiBaru.setValue(prodi.getCkdprogst());
             txtb_prodiBaru.setValue(prodi.getCnmprogst());
-            txtb_namasekolahbaru.setValue(prodi.getMsekolah().getCnamaSekolah());
+            if (prodi.getMsekolah() != null) {
+                txtb_namasekolahbaru.setValue(prodi.getMsekolah().getCnamaSekolah());
+            }
             Mkurmhs obj = getKurikulumMahasiswa();
             obj.setMprodi(prodi);
             setKurikulumMahasiswa(obj);
