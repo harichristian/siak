@@ -1,5 +1,6 @@
 package id.ac.idu.webui.mankurikulum.matakuliah;
 
+import com.trg.search.Filter;
 import id.ac.idu.UserWorkspace;
 import id.ac.idu.backend.model.Mtbmtkl;
 import id.ac.idu.backend.util.HibernateSearchObject;
@@ -7,6 +8,7 @@ import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.mankurikulum.service.MatakuliahService;
 import id.ac.idu.webui.office.report.OfficeSimpleDJReport;
 import id.ac.idu.webui.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -46,11 +48,9 @@ public class MatakuliahMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button button_List_PrintList;
 
     protected Textbox txtb_mtk_code;
-    protected Button button_MtkList_SearchCode;
     protected Textbox txtb_mtk_nama;
-    protected Button button_MtkList_SearchNama;
     protected Textbox txtb_mtk_sks;
-    protected Button button_MtkList_SearchSks;
+    protected Button buttonSearch;
 
     private final String btnCtroller_ClassPrefix = "button_MatakuliahMain_";
     private ButtonStatusCtrl btnCtrl;
@@ -142,16 +142,46 @@ public class MatakuliahMainCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights() {
         final UserWorkspace workspace = getUserWorkspace();
 
-//        button_List_PrintList.setVisible(true);
-        button_MtkList_SearchCode.setVisible(true);
-        button_MtkList_SearchNama.setVisible(true);
-        button_MtkList_SearchSks.setVisible(true);
-//        btnHelp.setVisible(true);
+        buttonSearch.setVisible(true);
         btnNew.setVisible(true);
         btnEdit.setVisible(true);
         btnDelete.setVisible(true);
         btnSave.setVisible(true);
+    }
 
+    public void onClick$buttonSearch(Event event) throws InterruptedException {
+        Filter filter1 = null;
+        Filter filter2 = null;
+        Filter filter3 = null;
+
+        if (StringUtils.isNotEmpty(txtb_mtk_code.getValue()))
+            filter1 = new Filter("ckdmtk", "%" + txtb_mtk_code.getValue() + "%", Filter.OP_LIKE);
+
+        if (StringUtils.isNotEmpty(txtb_mtk_nama.getValue()))
+            filter2 = new Filter("cnamamk", "%" + txtb_mtk_nama.getValue() + "%", Filter.OP_LIKE);
+
+        if (StringUtils.isNotEmpty(txtb_mtk_sks.getValue()))
+            filter3 = new Filter("nsks", txtb_mtk_sks.getValue() , Filter.OP_EQUAL);
+
+        this.searchMatakuliah(filter1, filter2, filter3);
+    }
+
+    public void searchMatakuliah(Filter... filters) {
+        HibernateSearchObject<Mtbmtkl> soData = new HibernateSearchObject<Mtbmtkl>(Mtbmtkl.class, getListCtrl().getCountRows());
+        soData.addSort("ckdmtk", false);
+
+        if(filters != null) {
+            for(Filter onFiler : filters) {
+                if(onFiler != null) soData.addFilter(onFiler);
+            }
+        }
+
+        if (getListCtrl().getBinder() != null) {
+            getListCtrl().getPagedBindingListWrapper().setSearchObject(soData);
+            Tab currentTab = tabbox_Main.getSelectedTab();
+            if (!currentTab.equals(tabList)) tabList.setSelected(true);
+            else currentTab.setSelected(true);
+        }
     }
 
     /* Global */
