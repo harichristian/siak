@@ -25,20 +25,21 @@
                         <space />
                         <checkbox id="checkbox_List_ShowAll" checked="true" label="Show all" />
                         <space />
+                        <space />
 
                         <label value="Kode Matakuliah" style="padding-right: 3px" />
-                        <textbox id="txtb_mtk_code" width="60px" />
-                        <button id="button_MtkList_SearchCode" height="24px" image="/images/icons/search.gif" tooltiptext="Search Kode Matakuliah" />
+                        <textbox id="txtb_mtk_code" width="80px" />
                         <space width="20px" />
 
                         <label value="Nama Matakuliah" style="padding-right: 3px" />
-                        <textbox id="txtb_mtk_nama" width="40px" />
-                        <button id="button_MtkList_SearchNama" height="24px" image="/images/icons/search.gif" tooltiptext="Search Nama Matakuliah" />
+                        <textbox id="txtb_mtk_nama" width="120px" />
                         <space width="20px" />
 
                         <label value="SKS" style="padding-right: 3px" />
                         <textbox id="txtb_mtk_sks" width="40px" />
-                        <button id="button_MtkList_SearchSks" height="24px" image="/images/icons/search.gif" tooltiptext="Search SKS" />
+                        <space />
+                        <space />
+                        <button id="buttonSearch" height="24px" image="/images/icons/search.gif" tooltiptext="Search" />
                     </hbox>
                 </toolbar>
 				<!-- CRUD BUTTONS -->
