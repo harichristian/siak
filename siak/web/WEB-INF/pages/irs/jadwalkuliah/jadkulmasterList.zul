@@ -46,7 +46,7 @@
 
 
                 <!-- SEARCH AREA -->
-                <!--<toolbar align="center"
+                <toolbar align="center"
                          style="float:left; border-style: none;">
                     <hbox align="center" style="padding: 2px">
                         <space/>
@@ -57,7 +57,7 @@
 
                         <label value="Sekolah"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Kegiatan_No" width="60px" maxlength="2"/>
+                        <textbox id="txtb_Kegiatan_No" width="60px" maxlength="40"/>
                         <button id="button_KegiatanList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="Cari Berdasarkan Kode"/>
@@ -72,7 +72,7 @@
                         <space width="20px"/>
 
                     </hbox>
-                </toolbar>-->
+                </toolbar>
 
                 <!-- CRUD BUTTONS -->
                 <toolbar align="end"
