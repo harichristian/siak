@@ -8,14 +8,11 @@ import id.ac.idu.backend.service.BrancheService;
 import id.ac.idu.backend.service.CustomerService;
 import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.irs.service.JadkulService;
-import id.ac.idu.webui.administrasi.report.MpegawaiSimpleDJReport;
-import id.ac.idu.webui.irs.report.JadkulmasterSimpleDJReport;
 import id.ac.idu.webui.util.GFCBaseListCtrl;
 import id.ac.idu.webui.util.ZksampleMessageUtils;
 import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
@@ -408,64 +405,60 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
      * @param event
      */
     public void onCheck$checkbox_KegiatanList_ShowAll(Event event) {
-        // logger.debug(event.toString());
-
-        // empty the text search boxes
         txtb_Kegiatan_No.setValue(""); // clear
         txtb_Kegiatan_Name.setValue(""); // clear
-
-        // ++ create the searchObject and init sorting ++//
-        HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
-        soKegiatan.addSort("id", false);
-        // Change the BindingListModel.
-//        if (getKegiatanListCtrl().getBinder() != null) {
-        this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
-
-        // get the current Tab for later checking if we must change it
-//            Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
-
-        // check if the tab is one of the Detail tabs. If so do not
-        // change the selection of it
-//            if (!currentTab.equals(tabKegiatanList)) {
-//                tabKegiatanList.setSelected(true);
-//            } else {
-//                currentTab.setSelected(true);
-//            }
-//        }
-
+        paintComponents();
     }
 
     /**
      * Filter the kegiatan list with 'like kegiatan number'. <br>
      */
     public void onClick$button_KegiatanList_SearchNo(Event event) throws Exception {
-        // logger.debug(event.toString());
-
         // if not empty
         if (!txtb_Kegiatan_No.getValue().isEmpty()) {
             checkbox_KegiatanList_ShowAll.setChecked(false); // unCheck
             txtb_Kegiatan_Name.setValue(""); // clear
 
-            // ++ create the searchObject and init sorting ++//
-            HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
-            soKegiatan.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Kegiatan_No.getValue() + "%", Filter.OP_ILIKE));
-            soKegiatan.addSort("msekolah.cnamaSekolah", false);
+            HibernateSearchObject<Tjadkulmaster> soTjadkulmaster = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, getPageSizeTjadkulmasters());
+            soTjadkulmaster.addFilter(new Filter("msekolah.cnamaSekolah", "%" + txtb_Kegiatan_No.getValue() + "%", Filter.OP_ILIKE));
+            soTjadkulmaster.addSort("id", false);
 
-            // Change the BindingListModel.
-//            if (getKegiatanListCtrl().getBinder() != null) {
-            this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
+            paging_TjadkulmasterList.setPageSize(getPageSizeTjadkulmasters());
+            paging_TjadkulmasterList.setDetailed(true);
 
-            // get the current Tab for later checking if we must change it
-//                Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
+            paging_TjadkulmasterArticleList.setPageSize(getPageSizeTjadkuldetils());
+            paging_TjadkulmasterArticleList.setDetailed(true);
 
-            // check if the tab is one of the Detail tabs. If so do not
-            // change the selection of it
-//                if (!currentTab.equals(tabKegiatanList)) {
-//                    tabKegiatanList.setSelected(true);
-//                } else {
-//                    currentTab.setSelected(true);
-//                }
-//            }
+            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
+            listBoxTjadkulmaster.setItemRenderer(new JadkulmasterListItemRenderer());
+            listBoxTjadkulmasterArticle.setItemRenderer(new JadkuldetilListItemRenderer());
+
+            ListModelList lml = (ListModelList) listBoxTjadkulmaster.getModel();
+
+            // Now we would show the corresponding detail list of the first
+            // selected entry of the MASTER Table
+            // We became not the first item FROM the list because it's not
+            // rendered at this time.
+            // So we take the first entry in the ListModelList and set as
+            // selected.
+            if (lml.getSize() > 0) {
+                int rowIndex = 0;
+                listBoxTjadkulmaster.setSelectedIndex(rowIndex);
+                // get the first entry and cast them to the needed object
+                Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) lml.get(rowIndex);
+                if (anTjadkulmaster != null) {
+                    // get the related tjadkulmaster positions
+                    HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
+                    soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
+                    // deeper loading of the relation to prevent the lazy
+                    // loading problem.
+                    soTjadkuldetil.addFetch("mruang");
+
+                    // Set the ListModel.
+                    getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
+                }
+            }
+
         }
     }
 
@@ -473,33 +466,50 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
      * Filter the kegiatan list with 'like kegiatan name'. <br>
      */
     public void onClick$button_KegiatanList_SearchName(Event event) throws Exception {
-        // logger.debug(event.toString());
-
         // if not empty
         if (!txtb_Kegiatan_Name.getValue().isEmpty()) {
             checkbox_KegiatanList_ShowAll.setChecked(false); // unCheck
             txtb_Kegiatan_No.setValue(""); // clear
 
-            // ++ create the searchObject and init sorting ++//
-            HibernateSearchObject<Tjadkulmaster> soKegiatan = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, 10);
-            soKegiatan.addFilter(new Filter("mpegawai1.cnama", "%" + txtb_Kegiatan_Name.getValue() + "%", Filter.OP_ILIKE));
-            soKegiatan.addSort("mpegawai1.cnama", false);
+            HibernateSearchObject<Tjadkulmaster> soTjadkulmaster = new HibernateSearchObject<Tjadkulmaster>(Tjadkulmaster.class, getPageSizeTjadkulmasters());
+            soTjadkulmaster.addFilter(new Filter("mpegawai1.cnama", "%" + txtb_Kegiatan_Name.getValue() + "%", Filter.OP_ILIKE));
+            soTjadkulmaster.addSort("id", false);
 
-            // Change the BindingListModel.
-//            if (getKegiatanListCtrl().getBinder() != null) {
-            this.getPagedBindingListWrapper().setSearchObject(soKegiatan);
+            paging_TjadkulmasterList.setPageSize(getPageSizeTjadkulmasters());
+            paging_TjadkulmasterList.setDetailed(true);
 
-            // get the current Tab for later checking if we must change it
-//                Tab currentTab = tabbox_KegiatanMain.getSelectedTab();
-//
-//                // check if the tab is one of the Detail tabs. If so do not
-//                // change the selection of it
-//                if (!currentTab.equals(tabKegiatanList)) {
-//                    tabKegiatanList.setSelected(true);
-//                } else {
-//                    currentTab.setSelected(true);
-//                }
-//            }
+            paging_TjadkulmasterArticleList.setPageSize(getPageSizeTjadkuldetils());
+            paging_TjadkulmasterArticleList.setDetailed(true);
+
+            getPlwTjadkulmasters().init(soTjadkulmaster, listBoxTjadkulmaster, paging_TjadkulmasterList);
+            listBoxTjadkulmaster.setItemRenderer(new JadkulmasterListItemRenderer());
+            listBoxTjadkulmasterArticle.setItemRenderer(new JadkuldetilListItemRenderer());
+
+            ListModelList lml = (ListModelList) listBoxTjadkulmaster.getModel();
+
+            // Now we would show the corresponding detail list of the first
+            // selected entry of the MASTER Table
+            // We became not the first item FROM the list because it's not
+            // rendered at this time.
+            // So we take the first entry in the ListModelList and set as
+            // selected.
+            if (lml.getSize() > 0) {
+                int rowIndex = 0;
+                listBoxTjadkulmaster.setSelectedIndex(rowIndex);
+                // get the first entry and cast them to the needed object
+                Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) lml.get(rowIndex);
+                if (anTjadkulmaster != null) {
+                    // get the related tjadkulmaster positions
+                    HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, getPageSizeTjadkuldetils());
+                    soTjadkuldetil.addFilter(new Filter("tjadkulmaster", anTjadkulmaster, Filter.OP_EQUAL));
+                    // deeper loading of the relation to prevent the lazy
+                    // loading problem.
+                    soTjadkuldetil.addFetch("mruang");
+
+                    // Set the ListModel.
+                    getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterArticle, paging_TjadkulmasterArticleList);
+                }
+            }
         }
     }
 
@@ -667,7 +677,7 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
     public void onClick$button_PrintList(Event event) throws InterruptedException {
 //		final Window win = (Window) Path.getComponent("/outerIndexWindow");
 //		new JadkulmasterSimpleDJReport(win, getTjadkulmaster());
-	}
+    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//
