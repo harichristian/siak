@@ -60,7 +60,7 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
     protected Button button_FeedbackWisudawanList_SearchTerm; // aurowired
     protected Textbox txtb_FeedbackWisudawan_Kelompok; // aurowired
     protected Button button_FeedbackWisudawanList_SearchKelompok; // aurowired
-    protected Textbox txtb_FeedbackWisudawan_Name; // aurowired
+    protected Textbox txtb_FeedbackWisudawan_Nama; // aurowired
     protected Button button_FeedbackWisudawanList_SearchName; // aurowired
 
     // checkRights
@@ -248,7 +248,7 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
 
         // empty the text search boxes
         txtb_FeedbackWisudawan_Term.setValue(""); // clear
-        txtb_FeedbackWisudawan_Name.setValue(""); // clear
+        txtb_FeedbackWisudawan_Nama.setValue(""); // clear
         txtb_FeedbackWisudawan_Kelompok.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
@@ -282,7 +282,7 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
         // if not empty
         if (!txtb_FeedbackWisudawan_Term.getValue().isEmpty()) {
             checkbox_FeedbackWisudawanList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackWisudawan_Name.setValue(""); // clear
+            txtb_FeedbackWisudawan_Nama.setValue(""); // clear
             txtb_FeedbackWisudawan_Kelompok.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
@@ -311,19 +311,19 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
     /**
      * Filter the feedbackWisudawan list with 'like feedbackWisudawan name'. <br>
      */
-    public void onClick$button_FeedbackWisudawanList_SearchName(Event event) throws Exception {
+    public void onClick$button_FeedbackWisudawanList_SearchNama(Event event) throws Exception {
         // logger.debug(event.toString());
 
         // if not empty
-        if (!txtb_FeedbackWisudawan_Name.getValue().isEmpty()) {
+        if (!txtb_FeedbackWisudawan_Nama.getValue().isEmpty()) {
             checkbox_FeedbackWisudawanList_ShowAll.setChecked(false); // unCheck
             txtb_FeedbackWisudawan_Kelompok.setValue(""); // clear
             txtb_FeedbackWisudawan_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackwisudawan> soFeedbackWisudawan = new HibernateSearchObject<Tfeedbackwisudawan>(Tfeedbackwisudawan.class, getFeedbackWisudawanListCtrl().getCountRows());
-            soFeedbackWisudawan.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAME, "%" + txtb_FeedbackWisudawan_Name.getValue() + "%", Filter.OP_ILIKE));
-            soFeedbackWisudawan.addSort(ConstantUtil.MAHASISWA_DOT_NAME, false);
+            soFeedbackWisudawan.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAMA, "%" + txtb_FeedbackWisudawan_Nama.getValue() + "%", Filter.OP_ILIKE));
+            soFeedbackWisudawan.addSort(ConstantUtil.MAHASISWA_DOT_NAMA, false);
 
             // Change the BindingListModel.
             if (getFeedbackWisudawanListCtrl().getBinder() != null) {
@@ -352,7 +352,7 @@ public class FeedbackWisudawanMainCtrl extends GFCBaseCtrl implements Serializab
         // if not empty
         if (!txtb_FeedbackWisudawan_Kelompok.getValue().isEmpty()) {
             checkbox_FeedbackWisudawanList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackWisudawan_Name.setValue(""); // clear
+            txtb_FeedbackWisudawan_Nama.setValue(""); // clear
             txtb_FeedbackWisudawan_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
