@@ -26,7 +26,7 @@
                                 <rows>
                                     <row>
                                         <label value="Tujuan Studi"/>
-                                        <textbox id="txtbctujuan" value="@{controller.mahasiswa.ctujuan}" maxlength="100" width="200px" readonly="true"/>
+                                        <textbox id="txtbctujuan" value="@{controller.mahasiswa.ctujuan}" maxlength="100" width="40%" rows="5" readonly="true"/>
                                     </row>
                                 </rows>
                             </grid>

@@ -23,10 +23,6 @@
                             <checkbox id="checkboxShowAll" checked="true" label="Show All"/>
                         <space/>
 
-                        <label value="ID" style="padding-right: 3px"/>
-                        <textbox id="txtbId" width="60px"/>
-                        <space width="20px"/>
-
                         <label value="Kodepos" style="padding-right: 3px"/>
                         <textbox id="txtbKodePos" width="100px"/>
                         <space width="20px"/>

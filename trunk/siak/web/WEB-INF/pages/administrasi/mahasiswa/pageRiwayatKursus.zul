@@ -62,7 +62,7 @@
                                         <hbox>
                                             <label id="labelClama" value="Lama"/>
                                         </hbox>
-                                        <textbox id="txtbClama" value="@{controller.mhistkursusmhs.clama}" maxlength="2" width="40px" readonly="true"/>
+                                        <textbox id="txtbClama" value="@{controller.mhistkursusmhs.clama}" maxlength="100" width="120px" readonly="true"/>
                                     </row>
                                     <row>
                                         <label id="labelCthnselesai" value="Tahun Selesai"/>

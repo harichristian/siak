@@ -18,7 +18,7 @@
             <column name="CNMKURSUS" length="50" />
         </property>
         <property name="clama" type="string">
-            <column name="CLAMA" length="2" />
+            <column name="CLAMA" length="100" />
         </property>
         <property name="cthnselesai" type="string">
             <column name="CTHNSELESAI" length="4" />
