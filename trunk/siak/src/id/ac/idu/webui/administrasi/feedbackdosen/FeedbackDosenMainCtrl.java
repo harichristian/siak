@@ -60,7 +60,7 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button button_FeedbackDosenList_SearchTerm; // aurowired
     protected Textbox txtb_FeedbackDosen_Kelompok; // aurowired
     protected Button button_FeedbackDosenList_SearchKelompok; // aurowired
-    protected Textbox txtb_FeedbackDosen_Name; // aurowired
+    protected Textbox txtb_FeedbackDosen_Nama; // aurowired
     protected Button button_FeedbackDosenList_SearchName; // aurowired
 
     // checkRights
@@ -247,7 +247,7 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
 
         // empty the text search boxes
         txtb_FeedbackDosen_Term.setValue(""); // clear
-        txtb_FeedbackDosen_Name.setValue(""); // clear
+        txtb_FeedbackDosen_Nama.setValue(""); // clear
         txtb_FeedbackDosen_Kelompok.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
@@ -281,7 +281,7 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
         // if not empty
         if (!txtb_FeedbackDosen_Term.getValue().isEmpty()) {
             checkbox_FeedbackDosenList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackDosen_Name.setValue(""); // clear
+            txtb_FeedbackDosen_Nama.setValue(""); // clear
             txtb_FeedbackDosen_Kelompok.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
@@ -310,19 +310,19 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
     /**
      * Filter the feedbackDosen list with 'like feedbackDosen name'. <br>
      */
-    public void onClick$button_FeedbackDosenList_SearchName(Event event) throws Exception {
+    public void onClick$button_FeedbackDosenList_SearchNama(Event event) throws Exception {
         // logger.debug(event.toString());
 
         // if not empty
-        if (!txtb_FeedbackDosen_Name.getValue().isEmpty()) {
+        if (!txtb_FeedbackDosen_Nama.getValue().isEmpty()) {
             checkbox_FeedbackDosenList_ShowAll.setChecked(false); // unCheck
             txtb_FeedbackDosen_Kelompok.setValue(""); // clear
             txtb_FeedbackDosen_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackdosen> soFeedbackDosen = new HibernateSearchObject<Tfeedbackdosen>(Tfeedbackdosen.class, getFeedbackDosenListCtrl().getCountRows());
-            soFeedbackDosen.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAME, "%" + txtb_FeedbackDosen_Name.getValue() + "%", Filter.OP_ILIKE));
-            soFeedbackDosen.addSort(ConstantUtil.MAHASISWA_DOT_NAME, false);
+            soFeedbackDosen.addFilter(new Filter(ConstantUtil.PEGAWAI_DOT_NAMA, "%" + txtb_FeedbackDosen_Nama.getValue() + "%", Filter.OP_ILIKE));
+            soFeedbackDosen.addSort(ConstantUtil.PEGAWAI_DOT_NAMA, false);
 
             // Change the BindingListModel.
             if (getFeedbackDosenListCtrl().getBinder() != null) {
@@ -351,7 +351,7 @@ public class FeedbackDosenMainCtrl extends GFCBaseCtrl implements Serializable {
         // if not empty
         if (!txtb_FeedbackDosen_Kelompok.getValue().isEmpty()) {
             checkbox_FeedbackDosenList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackDosen_Name.setValue(""); // clear
+            txtb_FeedbackDosen_Nama.setValue(""); // clear
             txtb_FeedbackDosen_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
