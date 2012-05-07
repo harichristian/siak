@@ -36,7 +36,7 @@
                         <space/>
                         <checkbox id="checkbox_FeedbackAlumniList_ShowAll"
                                   checked="true"
-                                  label="${c:l('checkbox_FeedbackAlumniList_ShowAll.label')}"/>
+                                  label="Tampilkan semua"/>
                         <space/>
 
                         <label value="Term"

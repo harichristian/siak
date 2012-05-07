@@ -60,7 +60,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
     protected Button button_FeedbackAlumniList_SearchTerm; // aurowired
     protected Textbox txtb_FeedbackAlumni_Kelompok; // aurowired
     protected Button button_FeedbackAlumniList_SearchKelompok; // aurowired
-    protected Textbox txtb_FeedbackAlumni_Name; // aurowired
+    protected Textbox txtb_FeedbackAlumni_Nama; // aurowired
     protected Button button_FeedbackAlumniList_SearchName; // aurowired
 
     // checkRights
@@ -232,8 +232,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
         // empty the text search boxes
         txtb_FeedbackAlumni_Term.setValue(""); // clear
-//        txtb_FeedbackAlumni_Name.setValue(""); // clear
-//        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+        txtb_FeedbackAlumni_Nama.setValue(""); // clear
+        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
@@ -267,8 +267,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         // if not empty
         if (!txtb_FeedbackAlumni_Term.getValue().isEmpty()) {
             checkbox_FeedbackAlumniList_ShowAll.setChecked(false); // unCheck
-//            txtb_FeedbackAlumni_Name.setValue(""); // clear
-//            txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+            txtb_FeedbackAlumni_Nama.setValue(""); // clear
+            txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
@@ -296,19 +296,19 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
     /**
      * Filter the feedbackAlumni list with 'like feedbackAlumni name'. <br>
      */
-    public void onClick$button_FeedbackAlumniList_SearchName(Event event) throws Exception {
+    public void onClick$button_FeedbackAlumniList_SearchNama(Event event) throws Exception {
         // logger.debug(event.toString());
 
         // if not empty
-        if (!txtb_FeedbackAlumni_Name.getValue().isEmpty()) {
+        if (!txtb_FeedbackAlumni_Nama.getValue().isEmpty()) {
             checkbox_FeedbackAlumniList_ShowAll.setChecked(false); // unCheck
             txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
             txtb_FeedbackAlumni_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
             HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
-            soFeedbackAlumni.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAME, "%" + txtb_FeedbackAlumni_Name.getValue() + "%", Filter.OP_ILIKE));
-            soFeedbackAlumni.addSort(ConstantUtil.MAHASISWA_DOT_NAME, false);
+            soFeedbackAlumni.addFilter(new Filter(ConstantUtil.MAHASISWA_DOT_NAMA, "%" + txtb_FeedbackAlumni_Nama.getValue() + "%", Filter.OP_ILIKE));
+            soFeedbackAlumni.addSort(ConstantUtil.MAHASISWA_DOT_NAMA, false);
 
             // Change the BindingListModel.
             if (getFeedbackAlumniListCtrl().getBinder() != null) {
@@ -337,7 +337,7 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
         // if not empty
         if (!txtb_FeedbackAlumni_Kelompok.getValue().isEmpty()) {
             checkbox_FeedbackAlumniList_ShowAll.setChecked(false); // unCheck
-            txtb_FeedbackAlumni_Name.setValue(""); // clear
+            txtb_FeedbackAlumni_Nama.setValue(""); // clear
             txtb_FeedbackAlumni_Term.setValue(""); // clear
 
             // ++ create the searchObject and init sorting ++//
@@ -369,8 +369,8 @@ public class FeedbackAlumniMainCtrl extends GFCBaseCtrl implements Serializable 
 
         // empty the text search boxes
         txtb_FeedbackAlumni_Term.setValue(""); // clear
-//        txtb_FeedbackAlumni_Name.setValue(""); // clear
-//        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
+        txtb_FeedbackAlumni_Nama.setValue(""); // clear
+        txtb_FeedbackAlumni_Kelompok.setValue(""); // clear
 
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Tfeedbackalumni> soFeedbackAlumni = new HibernateSearchObject<Tfeedbackalumni>(Tfeedbackalumni.class, getFeedbackAlumniListCtrl().getCountRows());
