@@ -46,7 +46,6 @@ public class KodeposMainCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnHelp;
 
     /* Search Panel */
-    protected Textbox txtbId;
     protected Textbox txtbKodePos;
 
     /* Main Tab */
@@ -119,7 +118,6 @@ public class KodeposMainCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onCheck$checkboxShowAll(Event event) {
-        txtbId.setValue("");
         txtbKodePos.setValue("");
 
         if(getListCtrl().getBinding() != null) {

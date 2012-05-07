@@ -96,9 +96,6 @@ public class KodeposListCtrl extends GFCBaseListCtrl<MkodePos> implements Serial
 
         searchObj = new HibernateSearchObject<MkodePos>(MkodePos.class, countRows);
 
-        if (StringUtils.isNotEmpty(getMainCtrl().txtbId.getValue()))
-            searchObj.addFilter(new Filter("id", "%" + getMainCtrl().txtbId.getValue() + "%", com.trg.search.Filter.OP_LIKE));
-
         if (StringUtils.isNotEmpty(getMainCtrl().txtbKodePos.getValue()))
             searchObj.addFilter(new Filter("kodepos", "%" + getMainCtrl().txtbKodePos.getValue() + "%", com.trg.search.Filter.OP_LIKE));
 
@@ -123,8 +120,6 @@ public class KodeposListCtrl extends GFCBaseListCtrl<MkodePos> implements Serial
     }
 
     private void initSort() {
-        headerId.setSortAscending(new FieldComparator("id",true));
-        headerId.setSortDescending(new FieldComparator("id",false));
         headerKodepos.setSortAscending(new FieldComparator("kodepos",true));
         headerKodepos.setSortDescending(new FieldComparator("kodepos",false));
     }
