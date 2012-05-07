@@ -76,7 +76,7 @@
                                                                             tooltiptext="Close Window"/>
                                                                 </row>
                                                                 <row>
-                                                                    <label id="label_bbox_Nama" value="Nama Mahsiswa"/>
+                                                                    <label id="label_bbox_Nama" value="Nama Mahasiswa"/>
                                                                     <textbox id="tb_Nama" width="99%"/>
                                                                 </row>
                                                                 <row>
