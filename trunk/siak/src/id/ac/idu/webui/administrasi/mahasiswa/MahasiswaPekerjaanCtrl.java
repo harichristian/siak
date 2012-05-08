@@ -213,7 +213,7 @@ public class MahasiswaPekerjaanCtrl extends GFCBaseCtrl implements Serializable 
         Filter filter = null;
 
         if (StringUtils.isNotEmpty(tbckdposkntor.getValue()))
-            filter = new Filter("kodepos", "%" + tbckdposkntor.getValue() + "%", Filter.OP_LIKE);
+            filter = new Filter("kodepos", "%" + tbckdposkntor.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchKodepos(filter);
     }

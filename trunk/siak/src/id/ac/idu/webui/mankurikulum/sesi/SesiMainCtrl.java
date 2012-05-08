@@ -128,13 +128,13 @@ public class SesiMainCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(txtb_Sesi_Code.getValue()))
-            filter1 = new Filter("ckdsesi", "%" + txtb_Sesi_Code.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdsesi", "%" + txtb_Sesi_Code.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(txtb_Sesi_JamAwal.getValue()))
-            filter2 = new Filter("cjamawal", txtb_Sesi_JamAwal.getValue() , Filter.OP_LIKE);
+            filter2 = new Filter("cjamawal", txtb_Sesi_JamAwal.getValue() , Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(txtb_Sesi_JamAkhir.getValue()))
-            filter3 = new Filter("cjamakhir", "%" + txtb_Sesi_JamAkhir.getValue() + "%", Filter.OP_LIKE);
+            filter3 = new Filter("cjamakhir", "%" + txtb_Sesi_JamAkhir.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchList(filter1, filter2, filter3);
     }

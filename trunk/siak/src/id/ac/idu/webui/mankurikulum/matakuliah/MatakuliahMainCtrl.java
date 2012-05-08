@@ -155,10 +155,10 @@ public class MatakuliahMainCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(txtb_mtk_code.getValue()))
-            filter1 = new Filter("ckdmtk", "%" + txtb_mtk_code.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdmtk", "%" + txtb_mtk_code.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(txtb_mtk_nama.getValue()))
-            filter2 = new Filter("cnamamk", "%" + txtb_mtk_nama.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnamamk", "%" + txtb_mtk_nama.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(txtb_mtk_sks.getValue()))
             filter3 = new Filter("nsks", txtb_mtk_sks.getValue() , Filter.OP_EQUAL);

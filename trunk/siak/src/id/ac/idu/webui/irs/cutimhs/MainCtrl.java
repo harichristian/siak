@@ -143,13 +143,13 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(txtb_search1.getValue()))
-            filter1 = new Filter("cnosurat", "%" + txtb_search1.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("cnosurat", "%" + txtb_search1.getValue() + "%", Filter.OP_ILIKE);
 
         if (txtb_search2.getValue() != null)
             filter2 = new Filter("dtglsurat", txtb_search2.getValue() , Filter.OP_EQUAL);
 
         if (StringUtils.isNotEmpty(txtb_search3.getValue()))
-            filter3 = new Filter("mmahasiswa.cnim", "%" + txtb_search3.getValue() + "%", Filter.OP_LIKE);
+            filter3 = new Filter("mmahasiswa.cnim", "%" + txtb_search3.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchList(filter1, filter2, filter3);
     }

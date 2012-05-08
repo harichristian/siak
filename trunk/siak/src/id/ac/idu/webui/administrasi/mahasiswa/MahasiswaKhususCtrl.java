@@ -261,10 +261,10 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter2 = null;
 
         if (StringUtils.isNotEmpty(tbPangkat.getValue()))
-            filter1 = new Filter("ckdpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbName.getValue()))
-            filter2 = new Filter("cnmpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnmpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchPangkat(filter1, filter2);
     }
@@ -309,7 +309,7 @@ public class MahasiswaKhususCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$buttonSearchJbt(Event event) {
         if (StringUtils.isNotEmpty(tbJabatan.getValue()))
-            this.searchJabatan(new Filter("cnmjabatan", "%" + tbJabatan.getValue() + "%", Filter.OP_LIKE));
+            this.searchJabatan(new Filter("cnmjabatan", "%" + tbJabatan.getValue() + "%", Filter.OP_ILIKE));
         else
             this.searchJabatan(null);
     }

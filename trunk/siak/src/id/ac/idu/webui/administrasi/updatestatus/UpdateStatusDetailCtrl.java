@@ -84,7 +84,7 @@ public class UpdateStatusDetailCtrl extends GFCBaseCtrl implements Serializable 
         Filter filter = null;
         
         if (StringUtils.isNotEmpty(tbStatus.getValue()))
-            filter = new Filter("cnmstatmhs", "%" + tbStatus.getValue() + "%", Filter.OP_LIKE);
+            filter = new Filter("cnmstatmhs", "%" + tbStatus.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchStatus(filter);
     }

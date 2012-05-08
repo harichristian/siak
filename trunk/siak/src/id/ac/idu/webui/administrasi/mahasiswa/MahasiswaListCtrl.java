@@ -105,10 +105,10 @@ public class MahasiswaListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements Se
         searchObj = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class, countRows);
 
         if (StringUtils.isNotEmpty(getMainCtrl().txtbNim.getValue()))
-            searchObj.addFilter(new Filter("cnim", "%" + getMainCtrl().txtbNim.getValue() + "%", com.trg.search.Filter.OP_LIKE));
+            searchObj.addFilter(new Filter("cnim", "%" + getMainCtrl().txtbNim.getValue() + "%", com.trg.search.Filter.OP_ILIKE));
 
         if (StringUtils.isNotEmpty(getMainCtrl().txtbNama.getValue()))
-            searchObj.addFilter(new Filter("cnama", "%" + getMainCtrl().txtbNama.getValue() + "%", com.trg.search.Filter.OP_LIKE));
+            searchObj.addFilter(new Filter("cnama", "%" + getMainCtrl().txtbNama.getValue() + "%", com.trg.search.Filter.OP_ILIKE));
 
         searchObj.addSort("cnim", false);
 
