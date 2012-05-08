@@ -84,7 +84,7 @@ public class UpdateKonsentrasiDetailCtrl extends GFCBaseCtrl implements Serializ
         Filter filter = null;
 
         if (StringUtils.isNotEmpty(tbKonsentrasi.getValue()))
-            filter = new Filter("cnmminat", "%" + tbKonsentrasi.getValue() + "%", Filter.OP_LIKE);
+            filter = new Filter("cnmminat", "%" + tbKonsentrasi.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchKonsentrasi(filter);
     }

@@ -475,13 +475,13 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(tb_Nim.getValue()))
-            filter1 = new Filter("cnim", "%" + tb_Nim.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("cnim", "%" + tb_Nim.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tb_Nama.getValue()))
-            filter2 = new Filter("cnama", "%" + tb_Nama.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnama", "%" + tb_Nama.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tb_NoKtp.getValue()))
-            filter3 = new Filter("noktp", "%" + tb_NoKtp.getValue() + "%", Filter.OP_LIKE);
+            filter3 = new Filter("noktp", "%" + tb_NoKtp.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchMahasiswa(filter1, filter2, filter3);
     }

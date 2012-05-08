@@ -112,10 +112,10 @@ public class UpdateStatusListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements
         searchObj = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class, countRows);
 
         if (StringUtils.isNotEmpty(getMainCtrl().txtbNim.getValue()))
-            searchObj.addFilter(new Filter("cnim", "%" + getMainCtrl().txtbNim.getValue() + "%", Filter.OP_LIKE));
+            searchObj.addFilter(new Filter("cnim", "%" + getMainCtrl().txtbNim.getValue() + "%", Filter.OP_ILIKE));
 
         if (StringUtils.isNotEmpty(getMainCtrl().txtbNama.getValue()))
-            searchObj.addFilter(new Filter("cnama", "%" + getMainCtrl().txtbNama.getValue() + "%", Filter.OP_LIKE));
+            searchObj.addFilter(new Filter("cnama", "%" + getMainCtrl().txtbNama.getValue() + "%", Filter.OP_ILIKE));
 
         searchObj.addSort("cnim", false);
 

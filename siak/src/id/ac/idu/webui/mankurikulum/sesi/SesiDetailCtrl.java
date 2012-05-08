@@ -113,7 +113,7 @@ public class SesiDetailCtrl extends GFCBaseCtrl implements Serializable {
         Filter filter2 = null;
 
         if (StringUtils.isNotEmpty(tbKode.getValue()))
-            filter1 = new Filter("ckdsekolah", "%" + tbKode.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdsekolah", "%" + tbKode.getValue() + "%", Filter.OP_ILIKE);
 
         if (tbNama.getValue() != null)
             filter2 = new Filter("cnamaSekolah", tbNama.getValue() , Filter.OP_EQUAL);

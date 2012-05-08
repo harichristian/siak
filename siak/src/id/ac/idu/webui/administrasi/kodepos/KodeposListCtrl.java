@@ -97,7 +97,7 @@ public class KodeposListCtrl extends GFCBaseListCtrl<MkodePos> implements Serial
         searchObj = new HibernateSearchObject<MkodePos>(MkodePos.class, countRows);
 
         if (StringUtils.isNotEmpty(getMainCtrl().txtbKodePos.getValue()))
-            searchObj.addFilter(new Filter("kodepos", "%" + getMainCtrl().txtbKodePos.getValue() + "%", com.trg.search.Filter.OP_LIKE));
+            searchObj.addFilter(new Filter("kodepos", "%" + getMainCtrl().txtbKodePos.getValue() + "%", com.trg.search.Filter.OP_ILIKE));
 
         searchObj.addSort("kodepos", false);
 

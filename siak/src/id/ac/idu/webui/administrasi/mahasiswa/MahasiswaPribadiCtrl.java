@@ -138,7 +138,7 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$buttonSearch(Event event) {
         if (StringUtils.isNotEmpty(tb_kodepos.getValue()))
-            this.searchKodepos(new Filter("kodepos", "%" + tb_kodepos.getValue() + "%", Filter.OP_LIKE));
+            this.searchKodepos(new Filter("kodepos", "%" + tb_kodepos.getValue() + "%", Filter.OP_ILIKE));
         else
             this.searchKodepos(null);
     }
@@ -169,7 +169,7 @@ public class MahasiswaPribadiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$buttonSearchSrt(Event event) {
         if (StringUtils.isNotEmpty(tb_kodepos_srt.getValue()))
-            this.searchKodeposSrt(new Filter("kodepos", "%" + tb_kodepos_srt.getValue() + "%", Filter.OP_LIKE));
+            this.searchKodeposSrt(new Filter("kodepos", "%" + tb_kodepos_srt.getValue() + "%", Filter.OP_ILIKE));
         else
             this.searchKodeposSrt(null);
     }

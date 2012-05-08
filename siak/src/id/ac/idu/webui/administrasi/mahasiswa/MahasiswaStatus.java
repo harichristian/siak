@@ -121,10 +121,10 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         Filter filter2 = null;
         
         if (StringUtils.isNotEmpty(tbckdjen.getValue()))
-            filter1 = new Filter("ckdjen", "%" + tbckdjen.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdjen", "%" + tbckdjen.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbcnmjen.getValue()))
-            filter2 = new Filter("cnmjen", "%" + tbcnmjen.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnmjen", "%" + tbcnmjen.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchJenjang(filter1, filter2);
     }
@@ -178,10 +178,10 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(tbckdprogst.getValue()))
-            filter1 = new Filter("ckdprogst", "%" + tbckdprogst.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdprogst", "%" + tbckdprogst.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbcnmprogst.getValue()))
-            filter2 = new Filter("cnmprogst", "%" + tbcnmprogst.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnmprogst", "%" + tbcnmprogst.getValue() + "%", Filter.OP_ILIKE);
 
         if(getMahasiswa().getMjenjang() != null)
             filter3 = new Filter("mjenjang.ckdjen", getMahasiswa().getMjenjang().getCkdjen() , Filter.OP_EQUAL);
@@ -235,10 +235,10 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         Filter filter3 = null;
 
         if (StringUtils.isNotEmpty(tbckdminat.getValue()))
-            filter1 = new Filter("ckdminat", "%" + tbckdminat.getValue() + "%", Filter.OP_LIKE);
+            filter1 = new Filter("ckdminat", "%" + tbckdminat.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbcnmminat.getValue()))
-            filter2 = new Filter("cnmminat", "%" + tbcnmminat.getValue() + "%", Filter.OP_LIKE);
+            filter2 = new Filter("cnmminat", "%" + tbcnmminat.getValue() + "%", Filter.OP_ILIKE);
 
         if (getMahasiswa().getMprodi() != null)
             filter3 = new Filter("mprodi.ckdprogst", getMahasiswa().getMprodi().getCkdprogst() , Filter.OP_EQUAL);
