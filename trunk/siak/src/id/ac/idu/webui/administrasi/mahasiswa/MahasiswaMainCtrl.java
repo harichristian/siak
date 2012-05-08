@@ -1,11 +1,14 @@
 package id.ac.idu.webui.administrasi.mahasiswa;
 
+import com.trg.search.Filter;
 import id.ac.idu.administrasi.service.*;
 import id.ac.idu.backend.model.Mmahasiswa;
+import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.backend.util.ZksampleBeanUtils;
 import id.ac.idu.webui.util.ButtonStatusCtrl;
 import id.ac.idu.webui.util.GFCBaseCtrl;
 import id.ac.idu.webui.util.ZksampleCommonUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
@@ -188,13 +191,29 @@ public class MahasiswaMainCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$buttonSearch(Event event) {
         if(getListCtrl().getBinding() != null) {
-            getListCtrl().loadListData();
+            searchMahasiswa();
 
             Tab currentTab = tabboxMain.getSelectedTab();
 
             if (!currentTab.equals(tabList)) tabList.setSelected(true);
             else currentTab.setSelected(true);
         }
+    }
+
+    public void searchMahasiswa() {
+        HibernateSearchObject<Mmahasiswa> soMahasiswa = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class
+                , getListCtrl().getCountRows());
+
+        if (StringUtils.isNotEmpty(txtbNim.getValue()))
+            soMahasiswa.addFilter(new Filter("cnim", "%" + txtbNim.getValue() + "%", Filter.OP_ILIKE));
+
+        if (StringUtils.isNotEmpty(txtbNama.getValue()))
+            soMahasiswa.addFilter(new Filter("cnama", "%" + txtbNama.getValue() + "%", Filter.OP_ILIKE));
+
+        soMahasiswa.addSort("cnim", false);
+
+        if (getListCtrl().getPagedBindingListWrapper() != null)
+            getListCtrl().getPagedBindingListWrapper().setSearchObject(soMahasiswa);
     }
 
     public void onClick$btnRefresh(Event event) throws InterruptedException {
