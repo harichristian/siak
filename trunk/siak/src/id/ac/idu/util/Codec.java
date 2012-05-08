@@ -327,7 +327,7 @@ public class Codec {
         //I("I","Feedback Instansi"),
         A("A","Feedback Alumni"),
         D("D","Feedback Dosen"),
-        K("K","Feedback Kuliah"),
+        //K("K","Feedback Kuliah"),
         W("W","Feedback Wisudawan");
 
 
