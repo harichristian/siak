@@ -4821,3 +4821,12 @@ ALTER TABLE TFEEDBACKWISUDAWAN ADD CONSTRAINT TFEEDBACKWISUDAWAN_UK1
  UNIQUE (MAHASISWA_ID, CTERM, CKELOMPOK, FEEDBACK_ID, NNOPERTANYAAN);
 COMMIT;
 
+alter table mgrade alter column nnilawal set data type decimal(5,2) ;
+alter table mgrade alter column nnilakhir set data type decimal(5,2) ; 
+
+alter table mgrade alter column nbobot set data type decimal(5,2) ; 
+reorg table mgrade ;
+
+alter table mpegawai add column ctipepegawai varchar(1) default 'D' not null; 
+alter table mpegawai add column prodi_id integer; 
+reorg table mpegawai ;
