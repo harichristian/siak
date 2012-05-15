@@ -41,11 +41,11 @@
                                     </row>
                                     <row>
                                         <label value="Nama Matakuliah" />
-                                        <textbox id="txtb_cnamamk" value="@{controller.selected.cnamamk}" readonly="true" maxlength="50" width="60%" />
+                                        <textbox id="txtb_cnamamk" value="@{controller.selected.cnamamk}" readonly="true" maxlength="100" width="60%" />
                                     </row>
                                     <row>
                                         <label value="Nama Matakuliah (Inggris)" />
-                                        <textbox id="txtb_cingmk" value="@{controller.selected.cingmk}" readonly="true" maxlength="50" width="60%" />
+                                        <textbox id="txtb_cingmk" value="@{controller.selected.cingmk}" readonly="true" maxlength="100" width="60%" />
                                     </row>
                                     <row>
                                         <label value="Singkatan" />

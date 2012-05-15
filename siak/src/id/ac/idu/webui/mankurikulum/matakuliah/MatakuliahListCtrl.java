@@ -83,17 +83,17 @@ public class MatakuliahListCtrl extends GFCBaseListCtrl<Mtbmtkl> implements Seri
         paging_list.setDetailed(true);
 
         listheader_Cdkmtk.setSortAscending(new FieldComparator("ckdmtk", true));
-        listheader_Cdkmtk.setSortDescending(new FieldComparator("ckdmtk", true));
+        listheader_Cdkmtk.setSortDescending(new FieldComparator("ckdmtk", false));
         listheader_Nama.setSortAscending(new FieldComparator("cnamamk", true));
-        listheader_Nama.setSortDescending(new FieldComparator("cnamamk", true));
+        listheader_Nama.setSortDescending(new FieldComparator("cnamamk", false));
         listheader_Nama2.setSortAscending(new FieldComparator("cingmk", true));
-        listheader_Nama2.setSortDescending(new FieldComparator("cingmk", true));
+        listheader_Nama2.setSortDescending(new FieldComparator("cingmk", false));
         listheader_Singkatan.setSortAscending(new FieldComparator("csingmk", true));
-        listheader_Singkatan.setSortDescending(new FieldComparator("csingmk", true));
+        listheader_Singkatan.setSortDescending(new FieldComparator("csingmk", false));
         listheader_Sks.setSortAscending(new FieldComparator("nsks", true));
-        listheader_Sks.setSortDescending(new FieldComparator("nsks", true));
+        listheader_Sks.setSortDescending(new FieldComparator("nsks", false));
         listheader_Ket.setSortAscending(new FieldComparator("keterangan", true));
-        listheader_Ket.setSortDescending(new FieldComparator("keterangan", true));
+        listheader_Ket.setSortDescending(new FieldComparator("keterangan", false));
 
         searchObj = new HibernateSearchObject<Mtbmtkl>(Mtbmtkl.class, getCountRows());
         searchObj.addSort("ckdmtk", false);
