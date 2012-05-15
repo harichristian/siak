@@ -12,10 +12,10 @@
             <column name="CKDMTK" length="7" not-null="true" unique="true"/>
         </property>
         <property name="cnamamk" type="string">
-            <column name="CNAMAMK" length="50" not-null="true" />
+            <column name="CNAMAMK" length="100" not-null="true" />
         </property>
         <property name="cingmk" type="string">
-            <column name="CINGMK" length="50" not-null="true" />
+            <column name="CINGMK" length="100" not-null="true" />
         </property>
         <property name="csingmk" type="string">
             <column name="CSINGMK" length="25" />

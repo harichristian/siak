@@ -26,7 +26,7 @@
                         <space width="20px" />
 
                         <label value="Kode Sesi" style="padding-right: 3px" />
-                        <textbox id="txtb_Sesi_Code" width="120px" />
+                        <textbox id="txtb_Sesi_Code" width="40px" maxlength="2"/>
                         <space width="20px" />
 
                         <label value="Jam Awal" style="padding-right: 3px" />
