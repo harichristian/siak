@@ -52,8 +52,8 @@ public class GradeDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_filNr; // autowired
     protected Textbox txtb_filName1; // autowired
     protected Intbox txtb_filBobot; // autowired
-    protected Intbox txtb_filNilaiAwal; // autowired
-    protected Intbox txtb_filNilaiAkhir; // autowired
+    protected Doublebox txtb_filNilaiAwal; // autowired
+    protected Doublebox txtb_filNilaiAkhir; // autowired
     protected Textbox txtb_filProdi; // autowired
     protected Textbox txtb_filJenjang; // autowired
 

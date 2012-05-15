@@ -68,17 +68,17 @@
                                                 <row>
                                                     <label
                                                             value="NILAI AWAL"/>
-                                                    <intbox
+                                                    <doublebox constraint="no negative"
                                                             id="txtb_filNilaiAwal" value="@{controller.grade.nnilawal}"
-                                                            readonly="true" maxlength="3" width="99%"/>
+                                                            readonly="true" maxlength="4" width="99%"/>
                                                 </row>
                                                 <row>
                                                     <label
                                                             value="NILAI AKHIR"/>
-                                                    <intbox
+                                                    <doublebox constraint="no negative"
                                                             id="txtb_filNilaiAkhir"
                                                             value="@{controller.grade.nnilakhir}"
-                                                            readonly="true" maxlength="3" width="99%"/>
+                                                            readonly="true" maxlength="4" width="99%"/>
                                                 </row>
                                                 <row>
                                                     <hbox>
