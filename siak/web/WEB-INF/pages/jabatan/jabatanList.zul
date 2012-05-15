@@ -42,10 +42,10 @@
                                     width="30%"/>
                     </listhead>
 
-                    <listitem self="@{each='jabatanhaha'}"
+                    <listitem self="@{each='jabatan'}"
                               forward="onDoubleClick=onDoubleClickedJabatanItem">
 
-                        <listcell label="@{jabatanhaha.ckdjabatan}"
+                        <listcell label="@{jabatan.ckdjabatan}"
                                   style="padding-left: 5px"/>
                         <listcell label="@{jabatan.cnmjabatan}"
                                   style="padding-left: 5px"/>

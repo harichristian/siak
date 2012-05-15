@@ -15,7 +15,7 @@
             <column name="CNO" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmkursus" type="string">
-            <column name="CNMKURSUS" length="50" />
+            <column name="CNMKURSUS" length="100" />
         </property>
         <property name="clama" type="string">
             <column name="CLAMA" length="100" />

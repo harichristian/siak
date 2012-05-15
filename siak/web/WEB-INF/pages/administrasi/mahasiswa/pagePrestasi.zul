@@ -56,11 +56,11 @@
                                             <label id="labelcnmprestasi" value="Nama Prestasi"/>
                                             <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox id="txtbcnmprestasi" value="@{controller.mprestasimhs.cnmprestasi}" constraint="no empty" maxlength="50" width="150px" readonly="true"/>
+                                        <textbox id="txtbcnmprestasi" value="@{controller.mprestasimhs.cnmprestasi}" constraint="no empty" maxlength="100" width="150px" readonly="true"/>
                                     </row>
                                     <row>
                                         <hbox>
-                                            <label id="labelcnmberi" value="Di Berikan Oleh"/>
+                                            <label id="labelcnmberi" value="Diberikan Oleh"/>
                                             <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
                                         <textbox id="txtbcnmberi" value="@{controller.mprestasimhs.cnmberi}" constraint="no empty" maxlength="50" width="150px" readonly="true"/>

@@ -129,7 +129,7 @@
             <column name="CKETKERJA" length="100" />
         </property>
         <property name="ctujuan" type="string">
-            <column name="CTUJUAN" length="300" />
+            <column name="CTUJUAN" length="1000" />
         </property>
         <property name="cgelombang" type="string">
             <column name="CGELOMBANG" length="2" />
