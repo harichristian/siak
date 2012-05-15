@@ -56,7 +56,7 @@
                                             <label id="labelCnmkursus" value="Nama Kursus"/>
                                             <label value="*" style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox id="txtbCnmkursus" value="@{controller.mhistkursusmhs.cnmkursus}" constraint="no empty" maxlength="50" width="150px" readonly="true"/>
+                                        <textbox id="txtbCnmkursus" value="@{controller.mhistkursusmhs.cnmkursus}" constraint="no empty" maxlength="100" width="150px" readonly="true"/>
                                     </row>
                                     <row>
                                         <hbox>

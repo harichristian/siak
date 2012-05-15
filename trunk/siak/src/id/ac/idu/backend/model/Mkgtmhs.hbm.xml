@@ -15,7 +15,7 @@
             <column name="CNO" length="50" not-null="true" unique="true"/>
         </property>
         <property name="cnmsimposium" type="string">
-            <column name="CNMSIMPOSIUM" length="50" />
+            <column name="CNMSIMPOSIUM" length="200" />
         </property>
         <property name="cperanan" type="string">
             <column name="CPERANAN" length="50" />

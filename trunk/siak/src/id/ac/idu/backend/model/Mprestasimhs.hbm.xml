@@ -15,7 +15,7 @@
             <column name="CNO" length="2" not-null="true" unique="true"/>
         </property>
         <property name="cnmprestasi" type="string">
-            <column name="CNMPRESTASI" length="50" />
+            <column name="CNMPRESTASI" length="100" />
         </property>
         <property name="cnmberi" type="string">
             <column name="CNMBERI" length="50" />
