@@ -42,7 +42,7 @@
                                     width="30%"/>
                     </listhead>
 
-                    <listitem self="@{each='jabatan'}"
+                    <listitem self="@{each='jabatan'}" value="@{jabatan}"
                               forward="onDoubleClick=onDoubleClickedJabatanItem">
 
                         <listcell label="@{jabatan.ckdjabatan}"
