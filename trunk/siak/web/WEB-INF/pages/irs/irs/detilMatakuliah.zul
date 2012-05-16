@@ -13,9 +13,9 @@
     <window id="windowDetilMatakuliah" title="Detil Matakuliah" border="none" sizable="true" apply="${detilMatakuliahCtrl}" closable="true" width="600px" height="310px">
         <div sclass="z-toolbar" style="padding:0">
             <hbox pack="stretch" sclass="hboxRemoveWhiteStrips" width="100%">
-                <toolbar align="start" style="float:left; border-style: none;" height="28px">
+                <!--<toolbar align="start" style="float:left; border-style: none;" height="28px">
                     <button id="btnHelp" height="24px" image="/images/icons/light_16x16.gif" tooltiptext="Help"/>
-                </toolbar>
+                </toolbar>-->
                 <toolbar align="center" style="float:left; border-style: none;" height="28px">
                     <hbox align="center" style="padding: 2px"></hbox>
                 </toolbar>
