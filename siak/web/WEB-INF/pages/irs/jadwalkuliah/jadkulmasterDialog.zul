@@ -147,7 +147,7 @@
                            style="color:red;font-size:10px"/>
                 </hbox>
                 <hbox pack="stretch" width="100%">
-                    <textbox id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}" readonly="true" maxlength="50" width="99%"/>
+                    <textbox id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}" readonly="true" maxlength="100" width="99%"/>
                     <button id="btnSearchMatakuliahExtended" disabled="true" width="28px" image="/images/icons/btn_search2_16x16.gif" tooltiptext="Cari Mata Kuliah"/>
                 </hbox>
             </row>
