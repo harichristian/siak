@@ -43,7 +43,7 @@
                                                         <label value="*"
                                                                style="color:red;font-size:10px"/>
                                                     </hbox>
-                                                    <textbox id="txtb_filNr" style="text-transform:uppercase"
+                                                    <textbox id="txtb_filNr"
                                                              value="@{controller.grade.ckdgrade}" readonly="true"
                                                              constraint="no empty" maxlength="2" width="100px"/>
                                                 </row>
@@ -54,7 +54,7 @@
                                                 <row>
                                                     <label
                                                             value="GRADE"/>
-                                                    <textbox style="text-transform:uppercase"
+                                                    <textbox
                                                              id="txtb_filName1" value="@{controller.grade.cgrade}"
                                                              readonly="true" maxlength="2" width="99%"/>
                                                 </row>

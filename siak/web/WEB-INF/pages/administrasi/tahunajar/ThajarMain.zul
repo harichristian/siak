@@ -41,7 +41,7 @@
 
                         <label value="Tahun Ajar"
                                style="padding-right: 3px"/>
-                        <textbox id="txtb_Thajar_No" width="60px" maxlength="4" style="text-transform:uppercase"/>
+                        <textbox id="txtb_Thajar_No" width="60px" maxlength="4" />
                         <button id="button_ThajarList_SearchNo"
                                 height="24px" image="/images/icons/search.gif"
                                 tooltiptext="Cari Berdasarkan Tahun Ajar"/>
