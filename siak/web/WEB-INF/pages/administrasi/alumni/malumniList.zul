@@ -42,7 +42,7 @@
                                     width="30%"/>
                         <listheader id="listheader_MalumniList_Sekolah"
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
-                                    label="Sekolah" sort="auto"
+                                    label="Sekolah Asal" sort="auto"
                                     width="30%"/>
                         <listheader id="listheader_MalumniList_Prodi"
                                     sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
