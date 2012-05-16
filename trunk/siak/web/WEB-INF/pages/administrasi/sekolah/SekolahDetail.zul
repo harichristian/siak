@@ -40,7 +40,7 @@
                                             <label value="*"
                                                    style="color:red;font-size:10px"/>
                                         </hbox>
-                                        <textbox id="txtb_filNr" style="text-transform:uppercase"
+                                        <textbox id="txtb_filNr"
                                                  value="@{controller.sekolah.ckdsekolah}" readonly="true"
                                                  constraint="no empty" maxlength="3" width="100px"/>
                                     </row>
@@ -53,7 +53,7 @@
                                                    style="color:red;font-size:10px"/>
                                         </hbox>
                                         <textbox
-                                                id="txtb_filName1" style="text-transform:uppercase"
+                                                id="txtb_filName1"
                                                 value="@{controller.sekolah.cnamaSekolah}" constraint="no empty"
                                                 readonly="true" maxlength="50" width="99%"/>
                                     </row>
