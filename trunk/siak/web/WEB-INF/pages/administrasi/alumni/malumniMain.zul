@@ -55,7 +55,7 @@
                                 tooltiptext="cari berdasarkan nama"/>
                         <space width="20px"/>
 
-                        <label value="Sekolah"
+                        <label value="Sekolah Asal"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Malumni_City" width="100px"/>
                         <button id="button_MalumniList_SearchCity"
