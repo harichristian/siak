@@ -211,6 +211,9 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             return;
         }
 
+        final Mmhspascakhs nMmhspascakhs = getMainCtrl().getMmhspascakhsService().getNew();
+        getMainCtrl().getMahasiswa().setMmhspascakhs(nMmhspascakhs);
+
         this.checkAllTab();
         this.loadAllBind();
         this.doReadOnlyMode(false);
