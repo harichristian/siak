@@ -150,9 +150,9 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             for(Object m0 : mhistpnddkmhses) {
                 mhistpnddkmhs = (Mhistpnddkmhs) m0;
 
-                if(mhistpnddkmhs.getMjenjang().getCkdjen().equalsIgnoreCase(Codec.Jenjang.Jen1.getValue()))
+                if(mhistpnddkmhs.getMjenjang().getCsingkat().equalsIgnoreCase(Codec.Jenjang.Jen1.getValue()))
                     setMhistpnddkmhsS1(mhistpnddkmhs);
-                else if(mhistpnddkmhs.getMjenjang().getCkdjen().equalsIgnoreCase(Codec.Jenjang.Jen2.getValue()))
+                else if(mhistpnddkmhs.getMjenjang().getCsingkat().equalsIgnoreCase(Codec.Jenjang.Jen2.getValue()))
                     setMhistpnddkmhsS2(mhistpnddkmhs);
             }
         }
@@ -212,7 +212,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             filter1 = new Filter("ckdUniv", "%" + tbCodeS1.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbNameS1.getValue()))
-            filter1 = new Filter("cnamaUniv", "%" + tbNameS1.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnamaUniv", "%" + tbNameS1.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchPerguruanS1(filter1, filter2);
     }
@@ -249,7 +249,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             filter1 = new Filter("ckdUniv", "%" + tbCodeS2.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbNameS2.getValue()))
-            filter1 = new Filter("cnamaUniv", "%" + tbNameS2.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnamaUniv", "%" + tbNameS2.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchPerguruanS2(filter1, filter2);
     }
@@ -314,7 +314,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             filter1 = new Filter("ckdprogst", "%" + tbCodeProgramS1.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbNameProgramS1.getValue()))
-            filter1 = new Filter("cnmprogst", "%" + tbNameProgramS1.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnmprogst", "%" + tbNameProgramS1.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchProgramS1(filter1, filter2);
     }
@@ -410,12 +410,12 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
     public void onClick$buttonSearchJenjangS1(Event event) {
         Filter filter1 = null;
         Filter filter2 = null;
-
+        
         if (StringUtils.isNotEmpty(tbCodeJenjangS1.getValue()))
-            filter1 = new Filter("ckdprogst", "%" + tbCodeJenjangS1.getValue() + "%", Filter.OP_ILIKE);
+            filter1 = new Filter("ckdjen", "%" + tbCodeJenjangS1.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbNameJenjangS1.getValue()))
-            filter1 = new Filter("cnmprogst", "%" + tbNameJenjangS1.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnmjen", "%" + tbNameJenjangS1.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchJenjangS1(filter1, filter2);
     }
@@ -431,6 +431,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             for (Filter filter : filters)
                 soJenjang.addFilter(filter);
         }
+        soJenjang.addFilter(new Filter("csingkat", Codec.Jenjang.Jen1.getValue(), Filter.OP_EQUAL));
 
         soJenjang.addSort("ckdjen", false);
         pagingJenjangS1.setPageSize(pageSize);
@@ -449,10 +450,10 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         Filter filter2 = null;
 
         if (StringUtils.isNotEmpty(tbCodeJenjangS2.getValue()))
-            filter1 = new Filter("ckdprogst", "%" + tbCodeJenjangS2.getValue() + "%", Filter.OP_ILIKE);
+            filter1 = new Filter("ckdjen", "%" + tbCodeJenjangS2.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbNameJenjangS2.getValue()))
-            filter1 = new Filter("cnmprogst", "%" + tbNameJenjangS2.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnmjen", "%" + tbNameJenjangS2.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchJenjangS2(filter1, filter2);
     }
@@ -468,6 +469,7 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
             for (Filter filter : filters)
                 soJenjang.addFilter(filter);
         }
+        soJenjang.addFilter(new Filter("csingkat", Codec.Jenjang.Jen1.getValue(), Filter.OP_EQUAL));
 
         soJenjang.addSort("ckdjen", false);
         pagingJenjangS2.setPageSize(pageSize);
