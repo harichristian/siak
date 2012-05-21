@@ -501,6 +501,10 @@ public class MalumniDetailCtrl extends GFCBaseCtrl implements Serializable {
 
             Malumni amalumni = getMalumni();
             amalumni.setMmahasiswa(mhs);
+            if (mhs.getMprodi()!=null)  {
+                    amalumni.setMprodi(mhs.getMprodi());
+                    amalumni.setMsekolah(mhs.getMprodi().getMsekolah());
+            }
             setMalumni(amalumni);
         }
     }
