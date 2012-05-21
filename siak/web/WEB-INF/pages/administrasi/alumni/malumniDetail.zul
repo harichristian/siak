@@ -49,7 +49,7 @@
                                                                                 id="btnSearchMahasiswaExtended" disabled="true"
                                                                                 width="28px"
                                                                                 image="/images/icons/btn_search2_16x16.gif"
-                                                                                tooltiptext="Cari Kode Pos"/>
+                                                                                tooltiptext="Cari Mahasiswa"/>
                                         </hbox>
                                     </row>
 
