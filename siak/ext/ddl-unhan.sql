@@ -4830,3 +4830,6 @@ reorg table mgrade ;
 alter table mpegawai add column ctipepegawai varchar(1) default 'D' not null; 
 alter table mpegawai add column prodi_id integer; 
 reorg table mpegawai ;
+
+ALTER TABLE TFEEDBACKDOSEN ADD CONSTRAINT FD_UNIQUE UNIQUE ( CTERM, DOSEN_ID, CKELOMPOK) ;
+REORG TABLE TFEEDBACKDOSEN;
