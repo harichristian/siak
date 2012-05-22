@@ -2,6 +2,7 @@ package id.ac.idu.kurikulum.service;
 
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mdetilkurikulum;
+import id.ac.idu.backend.model.Tirspasca;
 
 import java.util.List;
 
@@ -69,4 +70,8 @@ public interface DetilKurikulumService {
     public ResultObject getAllLikeText(String text, int start, int pageSize);
 
     public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize);
+
+    public ResultObject getAllByJoin(String text, String prodi, String term, String thajar, int start, int pageSize);
+
+    public ResultObject getAllByIrs(String text, Tirspasca irs, int start, int pageSize);
 }

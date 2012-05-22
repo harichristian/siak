@@ -3,6 +3,7 @@ package id.ac.idu.kurikulum.dao.impl;
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Mdetilkurikulum;
+import id.ac.idu.backend.model.Tirspasca;
 import id.ac.idu.kurikulum.dao.DetilKurikulumDAO;
 import id.ac.idu.util.ConstantUtil;
 import org.apache.commons.lang.StringUtils;
@@ -92,8 +93,42 @@ public class DetilKurikulumDAOImpl extends BasisDAO<Mdetilkurikulum> implements 
         criteria.createAlias(ConstantUtil.MATAKULIAH,ConstantUtil.MATAKULIAH);
 
         if (!StringUtils.isEmpty(text)) {
-            //criteria.createAlias(ConstantUtil.MATAKULIAH_NAME,ConstantUtil.MATAKULIAH_NAME);
             criteria.add(Restrictions.ilike(ConstantUtil.MATAKULIAH_DOT_NAMA, text, MatchMode.ANYWHERE));
+        }
+
+        criteria.addOrder(Order.asc(ConstantUtil.MATAKULIAH_DOT_NAMA));
+
+        int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
+
+        List<Mdetilkurikulum> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
+
+        return new ResultObject(list, totalCount);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllByJoin(String text, String prodi, String term, String thajar, int start, int pageSize) {
+        return getAllByIrs(text, null, start, pageSize);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultObject getAllByIrs(String text, Tirspasca irs, int start, int pageSize) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Mdetilkurikulum.class);
+        criteria.createAlias(ConstantUtil.MATAKULIAH,ConstantUtil.MATAKULIAH);
+        //criteria.createAlias("Tjadkuldetil","Tjadkuldetil");
+        //criteria.createCriteria("Mprodi")
+               //.createCriteria("mprodi", ConstantUtil.PRODI)
+               //.add(Restrictions.eq(ConstantUtil.PRODI, irs.getMprodi()));
+               //.createCriteria("tjadkuldetils", "Tjadkuldetil");
+               //.createCriteria("d", "join_between_c_d")
+               //.add(Restrictions.eq("some_field_of_D", someValue));
+
+        if (!StringUtils.isEmpty(text)) {
+            criteria.add(Restrictions.ilike(ConstantUtil.MATAKULIAH_DOT_NAMA, text, MatchMode.ANYWHERE));
+        }
+        if (irs.getMprodi() != null) {
+            criteria.add(Restrictions.eq(ConstantUtil.PRODI, irs.getMprodi()));
         }
 
         criteria.addOrder(Order.asc(ConstantUtil.MATAKULIAH_DOT_NAMA));

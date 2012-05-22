@@ -120,13 +120,13 @@
                                     <listbox id="listDetilKurikulum" width="100%" height="100%" multiple="false">
                                         <listhead sizable="true">
                                             <!--listheader id="cno" sort="auto" width="5%" label="No"/-->
-                                            <listheader id="mtbmtkl.ckdmtk" sort="auto" width="10%" label="Kode"/>
-                                            <listheader id="mtbmtkl.cnamamk" sort="auto" width="20%" label="Nama Matakuliah"/>
-                                            <listheader id="cjenis" sort="auto" width="10%" label="Jenis"/>
-                                            <listheader id="cstatus" sort="auto" width="10%" label="Status"/>
-                                            <listheader id="cmun" sort="auto" width="10%" label="MUN"/>
-                                            <listheader id="ctermsmt" sort="auto" width="10%" label="Term Semester"/>
-                                            <listheader id="clintasprodi" sort="auto" width="30%" label="Lintas Prodi"/>
+                                            <listheader id="listHeaderKode" sort="auto" width="10%" label="Kode"/>
+                                            <listheader id="listHeaderNama" sort="auto" width="20%" label="Nama Matakuliah"/>
+                                            <listheader id="listHeaderJenis" sort="auto" width="10%" label="Jenis"/>
+                                            <listheader id="listHeaderStatus" sort="auto" width="10%" label="Status"/>
+                                            <listheader id="listHeaderMun" sort="auto" width="10%" label="MUN"/>
+                                            <listheader id="listHeaderTerm" sort="auto" width="10%" label="Term Semester"/>
+                                            <listheader id="listHeaderProdi" sort="auto" width="30%" label="Lintas Prodi"/>
                                         </listhead>
                                     </listbox>
                                 </center>
