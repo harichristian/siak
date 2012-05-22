@@ -3,6 +3,7 @@ package id.ac.idu.kurikulum.service.impl;
 import id.ac.idu.administrasi.dao.ProdiDAO;
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mdetilkurikulum;
+import id.ac.idu.backend.model.Tirspasca;
 import id.ac.idu.kurikulum.dao.DetilKurikulumDAO;
 import id.ac.idu.kurikulum.service.DetilKurikulumService;
 
@@ -81,5 +82,15 @@ public class DetilKurikulumServiceImpl implements DetilKurikulumService{
     @Override
     public ResultObject getAllLikeMatakuliah(String text, int start, int pageSize) {
         return getDetilKurikulumDAO().getAllLikeMatakuliah(text, start, pageSize);
+    }
+
+    @Override
+    public ResultObject getAllByJoin(String text, String prodi, String term, String thajar, int start, int pageSize) {
+        return getDetilKurikulumDAO().getAllByJoin(text, prodi, term, thajar, start, pageSize);
+    }
+
+    @Override
+    public ResultObject getAllByIrs(String text, Tirspasca irs, int start, int pageSize) {
+        return getDetilKurikulumDAO().getAllByIrs(text, irs, start, pageSize);
     }
 }

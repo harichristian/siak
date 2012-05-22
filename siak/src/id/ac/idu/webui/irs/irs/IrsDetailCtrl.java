@@ -214,6 +214,9 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnNewDetilMatakuliah(Event event) throws Exception {
         final Tirspasca dk = getIrsMainCtrl().getIrsService().getNewIrs();
+        dk.setMprodi(getIrs().getMprodi());
+        dk.setCterm(getIrs().getCterm());
+        dk.setCthajar(getIrs().getCthajar());
         this.showDetail(dk, true);
     }
 

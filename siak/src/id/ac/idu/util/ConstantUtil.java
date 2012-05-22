@@ -9,6 +9,11 @@ package id.ac.idu.util;
  */
 public class ConstantUtil {
     public static String ID = "id";
+    public static String JENIS = "cjenis";
+    public static String STATUS = "cstatus";
+    public static String MUN = "cmun";
+    public static String TERM_SEMESTER = "ctermsmt";
+    public static String LINTAS_PRODI = "clintasprodi";
     public static String PRODI = "mprodi";
     public static String RUANG = "mruang";
     public static String SEKOLAH = "msekolah";
@@ -53,5 +58,6 @@ public class ConstantUtil {
     public static String PEGAWAI_DOT_NIP = "mpegawai.cnip";
     public static String PEMINATAN_NAME = "cnmminat";
     public static String MATAKULIAH_DOT_NAMA = "mtbmtkl.cnamamk";
+    public static String MATAKULIAH_DOT_CODE = "mtbmtkl.ckdmtk";
     public static String STATUS_MAHASISWA_DOT_CODE = "mstatusmhs.ckdstatmhs";
 }

@@ -204,7 +204,8 @@ public class DetilMatakuliahCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doSearchMatakuliahExtended(Event event) {
-        Mdetilkurikulum dtl = DetilKurikulumExtendedSearchListBox.show(windowDetilMatakuliah);
+        //Mdetilkurikulum dtl = DetilKurikulumExtendedSearchListBox.show(windowDetilMatakuliah);
+        Mdetilkurikulum dtl = DetilKurikulumExtendedSearchListBox.show(windowDetilMatakuliah, getTirspasca());
         if (dtl != null) {
             txtbNama.setValue(dtl.getMtbmtkl().getCnamamk());
             txtbKode.setValue(dtl.getMtbmtkl().getCkdmtk());

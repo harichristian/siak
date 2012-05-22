@@ -2,6 +2,7 @@ package id.ac.idu.webui.util.searchdialogs;
 
 import id.ac.idu.backend.bean.ResultObject;
 import id.ac.idu.backend.model.Mdetilkurikulum;
+import id.ac.idu.backend.model.Tirspasca;
 import id.ac.idu.kurikulum.service.DetilKurikulumService;
 import org.apache.log4j.Logger;
 import org.zkoss.spring.SpringUtil;
@@ -80,6 +81,10 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
         return new DetilKurikulumExtendedSearchListBox(parent).getObj();
     }
 
+    public static Mdetilkurikulum show(Component parent, Tirspasca irs) {
+        return new DetilKurikulumExtendedSearchListBox(parent, irs).getObj();
+    }
+
     /**
      * Private Constructor. So it can only be created with the static show()
      * method.<br>
@@ -91,14 +96,22 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
 
         setParent(parent);
 
-        createBox();
+        createBox(null);
+    }
+
+    private DetilKurikulumExtendedSearchListBox(Component parent, Tirspasca irs) {
+        super();
+
+        setParent(parent);
+
+        createBox(irs);
     }
 
     /**
      * Creates the components, sets the model and show the window as modal.<br>
      */
     @SuppressWarnings("unchecked")
-    private void createBox() {
+    private void createBox(Tirspasca irs) {
 
         // Window
         this.setWidth(String.valueOf(this._width) + "px");
@@ -208,10 +221,17 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
          * The ResultObject is a helper class that holds the generic list and
          * the totalRecord count as int value.
          */
-        ResultObject ro = getObjService().getAllLikeText("", 0, getPageSize());
-        List<Mdetilkurikulum> resultList = (List<Mdetilkurikulum>) ro.getList();
-        this._paging.setTotalSize(ro.getTotalCount());
-
+        ResultObject ro;
+        List<Mdetilkurikulum> resultList;
+        if(irs != null) {
+            ro = getObjService().getAllByIrs("", irs, 0, getPageSize());
+            resultList = (List<Mdetilkurikulum>) ro.getList();
+            this._paging.setTotalSize(ro.getTotalCount());
+        } else {
+            ro = getObjService().getAllLikeText("", 0, getPageSize());
+            resultList = (List<Mdetilkurikulum>) ro.getList();
+            this._paging.setTotalSize(ro.getTotalCount());
+        }
         // set the model
         setListModelList(new ListModelList(resultList));
         this.listbox.setModel(getListModelList());

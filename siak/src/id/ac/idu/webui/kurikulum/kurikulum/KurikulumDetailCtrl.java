@@ -57,9 +57,18 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_peminatan;
     protected Button btnSearchPeminatanExtended;
     protected Button button_KurikulumDialog_PrintKurikulum; // autowired
+    protected Listheader listHeaderKode;
+    protected Listheader listHeaderNama;
+    protected Listheader listHeaderJenis;
+    protected Listheader listHeaderStatus;
+    protected Listheader listHeaderMun;
+    protected Listheader listHeaderTerm;
+    protected Listheader listHeaderProdi;
+    protected Borderlayout borderDetilKurikulum;
 
     private int pageSize;
     private int kurikulumId;
+    private int countRows;
 
     public static final String DATA = "data";
     public static final String LIST = "LIST";
@@ -152,19 +161,56 @@ public class KurikulumDetailCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void loadDetilKurikulum() {
+        doFitSize();
+
+        // not used listheaders must be declared like ->
+        // lh.setSortAscending(""); lh.setSortDescending("")
+        listHeaderKode.setSortAscending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_CODE, true));
+        listHeaderKode.setSortDescending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_CODE, false));
+        listHeaderNama.setSortAscending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_NAMA, true));
+        listHeaderNama.setSortDescending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_NAMA, false));
+        listHeaderJenis.setSortAscending(new FieldComparator(ConstantUtil.JENIS, true));
+        listHeaderJenis.setSortDescending(new FieldComparator(ConstantUtil.JENIS, false));
+        listHeaderStatus.setSortAscending(new FieldComparator(ConstantUtil.STATUS, true));
+        listHeaderStatus.setSortDescending(new FieldComparator(ConstantUtil.STATUS, false));
+        listHeaderMun.setSortAscending(new FieldComparator(ConstantUtil.MUN, true));
+        listHeaderMun.setSortDescending(new FieldComparator(ConstantUtil.MUN, false));
+        listHeaderTerm.setSortAscending(new FieldComparator(ConstantUtil.TERM_SEMESTER, true));
+        listHeaderTerm.setSortDescending(new FieldComparator(ConstantUtil.TERM_SEMESTER, false));
+        listHeaderProdi.setSortAscending(new FieldComparator(ConstantUtil.LINTAS_PRODI, true));
+        listHeaderProdi.setSortDescending(new FieldComparator(ConstantUtil.LINTAS_PRODI, false));
+
         this.kurikulumId = getKurikulum().getId();
 
         HibernateSearchObject<Mdetilkurikulum> so = new HibernateSearchObject<Mdetilkurikulum>(Mdetilkurikulum.class);
         if(getKurikulum() != null)
             so.addFilter(new Filter(ConstantUtil.KURIKULUM_ID, this.kurikulumId, Filter.OP_EQUAL));
 
-        so.addSort(ConstantUtil.KURIKULUM_ID, false);
+        so.addSort(ConstantUtil.MATAKULIAH_DOT_CODE, false);
 
         pagingDetilKurikulum.setPageSize(pageSize);
 		pagingDetilKurikulum.setDetailed(true);
 		getPlwDetilKurikulum().init(so, listDetilKurikulum, pagingDetilKurikulum);
 		listDetilKurikulum.setItemRenderer(new DetilKurikulumSearchList());
     }
+    public void doFitSize() {
+        // normally 0 ! Or we have a i.e. a toolBar on top of the listBox.
+        final int specialSize = 5;
+        final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue().intValue();
+        final int maxListBoxHeight = height - specialSize - 148;
+        setCountRows((int) Math.round(maxListBoxHeight / 17.7));
+        borderDetilKurikulum.setHeight(String.valueOf(maxListBoxHeight) + "px");
+        windowKurikulumDetail.invalidate();
+    }
+
+    public int getCountRows() {
+        return this.countRows;
+    }
+
+    public void setCountRows(int countRows) {
+        this.countRows = countRows;
+    }
+
     public void onClick$btnNewDetilKurikulum(Event event) throws Exception {
         final Mdetilkurikulum dk = getKurikulumMainCtrl().getDetilKurikulumService().getNew();
         this.showDetail(dk, true);
