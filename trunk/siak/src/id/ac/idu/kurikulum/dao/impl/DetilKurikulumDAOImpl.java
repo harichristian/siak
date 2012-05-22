@@ -7,10 +7,7 @@ import id.ac.idu.backend.model.Tirspasca;
 import id.ac.idu.kurikulum.dao.DetilKurikulumDAO;
 import id.ac.idu.util.ConstantUtil;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.dao.support.DataAccessUtils;
 
 import java.util.List;
@@ -115,24 +112,24 @@ public class DetilKurikulumDAOImpl extends BasisDAO<Mdetilkurikulum> implements 
     @Override
     public ResultObject getAllByIrs(String text, Tirspasca irs, int start, int pageSize) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Mdetilkurikulum.class);
-        criteria.createAlias(ConstantUtil.MATAKULIAH,ConstantUtil.MATAKULIAH);
-        //criteria.createAlias("Tjadkuldetil","Tjadkuldetil");
-        //criteria.createCriteria("Mprodi")
-               //.createCriteria("mprodi", ConstantUtil.PRODI)
-               //.add(Restrictions.eq(ConstantUtil.PRODI, irs.getMprodi()));
-               //.createCriteria("tjadkuldetils", "Tjadkuldetil");
-               //.createCriteria("d", "join_between_c_d")
-               //.add(Restrictions.eq("some_field_of_D", someValue));
+        criteria.createCriteria("mtbmtkl", "mtbmtkl").createCriteria("tjadkuldetils", "tjadkuldetils");
+        //criteria.createAlias(ConstantUtil.MATAKULIAH,ConstantUtil.MATAKULIAH);
 
         if (!StringUtils.isEmpty(text)) {
             criteria.add(Restrictions.ilike(ConstantUtil.MATAKULIAH_DOT_NAMA, text, MatchMode.ANYWHERE));
         }
         if (irs.getMprodi() != null) {
             criteria.add(Restrictions.eq(ConstantUtil.PRODI, irs.getMprodi()));
+            /*criteria.createCriteria("mprodi").createCriteria("tjadkuldetils", "tjadkuldetils")
+            .createCriteria("mtbmtkl")
+            .createCriteria("mdetilkurikulums");*/
+            criteria.add(Restrictions.eq("tjadkuldetils.mprodi", irs.getMprodi()));
+            criteria.add(Restrictions.eq("tjadkuldetils.cterm", irs.getCterm()));
+            //criteria.add(Restrictions.eq("tjadkuldetils.mtbmtkl", irs.getCterm()));
         }
 
-        criteria.addOrder(Order.asc(ConstantUtil.MATAKULIAH_DOT_NAMA));
-
+        //criteria.addOrder(Order.asc(ConstantUtil.MATAKULIAH_DOT_NAMA));
+        //criteria.setProjection(Projections.distinct(Projections.id()));
         int totalCount = getHibernateTemplate().findByCriteria(criteria).size();
 
         List<Mdetilkurikulum> list = getHibernateTemplate().findByCriteria(criteria, start, pageSize);
