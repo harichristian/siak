@@ -67,6 +67,7 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
 
     // the returned bean object
     private Mdetilkurikulum obj = null;
+    private Tirspasca tirs = null;
 
     // The service from which we get the data
     private DetilKurikulumService objService;
@@ -103,7 +104,7 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
         super();
 
         setParent(parent);
-
+        setTirs(irs);
         createBox(irs);
     }
 
@@ -330,7 +331,8 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
         getListModelList().clear();
 
         // init the model
-        ResultObject ro = getObjService().getAllLikeMatakuliah(searchText, start, getPageSize());
+        //ResultObject ro = getObjService().getAllLikeMatakuliah(searchText, start, getPageSize());
+        ResultObject ro = getObjService().getAllByIrs(searchText, getTirs(), start, getPageSize());
         List<Mdetilkurikulum> resultList = (List<Mdetilkurikulum>) ro.getList();
         this._paging.setTotalSize(ro.getTotalCount());
 
@@ -380,6 +382,14 @@ public class DetilKurikulumExtendedSearchListBox extends Window implements Seria
 
     public void setObj(Mdetilkurikulum obj) {
         this.obj = obj;
+    }
+
+    public Tirspasca getTirs() {
+        return tirs;
+    }
+
+    public void setTirs(Tirspasca tirs) {
+        this.tirs = tirs;
     }
 
     public DetilKurikulumService getObjService() {

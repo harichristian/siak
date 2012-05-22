@@ -11,7 +11,7 @@
         <many-to-one name="msekolah" class="id.ac.idu.backend.model.Msekolah" fetch="select" lazy="false">
             <column name="SEKOLAH_ID"/>
         </many-to-one>
-        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="select" lazy="false">
+        <many-to-one name="mprodi" class="id.ac.idu.backend.model.Mprodi" fetch="join" lazy="false">
             <column name="PRODI_ID"/>
         </many-to-one>
         <many-to-one name="mtbmtkl" class="id.ac.idu.backend.model.Mtbmtkl" fetch="select" lazy="false">
