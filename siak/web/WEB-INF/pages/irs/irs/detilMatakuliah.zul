@@ -60,7 +60,7 @@
                                             <textbox
                                                     id="txtbNama"
                                                     value="@{controller.tirspasca.mtbmtkl.cnamamk}"
-                                                    readonly="true" maxlength="50" width="99%"/>
+                                                    readonly="true" maxlength="100" width="99%"/>
                                             <button
                                                     id="btnSearchMatakuliahExtended" disabled="true"
                                                     width="28px"
