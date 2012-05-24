@@ -116,17 +116,17 @@
                                 <north border="none" height="26px">
                                     <paging id="pagingDetilKurikulum" style="width:100%" pageSize="20"/>
                                 </north>
-                                <center border="none">
-                                    <listbox id="listDetilKurikulum" width="100%" height="100%" multiple="false">
+                                <center border="none" autoscroll="true">
+                                    <listbox id="listDetilKurikulum" width="100%" height="100%" multiple="false" vflex="true">
                                         <listhead sizable="true">
                                             <!--listheader id="cno" sort="auto" width="5%" label="No"/-->
                                             <listheader id="listHeaderKode" sort="auto" width="10%" label="Kode"/>
-                                            <listheader id="listHeaderNama" sort="auto" width="20%" label="Nama Matakuliah"/>
-                                            <listheader id="listHeaderJenis" sort="auto" width="10%" label="Jenis"/>
-                                            <listheader id="listHeaderStatus" sort="auto" width="10%" label="Status"/>
-                                            <listheader id="listHeaderMun" sort="auto" width="10%" label="MUN"/>
+                                            <listheader id="listHeaderNama" sort="auto" width="55%" label="Nama Matakuliah"/>
+                                            <listheader id="listHeaderJenis" sort="auto" width="5%" label="Jenis"/>
+                                            <listheader id="listHeaderStatus" sort="auto" width="5%" label="Status"/>
+                                            <listheader id="listHeaderMun" sort="auto" width="5%" label="MUN"/>
                                             <listheader id="listHeaderTerm" sort="auto" width="10%" label="Term Semester"/>
-                                            <listheader id="listHeaderProdi" sort="auto" width="30%" label="Lintas Prodi"/>
+                                            <listheader id="listHeaderProdi" sort="auto" width="10%" label="Lintas Prodi"/>
                                         </listhead>
                                     </listbox>
                                 </center>
