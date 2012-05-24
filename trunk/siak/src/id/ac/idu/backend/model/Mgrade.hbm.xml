@@ -20,13 +20,13 @@
         <property name="cgrade" type="string">
             <column name="CGRADE" length="2" />
         </property>
-        <property name="nbobot" type="java.lang.Integer">
+        <property name="nbobot" type="java.lang.Double">
             <column name="NBOBOT" />
         </property>
-        <property name="nnilawal" type="java.lang.Integer">
+        <property name="nnilawal" type="java.lang.Double">
             <column name="NNILAWAL" />
         </property>
-        <property name="nnilakhir" type="java.lang.Integer">
+        <property name="nnilakhir" type="java.lang.Double">
             <column name="NNILAKHIR" />
         </property>
         <property name="dcreateddate" type="date">

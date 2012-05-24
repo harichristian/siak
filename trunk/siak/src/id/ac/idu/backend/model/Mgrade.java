@@ -17,9 +17,9 @@ public class Mgrade  implements java.io.Serializable {
      private Mjenjang mjenjang;
      private String ckdgrade;
      private String cgrade;
-     private Integer nbobot;
-     private Integer nnilawal;
-     private Integer nnilakhir;
+     private Double nbobot;
+     private Double nnilawal;
+     private Double nnilakhir;
      private Date dcreateddate;
      private String ccreatedby;
      private Date dupdatedate;
@@ -34,23 +34,7 @@ public class Mgrade  implements java.io.Serializable {
     public Mgrade(int id) {
         this.id = id;
     }
-    public Mgrade(int id, Mprodi mprodi, Mjenjang mjenjang, String ckdgrade, String cgrade, Integer nbobot, Integer nnilawal, Integer nnilakhir, Date dcreateddate, String ccreatedby, Date dupdatedate, String dupdatedby, Set<Tirspasca> tirspascas, Set<Tlognilai> tlognilais) {
-       this.id = id;
-       this.mprodi = mprodi;
-       this.mjenjang = mjenjang;
-       this.ckdgrade = ckdgrade;
-       this.cgrade = cgrade;
-       this.nbobot = nbobot;
-       this.nnilawal = nnilawal;
-       this.nnilakhir = nnilakhir;
-       this.dcreateddate = dcreateddate;
-       this.ccreatedby = ccreatedby;
-       this.dupdatedate = dupdatedate;
-       this.dupdatedby = dupdatedby;
-       this.tirspascas = tirspascas;
-       this.tlognilais = tlognilais;
-    }
-   
+
     public int getId() {
         return this.id;
     }
@@ -86,25 +70,25 @@ public class Mgrade  implements java.io.Serializable {
     public void setCgrade(String cgrade) {
         this.cgrade = cgrade;
     }
-    public Integer getNbobot() {
+    public Double getNbobot() {
         return this.nbobot;
     }
     
-    public void setNbobot(Integer nbobot) {
+    public void setNbobot(Double nbobot) {
         this.nbobot = nbobot;
     }
-    public Integer getNnilawal() {
+    public Double getNnilawal() {
         return this.nnilawal;
     }
     
-    public void setNnilawal(Integer nnilawal) {
+    public void setNnilawal(Double nnilawal) {
         this.nnilawal = nnilawal;
     }
-    public Integer getNnilakhir() {
+    public Double getNnilakhir() {
         return this.nnilakhir;
     }
     
-    public void setNnilakhir(Integer nnilakhir) {
+    public void setNnilakhir(Double nnilakhir) {
         this.nnilakhir = nnilakhir;
     }
     public Date getDcreateddate() {

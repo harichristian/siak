@@ -61,24 +61,24 @@
                                                 <row>
                                                     <label
                                                             value="BOBOT"/>
-                                                    <intbox
-                                                            id="txtb_filBobot" value="@{controller.grade.nbobot}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                    <doublebox
+                                                            id="txtb_filBobot" value="@{controller.grade.nbobot}" roundingMode="UNNECESSARY"
+                                                            readonly="true" maxlength="5" width="99%" format="##.##"/>
                                                 </row>
                                                 <row>
                                                     <label
                                                             value="NILAI AWAL"/>
-                                                    <doublebox constraint="no negative"
-                                                            id="txtb_filNilaiAwal" value="@{controller.grade.nnilawal}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                    <doublebox
+                                                            id="txtb_filNilaiAwal" value="@{controller.grade.nnilawal}" roundingMode="UNNECESSARY"
+                                                            readonly="true" maxlength="5" width="99%" format="##.##"/>
                                                 </row>
                                                 <row>
                                                     <label
                                                             value="NILAI AKHIR"/>
-                                                    <doublebox constraint="no negative"
+                                                    <doublebox
                                                             id="txtb_filNilaiAkhir"
-                                                            value="@{controller.grade.nnilakhir}"
-                                                            readonly="true" maxlength="4" width="99%"/>
+                                                            value="@{controller.grade.nnilakhir}" format="##.##" roundingMode="UNNECESSARY"
+                                                            readonly="true" maxlength="5" width="99%"/>
                                                 </row>
                                                 <row>
                                                     <hbox>
