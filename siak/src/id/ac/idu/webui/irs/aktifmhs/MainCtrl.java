@@ -283,9 +283,9 @@ public class MainCtrl extends GFCBaseCtrl implements Serializable {
             getDetailCtrl().setSelected(anObject);
             getDetailCtrl().setSelected(getSelected());
         }
-
-        getDetailCtrl().getBinder().loadAll();
-
+        if ( getDetailCtrl().getBinder() != null) {
+            getDetailCtrl().getBinder().loadAll();
+        }
         doStoreInitValues();
         btnCtrl.setBtnStatus_Edit();
         getDetailCtrl().doReadOnlyMode(false);
