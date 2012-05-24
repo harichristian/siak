@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zk.ui.event.OpenEvent;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
@@ -97,7 +99,14 @@ public class DetailCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onOpen$bandbox_Dialog_MahasiswaSearch(Event event) {
-        this.searchMahasiswa();
+        bandbox_Dialog_MahasiswaSearch.setReadonly(true);
+        ForwardEvent fe = (ForwardEvent) event;
+        OpenEvent oe = (OpenEvent) fe.getOrigin();
+        if(oe.isOpen()) {
+            this.searchMahasiswa();
+        }else {//re-open bandbox on clicking the scroll-bar(or something else?) and sending event to close the popup
+            bandbox_Dialog_MahasiswaSearch.open();
+        }
     }
 
     public void onClick$button_bbox_Search(Event event) {
