@@ -150,7 +150,7 @@
                                             <textbox
                                                     id="txtb_filUniversitas"
                                                     value="@{controller.sekolah.muniv.cnamaUniv}"
-                                                    readonly="true" maxlength="60" width="99%"/>
+                                                    readonly="true" maxlength="100" width="99%"/>
                                             <button
                                                     id="btnSearchUniversitasExtended" disabled="true"
                                                     width="28px"
