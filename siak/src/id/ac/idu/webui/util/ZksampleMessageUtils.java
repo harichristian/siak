@@ -95,7 +95,7 @@ public class ZksampleMessageUtils implements Serializable {
     public static void showErrorMessage(String e) throws InterruptedException {
         String errorMsg = "";
         if (StringUtils.containsIgnoreCase(e, "SqlIntegrityConstraintViolationException") || StringUtils.containsIgnoreCase(e, "SQLCODE=-803")) {
-            errorMsg = "Terjadi Duplikasi Data";
+            errorMsg = "Terjadi Duplikasi Data";//\n"+e;
         } else {
             errorMsg = e;
         }
