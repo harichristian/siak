@@ -23,16 +23,12 @@ public class JadkuldetilListItemRenderer implements ListitemRenderer, Serializab
 
     @Override
     public void render(Listitem item, Object data) throws Exception {
-
         final Tjadkuldetil tjadkuldetil = (Tjadkuldetil) data;
-
         Listcell lc = new Listcell(tjadkuldetil.getMhari().getCnmhari());
         lc.setParent(item);
         lc = new Listcell(tjadkuldetil.getMsesikuliah().getCkdsesi());
         lc.setParent(item);
         lc = new Listcell(tjadkuldetil.getMruang().getCnmRuang());
-        lc.setParent(item);
-        lc = new Listcell(tjadkuldetil.getClintasprodi());
         lc.setParent(item);
         lc = new Listcell(String.valueOf(tjadkuldetil.getNjmlsesi()));
         lc.setStyle("text-align: right");
@@ -43,17 +39,7 @@ public class JadkuldetilListItemRenderer implements ListitemRenderer, Serializab
         lc = new Listcell(String.valueOf(tjadkuldetil.getNisi()));
         lc.setStyle("text-align: right");
         lc.setParent(item);
-
-        // lc = new Listcell();
-        // Image img = new Image();
-        // img.setSrc("/images/icons/page_detail.gif");
-        // lc.appendChild(img);
-        // lc.setParent(item);
-
         item.setValue(data);
-        // ComponentsCtrl.applyForward(img, "onClick=onImageClicked");
-        // ComponentsCtrl.applyForward(item,
-        // "onClick=onClickedOrderPositionItem");
         ComponentsCtrl.applyForward(item, "onDoubleClick=onDoubleClickedTjadkuldetilItem");
 
     }

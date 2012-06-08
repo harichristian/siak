@@ -16,7 +16,6 @@ import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.HariExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.MruangExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SesiExtendedSearchListBox;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -57,7 +56,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_filHari; // autowired
     protected Textbox txtb_filSesi; // autowired
     protected Textbox txtb_filRuang; // autowired
-    protected Textbox txtb_filLintasprodi; // autowired
     protected Intbox txtb_filJumlahsesi; // autowired
     protected Intbox txtb_filMaks; // autowired
     protected Intbox txtb_filIsi; // autowired
@@ -77,7 +75,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_txtb_filHari;
     private transient String oldVar_txtb_filSesi;
     private transient String oldVar_txtb_filRuang;
-    private transient String oldVar_txtb_filLintasprodi;
     private transient int oldVar_txtb_filJumlahsesi;
     private transient int oldVar_txtb_filMaks;
     private transient int oldVar_txtb_filIsi;
@@ -198,8 +195,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @throws Exception
      */
     public void onClose$tjadkuldetilDialogWindow(Event event) throws Exception {
-        // logger.debug(event.toString());
-
         doClose();
     }
 
@@ -210,8 +205,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnSave(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         doSave();
     }
 
@@ -221,8 +214,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      */
     public void onClick$btnEdit(Event event) {
-        // logger.debug(event.toString());
-
         doEdit();
     }
 
@@ -232,8 +223,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      */
     public void onClick$btnNew(Event event) {
-        // logger.debug(event.toString());
-
         doNew();
     }
 
@@ -244,8 +233,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnDelete(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         doDelete();
     }
 
@@ -255,8 +242,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      */
     public void onClick$btnCancel(Event event) {
-        // logger.debug(event.toString());
-
         doCancel();
     }
 
@@ -267,14 +252,10 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @throws InterruptedException
      */
     public void onClick$btnClose(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         try {
             doClose();
         } catch (final Exception e) {
-            // close anyway
             tjadkuldetilDialogWindow.onClose();
-            // Messagebox.show(e.toString());
         }
     }
 
@@ -327,11 +308,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      */
     private void doCancel() {
         doResetInitValues();
-
-//        txtb_filHari.setReadonly(true);
-//        txtb_filSesi.setReadonly(true);
-//        txtb_filRuang.setReadonly(true);
-        txtb_filLintasprodi.setReadonly(true);
         txtb_filJumlahsesi.setReadonly(true);
         txtb_filMaks.setReadonly(true);
         txtb_filIsi.setReadonly(true);
@@ -357,9 +333,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
             }
             if (anTjadkuldetil.getMruang() != null) {
                 txtb_filRuang.setValue(anTjadkuldetil.getMruang().getCnmRuang());
-            }
-            if (StringUtils.isNotBlank(anTjadkuldetil.getClintasprodi())) {
-                txtb_filLintasprodi.setValue(anTjadkuldetil.getClintasprodi());
             }
             if (anTjadkuldetil.getNjmlsesi() != null) {
                 txtb_filJumlahsesi.setValue(anTjadkuldetil.getNjmlsesi());
@@ -397,9 +370,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
                 if (getTjadkulmaster().getCkelompok() != null) {
                     anTjadkuldetil.setCkelompok(getTjadkulmaster().getCkelompok());
                 }
-            }
-            if (txtb_filLintasprodi.getValue() != null) {
-                anTjadkuldetil.setClintasprodi(txtb_filLintasprodi.getValue());
             }
             if (txtb_filJumlahsesi.getValue() != null) {
                 anTjadkuldetil.setNjmlsesi(txtb_filJumlahsesi.getValue());
@@ -474,10 +444,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_txtb_filHari = txtb_filHari.getValue();
         oldVar_txtb_filSesi = txtb_filSesi.getValue();
         oldVar_txtb_filRuang = txtb_filRuang.getValue();
-        oldVar_txtb_filLintasprodi = txtb_filLintasprodi.getValue();
-//        oldVar_txtb_filJumlahsesi = txtb_filJumlahsesi.getValue();
-//        oldVar_txtb_filMaks = txtb_filMaks.getValue();
-//        oldVar_txtb_filIsi = txtb_filIsi.getValue();
     }
 
     /**
@@ -487,10 +453,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filHari.setValue(oldVar_txtb_filHari);
         txtb_filSesi.setValue(oldVar_txtb_filSesi);
         txtb_filRuang.setValue(oldVar_txtb_filRuang);
-        txtb_filLintasprodi.setValue(oldVar_txtb_filLintasprodi);
-//        txtb_filJumlahsesi.setValue(oldVar_txtb_filJumlahsesi);
-//        txtb_filMaks.setValue(oldVar_txtb_filMaks);
-//        txtb_filIsi.setValue(oldVar_txtb_filIsi);
     }
 
     /**
@@ -512,22 +474,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         if (oldVar_txtb_filRuang != txtb_filRuang.getValue()) {
             changed = true;
         }
-
-        if (oldVar_txtb_filLintasprodi != txtb_filLintasprodi.getValue()) {
-            changed = true;
-        }
-
-//        if (oldVar_txtb_filJumlahsesi != txtb_filJumlahsesi.getValue()) {
-//            changed = true;
-//        }
-//
-//        if (oldVar_txtb_filMaks != txtb_filMaks.getValue()) {
-//            changed = true;
-//        }
-//
-//        if (oldVar_txtb_filIsi != txtb_filIsi.getValue()) {
-//            changed = true;
-//        }
         return changed;
     }
 
@@ -646,10 +592,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * Set the components for edit mode. <br>
      */
     private void doEdit() {
-//        txtb_filHari.setReadonly(false);
-//        txtb_filSesi.setReadonly(false);
-//        txtb_filRuang.setReadonly(false);
-        txtb_filLintasprodi.setReadonly(false);
         txtb_filJumlahsesi.setReadonly(false);
         txtb_filMaks.setReadonly(false);
         txtb_filIsi.setReadonly(false);
@@ -668,10 +610,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * Set the components to ReadOnly. <br>
      */
     public void doReadOnly() {
-//        txtb_filHari.setReadonly(true);
-//        txtb_filSesi.setReadonly(true);
-//        txtb_filRuang.setReadonly(true);
-        txtb_filLintasprodi.setReadonly(true);
         txtb_filJumlahsesi.setReadonly(true);
         txtb_filMaks.setReadonly(true);
         txtb_filIsi.setReadonly(true);
@@ -692,11 +630,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         txtb_filHari.setValue("");
         txtb_filSesi.setValue("");
         txtb_filRuang.setValue("");
-        txtb_filLintasprodi.setValue("");
-//        txtb_filJumlahsesi.setValue(Integer.parseInt("0"));
-//        txtb_filMaks.setValue(Integer.parseInt("0"));
-//        txtb_filIsi.setValue(Integer.parseInt("0"));
-
     }
 
     /**
@@ -736,16 +669,11 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
 
         HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, jadkulmasterDialogCtrl.getPageSizeTjadkuldetil());
         soTjadkuldetil.addFilter(new Filter("tjadkulmaster", getTjadkulmaster(), Filter.OP_EQUAL));
-        // deeper loading of a relation to prevent the lazy
-        // loading problem.
-//        soTjadkuldetil.addFetch("article");
 
         // Set the ListModel.
         getPlwTjadkuldetils().init(soTjadkuldetil, jadkulmasterDialogCtrl.listBoxTjadkulmasterTjadkuldetils, jadkulmasterDialogCtrl.paging_ListBoxTjadkulmasterTjadkuldetils);
 
         /** Synchronize the TjadkulmasterList */
-        // Listbox listBoxTjadkulmasterArticle = jadkulmasterListCtrl.getListBoxTjadkulmasterArticle();
-        // listBoxTjadkulmasterArticle.setModel(jadkulmasterDialogCtrl.listBoxTjadkulmasterTjadkuldetils.getModel());
         jadkulmasterListCtrl.getListBoxTjadkulmasterArticle().setModel(jadkulmasterDialogCtrl.listBoxTjadkulmasterTjadkuldetils.getModel());
 
         // synchronize the TotalCount from the paging component
@@ -767,7 +695,7 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
      * @param event
      */
     public void onClick$bt_Tjadkulmasters_TjadkulmasterSearchClose(Event event) {
-        // logger.debug(event.toString());
+
     }
 
     /**
@@ -784,11 +712,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         // We don't create a new DomainObject() in the frontend.
         // We GET it from the backend.
         Tjadkulmaster aTjadkulmaster = getJadkulService().getNewTjadkulmaster();
-        //aTjadkulmaster.setOffice(getUserWorkspace().getOffice()); // init
-        // tjadkulmaster.setBranche(Workspace.getBranche()); // init
-        // TODO get the init values from a setup configuration
-        //aTjadkulmaster.setBranche(getBrancheService().getBrancheById(new Integer(1033).longValue())); // init
-        //aTjadkulmaster.putKunMahnsperre(false); // init
 
         /*
            * We can call our Dialog zul-file with parameters. So we can call them
@@ -834,23 +757,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-//    public void onChange$txtb_filHari() {
-//        if (txtb_filHari.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filHari.getValue())) {
-//                Mhari hari = hariService.getHariByID(Integer.parseInt(txtb_filHari.getValue()));
-//
-//                if (hari != null) {
-//                    txtb_filHari.setValue(txtb_filHari.getValue() + " - " + hari.getCnmhari());
-//                    getTjadkuldetil().setMhari(hari);
-//                } else {
-//                    txtb_filHari.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filHari.setValue("Input Data Salah");
-//            }
-//        }
-//    }
-
     /*--------------------------- SESI LOV ---------------------------*/
     public void onClick$btnSearchSesiExtended(Event event) {
         doSearchSesiExtended(event);
@@ -865,23 +771,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-//    public void onChange$txtb_filSesi() {
-//        if (txtb_filSesi.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filSesi.getValue())) {
-//                Msesikuliah sesikuliah = sesiService.getSesiById(Integer.parseInt(txtb_filSesi.getValue()));
-//
-//                if (sesikuliah != null) {
-//                    txtb_filSesi.setValue(txtb_filSesi.getValue() + " - " + sesikuliah.getCkdsesi());
-//                    getTjadkuldetil().setMsesikuliah(sesikuliah);
-//                } else {
-//                    txtb_filSesi.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filSesi.setValue("Input Data Salah");
-//            }
-//        }
-//    }
-
     /*--------------------------- RUANG LOV ---------------------------*/
     public void onClick$btnSearchRuangExtended(Event event) {
         doSearchRuangExtended(event);
@@ -895,23 +784,6 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
             getTjadkuldetil().setMruang(ruang);
         }
     }
-
-//    public void onChange$txtb_filRuang() {
-//        if (txtb_filRuang.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filRuang.getValue())) {
-//                Mruang ruang = mruangService.getMruangByID(Integer.parseInt(txtb_filRuang.getValue()));
-//
-//                if (ruang != null) {
-//                    txtb_filRuang.setValue(txtb_filRuang.getValue() + " - " + ruang.getCnmRuang());
-//                    getTjadkuldetil().setMruang(ruang);
-//                } else {
-//                    txtb_filRuang.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filRuang.setValue("Input Data Salah");
-//            }
-//        }
-//    }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//

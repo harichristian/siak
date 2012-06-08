@@ -135,17 +135,6 @@
                                             <separator bar="true"></separator>
                                             <separator bar="true"></separator>
                                         </row>
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="LINTAS PRODI (Y/T)"/>
-                                                <label value=""
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <textbox id="txtb_filLintasprodi" readonly="true" width="99%" maxlength="1"/>
-                                            </hbox>
-                                        </row>
 
                                         <row>
                                             <hbox>
