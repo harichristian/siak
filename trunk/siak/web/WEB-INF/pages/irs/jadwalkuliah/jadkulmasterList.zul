@@ -3,7 +3,6 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
-    xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul
 	http://www.zkoss.org/2005/zul/zul.xsd">
@@ -63,12 +62,22 @@
                                 tooltiptext="Cari Berdasarkan Kode"/>
                         <space width="20px"/>
 
-                        <label value="Dosen"
+                        <label value="Dosen 1"
                                style="padding-right: 3px"/>
                         <textbox id="txtb_Kegiatan_Name" width="100px" maxlength="50"/>
+
                         <button id="button_KegiatanList_SearchName"
                                 height="24px" image="/images/icons/search.gif"
-                                tooltiptext="Cari Berdasarkan Nama"/>
+                                tooltiptext="Cari Berdasarkan Dosen 1"/>
+                        <space width="20px"/>
+
+                        <label value="Dosen 2"
+                               style="padding-right: 3px"/>
+                        <textbox id="txtb_Dosen2" width="100px" maxlength="50"/>
+
+                        <button id="button_Dosen2"
+                                height="24px" image="/images/icons/search.gif"
+                                tooltiptext="Cari Berdasarkan Dosen 2"/>
                         <space width="20px"/>
 
                     </hbox>
@@ -169,11 +178,6 @@
                                 image="/images/icons/builder.gif" sort="auto" width="10%"
                                 label="RUANG"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList_Lintasprodi"
-                                sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
-                                sort="auto" width="20%"
-                                label="LINTAS PRODI"/>
-                        <listheader
                                 id="listheader_TjadkulmasterPosList_Jumlahsesi"
                                 sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
                                 sort="auto" width="20%"
@@ -225,12 +229,12 @@
 </zk>
 
 
-        <!--
-            <style dynamic="true">
-            .mybandbox .z-bandbox-img { background: transparent
-            url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
-            no-repeat 0 0; border: 1px solid #C0C0C0 ;
-            vertical-align: top: cursor: pointer: width: 19px;
-            height: 19px ;}
-            </style>
-        -->
+<!--
+    <style dynamic="true">
+    .mybandbox .z-bandbox-img { background: transparent
+    url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
+    no-repeat 0 0; border: 1px solid #C0C0C0 ;
+    vertical-align: top: cursor: pointer: width: 19px;
+    height: 19px ;}
+    </style>
+-->
