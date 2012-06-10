@@ -53,6 +53,9 @@ public class SesiDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox tbNama;
     private int pageSize;
 
+    protected org.zkoss.zul.api.Listheader code;
+    protected org.zkoss.zul.api.Listheader name;
+
     public SesiDetailCtrl() {
         super();
     }
@@ -75,6 +78,10 @@ public class SesiDetailCtrl extends GFCBaseCtrl implements Serializable {
         setPageSize(20);
         
         binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
+        code.setSortAscending(new FieldComparator("ckdsekolah", true));
+        code.setSortDescending(new FieldComparator("ckdsekolah", false));
+        name.setSortAscending(new FieldComparator("cnamaSekolah", true));
+        name.setSortDescending(new FieldComparator("cnamaSekolah", false));
         binder.loadAll();
         doFitSize(event);
     }
