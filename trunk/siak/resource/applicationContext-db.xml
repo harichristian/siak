@@ -26,9 +26,34 @@
                       expression="execution(* id.ac.idu.backend.service.*.*(..))"/>
         <aop:pointcut id="daoMethods"
                       expression="execution(* id.ac.idu.backend.dao.*.*(..))"/>
+        <aop:pointcut id="daoAdministrasi"
+                      expression="execution(* id.ac.idu.administrasi.dao.*.*(..))"/>
+        <aop:pointcut id="serviceAdministrasi"
+                      expression="execution(* id.ac.idu.administrasi.service.*.*(..))"/>
+        <aop:pointcut id="daoIrs"
+                      expression="execution(* id.ac.idu.irs.dao.*.*(..))"/>
+        <aop:pointcut id="serviceIrs"
+                      expression="execution(* id.ac.idu.irs.service.*.*(..))"/>
+        <aop:pointcut id="daoKurikulum"
+                      expression="execution(* id.ac.idu.kurikulum.dao.*.*(..))"/>
+        <aop:pointcut id="serviceKurikulum"
+                      expression="execution(* id.ac.idu.kurikulum.service.*.*(..))"/>
+        <aop:pointcut id="daoMankurikulum"
+                      expression="execution(* id.ac.idu.mankurikulum.dao.*.*(..))"/>
+        <aop:pointcut id="serviceMankurikulum"
+                      expression="execution(* id.ac.idu.mankurikulum.service.*.*(..))"/>
 
         <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="guiServiceMethods"/>
         <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceMethods"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="daoMethods"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="daoAdministrasi"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceAdministrasi"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="daoIrs"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceIrs"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="daoKurikulum"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceKurikulum"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="daoMankurikulum"/>
+        <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceMankurikulum"/>
     </aop:config>
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
