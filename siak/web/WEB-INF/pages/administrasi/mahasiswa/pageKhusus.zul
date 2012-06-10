@@ -155,7 +155,7 @@
                                         <paging id="pagingRiwayatPendidikan" style="width:100%" pageSize="20"/>
                                     </north>
                                     <center border="none">
-                                        <listbox id="listRiwayatPendidikan" width="100%" height="100%" multiple="false"
+                                        <listbox id="listRiwayatPendidikan" width="100%" height="100%" vflex="true" multiple="false"
                                                  style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 1px;">
                                             <listhead sizable="true">
                                                 <listheader id="jenis" sort="auto" width="30%" label="Jenis / Nama Pembentukan"/>
@@ -191,7 +191,8 @@
                                         <paging id="pagingRiwayatPangkat" style="width:100%" pageSize="20"/>
                                     </north>
                                     <center border="none">
-                                        <listbox id="listRiwayatPangkat" width="100%" height="100%" multiple="false">
+                                        <listbox id="listRiwayatPangkat"
+                                                 width="100%" height="100%" vflex="true" multiple="false">
                                             <listhead sizable="true">
                                                 <listheader id="cdpangkat" sort="auto" width="15%" label="Kode Pangkat"/>
                                                 <listheader id="nmpangkat" sort="auto" width="25%" label="Nama Pangkat"/>

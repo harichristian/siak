@@ -89,7 +89,11 @@ public class UpdateStatusDetailCtrl extends GFCBaseCtrl implements Serializable 
         this.searchStatus(filter);
     }
 
+    protected Listheader cnmstatmhs;
     public void searchStatus(Filter filter) {
+        cnmstatmhs.setSortAscending(new FieldComparator("cnmstatmhs",true));
+        cnmstatmhs.setSortDescending(new FieldComparator("cnmstatmhs",false));
+        
         HibernateSearchObject<Mstatusmhs> soStatus = new HibernateSearchObject<Mstatusmhs>(Mstatusmhs.class);
         if(filter != null) soStatus.addFilter(filter);
 

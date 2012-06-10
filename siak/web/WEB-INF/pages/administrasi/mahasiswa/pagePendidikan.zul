@@ -130,7 +130,7 @@
                                         <textbox id="txtbNamaProgramS1" value="@{controller.mhistpnddkmhsS1.mprodi.cnmprogst}" readonly="true" width="150px"/>
                                     </row>
                                     <row>
-                                        <label value="Kode Jenjang"/>
+                                        <label value="Jenjang"/>
                                         <hbox>
                                             <textbox id="txtbNamaJenjangS1" value="@{controller.mhistpnddkmhsS1.mjenjang.cnmjen}" readonly="true" width="120px"/>
                                             <bandbox id="cmbJenjangS1" sclass="mybandbox" width="0px" tooltiptext="Jenjang" disabled="true">
@@ -305,7 +305,7 @@
                                         <textbox id="txtbNamaProgramS2" value="@{controller.mhistpnddkmhsS2.mprodi.cnmprogst}" readonly="true" width="150px"/>
                                     </row>
                                     <row>
-                                        <label value="Kode Jenjang"/>
+                                        <label value="Jenjang"/>
                                         <hbox>
                                             <textbox id="txtbNamaJenjangS2" value="@{controller.mhistpnddkmhsS2.mjenjang.cnmjen}" readonly="true" width="120px"/>
                                             <bandbox id="cmbJenjangS2" sclass="mybandbox" width="0px" tooltiptext="Jenjang" disabled="true">

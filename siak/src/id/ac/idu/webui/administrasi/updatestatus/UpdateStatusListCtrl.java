@@ -95,19 +95,19 @@ public class UpdateStatusListCtrl extends GFCBaseListCtrl<Mmahasiswa> implements
         paginglist.setDetailed(true);
 
         headerCnim.setSortAscending(new FieldComparator("cnim",true));
-        headerCnim.setSortDescending(new FieldComparator("cnim",true));
+        headerCnim.setSortDescending(new FieldComparator("cnim",false));
 
         headerCnama.setSortAscending(new FieldComparator("cnama",true));
-        headerCnama.setSortDescending(new FieldComparator("cnama",true));
+        headerCnama.setSortDescending(new FieldComparator("cnama",false));
 
         headerNoktp.setSortAscending(new FieldComparator("noktp",true));
-        headerNoktp.setSortDescending(new FieldComparator("noktp",true));
+        headerNoktp.setSortDescending(new FieldComparator("noktp",false));
 
         headerCjnsmhs.setSortAscending(new FieldComparator("cjnsmhs",true));
-        headerCjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",true));
+        headerCjnsmhs.setSortDescending(new FieldComparator("cjnsmhs",false));
         
-        headerCkdstatmhs.setSortAscending(new FieldComparator("ckdstatmhs",true));
-        headerCkdstatmhs.setSortDescending(new FieldComparator("ckdstatmhs",true));
+        headerCkdstatmhs.setSortAscending(new FieldComparator("mstatusmhs.cnmstatmhs",true));
+        headerCkdstatmhs.setSortDescending(new FieldComparator("mstatusmhs.cnmstatmhs",false));
 
         searchObj = new HibernateSearchObject<Mmahasiswa>(Mmahasiswa.class, countRows);
 

@@ -136,7 +136,7 @@ public class RiwayatPangkatCtrl extends GFCBaseCtrl implements Serializable {
             filter1 = new Filter("ckdpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_ILIKE);
 
         if (StringUtils.isNotEmpty(tbName.getValue()))
-            filter2 = new Filter("cnmpangkatgolongan", "%" + tbPangkat.getValue() + "%", Filter.OP_ILIKE);
+            filter2 = new Filter("cnmpangkatgolongan", "%" + tbName.getValue() + "%", Filter.OP_ILIKE);
 
         this.searchPangkat(filter1, filter2);
     }

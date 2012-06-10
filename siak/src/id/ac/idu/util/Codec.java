@@ -431,7 +431,7 @@ public class Codec {
 
     public enum Jenjang implements CodecInterface {
         Jen1("S1","S1"),
-        Jen2("S2","S1");
+        Jen2("S2","S2");
 
         private final String value;
         private final String label;
