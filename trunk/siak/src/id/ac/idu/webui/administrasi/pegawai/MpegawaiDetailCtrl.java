@@ -219,28 +219,37 @@ public class MpegawaiDetailCtrl extends GFCBaseCtrl implements Serializable {
 		doFitSize(event);
 	}
 
+    public void onChange$txtb_tglahir(Event event) throws Exception {
+
+	}
     public void doResetCombo(){
         ListBoxUtil.resetList(txtb_listjeniskelamin);
+        cmb_jeniskelamin.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.JenisKelamin.class)).getEnumToList(),
                 txtb_listjeniskelamin, cmb_jeniskelamin, (getMpegawai() != null) ? getMpegawai().getCjenklmn() : null);
 
         ListBoxUtil.resetList(txtb_listagama);
+        cmb_agama.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.Agama.class)).getEnumToList(),
                 txtb_listagama, cmb_agama, (getMpegawai() != null)?getMpegawai().getCkdagama():null);
 
         ListBoxUtil.resetList(txtb_liststatusnikah);
+        cmb_statusnikah.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusNikah.class)).getEnumToList(),
                  txtb_liststatusnikah, cmb_statusnikah, (getMpegawai() != null) ? getMpegawai().getCstatus() : null);
 
         ListBoxUtil.resetList(txtb_listaktif);
+        cmb_aktif.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.StatusAktif.class)).getEnumToList(),
                 txtb_listaktif, cmb_aktif, (getMpegawai() != null)?getMpegawai().getCflagaktif():null);
 
         ListBoxUtil.resetList(txtb_listgoldarah);
+        cmb_goldarah.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.GolDarah.class)).getEnumToList(),
                 txtb_listgoldarah, cmb_goldarah, (getMpegawai() != null)?getMpegawai().getCgldarah():null);
 
         ListBoxUtil.resetList(txtb_listpendidikan);
+        cmb_pendidikan.setText("");
         GFCListModelCtrl.getInstance().setListModel((new EnumConverter(Codec.PendidikanTerakhir.class)).getEnumToList(),
                 txtb_listpendidikan, cmb_pendidikan, (getMpegawai() != null)?getMpegawai().getCpendakhir():null);
 
