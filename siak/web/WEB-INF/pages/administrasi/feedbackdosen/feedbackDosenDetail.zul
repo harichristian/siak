@@ -143,8 +143,23 @@
 
             </listbox>
             </center>
-
+            <south>
+                <grid sclass="GridLayoutNoBorder" fixedLayout="true"
+                  style="border:0px; padding-left:5px; padding-right:5px;">
+                    <columns>
+                        <column width="99%"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Keterangan:"/>
+                        </row>
+                        <row>
+                            <label value="1.Buruk Sekali 2.Buruk 3.Cukup 4.Baik 5.Baik Sekali"/>
+                        </row>
+                    </rows>
+                </grid>
+            </south>
         </borderlayout>
-
     </window>
 </zk>
