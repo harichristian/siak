@@ -132,10 +132,18 @@ public class KurikulumMahasiswaDetailCtrl extends GFCBaseCtrl implements Seriali
 	 * @param event
 	 * @throws Exception
 	 */
+    protected Listheader header_Nim;
+    protected Listheader header_Nama;
+    protected Listheader header_NoKtp;
 	public void onCreate$windowKurikulumMahasiswaDetail(Event event) throws Exception {
         setPageSize(20);
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
-
+        header_Nim.setSortAscending(new FieldComparator("cnim", true));
+        header_Nim.setSortDescending(new FieldComparator("cnim", false));
+        header_Nama.setSortAscending(new FieldComparator("cnama", true));
+        header_Nama.setSortDescending(new FieldComparator("cnama", false));
+        header_NoKtp.setSortAscending(new FieldComparator("noktp", true));
+        header_NoKtp.setSortDescending(new FieldComparator("noktp", false));
 		binder.loadAll();
 
 		doFitSize(event);
