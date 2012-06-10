@@ -150,11 +150,14 @@ public class MalumniPekerjaanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void doRenderList(){
         ListBoxUtil.resetList(listBoxAlumniPekerjaan);
-        List<Thistkerja> listHist = getHistKerjaService().getAllHIstkerjaByAlumni(getMalumni());
-        for (int i=0;listHist.size() > i;i++){
-            createRow(listHist.get(i));
+        if(getMalumni()!=null){
+            if(getMalumni().getId() != 0){
+                List<Thistkerja> listHist = getHistKerjaService().getAllHIstkerjaByAlumni(getMalumni());
+                for (int i=0;listHist.size() > i;i++){
+                    createRow(listHist.get(i));
+                }
+            }
         }
-
     }
 
     public void createRow(Thistkerja histkerja){
