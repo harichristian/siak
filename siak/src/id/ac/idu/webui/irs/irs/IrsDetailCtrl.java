@@ -165,12 +165,33 @@ public class IrsDetailCtrl extends GFCBaseCtrl implements Serializable {
 	 * @param event
 	 * @throws Exception
 	 */
+    protected Listheader header_Nim;
+    protected Listheader header_Nama;
+    protected Listheader header_NoKtp;
+    protected Listheader mtbmtkl_ckdmtk;
+    protected Listheader mtbmtkl_cnamamk;
+    protected Listheader ckelompok;
+    protected Listheader nsks;
 	public void onCreate$windowIrsDetail(Event event) throws Exception {
         setPageSize(20);
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
         if(getIrs() != null) {
             loadDetilMatakuliah();
         }
+        header_Nim.setSortAscending(new FieldComparator("cnim", true));
+        header_Nim.setSortDescending(new FieldComparator("cnim", false));
+        header_Nama.setSortAscending(new FieldComparator("cnama", true));
+        header_Nama.setSortDescending(new FieldComparator("cnama", false));
+        header_NoKtp.setSortAscending(new FieldComparator("noktp", true));
+        header_NoKtp.setSortDescending(new FieldComparator("noktp", false));
+        mtbmtkl_ckdmtk.setSortAscending(new FieldComparator("mtbmtkl.ckdmtk", true));
+        mtbmtkl_ckdmtk.setSortDescending(new FieldComparator("mtbmtkl.ckdmtk", false));
+        mtbmtkl_cnamamk.setSortAscending(new FieldComparator("mtbmtkl.cnamamk", true));
+        mtbmtkl_cnamamk.setSortDescending(new FieldComparator("mtbmtkl.cnamamk", false));
+        ckelompok.setSortAscending(new FieldComparator("ckelompok", true));
+        ckelompok.setSortDescending(new FieldComparator("ckelompok", false));
+        nsks.setSortAscending(new FieldComparator("nsks", true));
+        nsks.setSortDescending(new FieldComparator("nsks", false));
 		binder.loadAll();
 		doFitSize(event);
 	}
