@@ -129,7 +129,14 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         this.searchJenjang(filter1, filter2);
     }
 
+    protected Listheader ckdjen;
+    protected Listheader cnmjen;
     public void searchJenjang(Filter... filters) {
+        ckdjen.setSortAscending(new FieldComparator("ckdjen",true));
+        ckdjen.setSortDescending(new FieldComparator("ckdjen",false));
+        cnmjen.setSortAscending(new FieldComparator("cnmjen",true));
+        cnmjen.setSortDescending(new FieldComparator("cnmjen",false));
+        
         HibernateSearchObject<Mjenjang> soJenjang = new HibernateSearchObject<Mjenjang>(Mjenjang.class);
 
         if(filters != null) {
@@ -152,7 +159,7 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
             Mjenjang aJenjang = (Mjenjang) item.getAttribute("data");
 
             getMahasiswa().setMjenjang(aJenjang);
-            txtbmjenjang.setValue(aJenjang.getCkdjen());
+            txtbmjenjang.setValue(aJenjang.getCnmjen());
 
             getMahasiswa().setMprodi(null);
             txtbmprodi.setValue("");
@@ -169,7 +176,12 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
     }
 
     public void onOpen$cmbmprodi(Event event) {
-        this.searchProdi();
+        Filter filter3 = null;
+        
+        if(getMahasiswa().getMjenjang() != null)
+            filter3 = new Filter("mjenjang.ckdjen", getMahasiswa().getMjenjang().getCkdjen() , Filter.OP_EQUAL);
+        
+        this.searchProdi(filter3);
     }
 
     public void onClick$buttonSearchMprodi(Event event) {
@@ -189,7 +201,14 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
         this.searchProdi(filter1, filter2, filter3);
     }
 
+    protected Listheader ckdprogst;
+    protected Listheader cnmprogst;
     public void searchProdi(Filter... filters) {
+        ckdprogst.setSortAscending(new FieldComparator("ckdprogst",true));
+        ckdprogst.setSortDescending(new FieldComparator("ckdprogst",false));
+        cnmprogst.setSortAscending(new FieldComparator("cnmprogst",true));
+        cnmprogst.setSortDescending(new FieldComparator("cnmprogst",false));
+        
         HibernateSearchObject<Mprodi> soProdi = new HibernateSearchObject<Mprodi>(Mprodi.class);
 
         if(filters != null) {
@@ -226,10 +245,22 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
     }
 
     public void onOpen$cmbmpeminatan(Event event) {
-        this.searchPeminatan();
+        Filter filter3 = null;
+
+        if (getMahasiswa().getMprodi() != null)
+            filter3 = new Filter("mprodi.ckdprogst", getMahasiswa().getMprodi().getCkdprogst() , Filter.OP_EQUAL);
+
+        this.searchPeminatan(filter3);
     }
 
+    protected Listheader ckdminat;
+    protected Listheader cnmminat;
     public void onClick$buttonSearchMpeminatan(Event event) {
+        ckdminat.setSortAscending(new FieldComparator("ckdminat",true));
+        ckdminat.setSortDescending(new FieldComparator("ckdminat",false));
+        cnmminat.setSortAscending(new FieldComparator("cnmminat",true));
+        cnmminat.setSortDescending(new FieldComparator("cnmminat",false));
+
         Filter filter1 = null;
         Filter filter2 = null;
         Filter filter3 = null;
@@ -269,7 +300,7 @@ public class MahasiswaStatus extends GFCBaseCtrl implements Serializable {
             Mpeminatan aPeminatan = (Mpeminatan) item.getAttribute("data");
 
             getMahasiswa().setMpeminatan(aPeminatan);
-            txtbmpeminatan.setValue(aPeminatan.getCkdminat());
+            txtbmpeminatan.setValue(aPeminatan.getCnmminat());
         }
 
         cmbmpeminatan.close();

@@ -159,7 +159,7 @@
                                     <row>
                                         <label value="Peminatan"/>
                                         <hbox>
-                                            <textbox id="txtbmpeminatan" value="@{controller.mahasiswa.mpeminatan.ckdminat}" readonly="true" width="140px"/>
+                                            <textbox id="txtbmpeminatan" value="@{controller.mahasiswa.mpeminatan.cnmminat}" readonly="true" width="140px"/>
                                             <bandbox id="cmbmpeminatan" sclass="mybandbox" width="0px" tooltiptext="Peminatan" disabled="true">
                                                 <bandpopup width="340px" height="300px">
                                                     <panel title="LOV Peminatan"/>

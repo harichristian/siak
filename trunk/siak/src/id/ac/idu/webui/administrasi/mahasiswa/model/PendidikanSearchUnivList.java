@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 public class PendidikanSearchUnivList implements ListitemRenderer, Serializable {
     private static final long serialVersionUID = 1925499383404057064L;
-	private static final Logger logger = Logger.getLogger(PribadiSearchKodeposList.class);
+	private static final Logger logger = Logger.getLogger(PendidikanSearchUnivList.class);
 
     @Override
 	public void render(Listitem item, Object data) throws Exception {

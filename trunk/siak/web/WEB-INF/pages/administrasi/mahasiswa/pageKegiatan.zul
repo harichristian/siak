@@ -53,7 +53,8 @@
                                         <paging id="pagingKegiatan" style="width:100%" pageSize="20"/>
                                     </north>
                                     <center border="none">
-                                        <listbox id="listKegiatan" width="100%" height="100%" multiple="false">
+                                        <listbox id="listKegiatan"
+                                                 width="100%" height="100%" vflex="true" multiple="false">
                                             <listhead sizable="true">
                                                 <listheader id="cno" sort="auto" width="5%" label="No"/>
                                                 <listheader id="cnmsimposium" sort="auto" width="25%" label="Nama Simposium/Seminar"/>
@@ -87,7 +88,8 @@
                                         <paging id="pagingKarya" style="width:100%" pageSize="20"/>
                                     </north>
                                     <center border="none">
-                                        <listbox id="listKarya" width="100%" height="100%" multiple="false">
+                                        <listbox id="listKarya"
+                                                 width="100%" height="100%" vflex="true" multiple="false">
                                             <listhead sizable="true">
                                                 <listheader id="cnob" sort="auto" width="5%" label="No"/>
                                                 <listheader id="cnmkyrilm" sort="auto" width="30%" label="Nama Karya Ilmiah"/>

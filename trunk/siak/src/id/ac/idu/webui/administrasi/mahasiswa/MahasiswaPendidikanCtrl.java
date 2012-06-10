@@ -221,7 +221,18 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbPgurTinggiS1.close();
     }
 
+    protected Listheader codeS1;
+    protected Listheader nameS1;
+    protected Listheader statusS1;
+    
     public void searchPerguruanS1(Filter... filters) {
+        codeS1.setSortAscending(new FieldComparator("ckdUniv",true));
+        codeS1.setSortDescending(new FieldComparator("ckdUniv",false));
+        nameS1.setSortAscending(new FieldComparator("cnamaUniv",true));
+        nameS1.setSortDescending(new FieldComparator("cnamaUniv",false));
+        statusS1.setSortAscending(new FieldComparator("cstatus",true));
+        statusS1.setSortDescending(new FieldComparator("cstatus",false));
+
         HibernateSearchObject<Muniv> soUniv = new HibernateSearchObject<Muniv>(Muniv.class);
 
         if(filters != null) {
@@ -258,7 +269,18 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbPgurTinggiS2.close();
     }
 
+    protected Listheader codeS2;
+    protected Listheader nameS2;
+    protected Listheader statusS2;
+    
     public void searchPerguruanS2(Filter... filters) {
+        codeS2.setSortAscending(new FieldComparator("ckdUniv",true));
+        codeS2.setSortDescending(new FieldComparator("ckdUniv",false));
+        nameS2.setSortAscending(new FieldComparator("cnamaUniv",true));;
+        nameS2.setSortDescending(new FieldComparator("cnamaUniv",false));;
+        statusS2.setSortAscending(new FieldComparator("cstatus",true));
+        statusS2.setSortDescending(new FieldComparator("cstatus",false));
+
         HibernateSearchObject<Muniv> soUniv = new HibernateSearchObject<Muniv>(Muniv.class);
 
         if(filters != null) {
@@ -323,7 +345,15 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbProgramS1.close();
     }
 
+    protected Listheader codeProgramS1;
+    protected Listheader nameProgramS1;
+    
     public void searchProgramS1(Filter... filters) {
+        codeProgramS1.setSortAscending(new FieldComparator("ckdprogst",true));
+        codeProgramS1.setSortDescending(new FieldComparator("ckdprogst",false));
+        nameProgramS1.setSortAscending(new FieldComparator("cnmprogst",true));
+        nameProgramS1.setSortDescending(new FieldComparator("cnmprogst",false));
+
         HibernateSearchObject<Mprodi> soProdi = new HibernateSearchObject<Mprodi>(Mprodi.class);
 
         if(filters != null) {
@@ -361,7 +391,14 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbProgramS2.close();
     }
 
+    protected Listheader codeProgramS2;
+    protected Listheader nameProgramS2;
+    
     public void searchProgramS2(Filter... filters) {
+        codeProgramS2.setSortAscending(new FieldComparator("ckdprogst",true));
+        codeProgramS2.setSortDescending(new FieldComparator("ckdprogst",false));
+        nameProgramS2.setSortAscending(new FieldComparator("cnmprogst",true));
+        nameProgramS2.setSortDescending(new FieldComparator("cnmprogst",false));
         HibernateSearchObject<Mprodi> soProdi = new HibernateSearchObject<Mprodi>(Mprodi.class);
 
         if(filters != null) {
@@ -424,7 +461,14 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbJenjangS1.close();
     }
 
+    protected Listheader codeJenjangS1;
+    protected Listheader nameJenjangS1;
     public void searchJenjangS1(Filter... filters) {
+        codeJenjangS1.setSortAscending(new FieldComparator("ckdjen",true));
+        codeJenjangS1.setSortDescending(new FieldComparator("ckdjen",false));
+        nameJenjangS1.setSortAscending(new FieldComparator("cnmjen",true));
+        nameJenjangS1.setSortDescending(new FieldComparator("cnmjen",false));
+
         HibernateSearchObject<Mjenjang> soJenjang = new HibernateSearchObject<Mjenjang>(Mjenjang.class);
 
         if(filters != null) {
@@ -462,14 +506,21 @@ public class MahasiswaPendidikanCtrl extends GFCBaseCtrl implements Serializable
         cmbJenjangS2.close();
     }
 
+    protected Listheader codeJenjangS2;
+    protected Listheader nameJenjangS2; 
     public void searchJenjangS2(Filter... filters) {
+        codeJenjangS2.setSortAscending(new FieldComparator("ckdjen",true));
+        codeJenjangS2.setSortDescending(new FieldComparator("ckdjen",false));
+        nameJenjangS2.setSortAscending(new FieldComparator("cnmjen",true));
+        nameJenjangS2.setSortDescending(new FieldComparator("cnmjen",false));
+
         HibernateSearchObject<Mjenjang> soJenjang = new HibernateSearchObject<Mjenjang>(Mjenjang.class);
 
         if(filters != null) {
             for (Filter filter : filters)
                 soJenjang.addFilter(filter);
         }
-        soJenjang.addFilter(new Filter("csingkat", Codec.Jenjang.Jen1.getValue(), Filter.OP_EQUAL));
+        soJenjang.addFilter(new Filter("csingkat", Codec.Jenjang.Jen2.getValue(), Filter.OP_EQUAL));
 
         soJenjang.addSort("ckdjen", false);
         pagingJenjangS2.setPageSize(pageSize);
