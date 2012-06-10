@@ -29,7 +29,7 @@
                                   fixedLayout="true"
                                   style="border:0px; padding-left:5px; padding-right:5px;">
                                 <columns>
-                                    <column width="150px"/>
+                                    <column width="200px"/>
                                     <column/>
                                 </columns>
                                 <rows>
@@ -78,12 +78,14 @@
                                     </row>
 
                                     <row>
-                                        <label
-                                                value="Nama Peminatan Inggris"/>
                                         <hbox>
-                                                    <textbox
-                                                            id="txtb_nmpeminatan_eng" value="@{controller.mpeminatan.cnmminating}"
-                                                            readonly="true" maxlength="50" width="300px"  constraint="no empty" />
+                                            <label value="Nama Peminatan Inggris"/>
+                                            <label value="*" style="color:red;font-size:10px"/>
+                                        </hbox>
+                                        <hbox>
+                                            <textbox
+                                                    id="txtb_nmpeminatan_eng" value="@{controller.mpeminatan.cnmminating}"
+                                                    readonly="true" maxlength="50" width="300px"  constraint="no empty" />
 
                                         </hbox>
                                     </row>
