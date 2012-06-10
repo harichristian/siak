@@ -44,7 +44,9 @@ public class PaketListCtrl extends GFCBaseListCtrl<Tpaketkuliah> implements Seri
 	protected Listbox listBoxPaket; // autowired
 	protected Listheader listheader_PaketList_Term; // autowired
 	protected Listheader listheader_PaketList_Thajar; // autowired
+	protected Listheader listheader_PaketList_Sekolah; // autowired
 	protected Listheader listheader_PaketList_Prodi; // autowired
+	protected Listheader listheader_PaketList_Matakuliah; // autowired
 
 	// NEEDED for ReUse in the SearchWindow
 	private HibernateSearchObject<Tpaketkuliah> searchObj;
@@ -135,8 +137,12 @@ public class PaketListCtrl extends GFCBaseListCtrl<Tpaketkuliah> implements Seri
 		listheader_PaketList_Term.setSortDescending(new FieldComparator(ConstantUtil.TERM, false));
 		listheader_PaketList_Thajar.setSortAscending(new FieldComparator(ConstantUtil.THAJAR, true));
 		listheader_PaketList_Thajar.setSortDescending(new FieldComparator(ConstantUtil.THAJAR, false));
-		listheader_PaketList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI, true));
-		listheader_PaketList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI, false));
+		listheader_PaketList_Sekolah.setSortAscending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, true));
+		listheader_PaketList_Sekolah.setSortDescending(new FieldComparator(ConstantUtil.SEKOLAH_DOT_NAME, false));
+		listheader_PaketList_Prodi.setSortAscending(new FieldComparator(ConstantUtil.PRODI_DOT_NAMA, true));
+		listheader_PaketList_Prodi.setSortDescending(new FieldComparator(ConstantUtil.PRODI_DOT_NAMA, false));
+		listheader_PaketList_Matakuliah.setSortAscending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_NAMA, true));
+		listheader_PaketList_Matakuliah.setSortDescending(new FieldComparator(ConstantUtil.MATAKULIAH_DOT_NAMA, false));
 
 		// ++ create the searchObject and init sorting ++//
 		// ++ create the searchObject and init sorting ++//
