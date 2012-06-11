@@ -1,6 +1,7 @@
 package id.ac.idu.irs.dao;
 
 import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tpaketkuliah;
 
 import java.util.List;
@@ -89,4 +90,6 @@ public interface PaketDAO {
      * EN: Saves an Tpaketkuliah.<br>
      */
     public void save(Tpaketkuliah entity);
+
+    public List<Tpaketkuliah> getPaketList(String cterm, Msekolah msekolah, Mprodi mprodi);
 }

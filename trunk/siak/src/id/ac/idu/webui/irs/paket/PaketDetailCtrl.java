@@ -1,11 +1,18 @@
 package id.ac.idu.webui.irs.paket;
 
+import com.trg.search.Filter;
 import id.ac.idu.backend.model.Mprodi;
 import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Mtbmtkl;
 import id.ac.idu.backend.model.Tpaketkuliah;
+import id.ac.idu.backend.util.HibernateSearchObject;
 import id.ac.idu.irs.service.PaketService;
+import id.ac.idu.util.ConstantUtil;
 import id.ac.idu.webui.util.GFCBaseCtrl;
+import id.ac.idu.webui.util.ListBoxUtil;
+import id.ac.idu.webui.util.ZksampleMessageUtils;
+import id.ac.idu.webui.util.pagging.PagedBindingListWrapper;
+import id.ac.idu.webui.util.pagging.PagedListWrapper;
 import id.ac.idu.webui.util.searchdialogs.MatakuliahExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.ProdiExtendedSearchListBox;
 import id.ac.idu.webui.util.searchdialogs.SekolahExtendedSearchListBox;
@@ -13,11 +20,14 @@ import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zkplus.databind.BindingListModelList;
 import org.zkoss.zul.*;
+import org.zkoss.zul.api.Listheader;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -58,10 +68,26 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSearchMatakuliahExtended;
     protected Textbox txtb_kelompok;    //detail
 	protected Button button_PaketDialog_PrintPaket; // autowired
+    protected Paging pagingDetilMatkul;
+    protected Listbox listboxDetilMatkul;
+    protected Listheader listHeaderKode;
+    protected Listheader listHeaderNama;
+    protected Button btnNewMatkul;
+    protected Button btnDeleteMatkul;
+
+    // row count for listbox
+    private int countRows;
+    private int pageSize;
+
+    private HibernateSearchObject<Tpaketkuliah> searchObj;
+    //private HibernateSearchObject<Mtbmtkl> so;
+    protected PagedBindingListWrapper<Tpaketkuliah> pagedBindingListWrapper;
+    private transient PagedListWrapper<Tpaketkuliah> plwDetilMatkul;
 
 	// Databinding
 	protected transient AnnotateDataBinder binder;
 	private PaketMainCtrl paketMainCtrl;
+    private List<Tpaketkuliah> selectedPaketList;
 
 	// ServiceDAOs / Domain Classes
 	private transient PaketService paketService;
@@ -102,12 +128,19 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
 			// than the selectedXXXBean should be null
 			if (getPaketMainCtrl().getSelectedPaket() != null) {
 				setSelectedPaket(getPaketMainCtrl().getSelectedPaket());
-			} else
+			} else {
 				setSelectedPaket(null);
+            }
+            if (getPaketMainCtrl().getSelectedPaketList() != null) {
+                setSelectedPaketList(getPaketMainCtrl().getSelectedPaketList());
+            } else {
+                setSelectedPaketList(null);
+            }
 		} else {
 			setSelectedPaket(null);
+            setSelectedPaketList(null);
 		}
-
+        //this.listDetilMatkul
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -121,13 +154,72 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
 	 * @throws Exception
 	 */
 	public void onCreate$windowPaketDetail(Event event) throws Exception {
+        setPageSize(20);
 		binder = (AnnotateDataBinder) event.getTarget().getAttribute("binder", true);
-
+        doFillListbox();
 		binder.loadAll();
-
+        btnNewMatkul.setVisible(false);
+        btnDeleteMatkul.setVisible(false);
 		doFitSize(event);
 	}
-
+    public void doFitSize() {
+        // normally 0 ! Or we have a i.e. a toolBar on top of the listBox.
+        final int specialSize = 5;
+        final int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue().intValue();
+        final int maxListBoxHeight = height - specialSize - 148;
+        setCountRows((int) Math.round(maxListBoxHeight / 17.7));
+    }
+    public void doFillListbox() throws Exception {
+        doFitSize();
+        searchObj = new HibernateSearchObject<Tpaketkuliah>(Tpaketkuliah.class, getCountRows());
+        if(getSelectedPaket()!=null) {
+            searchObj.addFilterAnd(new Filter(ConstantUtil.TERM, getSelectedPaket().getCterm(), Filter.OP_EQUAL));
+            searchObj.addFilterAnd(new Filter(ConstantUtil.SEKOLAH, getSelectedPaket().getMsekolah(), Filter.OP_EQUAL));
+            searchObj.addFilterAnd(new Filter(ConstantUtil.PRODI, getSelectedPaket().getMprodi(), Filter.OP_EQUAL));
+        }
+        searchObj.addSort(ConstantUtil.MATAKULIAH_DOT_CODE, false);
+        // Change the BindingListModel.
+        if (getBinder() != null) {
+            try{
+                getPagedBindingListWrapper().clear();
+                getPagedBindingListWrapper().addAll(getPaketMainCtrl().getList(getSelectedPaket()));
+            } catch (NullPointerException e) {}
+            BindingListModelList lml = (BindingListModelList) getListboxDetilMatkul().getModel();
+            setPakets(lml);
+            if (getSelectedPaket() == null && lml!=null) {
+                // init the bean with the first record in the List
+                if (lml.getSize() > 0) {
+                    final int rowIndex = 0;
+                    getListboxDetilMatkul().setSelectedIndex(rowIndex);
+                    setSelectedPaket((Tpaketkuliah) lml.get(0));
+                    Events.sendEvent(new Event("onSelect", getListboxDetilMatkul(), getSelectedPaket()));
+                }
+            }
+        }
+        pagingDetilMatkul.setPageSize(pageSize);
+		pagingDetilMatkul.setDetailed(true);
+		//getPlwDetilMatkul().init(searchObj, listDetilMatkul, pagingDetilMatkul);
+		//listDetilMatkul.setItemRenderer(new DetilKurikulumSearchList());
+        //getPagedBindingListWrapper().clear();
+        setListBox(getPaketMainCtrl().getList(getSelectedPaket()));
+    }
+     public  void setListBox(List<Tpaketkuliah> lfa){
+        getPaketMainCtrl().setSelectedPaketList(lfa);
+        ListBoxUtil.resetList(listboxDetilMatkul);
+        for (int i=0; i < lfa.size();i++){
+            Tpaketkuliah fa = new Tpaketkuliah();
+            fa = (Tpaketkuliah) lfa.get(i);
+            Listitem ltm = new Listitem();
+            ltm.setAttribute("data", fa);
+            ltm.setParent(listboxDetilMatkul);
+            Listcell listcell = new Listcell(fa.getMtbmtkl().getCkdmtk());
+			listcell.setParent(ltm);
+			listcell = new Listcell(fa.getMtbmtkl().getCnamamk());
+			listcell.setParent(ltm);
+        }
+        //setListboxDetilMatkul(null);
+        setListboxDetilMatkul(listboxDetilMatkul);
+    }
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
 	// +++++++++++++++++ Business Logic ++++++++++++++++ //
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -169,6 +261,8 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
         btnSearchSekolahExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
         btnSearchMatakuliahExtended.setDisabled(b);
+        btnNewMatkul.setVisible(!b);
+        btnDeleteMatkul.setVisible(!b);
 	}
 
     public void onClick$btnSearchProdiExtended(Event event) {
@@ -206,14 +300,35 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
         doSearchMatakuliahExtended(event);
     }
 
+    public void onClick$btnNewMatkul(Event event) {
+        doSearchMatakuliahExtended(event);
+    }
+
+    public void onClick$btnDeleteMatkul(Event event) throws InterruptedException {
+        try {
+        Listitem item = listboxDetilMatkul.getSelectedItem();
+        getPaketMainCtrl().getSelectedPaketList().remove((Tpaketkuliah) item.getAttribute("data"));
+        getPaketMainCtrl().getDelPaketList().add((Tpaketkuliah) item.getAttribute("data"));
+        listboxDetilMatkul.removeItemAt(listboxDetilMatkul.getSelectedIndex());
+        } catch(Exception e) {
+            ZksampleMessageUtils.showErrorMessage("Pilih baris data yang ingin dihapus");
+        }
+    }
+
     private void doSearchMatakuliahExtended(Event event) {
         Mtbmtkl matkul = MatakuliahExtendedSearchListBox.show(windowPaketDetail);
 
         if (matkul != null) {
-            txtb_matakuliah.setValue(matkul.getCnamamk());
-            Tpaketkuliah obj = getPaket();
+            Tpaketkuliah obj = new Tpaketkuliah();
+            obj.setCterm(getPaket().getCterm());
+            obj.setCthajar(getPaket().getCthajar());
+            obj.setMprodi(getPaket().getMprodi());
+            obj.setMsekolah(getPaket().getMsekolah());
             obj.setMtbmtkl(matkul);
-            setPaket(obj);
+            List<Tpaketkuliah> list = getPaketMainCtrl().getSelectedPaketList();
+            list.add(obj);
+            setListBox(list);
+            //setSelectedPaketList(list);
         }
     }
 	// +++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -279,4 +394,48 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
 	public PaketMainCtrl getPaketMainCtrl() {
 		return this.paketMainCtrl;
 	}
+
+    public int getCountRows() {
+        return this.countRows;
+    }
+
+    public void setCountRows(int countRows) {
+        this.countRows = countRows;
+    }
+
+    public void setPagedBindingListWrapper(PagedBindingListWrapper<Tpaketkuliah> pagedBindingListWrapper) {
+        this.pagedBindingListWrapper = pagedBindingListWrapper;
+    }
+
+    public PagedBindingListWrapper<Tpaketkuliah> getPagedBindingListWrapper() {
+        return pagedBindingListWrapper;
+    }
+
+    public Listbox getListboxDetilMatkul() {
+        return this.listboxDetilMatkul;
+    }
+
+    public void setListboxDetilMatkul(Listbox listboxDetilMatkul) {
+        this.listboxDetilMatkul = listboxDetilMatkul;
+    }
+
+    public void setSelectedPaketList(List<Tpaketkuliah> selectedPaketList) {
+        // STORED IN THE module's MainController
+        getPaketMainCtrl().setSelectedPaketList(selectedPaketList);
+    }
+
+    public PagedListWrapper<Tpaketkuliah> getPlwDetilMatkul() {
+        return plwDetilMatkul;
+    }
+
+    public void setPlwDetilKurikulum(PagedListWrapper<Tpaketkuliah> plwDetilMatkul) {
+        this.plwDetilMatkul = plwDetilMatkul;
+    }
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

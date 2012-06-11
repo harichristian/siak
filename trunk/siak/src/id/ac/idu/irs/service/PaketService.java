@@ -1,5 +1,7 @@
 package id.ac.idu.irs.service;
 
+import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tpaketkuliah;
 
 import java.util.List;
@@ -74,4 +76,10 @@ public interface PaketService {
      * EN: Deletes an Tpaketkuliah.<br>
      */
     public void delete(Tpaketkuliah entity);
+
+    public List<Tpaketkuliah> getPaketList(String cterm, Msekolah msekolah, Mprodi mprodi);
+
+    public void saveOrUpdateList(List<Tpaketkuliah> selectedPaketList);
+
+    public void saveOrUpdateList(List<Tpaketkuliah> selectedPaketList, List<Tpaketkuliah> delPaketList);
 }

@@ -2,6 +2,7 @@ package id.ac.idu.irs.dao.impl;
 
 import id.ac.idu.backend.dao.impl.BasisDAO;
 import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tpaketkuliah;
 import id.ac.idu.irs.dao.PaketDAO;
 import id.ac.idu.util.ConstantUtil;
@@ -75,5 +76,14 @@ public class PaketDAOImpl extends BasisDAO<Tpaketkuliah> implements PaketDAO {
         if (obj != null) {
             delete(obj);
         }
+    }
+
+    @Override
+    public List<Tpaketkuliah> getPaketList(String cterm, Msekolah msekolah, Mprodi mprodi) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Tpaketkuliah.class);
+        criteria.add(Restrictions.eq(ConstantUtil.TERM, cterm));
+        criteria.add(Restrictions.eq(ConstantUtil.SEKOLAH, msekolah));
+        criteria.add(Restrictions.eq(ConstantUtil.PRODI, mprodi));
+        return getHibernateTemplate().findByCriteria(criteria);
     }
 }
