@@ -187,7 +187,12 @@ public class PaketListCtrl extends GFCBaseListCtrl<Tpaketkuliah> implements Seri
 		if (anPaket != null) {
 			setSelectedPaket(anPaket);
 			setPaket(anPaket);
-
+            try {
+                paketMainCtrl.doSearchDetail(anPaket);
+                //getPaketMainCtrl().getPaketDetailCtrl().doFillListbox();
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
 			// check fpakett, if the tabs are created
 			if (getPaketMainCtrl().getPaketDetailCtrl() == null) {
 				Events.sendEvent(new Event("onSelect", getPaketMainCtrl().tabPaketDetail, null));

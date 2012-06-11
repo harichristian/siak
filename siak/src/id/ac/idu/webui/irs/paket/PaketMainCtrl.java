@@ -24,6 +24,8 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -82,6 +84,8 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 	// Databinding
 	private Tpaketkuliah selectedPaket;
 	private BindingListModelList pakets;
+    private List<Tpaketkuliah> selectedPaketList;
+    private List<Tpaketkuliah> delPaketList = new ArrayList<Tpaketkuliah>();
 
 	// ServiceDAOs / Domain Classes
 	private PaketService paketService;
@@ -143,6 +147,23 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 		btnCtrlPaket.setInitEdit();
 	}
 
+    public void doSearchDetail(Tpaketkuliah fa) throws Exception {
+        setDelPaketList(new ArrayList<Tpaketkuliah>());
+        if (getPaketDetailCtrl().getBinder() != null) {
+            getPaketDetailCtrl().getPagedBindingListWrapper().clear();
+            getPaketDetailCtrl().setListBox(getList(fa));
+            // get the current Tab for later checking if we must change it
+            Tab currentTab = tabbox_PaketMain.getSelectedTab();
+            // check if the tab is one of the Detail tabs. If so do not
+            // change the selection of it
+            if (!currentTab.equals(tabPaketDetail)) {
+                tabPaketDetail.setSelected(true);
+            } else {
+                currentTab.setSelected(true);
+            }
+        }
+    }
+
 	/**
 	 * When the tab 'tabPaketList' is selected.<br>
 	 * Loads the zul-file into the tab.
@@ -181,9 +202,9 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 			tabPaketDetail.setSelected(true);
 
 			// refresh the Binding mechanism
-			getPaketDetailCtrl().setPaket(getSelectedPaket());
-			getPaketDetailCtrl().getBinder().loadAll();
-			return;
+            getPaketDetailCtrl().setPaket(getSelectedPaket());
+            getPaketDetailCtrl().getBinder().loadAll();
+            return;
 		}
 
 		if (tabPanelPaketDetail != null) {
@@ -474,7 +495,11 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 		} else {
 			currentTab.setSelected(true);
 		}
-
+        try{
+            doSearchDetail(getSelectedPaket());
+        }catch (Exception e)  {
+           e.printStackTrace();
+        }
 		getPaketDetailCtrl().getBinder().loadAll();
 
 		// remember the old vars
@@ -574,7 +599,9 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 
 		try {
             // save it to database
-			getPaketService().saveOrUpdate(getPaketDetailCtrl().getPaket());
+			//getPaketService().saveOrUpdate(getPaketDetailCtrl().getPaket());
+            //getPaketService().saveOrUpdateList(getSelectedPaketList());
+            getPaketService().saveOrUpdateList(getSelectedPaketList(), getDelPaketList());
 			// if saving is successfully than actualize the beans as
 			// origins.
 			doStoreInitValues();
@@ -630,12 +657,18 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
         //final Mprodi anProdi = getProdiService().getAllProdis().get(0);
         //anPaket.setMprodi(anProdi);
 		// set the beans in the related databinded controllers
+        getPaketDetailCtrl().setSelectedPaketList(new ArrayList<Tpaketkuliah>());
 		getPaketDetailCtrl().setPaket(anPaket);
 		getPaketDetailCtrl().setSelectedPaket(anPaket);
 
 		// Refresh the binding mechanism
 		getPaketDetailCtrl().setSelectedPaket(getSelectedPaket());
 		if (getPaketDetailCtrl().getBinder()!=null) {
+            try{
+                doSearchDetail(getSelectedPaket());
+            }catch (Exception e)  {
+               e.printStackTrace();
+            }
             getPaketDetailCtrl().getBinder().loadAll();
         }
 
@@ -824,4 +857,28 @@ public class PaketMainCtrl extends GFCBaseCtrl implements Serializable {
 	public ProdiService getProdiService() {
 		return this.prodiService;
 	}
+
+    public List<Tpaketkuliah> getList(Tpaketkuliah paket){
+       List<Tpaketkuliah> exlist = new ArrayList<Tpaketkuliah>();
+       if (paket!=null) {
+           exlist =  paketService.getPaketList(paket.getCterm(), paket.getMsekolah(), paket.getMprodi());
+       }
+       return exlist;
+    }
+
+    public List<Tpaketkuliah> getSelectedPaketList() {
+        return this.selectedPaketList;
+    }
+
+    public void setSelectedPaketList(List<Tpaketkuliah> selectedPaketList) {
+        this.selectedPaketList = selectedPaketList;
+    }
+
+    public List<Tpaketkuliah> getDelPaketList() {
+        return this.delPaketList;
+    }
+
+    public void setDelPaketList(List<Tpaketkuliah> delPaketList) {
+        this.delPaketList = delPaketList;
+    }
 }

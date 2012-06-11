@@ -2,6 +2,8 @@ package id.ac.idu.irs.service.impl;
 
 import id.ac.idu.administrasi.dao.ProdiDAO;
 import id.ac.idu.administrasi.dao.SekolahDAO;
+import id.ac.idu.backend.model.Mprodi;
+import id.ac.idu.backend.model.Msekolah;
 import id.ac.idu.backend.model.Tpaketkuliah;
 import id.ac.idu.irs.dao.PaketDAO;
 import id.ac.idu.irs.service.PaketService;
@@ -96,5 +98,27 @@ public class PaketServiceImpl implements PaketService{
     @Override
     public void delete(Tpaketkuliah entity) {
         getPaketDAO().delete(entity);
+    }
+
+    @Override
+    public List<Tpaketkuliah> getPaketList(String cterm, Msekolah msekolah, Mprodi mprodi) {
+        return getPaketDAO().getPaketList(cterm, msekolah, mprodi);
+    }
+
+    @Override
+    public void saveOrUpdateList(List<Tpaketkuliah> selectedPaketList) {
+        for (Tpaketkuliah entity:selectedPaketList) {
+            getPaketDAO().saveOrUpdate(entity);
+        }
+    }
+
+    @Override
+    public void saveOrUpdateList(List<Tpaketkuliah> selectedPaketList, List<Tpaketkuliah> delPaketList) {
+        for (Tpaketkuliah entity:selectedPaketList) {
+            getPaketDAO().saveOrUpdate(entity);
+        }
+        for (Tpaketkuliah entity:delPaketList) {
+            getPaketDAO().delete(entity);
+        }
     }
 }
