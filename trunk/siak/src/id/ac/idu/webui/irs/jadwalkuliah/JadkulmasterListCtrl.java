@@ -61,6 +61,8 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
 
     protected Listheader listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari; // autowired
     protected Listheader listheader_TjadkulmasterPosList_Sesi; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_JamAwal; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_JamAkhir; // autowired
     protected Listheader listheader_TjadkulmasterPosList_Ruang; // autowired
     protected Listheader listheader_TjadkulmasterPosList_Jumlahsesi; // autowired
     protected Listheader listheader_TjadkulmasterPosList_Maks; // autowired
@@ -157,6 +159,10 @@ public class JadkulmasterListCtrl extends GFCBaseListCtrl<Tjadkulmaster> impleme
         listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari.setSortDescending(new FieldComparator("mhari.cnmhari", false));
         listheader_TjadkulmasterPosList_Sesi.setSortAscending(new FieldComparator("msesikuliah.ckdsesi", true));
         listheader_TjadkulmasterPosList_Sesi.setSortDescending(new FieldComparator("msesikuliah.ckdsesi", false));
+        listheader_TjadkulmasterPosList_JamAwal.setSortAscending(new FieldComparator("msesikuliah.cjamawal", true));
+        listheader_TjadkulmasterPosList_JamAwal.setSortDescending(new FieldComparator("msesikuliah.cjamawal", false));
+        listheader_TjadkulmasterPosList_JamAkhir.setSortAscending(new FieldComparator("msesikuliah.cjamakhir", true));
+        listheader_TjadkulmasterPosList_JamAkhir.setSortDescending(new FieldComparator("msesikuliah.cjamakhir", false));
         listheader_TjadkulmasterPosList_Ruang.setSortAscending(new FieldComparator("mruang.cnmRuang", true));
         listheader_TjadkulmasterPosList_Ruang.setSortDescending(new FieldComparator("mruang.cnmRuang", false));
         listheader_TjadkulmasterPosList_Jumlahsesi.setSortAscending(new FieldComparator("njmlsesi", true));

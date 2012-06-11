@@ -28,6 +28,10 @@ public class JadkuldetilListItemRenderer implements ListitemRenderer, Serializab
         lc.setParent(item);
         lc = new Listcell(tjadkuldetil.getMsesikuliah().getCkdsesi());
         lc.setParent(item);
+        lc = new Listcell(tjadkuldetil.getMsesikuliah().getCjamawal());
+        lc.setParent(item);
+        lc = new Listcell(tjadkuldetil.getMsesikuliah().getCjamakhir());
+        lc.setParent(item);
         lc = new Listcell(tjadkuldetil.getMruang().getCnmRuang());
         lc.setParent(item);
         lc = new Listcell(String.valueOf(tjadkuldetil.getNjmlsesi()));

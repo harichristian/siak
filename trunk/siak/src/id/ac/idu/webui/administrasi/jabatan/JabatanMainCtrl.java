@@ -38,8 +38,8 @@ import java.lang.reflect.InvocationTargetException;
  * Databinding.<br>
  * <p/>
  * Managed tabs:<br>
- * - JabatanListCtrl = Jabatan List / Filialen Liste<br>
- * - JabatanDetailCtrl = Jabatan Details / Filiale-Details<br>
+ * - DaftarTugasMenulisListCtrl = Jabatan List / Filialen Liste<br>
+ * - DaftarTugasMenulisDetailCtrl = Jabatan Details / Filiale-Details<br>
  */
 public class JabatanMainCtrl extends GFCBaseCtrl implements Serializable {
     private static final long serialVersionUID = 1L;
