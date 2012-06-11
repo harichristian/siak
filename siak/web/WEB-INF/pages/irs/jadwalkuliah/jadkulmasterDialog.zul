@@ -3,7 +3,6 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
-    xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
@@ -57,173 +56,181 @@
 <borderlayout id="borderlayoutTjadkulmasterDialog">
 
 <north border="none">
-<panel id="panel_TjadkulmasterDialog" style="margin-bottom:10px"
-       border="none">
-<panelchildren>
+    <panel id="panel_TjadkulmasterDialog" style="margin-bottom:10px"
+           border="none">
+        <panelchildren>
 
-<style>.z-groupbox-cnt {
-    border: 0
-}</style>
+            <style>.z-groupbox-cnt {
+                border: 0
+            }</style>
 
-<groupbox mold="3d" closable="false">
-    <caption image="/images/icons/view.gif"
-             label="Jadwal Kuliah Header"/>
+            <groupbox mold="3d" closable="false">
+                <caption image="/images/icons/view.gif"
+                         label="Jadwal Kuliah Header"/>
 
-    <grid sclass="GridLayoutNoBorder"
-          fixedLayout="true"
-          style="border:0px; padding-left:5px; padding-right:5px;">
-        <columns>
-            <column width="150px"/>
-            <column width="100%"/>
-        </columns>
-        <rows>
-            <row>
-                <hbox>
-                    <label
-                            id="label_TjadkulmasterDialog_kunNr"
-                            value="SEKOLAH"/>
-                    <label value="*"
-                           style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox>
-                    <textbox id="txtb_filSekolah" readonly="true" maxlength="50" width="99%"/>
-                    <button
-                            id="btnSearchSekolahExtended" disabled="true"
-                            width="28px"
-                            image="/images/icons/btn_search2_16x16.gif"
-                            tooltiptext="Cari Sekolah"/>
-                </hbox>
-            </row>
+                <grid sclass="GridLayoutNoBorder"
+                      fixedLayout="true"
+                      style="border:0px; padding-left:5px; padding-right:5px;">
+                    <columns>
+                        <column width="150px"/>
+                        <column width="100%"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <hbox>
+                                <label
+                                        id="label_TjadkulmasterDialog_kunNr"
+                                        value="SEKOLAH"/>
+                                <label value="*"
+                                       style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox>
+                                <textbox id="txtb_filSekolah" readonly="true" maxlength="50" width="99%"/>
+                                <button
+                                        id="btnSearchSekolahExtended" disabled="true"
+                                        width="28px"
+                                        image="/images/icons/btn_search2_16x16.gif"
+                                        tooltiptext="Cari Sekolah"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label
-                            value="PROGRAM STUDI"/>
-                    <label value="*"
-                           style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox pack="stretch" width="100%">
-                    <textbox
-                            id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
-                            readonly="true" maxlength="40" width="99%"/>
-                    <button
-                            id="btnSearchProdiExtended" disabled="true"
-                            width="28px"
-                            image="/images/icons/btn_search2_16x16.gif"
-                            tooltiptext="Cari Prodi"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label
+                                        value="PROGRAM STUDI"/>
+                                <label value="*"
+                                       style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox pack="stretch" width="100%">
+                                <textbox
+                                        id="txtb_filProdi" value="@{controller.tjadkulmaster.mprodi.cnmprogst}"
+                                        readonly="true" maxlength="40" width="99%"/>
+                                <button
+                                        id="btnSearchProdiExtended" disabled="true"
+                                        width="28px"
+                                        image="/images/icons/btn_search2_16x16.gif"
+                                        tooltiptext="Cari Prodi"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label value="TERM"/>
-                    <label value="*" style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox>
-                    <textbox id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
-                             constraint="no empty" readonly="true" maxlength="4" width="50%"/>
-                    <label value="(*0112 ~> 2 Digit bulan 2 digit tahun"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label value="TERM"/>
+                                <label value="*" style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox>
+                                <textbox id="txtb_filTerm" value="@{controller.tjadkulmaster.cterm}"
+                                         constraint="no empty" readonly="true" maxlength="4" width="50%"/>
+                                <label value="(*0112 ~> 2 Digit bulan 2 digit tahun"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label value="TAHUN AJARAN"/>
-                    <label value="" style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox>
-                    <textbox id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}" readonly="true" maxlength="8" width="99%"/>
-                    <label value="SEMESTER"/>
-                    <label value="" style="color:red;font-size:10px"/>
-                    <textbox id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}" readonly="true" maxlength="1" width="99%"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label value="TAHUN AJARAN"/>
+                                <label value="" style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox>
+                                <textbox id="txtb_filTahunajaran" value="@{controller.tjadkulmaster.cthajar}"
+                                         readonly="true" maxlength="8" width="99%"/>
+                                <label value="SEMESTER"/>
+                                <label value="" style="color:red;font-size:10px"/>
+                                <textbox id="txtb_filSemester" value="@{controller.tjadkulmaster.csmt}" readonly="true"
+                                         maxlength="1" width="99%"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label
-                            value="MATA KULIAH"/>
-                    <label value="*"
-                           style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox pack="stretch" width="100%">
-                    <textbox id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}" readonly="true" maxlength="100" width="99%"/>
-                    <button id="btnSearchMatakuliahExtended" disabled="true" width="28px" image="/images/icons/btn_search2_16x16.gif" tooltiptext="Cari Mata Kuliah"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label
+                                        value="MATA KULIAH"/>
+                                <label value="*"
+                                       style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox pack="stretch" width="100%">
+                                <textbox id="txtb_filMatakuliah" value="@{controller.tjadkulmaster.mtbmtkl.cnamamk}"
+                                         readonly="true" maxlength="100" width="99%"/>
+                                <button id="btnSearchMatakuliahExtended" disabled="true" width="28px"
+                                        image="/images/icons/btn_search2_16x16.gif" tooltiptext="Cari Mata Kuliah"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label
-                            value="KELOMPOK"/>
-                    <label value="*" style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox>
-                    <textbox id="txtb_filKelompok" value="@{controller.tjadkulmaster.ckelompok}" constraint="no empty" readonly="true" maxlength="2" width="99%"/>
-                    <label value="SKS"/>
-                    <label value="" style="color:red;font-size:10px"/>
-                    <intbox id="txtb_filSks" value="@{controller.tjadkulmaster.nsks}" readonly="true" maxlength="5" width="99%"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label
+                                        value="KELOMPOK"/>
+                                <label value="*" style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox>
+                                <textbox id="txtb_filKelompok" value="@{controller.tjadkulmaster.ckelompok}"
+                                         constraint="no empty" readonly="true" maxlength="2" width="99%"/>
+                                <label value="SKS"/>
+                                <label value="" style="color:red;font-size:10px"/>
+                                <intbox id="txtb_filSks" value="@{controller.tjadkulmaster.nsks}" readonly="true"
+                                        maxlength="5" width="99%"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label
-                            value="DOSEN 1"/>
-                    <label value="*"
-                           style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox pack="stretch" width="100%">
-                    <textbox
-                            id="txtb_filPegawai1" value=""
-                            readonly="true" maxlength="60" width="99%"/>
-                    <button
-                            id="btnSearchPegawai1Extended" disabled="true"
-                            width="28px"
-                            image="/images/icons/btn_search2_16x16.gif"
-                            tooltiptext="Cari Dosen 1"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label
+                                        value="DOSEN 1"/>
+                                <label value="*"
+                                       style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox pack="stretch" width="100%">
+                                <textbox
+                                        id="txtb_filPegawai1" value=""
+                                        readonly="true" maxlength="60" width="99%"/>
+                                <button
+                                        id="btnSearchPegawai1Extended" disabled="true"
+                                        width="28px"
+                                        image="/images/icons/btn_search2_16x16.gif"
+                                        tooltiptext="Cari Dosen 1"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label
-                            value="DOSEN 2"/>
-                    <label value="*"
-                           style="color:red;font-size:10px"/>
-                </hbox>
-                <hbox pack="stretch" width="100%">
-                    <textbox
-                            id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
-                            readonly="true" maxlength="60" width="99%"/>
-                    <button
-                            id="btnSearchPegawai2Extended" disabled="true"
-                            width="28px"
-                            image="/images/icons/btn_search2_16x16.gif"
-                            tooltiptext="Cari Dosen 2"/>
-                </hbox>
-            </row>
+                        <row>
+                            <hbox>
+                                <label
+                                        value="DOSEN 2"/>
+                                <label value="*"
+                                       style="color:red;font-size:10px"/>
+                            </hbox>
+                            <hbox pack="stretch" width="100%">
+                                <textbox
+                                        id="txtb_filPegawai2" value="@{controller.tjadkulmaster.mpegawai2.cnama}"
+                                        readonly="true" maxlength="60" width="99%"/>
+                                <button
+                                        id="btnSearchPegawai2Extended" disabled="true"
+                                        width="28px"
+                                        image="/images/icons/btn_search2_16x16.gif"
+                                        tooltiptext="Cari Dosen 2"/>
+                            </hbox>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label value="LINTAS PRODI (Y/T)"/>
-                    <label value="" style="color:red;font-size:10px"/>
-                </hbox>
-                <textbox id="txtb_filLintasprodi" value="@{controller.tjadkulmaster.clintasprodi}" readonly="true" maxlength="1" width="10%"/>
-            </row>
+                        <row>
+                            <hbox>
+                                <label value="LINTAS PRODI (Y/T)"/>
+                                <label value="" style="color:red;font-size:10px"/>
+                            </hbox>
+                            <textbox id="txtb_filLintasprodi" value="@{controller.tjadkulmaster.clintasprodi}"
+                                     readonly="true" maxlength="1" width="10%"/>
+                        </row>
 
-            <row>
-                <hbox>
-                    <label value="KETERANGAN"/>
-                    <label value="" style="color:red;font-size:10px"/>
-                </hbox>
-                <textbox id="txtb_filKeterangan" value="@{controller.tjadkulmaster.cket}" readonly="true" maxlength="50" width="99%"/>
-            </row>
-        </rows>
-    </grid>
-</groupbox>
-</panelchildren>
-</panel>
+                        <row>
+                            <hbox>
+                                <label value="KETERANGAN"/>
+                                <label value="" style="color:red;font-size:10px"/>
+                            </hbox>
+                            <textbox id="txtb_filKeterangan" value="@{controller.tjadkulmaster.cket}" readonly="true"
+                                     maxlength="50" width="99%"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+        </panelchildren>
+    </panel>
 </north>
 
 
@@ -277,32 +284,43 @@
                          height="100%" multiple="false">
                     <listhead sizable="true">
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_Tjadkulmasterpos_No"
-                                image="/images/icons/builder.gif" sort="auto" width="10%"
+                                id="listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari"
+                                sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                                sort="auto" width="10%"
                                 label="HARI"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_Shorttext"
-                                image="/images/icons/create_doc.gif" sort="auto" width="40%"
+                                id="listheader_TjadkulmasterPosList_Sesi"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                sort="auto" width="40%"
                                 label="SESI"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_Count"
+                                id="listheader_TjadkulmasterPosList_JamAwal"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                sort="auto" width="40%"
+                                label="JAM AWAL"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList_JamAkhir"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                sort="auto" width="40%"
+                                label="JAM AKHIR"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList_Ruang" sclass="FDListBoxHeader1"
                                 image="/images/icons/builder.gif" sort="auto" width="10%"
                                 label="RUANG"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_SinglePrice"
-                                image="/images/icons/builder.gif" sort="auto" width="20%"
-                                label="LINTAS PRODI"/>
-                        <listheader
-                                id="listheader_TjadkulmasterPosList2_WholePrice"
-                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                id="listheader_TjadkulmasterPosList_Jumlahsesi"
+                                sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                                sort="auto" width="20%"
                                 label="JUMLAH SESI"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_WholePrice2"
-                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                id="listheader_TjadkulmasterPosList_Maks"
+                                sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                                sort="auto" width="20%"
                                 label="MAKS"/>
                         <listheader
-                                id="listheader_TjadkulmasterPosList2_WholePrice3"
-                                image="/images/icons/builder.gif" sort="auto" width="20%"
+                                id="listheader_TjadkulmasterPosList_Isi"
+                                sclass="FDListBoxHeader1" image="/images/icons/builder.gif"
+                                sort="auto" width="20%"
                                 label="ISI"/>
                     </listhead>
                 </listbox>
@@ -320,12 +338,12 @@
 </zk>
 
 
-        <!-- set the Button of the bandbox, missing in grayTheme -->
-        <!--
-            <style dynamic="true">
-            .mybandbox .z-bandbox-img { background: transparent
-            url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
-            no-repeat 0 0; border: 1px solid #C0C0C0 ; vertical-align:
-            top: cursor: pointer: width: 19px; height: 19px ;}
-            </style>
-        -->
+<!-- set the Button of the bandbox, missing in grayTheme -->
+<!--
+    <style dynamic="true">
+    .mybandbox .z-bandbox-img { background: transparent
+    url(${c:encodeURL('~./zul/img/button/bandbtn.gif')})
+    no-repeat 0 0; border: 1px solid #C0C0C0 ; vertical-align:
+    top: cursor: pointer: width: 19px; height: 19px ;}
+    </style>
+-->

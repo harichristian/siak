@@ -84,6 +84,15 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
     protected Button btnSearchPegawai1Extended; // autowired
     protected Button btnSearchPegawai2Extended; // autowired
 
+    protected Listheader listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_Sesi; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_JamAwal; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_JamAkhir; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_Ruang; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_Jumlahsesi; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_Maks; // autowired
+    protected Listheader listheader_TjadkulmasterPosList_Isi; // autowired
+
     // search components
     // bandbox for searchCustomer
     protected Bandbox bandbox_TjadkulmasterDialog_CustomerSearch; // autowired
@@ -177,11 +186,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
         if (args.containsKey("tjadkulmaster")) {
             Tjadkulmaster anTjadkulmaster = (Tjadkulmaster) args.get("tjadkulmaster");
             setTjadkulmaster(anTjadkulmaster);
-            // we must addionally check if there is NO customer object in
-            // the tjadkulmaster, so its new.
-//            if (anTjadkulmaster.getCustomer() != null) {
-//                setCustomer(anTjadkulmaster.getCustomer());
-//            }
         } else {
             setTjadkulmaster(null);
         }
@@ -201,18 +205,23 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             jadkulmasterListCtrl = null;
         }
 
-        // not used listheaders must be declared like ->
-        // lh.setSortAscending(""); lh.setSortDescending("")
-//        listheader_TjadkulmasterPosList2_Tjadkulmasterpos_No.setSortAscending(new FieldComparator("aupId", true));
-//        listheader_TjadkulmasterPosList2_Tjadkulmasterpos_No.setSortDescending(new FieldComparator("aupId", false));
-//        listheader_TjadkulmasterPosList2_Shorttext.setSortAscending(new FieldComparator("article.artKurzbezeichnung", true));
-//        listheader_TjadkulmasterPosList2_Shorttext.setSortDescending(new FieldComparator("article.artKurzbezeichnung", false));
-//        listheader_TjadkulmasterPosList2_Count.setSortAscending(new FieldComparator("aupMenge", true));
-//        listheader_TjadkulmasterPosList2_Count.setSortDescending(new FieldComparator("aupMenge", false));
-//        listheader_TjadkulmasterPosList2_SinglePrice.setSortAscending(new FieldComparator("aupEinzelwert", true));
-//        listheader_TjadkulmasterPosList2_SinglePrice.setSortDescending(new FieldComparator("aupEinzelwert", false));
-//        listheader_TjadkulmasterPosList2_WholePrice.setSortAscending(new FieldComparator("aupGesamtwert", true));
-//        listheader_TjadkulmasterPosList2_WholePrice.setSortDescending(new FieldComparator("aupGesamtwert", false));
+        // Sort detail
+        listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari.setSortAscending(new FieldComparator("mhari.cnmhari", true));
+        listheader_TjadkulmasterPosList_Tjadkulmasterpos_Hari.setSortDescending(new FieldComparator("mhari.cnmhari", false));
+        listheader_TjadkulmasterPosList_Sesi.setSortAscending(new FieldComparator("msesikuliah.ckdsesi", true));
+        listheader_TjadkulmasterPosList_Sesi.setSortDescending(new FieldComparator("msesikuliah.ckdsesi", false));
+        listheader_TjadkulmasterPosList_JamAwal.setSortAscending(new FieldComparator("msesikuliah.cjamawal", true));
+        listheader_TjadkulmasterPosList_JamAwal.setSortDescending(new FieldComparator("msesikuliah.cjamawal", false));
+        listheader_TjadkulmasterPosList_JamAkhir.setSortAscending(new FieldComparator("msesikuliah.cjamakhir", true));
+        listheader_TjadkulmasterPosList_JamAkhir.setSortDescending(new FieldComparator("msesikuliah.cjamakhir", false));
+        listheader_TjadkulmasterPosList_Ruang.setSortAscending(new FieldComparator("mruang.cnmRuang", true));
+        listheader_TjadkulmasterPosList_Ruang.setSortDescending(new FieldComparator("mruang.cnmRuang", false));
+        listheader_TjadkulmasterPosList_Jumlahsesi.setSortAscending(new FieldComparator("njmlsesi", true));
+        listheader_TjadkulmasterPosList_Jumlahsesi.setSortDescending(new FieldComparator("njmlsesi", false));
+        listheader_TjadkulmasterPosList_Maks.setSortAscending(new FieldComparator("nmaks", true));
+        listheader_TjadkulmasterPosList_Maks.setSortDescending(new FieldComparator("nmaks", false));
+        listheader_TjadkulmasterPosList_Isi.setSortAscending(new FieldComparator("nisi", true));
+        listheader_TjadkulmasterPosList_Isi.setSortDescending(new FieldComparator("nisi", false));
 
         paging_ListBoxTjadkulmasterTjadkuldetils.setPageSize(pageSizeTjadkuldetil);
         paging_ListBoxTjadkulmasterTjadkuldetils.setDetailed(true);
@@ -222,22 +231,14 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             if (!getTjadkulmaster().isNew()) {
                 HibernateSearchObject<Tjadkuldetil> soTjadkuldetil = new HibernateSearchObject<Tjadkuldetil>(Tjadkuldetil.class, pageSizeTjadkuldetil);
                 soTjadkuldetil.addFilter(new Filter("tjadkulmaster", getTjadkulmaster(), Filter.OP_EQUAL));
-                // deeper loading of the relation to prevent the lazy
-                // loading problem.
-                //soTjadkuldetil.addFetch("article");
-
                 // Set the ListModel.
                 getPlwTjadkuldetils().init(soTjadkuldetil, listBoxTjadkulmasterTjadkuldetils, paging_ListBoxTjadkulmasterTjadkuldetils);
-
             }
         }
         listBoxTjadkulmasterTjadkuldetils.setItemRenderer(new JadkuldetilListItemRenderer());
-
         // set Field Properties
         doSetFieldProperties();
-
         doShowDialog(getTjadkulmaster());
-
     }
 
     /**
@@ -271,8 +272,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws Exception
      */
     public void onClose$tjadkulmasterDialogWindow(Event event) throws Exception {
-        // logger.debug(event.toString());
-
         doClose();
 
     }
@@ -284,8 +283,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws InterruptedException
      */
     public void onClick$btnSave(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         doSave();
     }
 
@@ -295,8 +292,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$btnEdit(Event event) {
-        // logger.debug(event.toString());
-
         doEdit();
     }
 
@@ -306,8 +301,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$btnNew(Event event) {
-        // logger.debug(event.toString());
-
         doNew();
     }
 
@@ -318,8 +311,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws InterruptedException
      */
     public void onClick$btnHelp(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         ZksampleMessageUtils.doShowNotImplementedMessage();
     }
 
@@ -330,8 +321,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws InterruptedException
      */
     public void onClick$btnDelete(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         doDelete();
     }
 
@@ -341,8 +330,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$btnCancel(Event event) {
-        // logger.debug(event.toString());
-
         doCancel();
     }
 
@@ -353,14 +340,11 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws InterruptedException
      */
     public void onClick$btnClose(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         try {
             doClose();
         } catch (final Exception e) {
             // close anyway
             tjadkulmasterDialogWindow.onClose();
-            // Messagebox.show(e.toString());
         }
     }
 
@@ -371,24 +355,11 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @throws InterruptedException
      */
     public void onClick$button_TjadkulmasterDialog_PrintTjadkulmaster(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         // doPrintReport();
         doPrintTjadkulmasterReport(event);
     }
 
     private void doPrintTjadkulmasterReport(Event event) throws InterruptedException {
-
-//        Tjadkulmaster anTjadkulmaster = getTjadkulmaster();
-//
-//        Window win = (Window) Path.getComponent("/outerIndexWindow");
-//
-//        try {
-//            new TjadkulmasterDJReport(win, anTjadkulmaster);
-//        } catch (final InterruptedException e) {
-//            ZksampleMessageUtils.showErrorMessage(e.toString());
-//        }
-
     }
 
     /**
@@ -397,8 +368,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$button_TjadkulmasterDialog_NewTjadkuldetil(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         // create a new tjadkuldetil object
         Tjadkuldetil anTjadkuldetil = getJadkulService().getNewTjadkuldetil();
 
@@ -565,18 +534,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * Stores the init values in mem vars. <br>
      */
     private void doStoreInitValues() {
-//        oldVar_txtb_filSekolah = txtb_filSekolah.getValue();
-//        oldVar_txtb_filProdi = txtb_filProdi.getValue();
-//        oldVar_txtb_filMatakuliah = txtb_filMatakuliah.getValue();
-//        oldVar_txtb_filPegawai1 = txtb_filPegawai1.getValue();
-//        oldVar_txtb_filPegawai2 = txtb_filPegawai2.getValue();
-//        oldVar_txtb_filTerm = txtb_filTerm.getValue();
-//        oldVar_txtb_filKelompok = txtb_filKelompok.getValue();
-//        oldVar_txtb_filTahunajaran = txtb_filTahunajaran.getValue();
-//        oldVar_txtb_filSemester = txtb_filSemester.getValue();
-//        oldVar_txtb_filSks = txtb_filSks.getValue();
-//        oldVar_txtb_filKeterangan = txtb_filKeterangan.getValue();
-//        oldVar_txtb_filLintasprodi = txtb_filLintasprodi.getValue();
     }
 
     /**
@@ -748,11 +705,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * Set the components for edit mode. <br>
      */
     private void doEdit() {
-//        txtb_filSekolah.setReadonly(false);
-//        txtb_filProdi.setReadonly(false);
-//        txtb_filMatakuliah.setReadonly(false);
-//        txtb_filPegawai1.setReadonly(false);
-//        txtb_filPegawai2.setReadonly(false);
         txtb_filTerm.setReadonly(false);
         txtb_filKelompok.setReadonly(false);
         txtb_filTahunajaran.setReadonly(false);
@@ -776,11 +728,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * Set the components to ReadOnly. <br>
      */
     public void doReadOnly() {
-//        txtb_filSekolah.setReadonly(true);
-//        txtb_filProdi.setReadonly(true);
-//        txtb_filMatakuliah.setReadonly(true);
-//        txtb_filPegawai1.setReadonly(true);
-//        txtb_filPegawai2.setReadonly(true);
         txtb_filTerm.setReadonly(true);
         txtb_filKelompok.setReadonly(true);
         txtb_filTahunajaran.setReadonly(true);
@@ -888,8 +835,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onDoubleClickedTjadkuldetilItem(Event event) throws InterruptedException {
-        // logger.debug(event.toString());
-
         // get the selected object
         Listitem item = listBoxTjadkulmasterTjadkuldetils.getSelectedItem();
 
@@ -942,8 +887,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$button_bbox_CustomerSearch_Close(Event event) {
-        // logger.debug(event.toString());
-
         bandbox_TjadkulmasterDialog_CustomerSearch.close();
     }
 
@@ -955,14 +898,11 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$button_bbox_CustomerSearch_NewCustomer(Event event) {
-        // logger.debug(event.toString());
-
         /** !!! DO NOT BREAK THE TIERS !!! */
         // We don't create a new DomainObject() in the frontend.
         // We GET it from the backend.
         Customer aCustomer = getCustomerService().getNewCustomer();
         aCustomer.setOffice(getUserWorkspace().getOffice()); // init
-        // customer.setBranche(Workspace.getBranche()); // init
         aCustomer.setBranche(getBrancheService().getBrancheById(new Integer(1033).longValue())); // init
         aCustomer.putKunMahnsperre(false); // init
 
@@ -990,14 +930,10 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onClick$button_bbox_CustomerSearch_Search(Event event) {
-        // logger.debug(event.toString());
-
         doSearch();
     }
 
     public void onOpen$bandbox_TjadkulmasterDialog_CustomerSearch(Event event) throws Exception {
-        // logger.debug(event.toString());
-
         // ++ create the searchObject and init sorting ++//
         HibernateSearchObject<Customer> soCustomer = new HibernateSearchObject<Customer>(Customer.class);
         soCustomer.addSort("kunName1", false);
@@ -1008,8 +944,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
 
         // Set the ListModel.
         getPlwCustomers().init(soCustomer, listBoxCustomerSearch, paging_TjadkulmasterDialog_CustomerSearchList);
-        // set the itemRenderer
-        //listBoxCustomerSearch.setItemRenderer(new TjadkulmasterSearchCustomerListModelItemRenderer());
     }
 
     /**
@@ -1044,9 +978,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
 
         // Set the ListModel.
         getPlwCustomers().init(soCustomer, listBoxCustomerSearch, paging_TjadkulmasterDialog_CustomerSearchList);
-        // set the itemRenderer
-//        listBoxCustomerSearch.setItemRenderer(new TjadkulmasterSearchCustomerListModelItemRenderer());
-
     }
 
     /**
@@ -1057,18 +988,12 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
      * @param event
      */
     public void onDoubleClickedCustomerItem(Event event) {
-        // logger.debug(event.toString());
-
         // get the customer
         Listitem item = listBoxCustomerSearch.getSelectedItem();
         if (item != null) {
 
             Customer aCustomer = (Customer) item.getAttribute("data");
             setCustomer(aCustomer);
-
-//            kunNr.setValue(getCustomer().getKunNr());
-//            bandbox_TjadkulmasterDialog_CustomerSearch.setValue(getCustomer().getKunNr());
-//            kunName1.setValue(getCustomer().getKunName1() + " " + getCustomer().getKunName2() + ", " + getCustomer().getKunOrt());
         }
 
         // close the bandbox
@@ -1091,24 +1016,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             setTjadkulmaster(tjadkulmaster);
         }
     }
-
-//    public void onChange$txtb_filSekolah() {
-//        if (txtb_filSekolah.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filSekolah.getValue())) {
-//                Msekolah sekolah = sekolahService.getSekolahById(Integer.parseInt(txtb_filSekolah.getValue()));
-//
-//                if (sekolah != null) {
-//                    txtb_filSekolah.setValue(txtb_filSekolah.getValue() + " - " + sekolah.getCnamaSekolah());
-//                    getTjadkulmaster().setMsekolah(sekolah);
-//                } else {
-//                    txtb_filSekolah.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filSekolah.setValue("Input Data Salah");
-//            }
-//        }
-//    }
-
     /*--------------------------- PRODI LOV ---------------------------*/
     public void onClick$btnSearchProdiExtended(Event event) {
         doSearchProdiExtended(event);
@@ -1124,24 +1031,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             setTjadkulmaster(tjadkulmaster);
         }
     }
-
-//    public void onChange$txtb_filProdi() {
-//        if (txtb_filProdi.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filProdi.getValue())) {
-//                Mprodi prodi = prodiService.getProdiByID(Integer.parseInt(txtb_filProdi.getValue()));
-//
-//                if (prodi != null) {
-//                    txtb_filProdi.setValue(txtb_filProdi.getValue() + " - " + prodi.getCnmprogst());
-//                    getTjadkulmaster().setMprodi(prodi);
-//                } else {
-//                    txtb_filProdi.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filProdi.setValue("Input Data Salah");
-//            }
-//        }
-//    }
-
     /*--------------------------- MATAKULIAH LOV ---------------------------*/
     public void onClick$btnSearchMatakuliahExtended(Event event) {
         doSearchMatakuliahExtended(event);
@@ -1157,24 +1046,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             setTjadkulmaster(tjadkulmaster);
         }
     }
-
-//    public void onChange$txtb_filMatakuliah() {
-//        if (txtb_filMatakuliah.getValue() != null) {
-//            if (NumberUtils.isNumber(txtb_filMatakuliah.getValue())) {
-//                Mtbmtkl matakuliah = matakuliahService.getMatakuliahById(Integer.parseInt(txtb_filMatakuliah.getValue()));
-//
-//                if (matakuliah != null) {
-//                    txtb_filMatakuliah.setValue(txtb_filMatakuliah.getValue() + " - " + matakuliah.getCnamamk());
-//                    getTjadkulmaster().setMtbmtkl(matakuliah);
-//                } else {
-//                    txtb_filMatakuliah.setValue("Data Tidak Ditemukan");
-//                }
-//            } else {
-//                txtb_filMatakuliah.setValue("Input Data Salah");
-//            }
-//        }
-//    }
-
     /*--------------------------- PEGAWAI1 LOV ---------------------------*/
     public void onClick$btnSearchPegawai1Extended(Event event) {
         doSearchPegawai1Extended(event);
@@ -1190,20 +1061,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             setTjadkulmaster(tjadkulmaster);
         }
     }
-
-//    public void onChange$txtb_filPegawai1() {
-//        if (txtb_filPegawai1.getValue() != null) {
-//            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai1.getValue());
-//
-//            if (pegawai != null) {
-//                txtb_filPegawai1.setValue(txtb_filPegawai1.getValue() + " - " + pegawai.getCnama());
-//                getTjadkulmaster().setMpegawai1(pegawai);
-//            } else {
-//                txtb_filPegawai1.setValue("Data Tidak Ditemukan");
-//            }
-//        }
-//    }
-
     /*--------------------------- PEGAWAI2 LOV ---------------------------*/
     public void onClick$btnSearchPegawai2Extended(Event event) {
         doSearchPegawai2Extended(event);
@@ -1219,20 +1076,6 @@ public class JadkulmasterDialogCtrl extends GFCBaseCtrl implements Serializable 
             setTjadkulmaster(tjadkulmaster);
         }
     }
-
-//    public void onChange$txtb_filPegawai2() {
-//        if (txtb_filPegawai2.getValue() != null) {
-//            Mpegawai pegawai = pegawaiService.getPegawaiByNip(txtb_filPegawai2.getValue());
-//
-//            if (pegawai != null) {
-//                txtb_filPegawai2.setValue(txtb_filPegawai2.getValue() + " - " + pegawai.getCnama());
-//                getTjadkulmaster().setMpegawai2(pegawai);
-//            } else {
-//                txtb_filPegawai2.setValue("Data Tidak Ditemukan");
-//            }
-//        }
-//    }
-
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     // ++++++++++++++++++ getter / setter +++++++++++++++++++//
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++//

@@ -3,195 +3,218 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
-    xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="tjadkuldetilDialogWindow"
-            title="JADWAL KULIAH DETIL" border="none"
-            sizable="true" apply="${jadkuldetilDialogCtrl}" closable="true"
-            width="600px" height="280px">
+<window id="tjadkuldetilDialogWindow"
+        title="JADWAL KULIAH DETIL" border="none"
+        sizable="true" apply="${jadkuldetilDialogCtrl}" closable="true"
+        width="600px" height="400px">
 
-        <borderlayout id="borderlayoutTjadkuldetilDialog">
+<borderlayout id="borderlayoutTjadkuldetilDialog">
 
-            <north border="none">
+<north border="none">
 
-                <div sclass="z-toolbar" style="padding:0">
-                    <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
-                          width="100%">
+    <div sclass="z-toolbar" style="padding:0">
+        <hbox pack="stretch" sclass="hboxRemoveWhiteStrips"
+              width="100%">
 
-                        <!-- COMMON BUTTONS -->
-                        <toolbar align="start"
-                                 style="float:left; border-style: none;" height="28px">
-                            <!--<button id="btnHelp" height="24px"
-                                    image="/images/icons/light_16x16.gif"
-                                    tooltiptext="${c:l('btnHelp.tooltiptext')}"/>-->
-                        </toolbar>
+            <!-- COMMON BUTTONS -->
+            <toolbar align="start"
+                     style="float:left; border-style: none;" height="28px">
+                <!--<button id="btnHelp" height="24px"
+                image="/images/icons/light_16x16.gif"
+                tooltiptext="${c:l('btnHelp.tooltiptext')}"/>-->
+            </toolbar>
 
-                        <!-- SEARCH AREA -->
-                        <toolbar align="center"
-                                 style="float:left; border-style: none;" height="28px">
-                            <hbox align="center" style="padding: 2px">
-                            </hbox>
-                        </toolbar>
+            <!-- SEARCH AREA -->
+            <toolbar align="center"
+                     style="float:left; border-style: none;" height="28px">
+                <hbox align="center" style="padding: 2px">
+                </hbox>
+            </toolbar>
 
-                        <!-- CRUD BUTTONS -->
-                        <toolbar align="end"
-                                 style="float:right; border-style: none;" height="28px">
-                            <button id="btnNew" height="24px"
-                                    tooltiptext="${c:l('btnNew.tooltiptext')}"/>
-                            <!-- label="${c:l('btnNew.label')}"	 -->
-                            <button id="btnEdit" height="24px"
-                                    tooltiptext="${c:l('btnEdit.tooltiptext')}"/>
-                            <button id="btnDelete" height="24px"
-                                    tooltiptext="${c:l('btnDelete.tooltiptext')}"/>
-                            <button id="btnSave" height="24px"
-                                    tooltiptext="${c:l('btnSave.tooltiptext')}"/>
-                            <button id="btnCancel" height="24px"
-                                    tooltiptext="${c:l('btnCancel.tooltiptext')}"/>
-                            <button id="btnClose" height="24px"
-                                    tooltiptext="${c:l('btnClose.tooltiptext')}"/>
-                        </toolbar>
-                    </hbox>
-                </div>
+            <!-- CRUD BUTTONS -->
+            <toolbar align="end"
+                     style="float:right; border-style: none;" height="28px">
+                <button id="btnNew" height="24px"
+                        tooltiptext="${c:l('btnNew.tooltiptext')}"/>
+                <!-- label="${c:l('btnNew.label')}"	 -->
+                <button id="btnEdit" height="24px"
+                        tooltiptext="${c:l('btnEdit.tooltiptext')}"/>
+                <button id="btnDelete" height="24px"
+                        tooltiptext="${c:l('btnDelete.tooltiptext')}"/>
+                <button id="btnSave" height="24px"
+                        tooltiptext="${c:l('btnSave.tooltiptext')}"/>
+                <button id="btnCancel" height="24px"
+                        tooltiptext="${c:l('btnCancel.tooltiptext')}"/>
+                <button id="btnClose" height="24px"
+                        tooltiptext="${c:l('btnClose.tooltiptext')}"/>
+            </toolbar>
+        </hbox>
+    </div>
 
-            </north>
+</north>
 
 
-            <center border="none" margins="0,0,0,0">
-                <div id="divCenterOffice">
+<center border="none" margins="0,0,0,0">
+    <div id="divCenterOffice">
 
-                    <panel id="panel_TjadkuldetilDialog"
-                           style="margin-bottom:10px" border="none">
-                        <panelchildren>
+        <panel id="panel_TjadkuldetilDialog"
+               style="margin-bottom:10px" border="none">
+            <panelchildren>
 
-                            <style>.z-groupbox-cnt {
-                                border: 0
-                            }</style>
-                            <groupbox mold="3d" closable="false">
-                                <caption image="/images/icons/view.gif"
-                                         label="${c:l('panel_TjadkuldetilDialog.title')}"/>
+                <style>.z-groupbox-cnt {
+                    border: 0
+                }</style>
+                <groupbox mold="3d" closable="false">
+                    <caption image="/images/icons/view.gif"
+                             label="${c:l('panel_TjadkuldetilDialog.title')}"/>
 
-                                <grid sclass="GridLayoutNoBorder"
-                                      fixedLayout="true"
-                                      style="border:0px; padding-left:5px; padding-right:5px;">
-                                    <columns>
-                                        <column width="150px"/>
-                                        <column width="100%"/>
-                                    </columns>
-                                    <rows>
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="HARI"/>
-                                                <label value="*"
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <textbox id="txtb_filHari" readonly="true" width="99%" maxlength="10"/>
-                                                <button
-                                                        id="btnSearchHariExtended" disabled="true"
-                                                        width="28px"
-                                                        image="/images/icons/btn_search2_16x16.gif"
-                                                        tooltiptext="Cari Hari"/>
-                                            </hbox>
-                                        </row>
+                    <grid sclass="GridLayoutNoBorder"
+                          fixedLayout="true"
+                          style="border:0px; padding-left:5px; padding-right:5px;">
+                        <columns>
+                            <column width="150px"/>
+                            <column width="100%"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="HARI"/>
+                                    <label value="*"
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <textbox id="txtb_filHari" readonly="true" width="99%" maxlength="10"/>
+                                    <button
+                                            id="btnSearchHariExtended" disabled="true"
+                                            width="28px"
+                                            image="/images/icons/btn_search2_16x16.gif"
+                                            tooltiptext="Cari Hari"/>
+                                </hbox>
+                            </row>
 
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="SESI"/>
-                                                <label value="*"
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <textbox id="txtb_filSesi" readonly="true" width="99%"/>
-                                                <button
-                                                        id="btnSearchSesiExtended" disabled="true"
-                                                        width="28px"
-                                                        image="/images/icons/btn_search2_16x16.gif"
-                                                        tooltiptext="Cari Sesi Kuliah"/>
-                                            </hbox>
-                                        </row>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="SESI"/>
+                                    <label value="*"
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <textbox id="txtb_filSesi" readonly="true" width="99%"/>
+                                    <button
+                                            id="btnSearchSesiExtended" disabled="true"
+                                            width="28px"
+                                            image="/images/icons/btn_search2_16x16.gif"
+                                            tooltiptext="Cari Sesi Kuliah"/>
+                                </hbox>
+                            </row>
 
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="RUANG"/>
-                                                <label value="*"
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <textbox id="txtb_filRuang" readonly="true" width="99%" maxlength="40"/>
-                                                <button
-                                                        id="btnSearchRuangExtended" disabled="true"
-                                                        width="28px"
-                                                        image="/images/icons/btn_search2_16x16.gif"
-                                                        tooltiptext="Cari Ruang Kuliah"/>
-                                            </hbox>
-                                        </row>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="JAM AWAL"/>
+                                    <label value=""
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <textbox id="txtb_filSesiJamAwal" readonly="true" width="99%"/>
+                                </hbox>
+                            </row>
 
-                                        <row>
-                                            <separator bar="true"></separator>
-                                            <separator bar="true"></separator>
-                                        </row>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="JAM AKHIR"/>
+                                    <label value=""
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <textbox id="txtb_filSesiJamAkhir" readonly="true" width="99%"/>
+                                </hbox>
+                            </row>
 
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="JUMLAH SESI"/>
-                                                <label value=""
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <intbox id="txtb_filJumlahsesi" readonly="true" width="99%" maxlength="5"/>
-                                            </hbox>
-                                        </row>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="RUANG"/>
+                                    <label value="*"
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <textbox id="txtb_filRuang" readonly="true" width="99%" maxlength="40"/>
+                                    <button
+                                            id="btnSearchRuangExtended" disabled="true"
+                                            width="28px"
+                                            image="/images/icons/btn_search2_16x16.gif"
+                                            tooltiptext="Cari Ruang Kuliah"/>
+                                </hbox>
+                            </row>
 
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="MAKS"/>
-                                                <label value=""
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <intbox id="txtb_filMaks" readonly="true" width="99%" maxlength="5"/>
-                                            </hbox>
-                                        </row>
+                            <row>
+                                <separator bar="true"></separator>
+                                <separator bar="true"></separator>
+                            </row>
 
-                                        <row>
-                                            <hbox>
-                                                <label
-                                                        value="ISI"/>
-                                                <label value=""
-                                                       style="color:red;font-size:10px"/>
-                                            </hbox>
-                                            <hbox>
-                                                <intbox id="txtb_filIsi" readonly="true" width="99%" maxlength="5"/>
-                                            </hbox>
-                                        </row>
-                                    </rows>
-                                </grid>
-                            </groupbox>
-                        </panelchildren>
-                    </panel>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="JUMLAH SESI"/>
+                                    <label value=""
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <intbox id="txtb_filJumlahsesi" readonly="true" width="99%" maxlength="5"/>
+                                </hbox>
+                            </row>
 
-                </div>
-            </center>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="MAKS"/>
+                                    <label value=""
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <intbox id="txtb_filMaks" readonly="true" width="99%" maxlength="5"/>
+                                </hbox>
+                            </row>
 
-        </borderlayout>
+                            <row>
+                                <hbox>
+                                    <label
+                                            value="ISI"/>
+                                    <label value=""
+                                           style="color:red;font-size:10px"/>
+                                </hbox>
+                                <hbox>
+                                    <intbox id="txtb_filIsi" readonly="true" width="99%" maxlength="5"/>
+                                </hbox>
+                            </row>
+                        </rows>
+                    </grid>
+                </groupbox>
+            </panelchildren>
+        </panel>
 
-    </window>
+    </div>
+</center>
+
+</borderlayout>
+
+</window>
 </zk>
 
-        <!--
-            <style dynamic="true">
-            .mybandbox .z-bandbox-img { background: transparent
-            url(${c:encodeURL('~./zul/img/button/bandbtn.gif')}) no-repeat 0 0;
-            border: 1px solid #C0C0C0 ; vertical-align: top: cursor: pointer:
-            width: 19px; height: 19px ;}
-            </style>
+<!--
+    <style dynamic="true">
+    .mybandbox .z-bandbox-img { background: transparent
+    url(${c:encodeURL('~./zul/img/button/bandbtn.gif')}) no-repeat 0 0;
+    border: 1px solid #C0C0C0 ; vertical-align: top: cursor: pointer:
+    width: 19px; height: 19px ;}
+    </style>
 
-            format="###,##0.##"
-        -->
+    format="###,##0.##"
+-->

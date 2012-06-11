@@ -174,6 +174,16 @@
                                 sort="auto" width="40%"
                                 label="SESI"/>
                         <listheader
+                                id="listheader_TjadkulmasterPosList_JamAwal"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                sort="auto" width="40%"
+                                label="JAM AWAL"/>
+                        <listheader
+                                id="listheader_TjadkulmasterPosList_JamAkhir"
+                                sclass="FDListBoxHeader1" image="/images/icons/create_doc.gif"
+                                sort="auto" width="40%"
+                                label="JAM AKHIR"/>
+                        <listheader
                                 id="listheader_TjadkulmasterPosList_Ruang" sclass="FDListBoxHeader1"
                                 image="/images/icons/builder.gif" sort="auto" width="10%"
                                 label="RUANG"/>
@@ -193,24 +203,6 @@
                                 sort="auto" width="20%"
                                 label="ISI"/>
                     </listhead>
-                    <!--<listfoot>
-                        <listfooter
-                                id="listfooter_TjadkulmasterPosList_Tjadkulmasterpos_No" width="10%"
-                                label="${c:l('message_Sum')}" style="font-weight:bold"/>
-                        <listfooter
-                                id="listfooter_TjadkulmasterPosList_Shorttext" width="40%" label=""/>
-                        <listfooter
-                                id="listfooter_TjadkulmasterPosList_Count" width="10%" label=""
-                                style="text-align: right"/>
-                        <listfooter
-                                id="listfooter_TjadkulmasterPosList_SinglePrice" width="20%" label=""
-                                style="text-align: right"/>
-                        <listfooter
-                                id="listfooter_TjadkulmasterPosList_WholePrice" width="20%"
-                                height="20px" label="test5" style="text-align: right"/>
-
-                    </listfoot>
-                    -->
                 </listbox>
 
             </center>

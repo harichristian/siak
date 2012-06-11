@@ -55,6 +55,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     // input area
     protected Textbox txtb_filHari; // autowired
     protected Textbox txtb_filSesi; // autowired
+    protected Textbox txtb_filSesiJamAwal; // autowired
+    protected Textbox txtb_filSesiJamAkhir; // autowired
     protected Textbox txtb_filRuang; // autowired
     protected Intbox txtb_filJumlahsesi; // autowired
     protected Intbox txtb_filMaks; // autowired
@@ -74,6 +76,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     // on the values are edited since the last init.
     private transient String oldVar_txtb_filHari;
     private transient String oldVar_txtb_filSesi;
+    private transient String oldVar_txtb_filSesiJamAwal;
+    private transient String oldVar_txtb_filSesiJamAkhir;
     private transient String oldVar_txtb_filRuang;
     private transient int oldVar_txtb_filJumlahsesi;
     private transient int oldVar_txtb_filMaks;
@@ -330,6 +334,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
             }
             if (anTjadkuldetil.getMsesikuliah() != null) {
                 txtb_filSesi.setValue(anTjadkuldetil.getMsesikuliah().getCkdsesi());
+                txtb_filSesiJamAwal.setValue(anTjadkuldetil.getMsesikuliah().getCjamawal());
+                txtb_filSesiJamAkhir.setValue(anTjadkuldetil.getMsesikuliah().getCjamakhir());
             }
             if (anTjadkuldetil.getMruang() != null) {
                 txtb_filRuang.setValue(anTjadkuldetil.getMruang().getCnmRuang());
@@ -443,6 +449,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     private void doStoreInitValues() {
         oldVar_txtb_filHari = txtb_filHari.getValue();
         oldVar_txtb_filSesi = txtb_filSesi.getValue();
+        oldVar_txtb_filSesiJamAwal = txtb_filSesiJamAwal.getValue();
+        oldVar_txtb_filSesiJamAkhir = txtb_filSesiJamAkhir.getValue();
         oldVar_txtb_filRuang = txtb_filRuang.getValue();
     }
 
@@ -452,6 +460,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
     private void doResetInitValues() {
         txtb_filHari.setValue(oldVar_txtb_filHari);
         txtb_filSesi.setValue(oldVar_txtb_filSesi);
+        txtb_filSesiJamAwal.setValue(oldVar_txtb_filSesiJamAwal);
+        txtb_filSesiJamAkhir.setValue(oldVar_txtb_filSesiJamAkhir);
         txtb_filRuang.setValue(oldVar_txtb_filRuang);
     }
 
@@ -629,6 +639,8 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
 
         txtb_filHari.setValue("");
         txtb_filSesi.setValue("");
+        txtb_filSesiJamAwal.setValue("");
+        txtb_filSesiJamAkhir.setValue("");
         txtb_filRuang.setValue("");
     }
 
@@ -766,7 +778,9 @@ public class JadkuldetilDialogCtrl extends GFCBaseCtrl implements Serializable {
         Msesikuliah sesi = SesiExtendedSearchListBox.show(tjadkuldetilDialogWindow);
 
         if (sesi != null) {
-            txtb_filSesi.setValue(sesi.getCkdsesi() + " - " + sesi.getCjamawal());
+            txtb_filSesi.setValue(sesi.getCkdsesi());
+            txtb_filSesiJamAwal.setValue(sesi.getCjamawal());
+            txtb_filSesiJamAkhir.setValue(sesi.getCjamakhir());
             getTjadkuldetil().setMsesikuliah(sesi);
         }
     }
