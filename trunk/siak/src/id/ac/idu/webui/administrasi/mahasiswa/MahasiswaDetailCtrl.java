@@ -359,10 +359,48 @@ public class MahasiswaDetailCtrl extends GFCBaseCtrl implements Serializable {
             
             getMainCtrl().getMhsservice().saveOrUpdate(getMainCtrl().getMahasiswa());
         }
-        catch (DataAccessException e) { ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString()); }
+        catch (DataAccessException e) {
+            ZksampleMessageUtils.showErrorMessage(e.getMostSpecificCause().toString());
+            onSaveError(event);
+        }
         finally {
             getMainCtrl().getListCtrl().loadListData();
             this.doReadOnlyMode(true);
+        }
+    }
+
+    public void onSaveError(Event event) {
+        try{
+            getMainCtrl().onSelect$tabList(event);
+            if (getMainCtrl().tabPanelDetail != null) {
+                if(getMainCtrl().tabPanelDetail.getFirstChild() != null){
+                    getMainCtrl().tabPanelDetail.getChildren().clear();
+                }
+            }
+        } catch (Exception e) {}
+        if(tabPanelKhusus.getFirstChild() != null) {
+            tabPanelKhusus.getChildren().clear();
+            getKhususCtrl().reLoadPage();
+            ZksampleCommonUtils.createTabPanelContent(tabPanelKhusus, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageKhusus.zul");
+        }
+        if(tabPanelKursus.getFirstChild() != null) {
+            tabPanelKursus.getChildren().clear();
+            getKursusCtrl().reLoadPage();
+            ZksampleCommonUtils.createTabPanelContent(tabPanelKursus, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageKursus.zul");
+        }
+        if(tabPanelKegiatan.getFirstChild() != null) {
+            tabPanelKegiatan.getChildren().clear();
+            getKegiatanCtrl().reLoadPage();
+            ZksampleCommonUtils.createTabPanelContent(tabPanelKegiatan, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pageKegiatan.zul");
+        }
+        if(tabPanelPekerjaan.getFirstChild() != null) {
+            tabPanelPekerjaan.getChildren().clear();
+            getPekerjaanCtrl().reLoadPage();
+            ZksampleCommonUtils.createTabPanelContent(tabPanelPekerjaan, this
+                    , "ModuleMainController" , "/WEB-INF/pages/administrasi/mahasiswa/pagePekerjaan.zul");
         }
     }
 

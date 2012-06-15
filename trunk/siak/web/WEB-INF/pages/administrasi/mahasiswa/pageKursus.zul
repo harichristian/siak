@@ -77,7 +77,7 @@
                                         <listhead sizable="true">
                                             <listheader id="cnob" sort="auto" width="5%" label="No"/>
                                             <listheader id="cnmbahasab" sort="auto" width="30%" label="Bahasa"/>
-                                            <listheader id="cstatusb" sort="auto" width="20%" label="Atif/Pasif"/>
+                                            <listheader id="cstatusb" sort="auto" width="20%" label="Aktif/Pasif"/>
                                             <listheader id="cketb" sort="auto" width="45%" label="Keterangan"/>
                                         </listhead>
                                     </listbox>

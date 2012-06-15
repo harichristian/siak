@@ -128,13 +128,13 @@
                                                                 </columns>
                                                                 <rows>
                                                                     <row>
-                                                                        <label id="labelckdprogst" value="Prodi Code"/>
+                                                                        <label id="labelckdprogst" value="Kode Prodi"/>
                                                                         <textbox id="tbckdprogst" width="98%"/>
                                                                         <button id="buttonSearchMprodi" image="/images/icons/search.gif" label="Search" tooltiptext="Search Prodi"/>
                                                                         <button id="buttonCloseMprodi" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
                                                                     </row>
                                                                     <row>
-                                                                        <label id="labelcnmprogst" value="Prodi Name"/>
+                                                                        <label id="labelcnmprogst" value="Nama Prodi"/>
                                                                         <textbox id="tbcnmprogst" width="98%"/>
                                                                     </row>
                                                                     <row spans="4">
@@ -174,13 +174,13 @@
                                                                 </columns>
                                                                 <rows>
                                                                     <row>
-                                                                        <label id="labelckdminat" value="Peminatan Code"/>
+                                                                        <label id="labelckdminat" value="Kode Peminatan"/>
                                                                         <textbox id="tbckdminat" width="98%"/>
                                                                         <button id="buttonSearchMpeminatan" image="/images/icons/search.gif" label="Search" tooltiptext="Search Peminatan"/>
                                                                         <button id="buttonCloseMpeminatan" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
                                                                     </row>
                                                                     <row>
-                                                                        <label id="labelcnmminat" value="Peminatan Name"/>
+                                                                        <label id="labelcnmminat" value="Nama Peminatan"/>
                                                                         <textbox id="tbcnmminat" width="98%"/>
                                                                     </row>
                                                                     <row spans="4">
