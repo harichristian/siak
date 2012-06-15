@@ -42,7 +42,7 @@
                                                                 </columns>
                                                                 <rows>
                                                                     <row>
-                                                                        <label id="labelCodeS1" value="Code"/>
+                                                                        <label id="labelCodeS1" value="Kode"/>
                                                                         <textbox id="tbCodeS1" width="98%"/>
                                                                         <button id="buttonSearchPgurTinggiS1" image="/images/icons/search.gif" label="Search" tooltiptext="Search Perguruan Tinggi"/>
                                                                         <button id="buttonClosePgurTinggiS1" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
@@ -97,7 +97,7 @@
                                                                 </columns>
                                                                 <rows>
                                                                     <row>
-                                                                        <label id="labelCodeProgramS1" value="Code program"/>
+                                                                        <label id="labelCodeProgramS1" value="Kode program"/>
                                                                         <textbox id="tbCodeProgramS1" width="98%"/>
                                                                         <button id="buttonSearchProgramS1" image="/images/icons/search.gif" label="Search" tooltiptext="Search Program Studi"/>
                                                                         <button id="buttonCloseProgramS1" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
@@ -272,7 +272,7 @@
                                                                 </columns>
                                                                 <rows>
                                                                     <row>
-                                                                        <label id="labelCodeProgramS2" value="Code program"/>
+                                                                        <label id="labelCodeProgramS2" value="Kode program"/>
                                                                         <textbox id="tbCodeProgramS2" width="98%"/>
                                                                         <button id="buttonSearchProgramS2" image="/images/icons/search.gif" label="Search" tooltiptext="Search Program Studi"/>
                                                                         <button id="buttonCloseProgramS2" image="/images/icons/stop.gif" tooltiptext="Close Window"/>
