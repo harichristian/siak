@@ -48,7 +48,7 @@
             <hbox>
                 <bandbox id="cmb_cjnsmhs" mold="rounded" autodrop="true" readonly="true" disabled="true">
                     <bandpopup>
-                        <listbox id="txtb_cjnsmhs" mold="paging" autopaging="true" width="180px"/>
+                        <listbox id="txtb_cjnsmhs" width="180px" height="100%" vflex="true" multiple="false"/>
                     </bandpopup>
                 </bandbox>
             </hbox>
