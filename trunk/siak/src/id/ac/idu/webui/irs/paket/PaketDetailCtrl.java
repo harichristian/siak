@@ -64,8 +64,8 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox txtb_thajar;      //header
 	protected Textbox txtb_semester;    //header
 
-    protected Textbox txtb_matakuliah;  //detail
-    protected Button btnSearchMatakuliahExtended;
+    //protected Textbox txtb_matakuliah;  //detail
+    //protected Button btnSearchMatakuliahExtended;
     protected Textbox txtb_kelompok;    //detail
 	protected Button button_PaketDialog_PrintPaket; // autowired
     protected Paging pagingDetilMatkul;
@@ -260,7 +260,7 @@ public class PaketDetailCtrl extends GFCBaseCtrl implements Serializable {
 		txtb_term.setReadonly(b);
         btnSearchSekolahExtended.setDisabled(b);
         btnSearchProdiExtended.setDisabled(b);
-        btnSearchMatakuliahExtended.setDisabled(b);
+        //btnSearchMatakuliahExtended.setDisabled(b);
         btnNewMatkul.setVisible(!b);
         btnDeleteMatkul.setVisible(!b);
 	}
